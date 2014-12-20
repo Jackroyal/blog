@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[搁浅St的blog]]></title>
+  <subtitle><![CDATA[我最喜欢笨笨]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://jackroyal.github.io/"/>
+  <updated>2014-12-20T20:09:53.420Z</updated>
+  <id>http://jackroyal.github.io/</id>
+  
+  <author>
+    <name><![CDATA[搁浅St]]></name>
+    <email><![CDATA[geqianst@qq.com]]></email>
+  </author>
+  
+  <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[近期任务]]></title>
+    <link href="http://jackroyal.github.io/2014/12/02/recent-task/"/>
+    <id>http://jackroyal.github.io/2014/12/02/recent-task/</id>
+    <published>2014-12-02T14:56:31.000Z</published>
+    <updated>2014-12-16T15:43:08.000Z</updated>
+    <content type="html"><![CDATA[<p>2014-12-02 22:56:31  接下来的一个星期，我的任务是学习python爬虫的编写，至少要实现csdn博客转markdown的任务</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>2014-12-02 22:56:31  接下来的一个星期，我的任务是学习python爬虫的编写，至少要实现csdn博客转markdown的任务</p>
+]]>
+    </summary>
+    
+      <category term="杂文" scheme="http://jackroyal.github.io/categories/%E6%9D%82%E6%96%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[配置hexo]]></title>
+    <link href="http://jackroyal.github.io/2014/11/28/custom-hexo/"/>
+    <id>http://jackroyal.github.io/2014/11/28/custom-hexo/</id>
+    <published>2014-11-28T13:07:27.000Z</published>
+    <updated>2014-12-16T15:43:08.000Z</updated>
+    <content type="html"><![CDATA[<p>经过<a href="/how-to-build-a-blog-with-hexo.html">上篇博客</a>,我们搭建起了自己的博客,接下来我们对它做些个性化的定制.<br>在hexo中,配置文件一共两个(我的hexo安装在F:/blog/),分别是<code>F:/blog/_config.yml</code>和<code>F:/blog/themes/light/_config.yml</code>.第一个是全局的配置文件,第二个是主题的配置文件,在继续说之前,我们先来说一下主题安装.<a id="more"></a></p>
+<h1 id="主题安装">主题安装</h1>
+<p>这个很简单,在hexo的Github的主页上有个主题栏目,<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">https://github.com/hexojs/hexo/wiki/Themes</a>,里面列出了很多主题.<br>安装方法很简单</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="input"><span class="prompt">$ git clone &lt;repository&gt;</span> themes/&lt;theme-name&gt;</span></div></pre></td></tr></table></figure>
+
+<p>举个简单例子,我安装的主题名为<code>light</code>,请在<code>F:/blog/</code>目录下执行以下代码</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>git clone <span class="symbol">https:</span>/<span class="regexp">/github.com/hexojs</span><span class="regexp">/hexo-theme-light themes/light</span></div></pre></td></tr></table></figure>
+
+<p>如果你不是在<code>F:/blog/</code>中执行,请修改后面的路径themes/light为你的路径.基本原理就是把主题下下来,放在themes目录下就OK了,主题安装完毕.</p>
+<h1 id="修改全局配置文件_F:/blog/_config-yml">修改全局配置文件 <code>F:/blog/_config.yml</code></h1>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor"># Hexo Configuration</span></div><div class="line"><span class="preprocessor">## Docs: http://hexo.io/docs/configuration.html</span></div><div class="line"><span class="preprocessor">## Source: https://github.com/hexojs/hexo/</span></div><div class="line"></div><div class="line"><span class="preprocessor"># Site</span></div><div class="line"><span class="label">title:</span> 搁浅<span class="keyword">St</span>的blog  <span class="preprocessor">#站点的名称</span></div><div class="line"><span class="label">subtitle:</span> 我最喜欢笨笨   <span class="preprocessor">#站点的副标题</span></div><div class="line"><span class="label">description:</span>             <span class="preprocessor">#站点的描述,有利于搜索引擎的抓取</span></div><div class="line"><span class="label">author:</span> 搁浅<span class="keyword">St</span>       <span class="preprocessor">#作者</span></div><div class="line"><span class="label">email:</span> geqianst@qq.com          <span class="preprocessor">#你的邮箱</span></div><div class="line"><span class="label">language:</span> <span class="built_in">zh</span>-CN           <span class="preprocessor">#语言,一般应该都是这个吧</span></div><div class="line"></div><div class="line"><span class="preprocessor"># URL</span></div><div class="line"><span class="preprocessor">## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'</span></div><div class="line"><span class="label">url:</span> http://jackroyal.github.io       <span class="preprocessor">#网站的url,在页面上,可以调用配置中的url参数,就是这个,比如google自定义搜索,需要制定搜索范围,就是通过这个设置的</span></div><div class="line"><span class="label">root:</span> /</div><div class="line"><span class="label">permalink:</span> :year/:month/:day/:title/</div><div class="line"><span class="label">tag_dir:</span> tags</div><div class="line"><span class="label">archive_dir:</span> archives</div><div class="line"><span class="label">category_dir:</span> categories</div><div class="line"><span class="label">code_dir:</span> downloads/code</div><div class="line"><span class="label">permalink_defaults:</span></div><div class="line"></div><div class="line"><span class="preprocessor"># Directory</span></div><div class="line"><span class="label">source_dir:</span> source</div><div class="line"><span class="label">public_dir:</span> public</div><div class="line"></div><div class="line"><span class="preprocessor"># Writing</span></div><div class="line"><span class="label">new_post_name:</span> :title.md <span class="preprocessor"># File name of new posts</span></div><div class="line"><span class="label">default_layout:</span> post  </div><div class="line"><span class="label">titlecase:</span> false <span class="preprocessor"># Transform title into titlecase</span></div><div class="line"><span class="label">external_link:</span> true <span class="preprocessor"># Open external links in new tab</span></div><div class="line"><span class="label">filename_case:</span> <span class="number">0</span></div><div class="line"><span class="label">render_drafts:</span> false</div><div class="line"><span class="label">post_asset_folder:</span> false</div><div class="line"><span class="label">relative_link:</span> false</div><div class="line"><span class="label">highlight:</span></div><div class="line">  enable: true</div><div class="line">  line_number: true</div><div class="line">  tab_replace:</div><div class="line"></div><div class="line"><span class="preprocessor"># Category & Tag</span></div><div class="line"><span class="label">default_category:</span> uncategorized  </div><div class="line"><span class="label">category_map:</span></div><div class="line"><span class="label">tag_map:</span></div><div class="line"></div><div class="line"><span class="preprocessor"># Archives 默认值为2，这里都修改为1，相应页面就只会列出标题，而非全文</span></div><div class="line"><span class="preprocessor">## 2: Enable pagination</span></div><div class="line"><span class="preprocessor">## 1: Disable pagination</span></div><div class="line"><span class="preprocessor">## 0: Fully Disable</span></div><div class="line"><span class="label">archive:</span> <span class="number">1</span></div><div class="line"><span class="label">category:</span> <span class="number">1</span></div><div class="line"><span class="label">tag:</span> <span class="number">1</span></div><div class="line"></div><div class="line"><span class="preprocessor"># Server</span></div><div class="line"><span class="preprocessor">## Hexo uses Connect as a server</span></div><div class="line"><span class="preprocessor">## You can customize the logger format as defined in</span></div><div class="line"><span class="preprocessor">## http://www.senchalabs.org/connect/logger.html</span></div><div class="line"><span class="label">port:</span> <span class="number">4000</span></div><div class="line"><span class="label">server_ip:</span> localhost</div><div class="line"><span class="label">logger:</span> false</div><div class="line"><span class="label">logger_format:</span> dev</div><div class="line"></div><div class="line"><span class="preprocessor"># Date / Time format</span></div><div class="line"><span class="preprocessor">## Hexo uses Moment.js to parse and display date</span></div><div class="line"><span class="preprocessor">## You can customize the date format as defined in</span></div><div class="line"><span class="preprocessor">## http://momentjs.com/docs/#/displaying/format/</span></div><div class="line"><span class="label">date_format:</span> MMM D YYYY</div><div class="line"><span class="label">time_format:</span> H:mm:ss</div><div class="line"></div><div class="line"><span class="preprocessor"># Pagination</span></div><div class="line"><span class="preprocessor">## Set per_page to 0 to disable pagination</span></div><div class="line"><span class="label">per_page:</span> <span class="number">5</span></div><div class="line"><span class="label">pagination_dir:</span> page</div><div class="line"></div><div class="line"><span class="preprocessor"># Disqus</span></div><div class="line"><span class="label">disqus_shortname:</span></div><div class="line"><span class="preprocessor">#这一行是我添加的duoshuo_shortname,因为天朝disqus不好用,用多说</span></div><div class="line"><span class="label">duoshuo_shortname:</span> jackroyal</div><div class="line"><span class="preprocessor"># Extensions</span></div><div class="line"><span class="preprocessor">## Plugins: https://github.com/hexojs/hexo/wiki/Plugins</span></div><div class="line"><span class="preprocessor">## Themes: https://github.com/hexojs/hexo/wiki/Themes</span></div><div class="line"><span class="label">theme:</span> light</div><div class="line"><span class="label">exclude_generator:</span></div><div class="line"></div><div class="line"><span class="preprocessor"># Deployment  发布相关设置</span></div><div class="line"><span class="preprocessor">## Docs: http://hexo.io/docs/deployment.html</span></div><div class="line"><span class="label">deploy:</span></div><div class="line">  type: github</div><div class="line">  repo: https://github.com/Jackroyal/Jackroyal.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
+
+<p>至此,全局配置文件修改完毕,你可以<code>hexo g</code>和<code>hexo s</code>进行查看.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="label">menu:</span><span class="preprocessor">#导航栏的设置默认只有这两个,还可以添加更多的导航</span></div><div class="line">  Home: /</div><div class="line">  Archives: /archives</div><div class="line"><span class="preprocessor">#它就是你页面右边的侧边项目,比如搜索之类,你可以根据自己的需求进行修改,你能用几个widgets可以在F:\blog\themes\light\layout\_widget中进行查看</span></div><div class="line"><span class="label">widgets:</span><span class="preprocessor">#我这里使用了所有的widgets</span></div><div class="line">- search</div><div class="line">- category</div><div class="line">- tag</div><div class="line">- recent_posts</div><div class="line">- tagcloud</div><div class="line"></div><div class="line"><span class="label">excerpt_link:</span> Read More  <span class="preprocessor">#可以换成中文的  阅读全文</span></div><div class="line"></div><div class="line"><span class="label">twitter:</span></div><div class="line">  username:</div><div class="line">  show_replies: false</div><div class="line">  tweet_count: <span class="number">5</span></div><div class="line">//默认的一个分享组件,因为主要针对国外,不适合国内我们不使用它</div><div class="line"><span class="label">addthis:</span></div><div class="line">  enable: false  <span class="preprocessor">#把true改为false</span></div><div class="line">  pubid:</div><div class="line">  facebook: true</div><div class="line">  twitter: true</div><div class="line">  google: true</div><div class="line">  pinterest: true</div><div class="line"></div><div class="line"><span class="label">fancybox:</span> true</div><div class="line"></div><div class="line"><span class="label">google_analytics:</span></div><div class="line"><span class="label">rss:</span></div><div class="line"><span class="label">duoshuo_shortname:</span> jackroyal  <span class="preprocessor">#多说的用户名</span></div><div class="line"></div><div class="line"><span class="label">comment_provider:</span></div><div class="line"><span class="preprocessor"># Facebook comment</span></div><div class="line"><span class="label">facebook:</span></div><div class="line">  appid: <span class="number">123456789012345</span></div><div class="line">  comment_count: <span class="number">5</span></div><div class="line">  comment_width: <span class="number">840</span></div><div class="line">  comment_colorscheme: light</div></pre></td></tr></table></figure>
+
+<p>至此,配置文件修改完毕,上面提到了我们不适用disqus的评论组件,使用多说,下面教大家来配置多说</p>
+<h1 id="创建多说">创建多说</h1>
+<p>首先我们去多说注册一个账号,<a href="http://duoshuo.com/" title="多说官网" target="_blank" rel="external">点击这里</a><br>我们点击<a href="http://duoshuo.com/create-site/" title="我要安装" target="_blank" rel="external">我要安装</a>,界面如下<img src="http://ww4.sinaimg.cn/large/692869a3gw1emtdlnpsqaj20wo0lp783.jpg" alt="duoshuo 创建界面" title="创建多说账号"><br>shortname就是jackroyal,创建完成后,跳转到如下界面<br><img src="http://ww1.sinaimg.cn/large/692869a3gw1emtdp96x54j20us0jxn18.jpg" alt="获取多说代码" title="获取多说代码"><br>我们选择<code>通用代码</code>,点击复制,就行了</p>
+<h1 id="配置多说">配置多说</h1>
+<p>这里说一个前提,我使用的是light主题,如果你用的是其他主题,接下来的设置可能给我有点区别,但是原理差不多,参考看看</p>
+<ol>
+<li>我们打开<code>F:\blog\themes\light\layout\_partial\comment.ejs</code>这个文件,然后修改后代码如下(如果你不是light主题,可能跟这个不一样,你去找下包含comment的section在哪里,改法还是这样.例如系统默认的landscape主题,下面这段代码就是在article.ejs,它没有comment.ejs)</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="vbscript">&lt;% <span class="keyword">if</span> (page.comments){ %&gt;</span></div><div class="line"><span class="comment">&lt;!-- 这里添加了一个导航,页面的下面会有一个上一篇,下一篇 --&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="title">nav</span> <span class="attribute">id</span>=<span class="value">"pagination"</span> &gt;</span></div><div class="line">    <span class="vbscript">&lt;% <span class="keyword">if</span> (page.prev) { %&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"&lt;%- config.root %&gt;&lt;%- page.prev.path %&gt;"</span> <span class="attribute">class</span>=<span class="value">"alignleft prev"</span> &gt;</span> <span class="vbscript">&lt;%=page.prev.title %&gt;</span> <span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line">    <span class="vbscript">&lt;% } %&gt;</span></div><div class="line">    <span class="vbscript">&lt;% <span class="keyword">if</span> (page.<span class="keyword">next</span>) { %&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"&lt;%- config.root %&gt;&lt;%- page.next.path %&gt;"</span> <span class="attribute">class</span>=<span class="value">"alignright next"</span> &gt;</span> <span class="vbscript">&lt;%=page.<span class="keyword">next</span>.title %&gt;</span> <span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line">    <span class="vbscript">&lt;% } %&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"clearfix"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">nav</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 导航结束 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">section</span> <span class="attribute">id</span>=<span class="value">"comments"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 这里是多说的代码,直接把你的代码粘贴到这里就行 --&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 多说评论框 start --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"ds-thread"</span> <span class="attribute">data-thread-key</span>=<span class="value">"&lt;%= page.layout %&gt;-&lt;%= page.slug %&gt;"</span> <span class="attribute">data-title</span>=<span class="value">"&lt;%= page.title %&gt;"</span> <span class="attribute">data-url</span>=<span class="value">"&lt;%= page.permalink %&gt;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 多说评论框 end --&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">    <span class="keyword">var</span> duoshuoQuery = {short_name:<span class="string">'&lt;%= config.duoshuo_shortname %&gt;'</span>};</div><div class="line">      (<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">        <span class="keyword">var</span> ds = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</div><div class="line">        ds.type = <span class="string">'text/javascript'</span>;ds.async = <span class="literal">true</span>;</div><div class="line">        ds.src = (<span class="built_in">document</span>.location.protocol == <span class="string">'https:'</span> ? <span class="string">'https:'</span> : <span class="string">'http:'</span>) + <span class="string">'//static.duoshuo.com/embed.js'</span>;</div><div class="line">        ds.charset = <span class="string">'UTF-8'</span>;</div><div class="line">        (<span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>]</div><div class="line">         || <span class="built_in">document</span>.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>]).appendChild(ds);</div><div class="line">      })();</div><div class="line">      <span class="tag">&lt;/<span class="title">script</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 多说公共JS代码 end --&gt;</span></div><div class="line">  <span class="comment">&lt;!-- 多说结束 --&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="title">section</span>&gt;</span></div><div class="line"><span class="vbscript">&lt;% } %&gt;</span></div></pre></td></tr></table></figure>
+
+<p>眼尖的同学可能已经看到我的上面第16行代码与你们的不同,这行代码包括了页面的标题和url,它会根据hexo的配置,由hexo动态生成,所以你把你的代码替换成我的这行代码.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div <span class="variable">class=</span><span class="string">"ds-thread"</span> <span class="variable">data-thread-key=</span><span class="string">"&lt;%= page.layout %&gt;-&lt;%= page.slug %&gt;"</span> <span class="variable">data-title=</span><span class="string">"&lt;%= page.title %&gt;"</span> <span class="variable">data-url=</span><span class="string">"&lt;%= page.permalink %&gt;"</span>&gt;&lt;/div&gt;</div></pre></td></tr></table></figure>
+
+<p>至此,多说添加完毕</p>
+<h1 id="修复bug">修复bug</h1>
+<p>我发现light的主题貌似有个小bug,在<code>F:\blog\themes\light\layout\_partial\article.ejs</code>中间第27行有这样一行代码</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="vbscript">&lt;% <span class="keyword">if</span> (item.comment && config.disqus_shortname){ %&gt;</span></div></pre></td></tr></table></figure>
+
+<p>首先我们,替换config.disqus_shortname为config.duoshuo_shortname.<br>然后修改<code>item.comment</code>为<code>item.comments</code>,因为系统中没有comment这个变量,只有comments这个变量,如果不修改comments,那么<code>item.comment</code>一直为假,所以一直不成立,就不会显示comments字段了.修改后代码如下</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="vbscript">&lt;% <span class="keyword">if</span> (item.comments && config.duoshuo_shortname){ %&gt;</span></div></pre></td></tr></table></figure>
+
+<p>产生的效果如图<img src="http://ww3.sinaimg.cn/large/692869a3gw1emteitia5uj20tl0fn412.jpg" alt="开启和关闭comment的区别" title="开启和关闭comment的区别">.<br>至此,配置hexo,打完收工<br>enjoy it</p>
+<hr>
+<h1 id="参考文献">参考文献</h1>
+<p>1 <a href="http://zipperary.com/2013/05/29/hexo-guide-3/" target="_blank" rel="external">http://zipperary.com/2013/05/29/hexo-guide-3/</a><br>2 <a href="http://dev.duoshuo.com/threads/541d3b2b40b5abcd2e4df0e9" target="_blank" rel="external">duoshuo官方Hexo使用教程</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>经过<a href="/how-to-build-a-blog-with-hexo.html">上篇博客</a>,我们搭建起了自己的博客,接下来我们对它做些个性化的定制.<br>在hexo中,配置文件一共两个(我的hexo安装在F:/blog/),分别是<code>F:/blog/_config.yml</code>和<code>F:/blog/themes/light/_config.yml</code>.第一个是全局的配置文件,第二个是主题的配置文件,在继续说之前,我们先来说一下主题安装.]]>
+    
+    </summary>
+    
+      <category term="hexo" scheme="http://jackroyal.github.io/tags/hexo/"/>
+    
+      <category term="hexo" scheme="http://jackroyal.github.io/categories/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[使用hexo建立自己的Github pages]]></title>
+    <link href="http://jackroyal.github.io/2014/11/27/how-to-build-a-blog-with-hexo/"/>
+    <id>http://jackroyal.github.io/2014/11/27/how-to-build-a-blog-with-hexo/</id>
+    <published>2014-11-27T06:48:29.000Z</published>
+    <updated>2014-12-18T16:02:50.000Z</updated>
+    <content type="html"><![CDATA[<p>昨天经过一天的<a href="http://jackroyal.github.io/2014/11/26/new-start/" title="生命在于折腾" target="_blank" rel="external">折腾</a>,总算把博客搭建起来了,今天就来写个博客总结一下.<br>网上的资料很多,我主要参考的是这篇博客,一路很顺利.</p>
+<blockquote>
+<p><a href="http://zipperary.com/2013/05/28/hexo-guide-2/" target="_blank" rel="external">http://zipperary.com/2013/05/28/hexo-guide-2/</a></p>
+</blockquote>
+<p>一个很重要的原因就是他是针对windows的,刚好我也在用windows.</p>
+<h1 id="安装过程">安装过程</h1>
+<h2 id="1-_安装Github_for_windows">1. 安装Github for windows</h2>
+<p>因为我之前就在用Github,所以早就安装了这个.已经装过的同学请忽略这一段.<br>下载 <a href="https://windows.github.com/" title="Github for windows" target="_blank" rel="external">Github for windows</a> 并执行即可完成安装(<em>在线安装,会有点慢</em>)。这个软件的的好处是有一个带GUI的界面,还有一个终端界面.如图所示<a id="more"></a><br><img src="http://ww2.sinaimg.cn/large/692869a3jw1emplp1lz31j204w033mx0.jpg" alt="Github for windows"><br><img src="http://ww2.sinaimg.cn/large/692869a3gw1empluh6hvej210b0j741r.jpg" alt="GUI and Bash"><br>如果你不喜欢用这个,也可以用上面的博客推荐的<a href="http://code.google.com/p/msysgit/" target="_blank" rel="external">msysgit</a>.</p>
+<h2 id="2-_安装Node-js">2. 安装Node.js</h2>
+<p>在 Windows 环境下安装 <a href="http://nodejs.org/" title="Node.js 官网" target="_blank" rel="external">Node.js</a> 非常简单，仅须下载安装文件并执行即可完成安装。</p>
+<h2 id="3-_测试node-js是否安装">3. 测试node.js是否安装</h2>
+<p>在任何控制台输入(可以按windows键+R,输入cmd,然后输入npm,一般来说不会有问题)</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">npm</span></div></pre></td></tr></table></figure>
+
+<p>返回值如下</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">Usage</span>: <span class="string">npm &lt;command&gt;</span></div><div class="line"></div><div class="line"><span class="applescript"><span class="keyword">where</span> &lt;command&gt; <span class="keyword">is</span> one <span class="keyword">of</span>:</span></div><div class="line">    add-user, adduser, apihelp, author, bin, bugs, c, cache,</div><div class="line">    completion, config, ddp, dedupe, deprecate, docs, edit,</div><div class="line">    explore, faq, find, find-dupes, <span class="keyword">get</span>, help, help-search,</div><div class="line">    home, i, info, init, install, isntall, issues, la, link,</div><div class="line">    <span class="type">list</span>, ll, ln, login, ls, outdated, owner, pack, prefix,</div><div class="line">    prune, publish, r, rb, rebuild, remove, repo, restart, rm,</div><div class="line">    root, <span class="command">run</span>-<span class="keyword">script</span>, s, se, search, <span class="keyword">set</span>, show, shrinkwrap,</div><div class="line">    star, stars, start, stop, submodule, t, tag, test, tst, un,</div><div class="line">    uninstall, unlink, unpublish, unstar, up, update, v,</div><div class="line">    <span class="property">version</span>, view, whoami</div><div class="line"></div><div class="line">npm &lt;cmd&gt; -h     quick help <span class="function_start"><span class="keyword">on</span></span> &lt;cmd&gt;</div><div class="line">npm -l           display full usage info</div><div class="line">npm faq          commonly asked questions</div><div class="line">npm help &lt;term&gt;  search <span class="keyword">for</span> help <span class="function_start"><span class="keyword">on</span></span> &lt;term&gt;</div><div class="line">npm help npm     involved overview</div><div class="line"></div><div class="line">Specify configs <span class="keyword">in</span> <span class="keyword">the</span> ini-formatted <span class="type">file</span>:</div><div class="line">    C:\Users\chenhao\.npmrc</div><div class="line"><span class="keyword">or</span> <span class="function_start"><span class="keyword">on</span></span> <span class="keyword">the</span> command line via: npm &lt;command&gt; <span class="comment">--key value</span></div><div class="line">Config info can be viewed via: npm help config</div><div class="line"></div><div class="line">npm@<span class="number">1.4</span><span class="number">.28</span> D:\Program Files (x86)\nodejs\node_modules\npm</div></pre></td></tr></table></figure>
+
+<p>看到这个结果,就表示你的node.js已经安装上去了</p>
+<h2 id="4-_安装hexo">4. 安装hexo</h2>
+<p>接下来的操作我都是用<strong>Github for windows</strong>自带的Bash来完成的,因为后面会涉及到SSH,用<strong>Github for windows</strong>,就可以避免这个问题.</p>
+<ul>
+<li>在Bash中输入以下命令</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm <span class="operator"><span class="keyword">install</span> -g hexo</span></div></pre></td></tr></table></figure>
+
+<ul>
+<li>创建hexo文件夹<br>创建你hexo放置的文件夹,先用Bash进入到目标文件夹,比如我的是F:/blog/,接下来初始化hexo,自动生成相关的文件,在F:/blog/环境下,输入</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo <span class="keyword">init</span></div></pre></td></tr></table></figure>
+
+<ul>
+<li>安装依赖包</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm <span class="operator"><span class="keyword">install</span></span></div></pre></td></tr></table></figure>
+
+<ul>
+<li>本地预览,做完以上操作,可以本地预览一下</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="title">hexo</span> g</div><div class="line">hexo s</div></pre></td></tr></table></figure>
+
+<p>以上两条命令的意思是:<br>生成相关文件(就是生成目标html,静态博客嘛,就是很多html组成)<br>打开本地服务器预览(node.js就是干这事的,点击访问<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a>,就可以看到了)</p>
+<h2 id="ok,到这里,博客搭建基本完成,现在要做的就是把它发布到你的Github上去"><strong>ok</strong>,到这里,博客搭建基本完成,现在要做的就是把它发布到你的Github上去</h2>
+<p>接下来,教你怎么发布到Github上去</p>
+<h1 id="注册Github">注册Github</h1>
+<p>这一步没什么说的,如果你连简单的注册都不会,我也不会教你╮(╯▽╰)╭</p>
+<h1 id="创建公共库">创建公共库</h1>
+<p>在自己Github主页右下角，创建一个新的repository(<a href="https://github.com/new" title="点我新建" target="_blank" rel="external">点这里</a>)。比如我的Github账号是Jackroyal，那么我应该创建的repository名字应该是Jackroyal.github.io(注意你的repository名字就是Jackroyal.github.io,我之前用的是Jackroyal怎么尝试都不行)。</p>
+<blockquote>
+<p>PS:有个大小写的问题其实我注册的是Jackroyal,大写的J,但是我访问的时候特别是带https的链接,他会自动转为小写访问.怎么说呢?简单点,你就按照你的用户名来,该大写大写,该小写小写</p>
+</blockquote>
+<h1 id="部署">部署</h1>
+<p>现在万事俱备,只差部署了,我们来配置下<code>_config.yml</code>.<br>这个文件在路径是F:/blog/_config.yml.<br>用编辑器把它打开,修改最后一段</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  <span class="class"><span class="keyword">type</span>: <span class="title">github</span></span></div><div class="line">  repo: https:<span class="comment">//github.com/Jackroyal/Jackroyal.github.io.git</span></div><div class="line">  branch: master</div></pre></td></tr></table></figure>
+
+<p>照着我的这个格式修改就好了,把我里面的用户名替换成你的.<br>至此基本完成所有搭建步骤.</p>
+<h1 id="上传">上传</h1>
+<p>我们开始上传项目的代码,再重复一次,我一直以来用的工具都是<em>Github for windows</em>自带的Bash,所以我没有配置SSH,如果你用的windows自带的终端或者其他比如msysgit,可能需要配置SSH,不然无法使用Github(点击<a href="https://help.github.com/articles/generating-ssh-keys/" title="https://help.github.com/articles/generating-ssh-keys/" target="_blank" rel="external"><code>这里</code></a>查看官方教程).<br>我们输入以下命令</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="title">hexo</span> g</div><div class="line">hexo d</div></pre></td></tr></table></figure>
+
+<p>或者偷个懒</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">hexo</span> d -g</div></pre></td></tr></table></figure>
+
+<p>ok,现在就可以去看看你的个人主页了,逼格满满有木有.</p>
+<h1 id="问题">问题</h1>
+<p>我的中间出过一些问题:</p>
+<ol>
+<li>我的<code>hexo d</code>的时候出错,可以尝试手动删除<code>.deploy</code>文件夹,然后执行<code>hexo clean</code>还有可能出现的情况是,<code>deploy</code>没错但是一直没有提示<code>deploy done</code>,那就是骚年,你访问Github网速太慢</li>
+<li>我<code>deploy d</code>成功以后,在Github里面已经看到生成的页面了,访问<a href="http://jackroyal.github.io" target="_blank" rel="external">http://jackroyal.github.io</a>或者<a href="https://jackroyal.github.io" target="_blank" rel="external">https://jackroyal.github.io</a>一直报404的错误,这种时候等一等就好了,一般等几分钟.如果一直不好那就给官方发个邮件,他们很快会回复你的,有什么问题说清楚就行.</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>昨天经过一天的<a href="http://jackroyal.github.io/2014/11/26/new-start/" title="生命在于折腾" target="_blank" rel="external">折腾</a>,总算把博客搭建起来了,今天就来写个博客总结一下.<br>网上的资料很多,我主要参考的是这篇博客,一路很顺利.</p>
+<blockquote>
+<p><a href="http://zipperary.com/2013/05/28/hexo-guide-2/" target="_blank" rel="external">http://zipperary.com/2013/05/28/hexo-guide-2/</a></p>
+</blockquote>
+<p>一个很重要的原因就是他是针对windows的,刚好我也在用windows.</p>
+<h1 id="安装过程">安装过程</h1>
+<h2 id="1-_安装Github_for_windows">1. 安装Github for windows</h2>
+<p>因为我之前就在用Github,所以早就安装了这个.已经装过的同学请忽略这一段.<br>下载 <a href="https://windows.github.com/" title="Github for windows" target="_blank" rel="external">Github for windows</a> 并执行即可完成安装(<em>在线安装,会有点慢</em>)。这个软件的的好处是有一个带GUI的界面,还有一个终端界面.如图所示]]>
+    
+    </summary>
+    
+      <category term="hexo" scheme="http://jackroyal.github.io/tags/hexo/"/>
+    
+      <category term="github" scheme="http://jackroyal.github.io/tags/github/"/>
+    
+      <category term="hexo" scheme="http://jackroyal.github.io/categories/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[新的开始]]></title>
+    <link href="http://jackroyal.github.io/2014/11/26/new-start/"/>
+    <id>http://jackroyal.github.io/2014/11/26/new-start/</id>
+    <published>2014-11-26T13:29:15.000Z</published>
+    <updated>2014-12-16T15:43:08.000Z</updated>
+    <content type="html"><![CDATA[<p>今天<strong>折腾</strong>了一天,终于弄好了,<a href="http://jackroyal.github.io" title="搁浅St的博客" target="_blank" rel="external">我的博客</a>,正式落户Github.<a id="more"></a><br><img src="http://github.global.ssl.fastly.net/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Mark" title="GitHub Mark"></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>今天<strong>折腾</strong>了一天,终于弄好了,<a href="http://jackroyal.github.io" title="搁浅St的博客" target="_blank" rel="external">我的博客</a>,正式落户Github.]]>
+    
+    </summary>
+    
+      <category term="hexo" scheme="http://jackroyal.github.io/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[[js]replace替换]]></title>
+    <link href="http://jackroyal.github.io/2014/11/25/%5Bjs%5Dreplace%E6%9B%BF%E6%8D%A2/"/>
+    <id>http://jackroyal.github.io/2014/11/25/[js]replace替换/</id>
+    <published>2014-11-25T14:32:00.000Z</published>
+    <updated>2014-12-20T20:05:11.000Z</updated>
+    <content type="html"><![CDATA[<p>今天做前端试题,用到了replace函数,来记录一下.<br>(以下部分知识点来自<a href="http://www.w3cschool.cn/jsref_replace.html" target="_blank" rel="external">http://www.w3cschool.cn/jsref_replace.html</a>)</p>
+<h2 id="定义和用法">定义和用法</h2>
+<p>replace() 方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。</p>
+<h3 id="语法">语法</h3>
+<table class="dataintable " style="margin-top:10px; border-collapse:collapse; border:1px solid rgb(136,136,136); width:606px; color:rgb(0,0,0); font-size:12px; background-color:rgb(249,249,249)"><br><tbody><br><tr><br><th style="vertical-align:baseline; padding:5px 15px 5px 5px; border:1px solid rgb(136,136,136); background-color:rgb(204,204,204)"><br>参数</th><br><th style="vertical-align:baseline; padding:5px 15px 5px 5px; border:1px solid rgb(136,136,136); background-color:rgb(204,204,204)"><br>描述</th><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>regexp/substr</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br><p style="margin-top:0px; margin-bottom:0px; line-height:18px">必需。规定子字符串或要替换的模式的 RegExp 对象。</p><br><p style="margin-top:0px; margin-bottom:2px; line-height:18px">请注意，如果该值是一个字符串，则将它作为要检索的直接量文本模式，而不是首先被转换为 RegExp 对象。</p><br></td><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>replacement</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>必需。一个字符串值。规定了替换文本或生成替换文本的函数。</td><br></tr><br></tbody><br></table>
+
+<h3 id="返回值">返回值</h3>
+<p>一个新的字符串，是用 <em>replacement</em> 替换了 regexp 的第一次匹配或所有匹配之后得到的。</p>
+<h3 id="说明">说明</h3>
+<p>字符串 stringObject 的 replace() 方法执行的是查找并替换的操作。它将在 stringObject 中查找与 regexp 相匹配的子字符串，然后用 <em>replacement</em> 来替换这些子串。如果 regexp 具有全局标志 g，那么 replace() 方法将替换所有匹配的子串。否则，它只替换第一个匹配子串。</p>
+<p><em>replacement</em> 可以是字符串，也可以是函数。如果它是字符串，那么每个匹配都将由字符串替换。但是 replacement 中的 $ 字符具有特定的含义。如下表所示，它说明从模式匹配得到的字符串将用于替换。</p>
+<table class="dataintable " style="margin-top:10px; border-collapse:collapse; border:1px solid rgb(136,136,136); width:606px; color:rgb(0,0,0); font-size:12px; background-color:rgb(249,249,249)"><br><tbody><br><tr><br><th style="vertical-align:baseline; padding:5px 15px 5px 5px; border:1px solid rgb(136,136,136); background-color:rgb(204,204,204)"><br>字符</th><br><th style="vertical-align:baseline; padding:5px 15px 5px 5px; border:1px solid rgb(136,136,136); background-color:rgb(204,204,204)"><br>替换文本</th><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>$1、$2、…、$99</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>与 regexp 中的第 1 到第 99 个子表达式相匹配的文本。</td><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>$&amp;</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>与 regexp 相匹配的子串。</td><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>$`</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>位于匹配子串左侧的文本。</td><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>$’</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>位于匹配子串右侧的文本。</td><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>$$</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>直接量符号。</td><br></tr><br></tbody><br></table>
+
+<p><strong>注意：</strong>ECMAScript v3 规定，replace() 方法的参数 replacement 可以是函数而不是字符串。在这种情况下，每个匹配都调用该函数，它返回的字符串将作为替换文本使用。该函数的第一个参数是匹配模式的字符串。接下来的参数是与模式中的子表达式匹配的字符串，可以有 0 个或多个这样的参数。接下来的参数是一个整数，声明了匹配在 stringObject 中出现的位置。最后一个参数是<br> stringObject 本身。</p>
+<p>下面给几个简单的例子来说明一下</p>
+<p>ps:介绍一下正则的小知识,\w表示匹配一个英文字符,+表示匹配数量必须大于一个,\b就是分节符,单词中间分隔用的,连在一起就是取出前面字符串中所有的单词</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">'my name is'</span>.replace(<span class="regexp">/(\w+)\b/g</span>,<span class="string">'haha  '</span>);<span class="comment">//输出结果为   "haha   haha   haha  "</span></div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">'my name is'</span>.replace(<span class="regexp">/(\w+)\b/g</span>,<span class="string">'$1aa'</span>);<span class="comment">//输出结果为"myaa nameaa isaa"</span></div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">'my name is'</span>.replace(<span class="regexp">/((\w)(\w+?))\b/g</span>,<span class="function"><span class="keyword">function</span><span class="params">(m,a,b,c,d,e)</span></span>{<span class="keyword">return</span> b.toUpperCase()+c;});<span class="comment">//输出结果为"My Name Is"</span></div></pre></td></tr></table></figure>
+
+<p>重点讲解一下第三个,replace返回值为函数的例子(function必须要return)</p>
+<p>当replace返回值为函数的时候</p>
+<p>如果只有一个分组的话,他的参数是funciton(match,pos,originalText),分别表示模式的匹配项,模式匹配项在字符串中的位置和原始字符串</p>
+<p>如果有多个分组的话,他的参数是funciton(match,arr1,arr2,arr3,….arrn,pos,originalText),分别表示模式的匹配项,模式匹配项,还有n个匹配的分组,最后的两个参数是在字符串中的位置和原始字符串</p>
+<p>比如下面的例子,执行的结果就是</p>
+<p>‘my name is imweba ‘.replace(/((\w)(\w+?))\b/g,function(m,a,b,c,d,e){</p>
+<p>console.log(m);</p>
+<p>console.log(a);</p>
+<p>console.log(b);</p>
+<p>console.log(c);</p>
+<p>console.log(d);</p>
+<p>console.log(e);</p>
+<p>});<br>执行结果</p>
+<p>my//模式匹配的值,因为上面匹配了整个单词,虽然分了多个组</p>
+<p>my//第一个分组的值</p>
+<p>m//第二个分组的值</p>
+<p>y//第三个分组的值</p>
+<p>0//模式匹配在字符串中的起始位置</p>
+<p>my name is imweba  //原始字符串</p>
+<p>name</p>
+<p>name</p>
+<p>n</p>
+<p>ame</p>
+<p>3</p>
+<p>my name is imweba </p>
+<p>is</p>
+<p>is</p>
+<p>i</p>
+<p>s</p>
+<p>8</p>
+<p>my name is imweba </p>
+<p>imweba</p>
+<p>imweba</p>
+<p>i</p>
+<p>mweba</p>
+<p>11</p>
+<p>my name is imweba </p>
+<p>“undefined undefined undefined undefined “//这一行是因为function必须要有return,我没写return,所以就都是undefined</p>
+<p>ok  打完收工</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>今天做前端试题,用到了replace函数,来记录一下.<br>(以下部分知识点来自<a href="http://www.w3cschool.cn/jsref_replace.html" target="_blank" rel="external">http://www.w]]>
+    </summary>
+    
+      <category term="javascript" scheme="http://jackroyal.github.io/tags/javascript/"/>
+    
+      <category term="正则表达式" scheme="http://jackroyal.github.io/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    
+      <category term="前端" scheme="http://jackroyal.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="js" scheme="http://jackroyal.github.io/tags/js/"/>
+    
+      <category term="javascript" scheme="http://jackroyal.github.io/categories/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[[js]前端试题]]></title>
+    <link href="http://jackroyal.github.io/2014/11/25/%5Bjs%5D%E5%89%8D%E7%AB%AF%E8%AF%95%E9%A2%98/"/>
+    <id>http://jackroyal.github.io/2014/11/25/[js]前端试题/</id>
+    <published>2014-11-25T14:26:00.000Z</published>
+    <updated>2014-12-20T20:05:11.000Z</updated>
+    <content type="html"><![CDATA[<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 1、获取页面id为 hello 的节点</span></div><div class="line"><span class="keyword">var</span> he=<span class="built_in">document</span>.getElementById(<span class="string">'hello'</span>);</div><div class="line"><span class="comment">// 2、获取页面所有 div 标签</span></div><div class="line"><span class="keyword">var</span> di=<span class="built_in">document</span>.getElementsByTagName(<span class="string">'div'</span>);</div><div class="line"><span class="comment">// 3、给 id 为hello的节点绑定click 事件，点击的时候弹出 "hello"</span></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'hello'</span>).onclick=<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{alert(<span class="string">'helo'</span>)};</div><div class="line"><span class="comment">// 4、将页面上 id为hello的节点隐藏</span></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'hello'</span>).style.visibility=none;</div><div class="line"><span class="comment">// 5、将 "hello world" 用正则替换成 "hello javascript”</span></div><div class="line"><span class="keyword">var</span> str=<span class="string">'hello world'</span>;</div><div class="line">str.replace(<span class="regexp">/hello[\s]+world/g</span>,<span class="string">'hello javascript'</span>);</div><div class="line"><span class="comment">// 6、给节点（假设为element）绑定click事件，当被点击时候，alert 弹出事件的类型（通过jquery）</span></div><div class="line">$(element).click(<span class="function"><span class="keyword">function</span><span class="params">(event)</span> </span>{</div><div class="line">    alert(event.type);</div><div class="line">});</div><div class="line"><span class="comment">// 7、给一个节点添加一个类 "hello"</span></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'kw'</span>).className=<span class="built_in">document</span>.getElementById(<span class="string">'kw'</span>).className+<span class="string">" hello"</span>;</div><div class="line"><span class="comment">// 8、给节点（假设为element）绑定click事件，当被点击时候，alert 弹出事件的类型（要求兼容IE、标准浏览器）</span></div><div class="line">element.onclick=<span class="function"><span class="keyword">function</span><span class="params">(event)</span></span>{<span class="keyword">var</span> e=event||<span class="built_in">window</span>.event};</div><div class="line"><span class="comment">// 9、假设页面有这么两个节点将 id为world的节点的 内容设置成 跟 id 为 hello 的节点一样。</span></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'world'</span>).innerHTML=<span class="built_in">document</span>.getElementById(<span class="string">'hello'</span>).innerHTML;</div><div class="line"><span class="comment">// 10、通过 js 将element的margin-left 设置为 20px</span></div><div class="line">element.style.marginLeft=<span class="string">"20px"</span>;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 1.[{a:3},{a:4},{a:1},{a:2}] sort排序</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sortnum</span><span class="params">(a,b)</span></span>{</div><div class="line">    <span class="keyword">return</span> a.a-b.a;</div><div class="line">}</div><div class="line"><span class="comment">//   [{a:3,b:5},{a:4,b:6},{a:1},{a:2,b:8}]按a的正向排序</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sortab</span><span class="params">(a,b)</span></span>{</div><div class="line">    <span class="keyword">return</span> a.a-b.a!=<span class="number">0</span>?a.a-b.a:a.b-b.b;</div><div class="line">}</div><div class="line"><span class="comment">//   sort 排序原理  使用的算法</span></div><div class="line"><span class="comment">// 2.my name is imweba ... =&gt; my6 name7 is8 imweba9 ...</span></div><div class="line"><span class="comment">//   用正则实现</span></div><div class="line"><span class="string">'my name is imweba '</span>.replace(<span class="regexp">/([\w]+)\b/g</span>,<span class="string">'$1'</span>)</div><div class="line"><span class="keyword">var</span> attr=<span class="string">'my name is imweba '</span>.match(<span class="regexp">/([\w]+)\b/g</span>);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>;i &lt; attr.length; i++) {</div><div class="line">    attr[i]=attr[i]+(<span class="number">6</span>+i);</div><div class="line">};</div><div class="line">attr.join(<span class="string">' '</span>);<span class="comment">//感觉不对,只能做到这个程度</span></div><div class="line"></div><div class="line"><span class="comment">// 3.实现function test(str)(){},将str的每个单词的首字母大写（str为英文字符串）</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">(str)</span></span>{</div><div class="line">    <span class="keyword">return</span> str.replace(<span class="regexp">/((\w)(\w+?))\b/g</span>,<span class="function"><span class="keyword">function</span><span class="params">(m,a,b,c,d,e)</span></span>{<span class="keyword">return</span> b.toUpperCase()+c;});</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">// 4.写一个二分查找的算法   （假设这个数组不是有序的呢）</span></div><div class="line">\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*</div><div class="line"><span class="comment">// 5.123+”+34  直接说结果   12334</span></div><div class="line"><span class="number">12334</span></div><div class="line"><span class="comment">// 加法会将数字转化为字符串，减法和乘法等会将字符串转化为数字</span></div><div class="line"><span class="comment">// "4"\*"5"=20</span></div><div class="line"><span class="comment">// 6.实现function find(attr,val){},找到当前页面里具备属性为attr且值为val的节点，输出其父元素名称</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">find</span><span class="params">(attr,val)</span></span>{</div><div class="line">    <span class="keyword">var</span> dom=<span class="built_in">document</span>.getElementsByTagName(<span class="string">'\*'</span>);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i&lt;dom.length; i++) {</div><div class="line">        <span class="keyword">if</span>(dom[i].getAttribute(attr)==val){</div><div class="line">            <span class="keyword">return</span> dom[i].parentNode.tagName;</div><div class="line">        }</div><div class="line">   }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+]]></content>
+    <summary type="html">
+    <![CDATA[<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">]]>
+    </summary>
+    
+      <category term="javascript" scheme="http://jackroyal.github.io/tags/javascript/"/>
+    
+      <category term="前端" scheme="http://jackroyal.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="正则" scheme="http://jackroyal.github.io/tags/%E6%AD%A3%E5%88%99/"/>
+    
+      <category term="javascript" scheme="http://jackroyal.github.io/categories/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[cmcc520扩展使用说明]]></title>
+    <link href="http://jackroyal.github.io/2014/11/24/cmcc520%E6%89%A9%E5%B1%95%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"/>
+    <id>http://jackroyal.github.io/2014/11/24/cmcc520扩展使用说明/</id>
+    <published>2014-11-24T13:56:00.000Z</published>
+    <updated>2014-12-20T20:05:11.000Z</updated>
+    <content type="html"><![CDATA[<p>我的cmcc520 2.0版本终于完成了,写个使用说明</p>
+<p>学校部分范围有CMCC-EDU可用,通过手动修改ssid,可以免费使用.</p>
+<p>写了个扩展来简化这个过程.</p>
+<p>1 安装扩展<br>将保存下来的 *.crx 文件或*.js 文件直接拖拽到浏览器的“扩展程序”（<a href="&quot;Chrome 扩展程序页面&quot;">chrome://chrome/extensions</a>/）页面。<br><img src="http://img.blog.csdn.net/20141124215558921?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>( 注：只有拖动到此页面才能安装，其它页面无效)</p>
+<p>　　2. 按照提示安装<br><img src="http://img.blog.csdn.net/20141124215611765?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>详细安装过程见<a href="http://www.williamlong.info/archives/3160.html" target="_blank" rel="external">http://www.williamlong.info/archives/3160.html</a></p>
+<p>3,配置软件功能</p>
+<p>左键点击图标,可以选择开关扩展功能(默认为开启)<br> <img src="http://img.blog.csdn.net/20141124215702865?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>4.使用软件</p>
+<p>如果软件的功能打开,那么如果当你使用cmcc-edu的时候会自动跳转完成登录,不再需要手动操作,登录成功页面如下,你可以关闭这个页面了<br><img src="http://img.blog.csdn.net/20141124215651437?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>5.下线</p>
+<p>在任何页面按ALT+X   可以下线</p>
+<p>Ps,如果按Alt+x无任何提示,可能是快捷键设置有问题<br> <img src="http://img.blog.csdn.net/20141124215717575?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://img.blog.csdn.net/20141124215740968?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>那就需要你按照上图手动设置快捷键</p>
+<p>6 反馈<br>如果发现任何bug,可以和我联系</p>
+<p>新浪微博<a href="http://weibo.com/517123263" target="_blank" rel="external">http://weibo.com/517123263</a><br>Github项目地址 <a href="https://github.com/Jackroyal/cmcc520" target="_blank" rel="external">https://github.com/Jackroyal/cmcc520</a><br>我的csdn博客<a href="file:///C:/Users/chenhao/Desktop/%20http:/blog.csdn.net/jackroyal" target="_blank" rel="external"> http://blog.csdn.net/jackroyal</a></p>
+<p>2014/11/24</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>我的cmcc520 2.0版本终于完成了,写个使用说明</p>
+<p>学校部分范围有CMCC-EDU可用,通过手动修改ssid,可以免费使用.</p>
+<p>写了个扩展来简化这个过程.</p>
+<p>1 安装扩展<br>将保存下来的 *.crx 文件或*.js 文件直接拖拽]]>
+    </summary>
+    
+      <category term="chrome" scheme="http://jackroyal.github.io/tags/chrome/"/>
+    
+      <category term="cmcc-edu" scheme="http://jackroyal.github.io/tags/cmcc-edu/"/>
+    
+      <category term="中国移动" scheme="http://jackroyal.github.io/tags/%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8/"/>
+    
+      <category term="扩展" scheme="http://jackroyal.github.io/tags/%E6%89%A9%E5%B1%95/"/>
+    
+      <category term="脚本" scheme="http://jackroyal.github.io/tags/%E8%84%9A%E6%9C%AC/"/>
+    
+      <category term="chrome扩展" scheme="http://jackroyal.github.io/categories/chrome%E6%89%A9%E5%B1%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[chrome扩展开发手记<3>-chrome扩展开始第一步manfest.json]]></title>
+    <link href="http://jackroyal.github.io/2014/11/24/chrome%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%89%8B%E8%AE%B0%3C3%3E-chrome%E6%89%A9%E5%B1%95%E5%BC%80%E5%A7%8B%E7%AC%AC%E4%B8%80%E6%AD%A5manfest.json/"/>
+    <id>http://jackroyal.github.io/2014/11/24/chrome扩展开发手记<3>-chrome扩展开始第一步manfest.json/</id>
+    <published>2014-11-24T07:16:00.000Z</published>
+    <updated>2014-12-20T20:05:11.000Z</updated>
+    <content type="html"><![CDATA[<p>参考文档   <a href="https://lmk123.duapp.com/" target="_blank" rel="external">https://lmk123.duapp.com/</a></p>
+<p>下面开始写chrome扩展了,第一步就是看文档,官方文档有入门指导,先要过一遍</p>
+<p>我们首先来编写第一个文件manfest.json,这是一个清单文件,告诉系统,我有哪些文件,需要申请哪些权限都在里面,下卖弄给出我的manfest.json</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">{</div><div class="line">    <span class="string">"name"</span>:<span class="string">"cmcc520"</span>,<span class="comment">//扩展的名称</span></div><div class="line">    <span class="string">"version"</span>:<span class="string">"2.0"</span>,<span class="comment">//扩展的版本号,随便写</span></div><div class="line">    <span class="string">"description"</span>:<span class="string">"powered by 搁浅St"</span>,<span class="comment">//扩展的描述,就是在chrome://extension页面中,扩展名称下面的几个字</span></div><div class="line">    <span class="string">"background"</span>: {<span class="comment">//background.js,整个扩展的运行,有个页面在后台运行</span></div><div class="line">        <span class="string">"scripts"</span>: [<span class="string">"js/function.js"</span>,<span class="string">"bg.js"</span>],</div><div class="line">        <span class="string">"persistent"</span>: <span class="literal">false</span></div><div class="line">    },</div><div class="line">    <span class="string">"page_action"</span>:{<span class="comment">//比较常见有page_action和browser_action有,page会出现在地址栏末端,browser会在浏览器上显示一个图标</span></div><div class="line">        <span class="string">"default_icon"</span>:<span class="string">"icon-48.png"</span>,</div><div class="line">        <span class="string">"default_popup"</span>: <span class="string">"popup.html"</span>,<span class="comment">//popup.html点击弹出的页面</span></div><div class="line">        <span class="string">"default_title"</span>:<span class="string">"cmcc520"</span></div><div class="line">    },</div><div class="line">    <span class="string">"permissions"</span> : [<span class="comment">//申请内容脚本的权限,在插入内容到页面时,需要用哪些权限,此处必须声明</span></div><div class="line">        <span class="string">"tabs"</span>, <span class="string">"http://\*/\*"</span></div><div class="line">    ],</div><div class="line">    <span class="string">"icons"</span> : {<span class="comment">//图标设置</span></div><div class="line">        <span class="string">"48"</span> : <span class="string">"icon-48.png"</span>,</div><div class="line">        <span class="string">"128"</span> : <span class="string">"icon-128.png"</span></div><div class="line">    },</div><div class="line">    <span class="string">"commands"</span>: {<span class="comment">//快捷键设置</span></div><div class="line">        <span class="string">"logout_cmcc"</span>: {</div><div class="line">            <span class="string">"description"</span>: <span class="string">"退出CMCC登录"</span>,</div><div class="line">            <span class="string">"suggested_key"</span>: {</div><div class="line">                <span class="string">"default"</span>: <span class="string">"Alt+X"</span></div><div class="line">            }</div><div class="line">        }</div><div class="line">    },</div><div class="line">    <span class="string">"manifest_version"</span>:<span class="number">2</span><span class="comment">//manifest_version,现在版本1已经不支持,统一都写成2</span></div><div class="line"></div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>简单的属性,这里不再赘述,我重点说一下background,page_action,permissions和commands.</p>
+<p>background  它是一个包含扩展程序主要逻辑的不可见页面。扩展程序也可以包含其他页面，展现扩展程序的用户界面。如果扩展程序需要与用户加载的网页交互（相对于包含在扩展程序中的页面），扩展程序必须使用内容脚本。后台网页分两种：持续运行的后台网页与事件页面(设置persistent属性)。正如它们的名称所述，持续运行的后台网页保持打开状态，事件页面根据需要打开与关闭。除非您绝对需要您的后台网页一直运行，请首选事件页面。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="string">"background"</span>: {<span class="comment">//background.js,整个扩展的运行,有个页面在后台运行</span></div><div class="line">    <span class="string">"scripts"</span>: [<span class="string">"js/function.js"</span>,<span class="string">"bg.js"</span>],</div><div class="line">    <span class="string">"persistent"</span>: <span class="literal">false</span></div><div class="line">},</div></pre></td></tr></table></figure>
+
+<p>比如我的这个 后台执行就是这样的</p>
+<p><img src="http://img.blog.csdn.net/20141124194616706?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>采用pageaction还是browseraction取决于你是否想让图标一直可见.`<img src="http://img.blog.csdn.net/20141124193151343?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>如图,绿色的是广告终结者,他的图标是pageAction,后面的印象笔记还有switchproxy是browserAction.一般来说,适用于少数页面的扩展建议使用pageaction,适用于大多数页面的建议使用browseraction</p>
+<p>permissions属性,用来设置和conten_script相关的选项,举个例子,如果你想插入一段代码到页面中去执行,操作页面上的dom,那就写个content_script就行了,使用 content_scripts 字段，扩展程序可以向一个页面中插入多个内容脚本，每个内容脚本可以有多个<br> JavaScript 和 CSS 文件,详细情况请看这里<a href="https://lmk123.duapp.com/extensions/content_scripts" target="_blank" rel="external">https://lmk123.duapp.com/extensions/content_scripts</a></p>
+<p>我现在在做的一个扩展就是做这样的事,百度的搜索结果会先跳到一个百度的网址,然后才是目标网址,我可以使用cotent_scripts来插入脚本,修改百度搜索结果的链接,让他直接跳转到目标页面,而不是百度的搜索结果页面.</p>
+<p>commands选项是设置快捷键,然后给快捷键设置事件 监听,这样我们按快捷键就会执行相应操作.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="string">"logout_cmcc"</span>: {<span class="comment">//某个快捷操作的名称</span></div><div class="line">    <span class="string">"description"</span>: <span class="string">"退出CMCC登录"</span>,<span class="comment">//快捷操作的描述</span></div><div class="line">    <span class="string">"suggested_key"</span>: {<span class="comment">//默认推荐的快捷键,不能与系统默认的快捷键冲突,否则就会失灵,需要用户手动去设置</span></div><div class="line">        <span class="string">"default"</span>: <span class="string">"Alt+X"</span></div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>参考文档   <a href="https://lmk123.duapp.com/" target="_blank" rel="external">https://lmk123.duapp.com/</a></p>
+<p>下面开始写chrome扩展了,第一步就是看文档,官方]]>
+    </summary>
+    
+      <category term="chrome" scheme="http://jackroyal.github.io/tags/chrome/"/>
+    
+      <category term="cmcc-edu" scheme="http://jackroyal.github.io/tags/cmcc-edu/"/>
+    
+      <category term="扩展" scheme="http://jackroyal.github.io/tags/%E6%89%A9%E5%B1%95/"/>
+    
+      <category term="脚本" scheme="http://jackroyal.github.io/tags/%E8%84%9A%E6%9C%AC/"/>
+    
+      <category term="中国移动" scheme="http://jackroyal.github.io/tags/%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8/"/>
+    
+      <category term="chrome扩展" scheme="http://jackroyal.github.io/categories/chrome%E6%89%A9%E5%B1%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[chrome扩展开发手记<2>-登录原理分析]]></title>
+    <link href="http://jackroyal.github.io/2014/11/24/chrome%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%89%8B%E8%AE%B0%3C2%3E-%E7%99%BB%E5%BD%95%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/"/>
+    <id>http://jackroyal.github.io/2014/11/24/chrome扩展开发手记<2>-登录原理分析/</id>
+    <published>2014-11-24T03:18:00.000Z</published>
+    <updated>2014-12-20T20:05:11.000Z</updated>
+    <content type="html"><![CDATA[<p>上一篇,我们 介绍了一下登录的流程,但是用程序进行登录的话,我们肯定不能那样一步一步,太过复杂,所以我们接下来分下一下登录的具体过程,看看能不能作一些简化</p>
+<p>我们接下来,给几个页面编个号,下面好分析一点<br>A   最原始的跳转 <a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external">http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU</a><br>B  第一次改ssid  <a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external">http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free</a></p>
+<p>C 第一次点击 请点击登录  以后的地址<br><a href="http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free" target="_blank" rel="external">http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free</a></p>
+<p>D 第二次改ssid<br><a href="http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free" target="_blank" rel="external">http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC520</a></p>
+<ol>
+<li>从www.baidu.com跳转到A地址,这个步骤没什么特别的,服务器那边做了一个302跳转,然后我们这边就自动跳转到A地址了</li>
+<li><p>第一次改ssid,也就是从A到B,这个过程也没什么,只是一个单纯的地址跳转,B地址中有一个表单<br><br><img src="http://img.blog.csdn.net/20141124134725891?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br><br>这个表单里面 主要包含四个字段,<br><br>wlanacname:1022.0027.270.00<br><br>wlanuserip:10.80.97.209<br>ssid:iWuhan-Free<br><br>userAgent_1:Mozilla/5.0 (Windows NT 6.2)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36</p>
+</li>
+<li><p>我们第一次点击 请提交登录,所做的操作就是把上面的表单提交到  <a href="http://120.202.164.10:8080/portal/servlets/SingleLoginServlet" target="_blank" rel="external">http://120.202.164.10:8080/portal/servlets/SingleLoginServlet</a><br><br>服务器返回的地址是C,这一步的表单提交主要是为了获取C的地址,就是因为多了的那个loginFree.jsp,这样下一步才能改ssid为CMCC520,否则,如果你越过这一步直接改ssid为CMCC520,就会跳转到其他的页面,比如下面这个<img src="http://img.blog.csdn.net/20141124133708801?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br><br>这个地址如果点击提交,是没有办法正常登陆的,我们必须要到武汉的那个页面才行.</p>
+</li>
+<li>在我们到达C那个页面以后,我们再次修改ssid,就到了D页面,然后在D页面点击  请点击登录,流程和上面的一样,页面效果也是一样,不过表单的值变了一个,具体表单post内容如下<br><br>wlanacname:1022.0027.270.00<br><br>wlanuserip:10.80.97.209<br>ssid:CMCC520<br>userAgent_1:Mozilla/5.0 (Windows NT 6.2)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36<br><br>提交以后,我们就可以登录成功了,成功以后服务器会做一个302跳转,页面跳转到一个登录计时的页面.</li>
+</ol>
+<p>************************************************************************************************************************************************************<br><em><br>
+</em><br>从整体来看,最核心的一个操作就是向<a href="http://120.202.164.10:8080/portal/servlets/SingleLoginServlet" target="_blank" rel="external">http://120.202.164.10:8080/portal/servlets/SingleLoginServlet</a>提交一个表单,表单内容是<br>wlanacname:1022.0027.270.00<br>wlanuserip:10.80.97.209<br>ssid:CMCC520<br>userAgent<em>1:Mozilla/5.0 (Windows NT 6.2)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36<br>然后,然后就没有然后了,那个最后计时页面的跳转没有多大的实际作用,我们只需要post这一个请求就好了<br>下一步我们开始制作chrome扩展,核心也是要实现这个post的请求
+</em>************************************************************************************************************************************************************<em>
+</em>退出登录也是如此,发一个get请求过去,然后从获得的内容中进行判断,判断成功与否<em><br>_</em></p>
+<p>下线请求<br><a href="http://120.202.164.10:8080/portal/servlets/LogoutServlet?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC520&amp;ATTRIBUTE_USERNAME=iWuhanFree4300&amp;ATTRIBUTE_UUID=26FBE9A694B6221958CF6DE2704F0ECA&amp;ATTRIBUTE_IPADDRESS=10.80.97.209&amp;cancelAutomatismLogin=false" target="_blank" rel="external">http://120.202.164.10:8080/portal/servlets/LogoutServlet?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC520&amp;ATTRIBUTE_USERNAME=iWuhanFree4300&amp;ATTRIBUTE_UUID=26FBE9A694B6221958CF6DE2704F0ECA&amp;ATTRIBUTE_IPADDRESS=10.80.97.209&amp;cancelAutomatismLogin=false</a></p>
+<p>表单实际内容</p>
+<p>wlanacname:1022.0027.270.00</p>
+<p>wlanuserip:10.80.97.209</p>
+<p>ssid:CMCC520</p>
+<p>ATTRIBUTE_USERNAME:iWuhanFree4300</p>
+<p>ATTRIBUTE_UUID:26FBE9A694B6221958CF6DE2704F0ECA</p>
+<p>ATTRIBUTE_IPADDRESS:10.80.97.209</p>
+<p>cancelAutomatismLogin:false</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>上一篇,我们 介绍了一下登录的流程,但是用程序进行登录的话,我们肯定不能那样一步一步,太过复杂,所以我们接下来分下一下登录的具体过程,看看能不能作一些简化</p>
+<p>我们接下来,给几个页面编个号,下面好分析一点<br>A   最原始的跳转 <a href="http:/]]>
+    </summary>
+    
+      <category term="chrome" scheme="http://jackroyal.github.io/tags/chrome/"/>
+    
+      <category term="cmcc-edu" scheme="http://jackroyal.github.io/tags/cmcc-edu/"/>
+    
+      <category term="表单" scheme="http://jackroyal.github.io/tags/%E8%A1%A8%E5%8D%95/"/>
+    
+      <category term="chrome扩展" scheme="http://jackroyal.github.io/categories/chrome%E6%89%A9%E5%B1%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[chrome扩展开发手记<1>-需求分析]]></title>
+    <link href="http://jackroyal.github.io/2014/11/21/chrome%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%89%8B%E8%AE%B0%3C1%3E-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/"/>
+    <id>http://jackroyal.github.io/2014/11/21/chrome扩展开发手记<1>-需求分析/</id>
+    <published>2014-11-21T10:17:00.000Z</published>
+    <updated>2014-12-20T20:05:11.000Z</updated>
+    <content type="html"><![CDATA[<p>本人的学校在武汉,有CMCC-EDU的网络覆盖,中国移动和武汉市政府搞了一个活动,可以免费公益上网,说白了,就是可以免费使用EDU的网络,如图.<br><img src="http://img.blog.csdn.net/20141121181910580?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>以上是前提.</p>
+<p>这个网络的使用流程是这样子的.</p>
+<ol>
+<li>你打开任何一个网址,比如<a href="http://www.baidu.com" target="_blank" rel="external">http://www.baidu.com</a>  <br><br>都会跳转到 <a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external"></a><a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external">http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU</a>  界面如图所示<br><br><img src="http://img.blog.csdn.net/20141124103645611?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></li>
+<li>接下来我们手动更改最上面的网址栏,把ssid改为iWuhan-Free,(注意大小写)<br><br>修改后的网址如下<a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external">http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free</a>界面如下<br><br><img src="http://img.blog.csdn.net/20141124104120281?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></li>
+<li>接下来我们点击,请点击登录按钮,系统反馈如下<br><br><img src="http://img.blog.csdn.net/20141124104623968?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br><br>我们忽略这个警告,可以注意到,上面的地址栏已经变掉了,多了个loginFree.jsp完整的地址<a href="http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free" target="_blank" rel="external">http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free</a></li>
+<li>接下来,我们再改一次ssid,改为CMCC520,完整地址如下<a href="http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free" target="_blank" rel="external">http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC520</a> 界面还是和上图一样,就不贴图了,我们再点击一次,请点击登录,然后就会跳到一个计时页面,这样就表示你登录成功,可以上网了</li>
+</ol>
+<p>登录的流程走完了,下一篇,接下来我们分析一下登录的原理,简化一下登录的流程</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>本人的学校在武汉,有CMCC-EDU的网络覆盖,中国移动和武汉市政府搞了一个活动,可以免费公益上网,说白了,就是可以免费使用EDU的网络,如图.<br><img src="http://img.blog.csdn.net/20141121181910580?watermar]]>
+    </summary>
+    
+      <category term="chrome" scheme="http://jackroyal.github.io/tags/chrome/"/>
+    
+      <category term="cmcc-edu" scheme="http://jackroyal.github.io/tags/cmcc-edu/"/>
+    
+      <category term="中国移动" scheme="http://jackroyal.github.io/tags/%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8/"/>
+    
+      <category term="chrome扩展" scheme="http://jackroyal.github.io/categories/chrome%E6%89%A9%E5%B1%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[wamp与sql_server_因为端口80冲突,无法开启wamp]]></title>
+    <link href="http://jackroyal.github.io/2014/11/14/wamp%E4%B8%8Esql_server_%E5%9B%A0%E4%B8%BA%E7%AB%AF%E5%8F%A380%E5%86%B2%E7%AA%81,%E6%97%A0%E6%B3%95%E5%BC%80%E5%90%AFwamp/"/>
+    <id>http://jackroyal.github.io/2014/11/14/wamp与sql_server_因为端口80冲突,无法开启wamp/</id>
+    <published>2014-11-14T10:09:00.000Z</published>
+    <updated>2014-12-20T20:05:11.000Z</updated>
+    <content type="html"><![CDATA[<p>因为80端口占用,导致无法启动,其实不必关闭sql server太多的东西,只需要关闭SQL Server Reporting Services 就行了,这样也不会影响sql server的使用</p>
+<p>如图<br><img src="http://img.blog.csdn.net/20141114175909339?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>打开sqlserver 配置管理器,关闭以上服务</p>
+<p>或者打开控制面板-&gt;管理-&gt;服务工具-&gt;SQL Server Reporting Services</p>
+<p>然后就可以打开wamp了</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>因为80端口占用,导致无法启动,其实不必关闭sql server太多的东西,只需要关闭SQL Server Reporting Services 就行了,这样也不会影响sql server的使用</p>
+<p>如图<br><img src="http://img.blog.]]>
+    </summary>
+    
+      <category term="sql server" scheme="http://jackroyal.github.io/tags/sql-server/"/>
+    
+      <category term="wamp" scheme="http://jackroyal.github.io/tags/wamp/"/>
+    
+      <category term="软件安装与技巧" scheme="http://jackroyal.github.io/categories/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E4%B8%8E%E6%8A%80%E5%B7%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[sql中left_join和right_join混用]]></title>
+    <link href="http://jackroyal.github.io/2014/08/08/sql%E4%B8%ADleft_join%E5%92%8Cright_join%E6%B7%B7%E7%94%A8/"/>
+    <id>http://jackroyal.github.io/2014/08/08/sql中left_join和right_join混用/</id>
+    <published>2014-08-08T02:02:00.000Z</published>
+    <updated>2014-12-20T20:05:11.000Z</updated>
+    <content type="html"><![CDATA[<p>left join(左联接) 返回包括左表中的所有记录和右表中联结字段相等的记录 </p>
+<p>right join(右联接) 返回包括右表中的所有记录和左表中联结字段相等的记录</p>
+<p>inner join(等值连接) 只返回两个表中联结字段相等的行</p>
+<p>如上所言,我们只做一下left join的实验,right join和left join 类似</p>
+<p>测试一共三张表,a  b   c<br><img src="" alt=""></p>
+<p>表结构和数据分别如下</p>
+<p>a表                                                                  b表                                                              c表<br><img src="" alt="">         <img src="" alt="">          <img src="" alt=""></p>
+<p>然后我们来试一下左连接</p>
+<p>1,  我们来查询a b两张表,连接他们aid=bid的选项<br>sql&gt;&gt;SELECT *  FROM a   LEFT JOIN b on aid=bid</p>
+<p><img src="" alt=""></p>
+<p>看图很好理解,因为是a左连接b,所以b中为空的元素 ,在查询结果中以NULL的形式补全</p>
+<p>同理可得</p>
+<p>sql&gt;&gt;SELECT * FROM a LEFT JOIN c on aid=cid<br><img src="" alt=""></p>
+<p>sql&gt;&gt;SELECT * FROM c LEFT JOIN b on bid=cid<br>sql&gt;&gt;SELECT * FROM c LEFT JOIN b on cid=bid</p>
+<p><img src="" alt=""></p>
+<p>也就是on后面的顺序无所谓,无论是bid=cid还是cid=bid,重点是前面的left join还是right join</p>
+<p>2,我们来试一下如果三张表左连接呢,会有什么情况?</p>
+<p>sql&gt;&gt;SELECT * FROM a</p>
+<pre><code>       <span class="built_in">LEFT</span> <span class="built_in">JOIN</span> b <span class="keyword">on</span> bid=aid 
+
+       <span class="built_in">LEFT</span> <span class="built_in">JOIN</span> c <span class="keyword">on</span> aid=cid
+</code></pre><p><img src="" alt=""></p>
+<p>sql&gt;&gt;SELECT * FROM a LEFT JOIN b on bid=aid LEFT JOIN c on bid=cid<br><img src="" alt=""></p>
+<p>3,如果我用了一个right join呢?</p>
+<p>sql&gt;&gt;SELECT * FROM a LEFT JOIN b on bid=aid RIGHT JOIN c on bid=cid<br><img src="" alt=""></p>
+<p>这里该怎么理解呢?<br>感谢<a href="http://blog.csdn.net/sqlserverdiscovery/article/details/6893288" target="_blank" rel="external">http://blog.csdn.net/sqlserverdiscovery/article/details/6893288</a></p>
+<p>我们理解的时候可以把它拆成两部分去理解</p>
+<p>比如第一部分<br>sql&gt;&gt;SELECT * FROM a LEFT JOIN b on bid=aid</p>
+<p><img src="" alt=""></p>
+<p>然后再思考第二部分,假如上图是一张表  我们叫它a_b</p>
+<p>你可以新建一个视图,就可以真成为一张虚表了</p>
+<p>sql&gt;&gt;create  VIEW a_b  as (SELECT * FROM a LEFT JOIN b on bid=aid)<br><img src="" alt=""></p>
+<p>然后我们继续做下面一部分</p>
+<p>sql&gt;&gt;select * from a_b right join c on bid=cid<br><img src="" alt=""></p>
+<p>可见,与上面的结果是一样的,当然这是我们理解的过程,实际数据库服务器执行的时候可能不是这样的,它会做一些优化,提高效率</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>left join(左联接) 返回包括左表中的所有记录和右表中联结字段相等的记录 </p>
+<p>right join(右联接) 返回包括右表中的所有记录和左表中联结字段相等的记录</p>
+<p>inner join(等值连接) 只返回两个表中联结字段相等的行</p>
+<p]]>
+    </summary>
+    
+      <category term="sql" scheme="http://jackroyal.github.io/tags/sql/"/>
+    
+      <category term="select" scheme="http://jackroyal.github.io/tags/select/"/>
+    
+      <category term="数据库" scheme="http://jackroyal.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[阿里云windows_server_2003_搭建邮件服务器]]></title>
+    <link href="http://jackroyal.github.io/2014/06/28/%E9%98%BF%E9%87%8C%E4%BA%91windows_server_2003_%E6%90%AD%E5%BB%BA%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    <id>http://jackroyal.github.io/2014/06/28/阿里云windows_server_2003_搭建邮件服务器/</id>
+    <published>2014-06-28T14:30:00.000Z</published>
+    <updated>2014-12-20T20:05:11.000Z</updated>
+    <content type="html"><![CDATA[<pre><code>笔者最近遇到一个在阿里云上搭建邮件服务器的问题，总算搞定，记录一下。
+
+ 整个搭建过程，包括pop3服务的安装和开启，smtp服务的安装和开启，dns服务的安装和设置。
+参考文章[<span class="link_label">http://hi.baidu.com/senya/item/63bd6588b6817056e63d1996</span>](<span class="link_url">http://hi.baidu.com/senya/item/63bd6588b6817056e63d1996</span>)
+</code></pre><p>   <a href="http://firefish.blog.51cto.com/298258/57983" target="_blank" rel="external">http://firefish.blog.51cto.com/298258/57983</a></p>
+<p>不在赘述，直接粘贴原文</p>
+<p><strong>　　一、安装Windows Server 2003邮件服务器组件</strong></p>
+<p>(因为盗图的缘故,图片都挂了,这里大家都去看上面的参考文章连接吧,设置dns的时候再回来)</p>
+<p>图一　“管理您的服务器”控制台</p>
+<p>　　依次单击“开始”——“管理工具”——“管理您的服务器”，打开“管理您的服务器”控制台。在这个管理控制台中我们可以看到服务器已经成为的角色。单击“添加或删除角色”命令，开始管理服务器的角色。</p>
+<p>图二　配置服务器向导</p>
+<p>　　当我们单击“添加或删除角色”命令，就会运行配置服务器向导。</p>
+<p>图三　服务器管理程序检测网络连接</p>
+<p>图四　管理服务器角色</p>
+<p>　　在图四中，可以查看已经安装的服务和支持而没有安装的服务。此时的服务器还不是邮件服务器，选择“邮件服务器(POP3,SMTP)”，单击“下一步”：</p>
+<p>图五　配置“身份验证方法”及“电子邮件域名”</p>
+<p>图六　单击“下一步”</p>
+<p>图七　安装邮件服务:POP3和SMTP</p>
+<p>图八　安装成功</p>
+<p><strong>　　二、管理邮件服务器</strong></p>
+<p>　　Windows Server 2003的电子邮件服务器的功能很简单，管理界面也很简洁。单击“管理工具”下的“POP3服务”：</p>
+<p>图九 POP3服务</p>
+<p>图十　为用户添加邮箱</p>
+<p>　　在“POP3服务”中单击“添加邮箱”命令，在弹出的对话框内输入邮箱名（用户名）及密码。</p>
+<p>图十一</p>
+<p><strong>　　三、配置smtp</strong></p>
+<p>　　方法和上面类似，在图二的画面中我们选择应用程序服务器</p>
+<p><img src="" alt=""></p>
+<p>如图，我的已经开启了。</p>
+<p>下一步，依次打开“开始-程序-管理工具-internet信息服务”，在窗口左面，鼠标右键点击“smtp虚拟服务器”属性。切换到常规选项卡”IP地址“选择服务器的ip地址，点击确定就行了。</p>
+<p><strong>四、配置DNS</strong></p>
+<p>服务器已经配置好了，我们接下来设置下dns，这样才能解析到，不然还是无法使用的</p>
+<p>依次打开，“开始-程序-管理工具-配置您的服务器向导”</p>
+<p><img src="" alt=""></p>
+<p>选择自定义配置</p>
+<p><img src="" alt=""></p>
+<p>选择dns服务器，下一步</p>
+<p><img src="" alt=""></p>
+<p><img src="" alt=""></p>
+<p><img src="" alt=""></p>
+<p><img src="" alt=""></p>
+<p><img src="" alt=""></p>
+<p><img src="" alt=""></p>
+<p><img src="" alt=""></p>
+<p>点击正向查找域里面的区域名称，在右边的空白处点击右键，新建主机，分别新建POP3，smtp等主机</p>
+<p><img src="" alt=""></p>
+<p>还是空白处，右键，新建邮件交换器，分别新建smtp和pop3的邮件交换器</p>
+<p><img src="" alt=""></p>
+<p><img src="" alt=""></p>
+<p>注意：完全合格的域名后面没有点号，邮件服务器的完全合格的域名后面有点号，例如是smtp.ip-tcp.com.</p>
+<p>到此，邮件服务器搭建完成，可以去测试了</p>
+<p>此处参考原文<a href="http://www.docin.com/p-156566941.html" target="_blank" rel="external">http://www.docin.com/p-156566941.html</a></p>
+<p>经过我的测试，可以收邮件，但是不能发邮件（可以自己给自己发，但是不能给qq，网易等邮箱发），一直报错550 5.7.1 Unable to relay for <a href="mailto:xxx@xxx.com" target="_blank" rel="external"></a><a href="mailto:xxx@xxx.com" target="_blank" rel="external">xxx@xxx.com</a></p>
+<p>最后找到答案</p>
+<p>在IIS管理器里打开“默认SMTP虚拟服务器”的属性设置对话框，在“访问”选项卡中，点击“中继”按钮，弹出“中继限制”对话框，默认为选中了“仅以下列表”，修改为选中“仅以下列表除外”即可。</p>
+<p>另外下面的“允许所有通过身份验证的计算机进行中继，而忽略上表”一项要保持选中状态（默认是选中的）。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<pre><code>笔者最近遇到一个在阿里云上搭建邮件服务器的问题，总算搞定，记录一下。
+
+ 整个搭建过程，包括pop3服务的安装和开启，smtp服务的安装和开启，dns服务的安装和设置。
+参考文章[<span class="link_label">http://hi.baid]]>
+    </summary>
+    
+      <category term="服务器" scheme="http://jackroyal.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+  </entry>
+  
+</feed>

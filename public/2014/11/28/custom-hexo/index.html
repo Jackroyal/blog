@@ -1,0 +1,305 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>配置hexo | 搁浅St的blog</title>
+  <meta name="author" content="搁浅St">
+  
+  <meta name="description" content="jackroyal 博客 搁浅St 笨笨">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="配置hexo"/>
+  <meta property="og:site_name" content="搁浅St的blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="搁浅St的blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">搁浅St的blog</a></h1>
+  <h2><a href="/">我最喜欢笨笨</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-28T13:07:27.000Z"><a href="/2014/11/28/custom-hexo/">11月 28 2014</a></time>
+      
+      
+  
+    <h1 class="title">配置hexo</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>经过<a href="/how-to-build-a-blog-with-hexo.html">上篇博客</a>,我们搭建起了自己的博客,接下来我们对它做些个性化的定制.<br>在hexo中,配置文件一共两个(我的hexo安装在F:/blog/),分别是<code>F:/blog/_config.yml</code>和<code>F:/blog/themes/light/_config.yml</code>.第一个是全局的配置文件,第二个是主题的配置文件,在继续说之前,我们先来说一下主题安装.<a id="more"></a></p>
+<h1 id="主题安装">主题安装</h1>
+<p>这个很简单,在hexo的Github的主页上有个主题栏目,<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">https://github.com/hexojs/hexo/wiki/Themes</a>,里面列出了很多主题.<br>安装方法很简单</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="input"><span class="prompt">$ git clone &lt;repository&gt;</span> themes/&lt;theme-name&gt;</span></div></pre></td></tr></table></figure>
+
+<p>举个简单例子,我安装的主题名为<code>light</code>,请在<code>F:/blog/</code>目录下执行以下代码</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>git clone <span class="symbol">https:</span>/<span class="regexp">/github.com/hexojs</span><span class="regexp">/hexo-theme-light themes/light</span></div></pre></td></tr></table></figure>
+
+<p>如果你不是在<code>F:/blog/</code>中执行,请修改后面的路径themes/light为你的路径.基本原理就是把主题下下来,放在themes目录下就OK了,主题安装完毕.</p>
+<h1 id="修改全局配置文件_F:/blog/_config-yml">修改全局配置文件 <code>F:/blog/_config.yml</code></h1>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor"># Hexo Configuration</span></div><div class="line"><span class="preprocessor">## Docs: http://hexo.io/docs/configuration.html</span></div><div class="line"><span class="preprocessor">## Source: https://github.com/hexojs/hexo/</span></div><div class="line"></div><div class="line"><span class="preprocessor"># Site</span></div><div class="line"><span class="label">title:</span> 搁浅<span class="keyword">St</span>的blog  <span class="preprocessor">#站点的名称</span></div><div class="line"><span class="label">subtitle:</span> 我最喜欢笨笨   <span class="preprocessor">#站点的副标题</span></div><div class="line"><span class="label">description:</span>             <span class="preprocessor">#站点的描述,有利于搜索引擎的抓取</span></div><div class="line"><span class="label">author:</span> 搁浅<span class="keyword">St</span>       <span class="preprocessor">#作者</span></div><div class="line"><span class="label">email:</span> geqianst@qq.com          <span class="preprocessor">#你的邮箱</span></div><div class="line"><span class="label">language:</span> <span class="built_in">zh</span>-CN           <span class="preprocessor">#语言,一般应该都是这个吧</span></div><div class="line"></div><div class="line"><span class="preprocessor"># URL</span></div><div class="line"><span class="preprocessor">## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'</span></div><div class="line"><span class="label">url:</span> http://jackroyal.github.io       <span class="preprocessor">#网站的url,在页面上,可以调用配置中的url参数,就是这个,比如google自定义搜索,需要制定搜索范围,就是通过这个设置的</span></div><div class="line"><span class="label">root:</span> /</div><div class="line"><span class="label">permalink:</span> :year/:month/:day/:title/</div><div class="line"><span class="label">tag_dir:</span> tags</div><div class="line"><span class="label">archive_dir:</span> archives</div><div class="line"><span class="label">category_dir:</span> categories</div><div class="line"><span class="label">code_dir:</span> downloads/code</div><div class="line"><span class="label">permalink_defaults:</span></div><div class="line"></div><div class="line"><span class="preprocessor"># Directory</span></div><div class="line"><span class="label">source_dir:</span> source</div><div class="line"><span class="label">public_dir:</span> public</div><div class="line"></div><div class="line"><span class="preprocessor"># Writing</span></div><div class="line"><span class="label">new_post_name:</span> :title.md <span class="preprocessor"># File name of new posts</span></div><div class="line"><span class="label">default_layout:</span> post  </div><div class="line"><span class="label">titlecase:</span> false <span class="preprocessor"># Transform title into titlecase</span></div><div class="line"><span class="label">external_link:</span> true <span class="preprocessor"># Open external links in new tab</span></div><div class="line"><span class="label">filename_case:</span> <span class="number">0</span></div><div class="line"><span class="label">render_drafts:</span> false</div><div class="line"><span class="label">post_asset_folder:</span> false</div><div class="line"><span class="label">relative_link:</span> false</div><div class="line"><span class="label">highlight:</span></div><div class="line">  enable: true</div><div class="line">  line_number: true</div><div class="line">  tab_replace:</div><div class="line"></div><div class="line"><span class="preprocessor"># Category & Tag</span></div><div class="line"><span class="label">default_category:</span> uncategorized  </div><div class="line"><span class="label">category_map:</span></div><div class="line"><span class="label">tag_map:</span></div><div class="line"></div><div class="line"><span class="preprocessor"># Archives 默认值为2，这里都修改为1，相应页面就只会列出标题，而非全文</span></div><div class="line"><span class="preprocessor">## 2: Enable pagination</span></div><div class="line"><span class="preprocessor">## 1: Disable pagination</span></div><div class="line"><span class="preprocessor">## 0: Fully Disable</span></div><div class="line"><span class="label">archive:</span> <span class="number">1</span></div><div class="line"><span class="label">category:</span> <span class="number">1</span></div><div class="line"><span class="label">tag:</span> <span class="number">1</span></div><div class="line"></div><div class="line"><span class="preprocessor"># Server</span></div><div class="line"><span class="preprocessor">## Hexo uses Connect as a server</span></div><div class="line"><span class="preprocessor">## You can customize the logger format as defined in</span></div><div class="line"><span class="preprocessor">## http://www.senchalabs.org/connect/logger.html</span></div><div class="line"><span class="label">port:</span> <span class="number">4000</span></div><div class="line"><span class="label">server_ip:</span> localhost</div><div class="line"><span class="label">logger:</span> false</div><div class="line"><span class="label">logger_format:</span> dev</div><div class="line"></div><div class="line"><span class="preprocessor"># Date / Time format</span></div><div class="line"><span class="preprocessor">## Hexo uses Moment.js to parse and display date</span></div><div class="line"><span class="preprocessor">## You can customize the date format as defined in</span></div><div class="line"><span class="preprocessor">## http://momentjs.com/docs/#/displaying/format/</span></div><div class="line"><span class="label">date_format:</span> MMM D YYYY</div><div class="line"><span class="label">time_format:</span> H:mm:ss</div><div class="line"></div><div class="line"><span class="preprocessor"># Pagination</span></div><div class="line"><span class="preprocessor">## Set per_page to 0 to disable pagination</span></div><div class="line"><span class="label">per_page:</span> <span class="number">5</span></div><div class="line"><span class="label">pagination_dir:</span> page</div><div class="line"></div><div class="line"><span class="preprocessor"># Disqus</span></div><div class="line"><span class="label">disqus_shortname:</span></div><div class="line"><span class="preprocessor">#这一行是我添加的duoshuo_shortname,因为天朝disqus不好用,用多说</span></div><div class="line"><span class="label">duoshuo_shortname:</span> jackroyal</div><div class="line"><span class="preprocessor"># Extensions</span></div><div class="line"><span class="preprocessor">## Plugins: https://github.com/hexojs/hexo/wiki/Plugins</span></div><div class="line"><span class="preprocessor">## Themes: https://github.com/hexojs/hexo/wiki/Themes</span></div><div class="line"><span class="label">theme:</span> light</div><div class="line"><span class="label">exclude_generator:</span></div><div class="line"></div><div class="line"><span class="preprocessor"># Deployment  发布相关设置</span></div><div class="line"><span class="preprocessor">## Docs: http://hexo.io/docs/deployment.html</span></div><div class="line"><span class="label">deploy:</span></div><div class="line">  type: github</div><div class="line">  repo: https://github.com/Jackroyal/Jackroyal.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
+
+<p>至此,全局配置文件修改完毕,你可以<code>hexo g</code>和<code>hexo s</code>进行查看.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="label">menu:</span><span class="preprocessor">#导航栏的设置默认只有这两个,还可以添加更多的导航</span></div><div class="line">  Home: /</div><div class="line">  Archives: /archives</div><div class="line"><span class="preprocessor">#它就是你页面右边的侧边项目,比如搜索之类,你可以根据自己的需求进行修改,你能用几个widgets可以在F:\blog\themes\light\layout\_widget中进行查看</span></div><div class="line"><span class="label">widgets:</span><span class="preprocessor">#我这里使用了所有的widgets</span></div><div class="line">- search</div><div class="line">- category</div><div class="line">- tag</div><div class="line">- recent_posts</div><div class="line">- tagcloud</div><div class="line"></div><div class="line"><span class="label">excerpt_link:</span> Read More  <span class="preprocessor">#可以换成中文的  阅读全文</span></div><div class="line"></div><div class="line"><span class="label">twitter:</span></div><div class="line">  username:</div><div class="line">  show_replies: false</div><div class="line">  tweet_count: <span class="number">5</span></div><div class="line">//默认的一个分享组件,因为主要针对国外,不适合国内我们不使用它</div><div class="line"><span class="label">addthis:</span></div><div class="line">  enable: false  <span class="preprocessor">#把true改为false</span></div><div class="line">  pubid:</div><div class="line">  facebook: true</div><div class="line">  twitter: true</div><div class="line">  google: true</div><div class="line">  pinterest: true</div><div class="line"></div><div class="line"><span class="label">fancybox:</span> true</div><div class="line"></div><div class="line"><span class="label">google_analytics:</span></div><div class="line"><span class="label">rss:</span></div><div class="line"><span class="label">duoshuo_shortname:</span> jackroyal  <span class="preprocessor">#多说的用户名</span></div><div class="line"></div><div class="line"><span class="label">comment_provider:</span></div><div class="line"><span class="preprocessor"># Facebook comment</span></div><div class="line"><span class="label">facebook:</span></div><div class="line">  appid: <span class="number">123456789012345</span></div><div class="line">  comment_count: <span class="number">5</span></div><div class="line">  comment_width: <span class="number">840</span></div><div class="line">  comment_colorscheme: light</div></pre></td></tr></table></figure>
+
+<p>至此,配置文件修改完毕,上面提到了我们不适用disqus的评论组件,使用多说,下面教大家来配置多说</p>
+<h1 id="创建多说">创建多说</h1>
+<p>首先我们去多说注册一个账号,<a href="http://duoshuo.com/" title="多说官网" target="_blank" rel="external">点击这里</a><br>我们点击<a href="http://duoshuo.com/create-site/" title="我要安装" target="_blank" rel="external">我要安装</a>,界面如下<img src="http://ww4.sinaimg.cn/large/692869a3gw1emtdlnpsqaj20wo0lp783.jpg" alt="duoshuo 创建界面" title="创建多说账号"><br>shortname就是jackroyal,创建完成后,跳转到如下界面<br><img src="http://ww1.sinaimg.cn/large/692869a3gw1emtdp96x54j20us0jxn18.jpg" alt="获取多说代码" title="获取多说代码"><br>我们选择<code>通用代码</code>,点击复制,就行了</p>
+<h1 id="配置多说">配置多说</h1>
+<p>这里说一个前提,我使用的是light主题,如果你用的是其他主题,接下来的设置可能给我有点区别,但是原理差不多,参考看看</p>
+<ol>
+<li>我们打开<code>F:\blog\themes\light\layout\_partial\comment.ejs</code>这个文件,然后修改后代码如下(如果你不是light主题,可能跟这个不一样,你去找下包含comment的section在哪里,改法还是这样.例如系统默认的landscape主题,下面这段代码就是在article.ejs,它没有comment.ejs)</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="vbscript">&lt;% <span class="keyword">if</span> (page.comments){ %&gt;</span></div><div class="line"><span class="comment">&lt;!-- 这里添加了一个导航,页面的下面会有一个上一篇,下一篇 --&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="title">nav</span> <span class="attribute">id</span>=<span class="value">"pagination"</span> &gt;</span></div><div class="line">    <span class="vbscript">&lt;% <span class="keyword">if</span> (page.prev) { %&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"&lt;%- config.root %&gt;&lt;%- page.prev.path %&gt;"</span> <span class="attribute">class</span>=<span class="value">"alignleft prev"</span> &gt;</span> <span class="vbscript">&lt;%=page.prev.title %&gt;</span> <span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line">    <span class="vbscript">&lt;% } %&gt;</span></div><div class="line">    <span class="vbscript">&lt;% <span class="keyword">if</span> (page.<span class="keyword">next</span>) { %&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"&lt;%- config.root %&gt;&lt;%- page.next.path %&gt;"</span> <span class="attribute">class</span>=<span class="value">"alignright next"</span> &gt;</span> <span class="vbscript">&lt;%=page.<span class="keyword">next</span>.title %&gt;</span> <span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line">    <span class="vbscript">&lt;% } %&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"clearfix"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">nav</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 导航结束 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">section</span> <span class="attribute">id</span>=<span class="value">"comments"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 这里是多说的代码,直接把你的代码粘贴到这里就行 --&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 多说评论框 start --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"ds-thread"</span> <span class="attribute">data-thread-key</span>=<span class="value">"&lt;%= page.layout %&gt;-&lt;%= page.slug %&gt;"</span> <span class="attribute">data-title</span>=<span class="value">"&lt;%= page.title %&gt;"</span> <span class="attribute">data-url</span>=<span class="value">"&lt;%= page.permalink %&gt;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 多说评论框 end --&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">    <span class="keyword">var</span> duoshuoQuery = {short_name:<span class="string">'&lt;%= config.duoshuo_shortname %&gt;'</span>};</div><div class="line">      (<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{</div><div class="line">        <span class="keyword">var</span> ds = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</div><div class="line">        ds.type = <span class="string">'text/javascript'</span>;ds.async = <span class="literal">true</span>;</div><div class="line">        ds.src = (<span class="built_in">document</span>.location.protocol == <span class="string">'https:'</span> ? <span class="string">'https:'</span> : <span class="string">'http:'</span>) + <span class="string">'//static.duoshuo.com/embed.js'</span>;</div><div class="line">        ds.charset = <span class="string">'UTF-8'</span>;</div><div class="line">        (<span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>]</div><div class="line">         || <span class="built_in">document</span>.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>]).appendChild(ds);</div><div class="line">      })();</div><div class="line">      <span class="tag">&lt;/<span class="title">script</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 多说公共JS代码 end --&gt;</span></div><div class="line">  <span class="comment">&lt;!-- 多说结束 --&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="title">section</span>&gt;</span></div><div class="line"><span class="vbscript">&lt;% } %&gt;</span></div></pre></td></tr></table></figure>
+
+<p>眼尖的同学可能已经看到我的上面第16行代码与你们的不同,这行代码包括了页面的标题和url,它会根据hexo的配置,由hexo动态生成,所以你把你的代码替换成我的这行代码.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div <span class="variable">class=</span><span class="string">"ds-thread"</span> <span class="variable">data-thread-key=</span><span class="string">"&lt;%= page.layout %&gt;-&lt;%= page.slug %&gt;"</span> <span class="variable">data-title=</span><span class="string">"&lt;%= page.title %&gt;"</span> <span class="variable">data-url=</span><span class="string">"&lt;%= page.permalink %&gt;"</span>&gt;&lt;/div&gt;</div></pre></td></tr></table></figure>
+
+<p>至此,多说添加完毕</p>
+<h1 id="修复bug">修复bug</h1>
+<p>我发现light的主题貌似有个小bug,在<code>F:\blog\themes\light\layout\_partial\article.ejs</code>中间第27行有这样一行代码</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="vbscript">&lt;% <span class="keyword">if</span> (item.comment && config.disqus_shortname){ %&gt;</span></div></pre></td></tr></table></figure>
+
+<p>首先我们,替换config.disqus_shortname为config.duoshuo_shortname.<br>然后修改<code>item.comment</code>为<code>item.comments</code>,因为系统中没有comment这个变量,只有comments这个变量,如果不修改comments,那么<code>item.comment</code>一直为假,所以一直不成立,就不会显示comments字段了.修改后代码如下</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="vbscript">&lt;% <span class="keyword">if</span> (item.comments && config.duoshuo_shortname){ %&gt;</span></div></pre></td></tr></table></figure>
+
+<p>产生的效果如图<img src="http://ww3.sinaimg.cn/large/692869a3gw1emteitia5uj20tl0fn412.jpg" alt="开启和关闭comment的区别" title="开启和关闭comment的区别">.<br>至此,配置hexo,打完收工<br>enjoy it</p>
+<hr>
+<h1 id="参考文献">参考文献</h1>
+<p>1 <a href="http://zipperary.com/2013/05/29/hexo-guide-3/" target="_blank" rel="external">http://zipperary.com/2013/05/29/hexo-guide-3/</a><br>2 <a href="http://dev.duoshuo.com/threads/541d3b2b40b5abcd2e4df0e9" target="_blank" rel="external">duoshuo官方Hexo使用教程</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/hexo/">hexo</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/hexo/">hexo</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+ <nav id="pagination" >
+    
+    <a href="/2014/12/02/recent-task/" class="alignleft prev" > 近期任务 </a>
+    
+    
+    <a href="/2014/11/27/how-to-build-a-blog-with-hexo/" class="alignright next" > 使用hexo建立自己的Github pages </a>
+    
+    <div class="clearfix"></div>
+</nav>
+<section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-custom-hexo" data-title="配置hexo" data-url="http://jackroyal.github.io/2014/11/28/custom-hexo/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'jackroyal'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:jackroyal.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/chrome扩展/">chrome扩展</a><small>4</small></li>
+  
+    <li><a href="/categories/hexo/">hexo</a><small>2</small></li>
+  
+    <li><a href="/categories/javascript/">javascript</a><small>2</small></li>
+  
+    <li><a href="/categories/数据库/">数据库</a><small>1</small></li>
+  
+    <li><a href="/categories/服务器/">服务器</a><small>1</small></li>
+  
+    <li><a href="/categories/杂文/">杂文</a><small>1</small></li>
+  
+    <li><a href="/categories/软件安装与技巧/">软件安装与技巧</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/chrome/">chrome</a><small>4</small></li>
+  
+    <li><a href="/tags/cmcc-edu/">cmcc-edu</a><small>4</small></li>
+  
+    <li><a href="/tags/github/">github</a><small>1</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>3</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>2</small></li>
+  
+    <li><a href="/tags/js/">js</a><small>1</small></li>
+  
+    <li><a href="/tags/select/">select</a><small>1</small></li>
+  
+    <li><a href="/tags/sql/">sql</a><small>1</small></li>
+  
+    <li><a href="/tags/sql-server/">sql server</a><small>1</small></li>
+  
+    <li><a href="/tags/wamp/">wamp</a><small>1</small></li>
+  
+    <li><a href="/tags/中国移动/">中国移动</a><small>3</small></li>
+  
+    <li><a href="/tags/前端/">前端</a><small>2</small></li>
+  
+    <li><a href="/tags/扩展/">扩展</a><small>2</small></li>
+  
+    <li><a href="/tags/正则/">正则</a><small>1</small></li>
+  
+    <li><a href="/tags/正则表达式/">正则表达式</a><small>1</small></li>
+  
+    <li><a href="/tags/脚本/">脚本</a><small>2</small></li>
+  
+    <li><a href="/tags/表单/">表单</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2014/12/02/recent-task/">近期任务</a>
+      </li>
+    
+      <li>
+        <a href="/2014/11/28/custom-hexo/">配置hexo</a>
+      </li>
+    
+      <li>
+        <a href="/2014/11/27/how-to-build-a-blog-with-hexo/">使用hexo建立自己的Github pages</a>
+      </li>
+    
+      <li>
+        <a href="/2014/11/26/new-start/">新的开始</a>
+      </li>
+    
+      <li>
+        <a href="/2014/11/25/[js]replace替换/">[js]replace替换</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/chrome/" style="font-size: 20.00px;">chrome</a><a href="/tags/cmcc-edu/" style="font-size: 20.00px;">cmcc-edu</a><a href="/tags/github/" style="font-size: 10.00px;">github</a><a href="/tags/hexo/" style="font-size: 16.67px;">hexo</a><a href="/tags/javascript/" style="font-size: 13.33px;">javascript</a><a href="/tags/js/" style="font-size: 10.00px;">js</a><a href="/tags/select/" style="font-size: 10.00px;">select</a><a href="/tags/sql/" style="font-size: 10.00px;">sql</a><a href="/tags/sql-server/" style="font-size: 10.00px;">sql server</a><a href="/tags/wamp/" style="font-size: 10.00px;">wamp</a><a href="/tags/中国移动/" style="font-size: 16.67px;">中国移动</a><a href="/tags/前端/" style="font-size: 13.33px;">前端</a><a href="/tags/扩展/" style="font-size: 13.33px;">扩展</a><a href="/tags/正则/" style="font-size: 10.00px;">正则</a><a href="/tags/正则表达式/" style="font-size: 10.00px;">正则表达式</a><a href="/tags/脚本/" style="font-size: 13.33px;">脚本</a><a href="/tags/表单/" style="font-size: 10.00px;">表单</a>
+  </div>
+</div>
+
+
+  <div class="widget tag">
+<h3 class="title">友情链接</h3>
+<ul class="entry">
+<li><a href="http://blog.csdn.net/jackroyal" title="搁浅St的blog">我的CSDN</a></li>
+<li><a href="http://www.cnblogs.com/geqianst" title="搁浅St的blog">我的cnblogs</a></li>
+<li><a href="http://blog.csdn.net/happyhuirong" title="笨笨的blog">笨笨的blog</a></li>
+</ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2014 搁浅St
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="http://libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+</body>
+</html>
