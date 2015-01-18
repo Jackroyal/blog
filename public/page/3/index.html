@@ -51,6 +51,68 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2014-11-24T03:18:00.000Z"><a href="/2014/11/24/chrome扩展开发手记<2>-登录原理分析/">11月 24 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/11/24/chrome扩展开发手记<2>-登录原理分析/">chrome扩展开发手记&lt;2&gt;-登录原理分析</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>上一篇,我们 介绍了一下登录的流程,但是用程序进行登录的话,我们肯定不能那样一步一步,太过复杂,所以我们接下来分下一下登录的具体过程,看看能不能作一些简化</p>
+<p>我们接下来,给几个页面编个号,下面好分析一点<br>A   最原始的跳转 <a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external">http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU</a><br>B  第一次改ssid  <a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external">http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free</a></p>
+<p>C 第一次点击 请点击登录  以后的地址<br><a href="http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free" target="_blank" rel="external">http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free</a></p>
+<p>D 第二次改ssid<br><a href="http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free" target="_blank" rel="external">http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC520</a></p>
+<ol>
+<li>从www.baidu.com跳转到A地址,这个步骤没什么特别的,服务器那边做了一个302跳转,然后我们这边就自动跳转到A地址了</li>
+<li><p>第一次改ssid,也就是从A到B,这个过程也没什么,只是一个单纯的地址跳转,B地址中有一个表单<br><br><img src="http://img.blog.csdn.net/20141124134725891?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br><br>这个表单里面 主要包含四个字段,<br><br>wlanacname:1022.0027.270.00<br><br>wlanuserip:10.80.97.209<br>ssid:iWuhan-Free<br><br>userAgent_1:Mozilla/5.0 (Windows NT 6.2)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36</p>
+</li>
+<li><p>我们第一次点击 请提交登录,所做的操作就是把上面的表单提交到  <a href="http://120.202.164.10:8080/portal/servlets/SingleLoginServlet" target="_blank" rel="external">http://120.202.164.10:8080/portal/servlets/SingleLoginServlet</a><br><br>服务器返回的地址是C,这一步的表单提交主要是为了获取C的地址,就是因为多了的那个loginFree.jsp,这样下一步才能改ssid为CMCC520,否则,如果你越过这一步直接改ssid为CMCC520,就会跳转到其他的页面,比如下面这个<img src="http://img.blog.csdn.net/20141124133708801?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br><br>这个地址如果点击提交,是没有办法正常登陆的,我们必须要到武汉的那个页面才行.</p>
+</li>
+<li>在我们到达C那个页面以后,我们再次修改ssid,就到了D页面,然后在D页面点击  请点击登录,流程和上面的一样,页面效果也是一样,不过表单的值变了一个,具体表单post内容如下<br><br>wlanacname:1022.0027.270.00<br><br>wlanuserip:10.80.97.209<br>ssid:CMCC520<br>userAgent_1:Mozilla/5.0 (Windows NT 6.2)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36<br><br>提交以后,我们就可以登录成功了,成功以后服务器会做一个302跳转,页面跳转到一个登录计时的页面.</li>
+</ol>
+<p>************************************************************************************************************************************************************<br><em><br>
+</em><br>从整体来看,最核心的一个操作就是向<a href="http://120.202.164.10:8080/portal/servlets/SingleLoginServlet" target="_blank" rel="external">http://120.202.164.10:8080/portal/servlets/SingleLoginServlet</a>提交一个表单,表单内容是<br>wlanacname:1022.0027.270.00<br>wlanuserip:10.80.97.209<br>ssid:CMCC520<br>userAgent<em>1:Mozilla/5.0 (Windows NT 6.2)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36<br>然后,然后就没有然后了,那个最后计时页面的跳转没有多大的实际作用,我们只需要post这一个请求就好了<br>下一步我们开始制作chrome扩展,核心也是要实现这个post的请求
+</em>************************************************************************************************************************************************************<em>
+</em>退出登录也是如此,发一个get请求过去,然后从获得的内容中进行判断,判断成功与否<em><br>_</em></p>
+<p>下线请求<br><a href="http://120.202.164.10:8080/portal/servlets/LogoutServlet?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC520&amp;ATTRIBUTE_USERNAME=iWuhanFree4300&amp;ATTRIBUTE_UUID=26FBE9A694B6221958CF6DE2704F0ECA&amp;ATTRIBUTE_IPADDRESS=10.80.97.209&amp;cancelAutomatismLogin=false" target="_blank" rel="external">http://120.202.164.10:8080/portal/servlets/LogoutServlet?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC520&amp;ATTRIBUTE_USERNAME=iWuhanFree4300&amp;ATTRIBUTE_UUID=26FBE9A694B6221958CF6DE2704F0ECA&amp;ATTRIBUTE_IPADDRESS=10.80.97.209&amp;cancelAutomatismLogin=false</a></p>
+<p>表单实际内容</p>
+<p>wlanacname:1022.0027.270.00</p>
+<p>wlanuserip:10.80.97.209</p>
+<p>ssid:CMCC520</p>
+<p>ATTRIBUTE_USERNAME:iWuhanFree4300</p>
+<p>ATTRIBUTE_UUID:26FBE9A694B6221958CF6DE2704F0ECA</p>
+<p>ATTRIBUTE_IPADDRESS:10.80.97.209</p>
+<p>cancelAutomatismLogin:false</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+        <div class="alignright">
+          <a href="http://jackroyal.github.io/2014/11/24/chrome扩展开发手记<2>-登录原理分析/#duoshuo_thread" class="comment-link">Comments</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2014-11-21T10:17:00.000Z"><a href="/2014/11/21/chrome扩展开发手记<1>-需求分析/">11月 21 2014</a></time>
       
       
@@ -320,6 +382,8 @@
   <h3 class="title">分类</h3>
   <ul class="entry">
   
+    <li><a href="/categories/Linux/">Linux</a><small>1</small></li>
+  
     <li><a href="/categories/chrome扩展/">chrome扩展</a><small>4</small></li>
   
     <li><a href="/categories/hexo/">hexo</a><small>2</small></li>
@@ -343,11 +407,13 @@
   <h3 class="title">标签</h3>
   <ul class="entry">
   
+    <li><a href="/tags/Linux/">Linux</a><small>1</small></li>
+  
     <li><a href="/tags/chrome/">chrome</a><small>4</small></li>
   
     <li><a href="/tags/cmcc-edu/">cmcc-edu</a><small>4</small></li>
   
-    <li><a href="/tags/github/">github</a><small>1</small></li>
+    <li><a href="/tags/github/">github</a><small>2</small></li>
   
     <li><a href="/tags/hexo/">hexo</a><small>3</small></li>
   
@@ -387,7 +453,11 @@
   <ul class="entry">
     
       <li>
-        <a href="/2015/01/06/hello-world/">Hello World</a>
+        <a href="/2015/01/19/linux下使用github/">Linux下使用github</a>
+      </li>
+    
+      <li>
+        <a href="/2015/01/19/hello-world/">Hello World</a>
       </li>
     
       <li>
@@ -402,10 +472,6 @@
         <a href="/2014/11/27/how-to-build-a-blog-with-hexo/">使用hexo建立自己的Github pages</a>
       </li>
     
-      <li>
-        <a href="/2014/11/26/new-start/">新的开始</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -414,7 +480,7 @@
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/chrome/" style="font-size: 20.00px;">chrome</a><a href="/tags/cmcc-edu/" style="font-size: 20.00px;">cmcc-edu</a><a href="/tags/github/" style="font-size: 10.00px;">github</a><a href="/tags/hexo/" style="font-size: 16.67px;">hexo</a><a href="/tags/javascript/" style="font-size: 13.33px;">javascript</a><a href="/tags/js/" style="font-size: 10.00px;">js</a><a href="/tags/select/" style="font-size: 10.00px;">select</a><a href="/tags/sql/" style="font-size: 10.00px;">sql</a><a href="/tags/sql-server/" style="font-size: 10.00px;">sql server</a><a href="/tags/wamp/" style="font-size: 10.00px;">wamp</a><a href="/tags/中国移动/" style="font-size: 16.67px;">中国移动</a><a href="/tags/前端/" style="font-size: 13.33px;">前端</a><a href="/tags/扩展/" style="font-size: 13.33px;">扩展</a><a href="/tags/正则/" style="font-size: 10.00px;">正则</a><a href="/tags/正则表达式/" style="font-size: 10.00px;">正则表达式</a><a href="/tags/脚本/" style="font-size: 13.33px;">脚本</a><a href="/tags/表单/" style="font-size: 10.00px;">表单</a>
+    <a href="/tags/Linux/" style="font-size: 10.00px;">Linux</a><a href="/tags/chrome/" style="font-size: 20.00px;">chrome</a><a href="/tags/cmcc-edu/" style="font-size: 20.00px;">cmcc-edu</a><a href="/tags/github/" style="font-size: 13.33px;">github</a><a href="/tags/hexo/" style="font-size: 16.67px;">hexo</a><a href="/tags/javascript/" style="font-size: 13.33px;">javascript</a><a href="/tags/js/" style="font-size: 10.00px;">js</a><a href="/tags/select/" style="font-size: 10.00px;">select</a><a href="/tags/sql/" style="font-size: 10.00px;">sql</a><a href="/tags/sql-server/" style="font-size: 10.00px;">sql server</a><a href="/tags/wamp/" style="font-size: 10.00px;">wamp</a><a href="/tags/中国移动/" style="font-size: 16.67px;">中国移动</a><a href="/tags/前端/" style="font-size: 13.33px;">前端</a><a href="/tags/扩展/" style="font-size: 13.33px;">扩展</a><a href="/tags/正则/" style="font-size: 10.00px;">正则</a><a href="/tags/正则表达式/" style="font-size: 10.00px;">正则表达式</a><a href="/tags/脚本/" style="font-size: 13.33px;">脚本</a><a href="/tags/表单/" style="font-size: 10.00px;">表单</a>
   </div>
 </div>
 
