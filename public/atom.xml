@@ -4,7 +4,7 @@
   <subtitle><![CDATA[我最喜欢笨笨]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://jackroyal.github.io/"/>
-  <updated>2015-03-03T14:22:04.084Z</updated>
+  <updated>2015-03-04T06:43:24.115Z</updated>
   <id>http://jackroyal.github.io/</id>
   
   <author>
@@ -15,28 +15,95 @@
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[kali和ubuntu双系统安装]]></title>
-    <link href="http://jackroyal.github.io/2015/03/03/kali-and-ubuntu/"/>
-    <id>http://jackroyal.github.io/2015/03/03/kali-and-ubuntu/</id>
-    <published>2015-03-03T13:17:41.000Z</published>
-    <updated>2015-03-03T14:21:48.000Z</updated>
-    <content type="html"><![CDATA[<p>时间忽快忽慢，一转眼，年过完了，又回来学校了，又一个多月没有push了，重新回到github。今天我们家笨笨给我找了点kali的资料，索性就把kali捡起来，第一步安装kali的系统。<br>此处背景不再介绍，直奔主题。kali的安装过程和ubuntu的安装过程类似，应该说原理上是一模一样的，只是界面有些不同。我的电脑当前已经安装了win8和ubuntu，现在需要再加一个kali的系统，三系统共存。<br>大体分为如下几个步骤：<br>1 下载kali镜像<br>2 刻录u盘<br>3 安装kali</p>
-<h1 id="1_下载kali镜像">1 下载kali镜像</h1>
-<p>这步很简单，我们去kali的官网下载<a href="https://www.kali.org/downloads/" target="_blank" rel="external">https://www.kali.org/downloads/</a>,下载对应的版本。我这里下载的是第一个64位版本（<a href="http://cdimage.kali.org/kali-1.1.0/kali-linux-1.1.0-amd64.iso" target="_blank" rel="external">http://cdimage.kali.org/kali-1.1.0/kali-linux-1.1.0-amd64.iso</a>）,因为是在ubuntu下，我们可以顺手校验一下文件的hash值，防止文件损坏。<br>使用<code>sha1sum /home/chen/kali-linux-1.1.0-amd64.iso</code><br>查看输出是否是<code>40a1fd1d4864e7fac70438a1bf2095c8c1a4e764</code>，若正确，则第一步完成。</p>
-<h1 id="2_刻录u盘">2 刻录u盘</h1>
-<p>如果采用硬盘安装的话，我们需要在win下面操作，使用easybcd来编辑grub引导，还需要解压文件，相对比较麻烦，我这里采用u盘安装，相对比较简单。<br>和安装ubuntu不同，我之前在win下用UltraISO来刻录,<img src="http://ww3.sinaimg.cn/large/692869a3gw1epsvwgs1rqj20fa0c676e.jpg" alt="刻录ubuntu">如图所示，便捷启动是可以不修改的，直接默认，点击写入就行。我今天在刻录kali的时候，发现这样写的u盘无法启动，开机的时候会提示<code>failed to boot from USB disk with error: gfxboot.c32: not a COM32R Image boot:</code>的错误。<br>解决方法有两个<br>1 linux的用mkusb，windows的用Win32DiskImager 来制作U盘启动<br>具体用法：<br><a href="https://wiki.ubuntu.com/Win32DiskImager/iso2usb" target="_blank" rel="external">https://wiki.ubuntu.com/Win32DiskImager/iso2usb</a><br><a href="https://help.ubuntu.com/community/mkusb" target="_blank" rel="external">https://help.ubuntu.com/community/mkusb</a><br>2 在win下用UltraISO来刻录，记得更改便捷启动的设置，如图所示<br><img src="http://ww4.sinaimg.cn/large/692869a3gw1epsw409qr3j20go09rjtp.jpg" alt="更改便捷启动">，点击便捷启动-&gt;选择写入新的启动器引导扇区——&gt;syslinus——&gt;写入</p>
-<p><em>我采用的是法一，我在ubuntu中用mkusb来刻录</em></p>
-<h1 id="3_安装kali">3 安装kali</h1>
+    <title><![CDATA[kali安装后设置]]></title>
+    <link href="http://jackroyal.github.io/2015/03/04/after-kali/"/>
+    <id>http://jackroyal.github.io/2015/03/04/after-kali/</id>
+    <published>2015-03-04T06:14:57.000Z</published>
+    <updated>2015-03-04T06:43:16.000Z</updated>
+    <content type="html"><![CDATA[<p>kali安装好了，还有几件事要做<br>我们用root的身份登进去系统<br><a id="more"></a></p>
+<h1 id="1_更新软件源">1 更新软件源</h1>
+<p>官方自带的软件源速度相对比较慢，资源也少一些，我们添加一些国内的源进去<br>vi /etc/apt/sources.list<br>（可自由选择，不一定要全部）： </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#官方源</span></div><div class="line">deb http:<span class="comment">//http.kali.org/kali kali main non-free contrib</span></div><div class="line">deb-src http:<span class="comment">//http.kali.org/kali kali main non-free contrib</span></div><div class="line">deb http:<span class="comment">//security.kali.org/kali-security kali/updates main contrib non-free</span></div><div class="line"></div><div class="line"><span class="preprocessor">#激进源，新手不推荐使用这个软件源</span></div><div class="line">deb http:<span class="comment">//repo.kali.org/kali kali-bleeding-edge main</span></div><div class="line">deb-src http:<span class="comment">//repo.kali.org/kali kali-bleeding-edge main</span></div><div class="line"></div><div class="line"><span class="preprocessor">#中科大kali源</span></div><div class="line">deb http:<span class="comment">//mirrors.ustc.edu.cn/kali kali main non-free contrib</span></div><div class="line">deb-src http:<span class="comment">//mirrors.ustc.edu.cn/kali kali main non-free contrib</span></div><div class="line">deb http:<span class="comment">//mirrors.ustc.edu.cn/kali-security kali/updates main contrib non-free</span></div><div class="line"></div><div class="line"><span class="preprocessor">#阿里云kali源</span></div><div class="line">deb http:<span class="comment">//mirrors.aliyun.com/kali kali main non-free contrib</span></div><div class="line">deb-src http:<span class="comment">//mirrors.aliyun.com/kali kali main non-free contrib</span></div><div class="line">deb http:<span class="comment">//mirrors.aliyun.com/kali-security kali/updates main contrib non-free</span></div></pre></td></tr></table></figure>
+
+<p>保存之后运行：<br><code>apt-get update</code>     #刷新系统<br><code>apt-get dist-upgrade</code>        #安装更新</p>
+<h1 id="2_安装中文输入法和字体">2 安装中文输入法和字体</h1>
+<p>安装字体<br><code>apt-get install ttf-wqy-microhei ttf-wqy-zenhei</code><br> 执行以下命令<br> <code>apt-get install fcitx fcitx-googlepinyin</code></p>
+<h1 id="3_安装vpn">3 安装vpn</h1>
+<p>kali默认情况下vpn是无法使用的，需要安装相关组件</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">apt-get <span class="operator"><span class="keyword">install</span> network-manager-openvpn</span></div><div class="line">apt-<span class="keyword">get</span> <span class="keyword">install</span> network-manager-openvpn-gnome</div><div class="line">apt-<span class="keyword">get</span> <span class="keyword">install</span> network-manager-pptp</div><div class="line">apt-<span class="keyword">get</span> <span class="keyword">install</span> network-manager-pptp-gnome</div><div class="line">apt-<span class="keyword">get</span> <span class="keyword">install</span> network-manager-strongswan</div><div class="line">apt-<span class="keyword">get</span> <span class="keyword">install</span> network-manager-vpnc</div><div class="line">apt-<span class="keyword">get</span> <span class="keyword">install</span> network-manager-vpnc-gnome</div><div class="line">/etc/init.d/network-manager restart</div></pre></td></tr></table></figure>
+
+<h1 id="4_网卡管理显示“device_not_managed”">4 网卡管理显示“device not managed”</h1>
+<p><code>vi  /etc/NetworkManager/NetworkManager.conf</code><br>修改<code>managed=false</code>为<code>managed=true</code><br>然后重启网络管理<br><code>service network-manager restart</code></p>
+<h1 id="5_安装chrome浏览器">5 安装chrome浏览器</h1>
+<p><code>apt-get install google-chrome-unstable</code></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>时间忽快忽慢，一转眼，年过完了，又回来学校了，又一个多月没有push了，重新回到github。今天我们家笨笨给我找了点kali的资料，索性就把kali捡起来，第一步安装kali的系统。<br>此处背景不再介绍，直奔主题。kali的安装过程和ubuntu的安装过程类似，应该说]]>
+    <![CDATA[<p>kali安装好了，还有几件事要做<br>我们用root的身份登进去系统<br>]]>
+    
     </summary>
     
       <category term="kali" scheme="http://jackroyal.github.io/tags/kali/"/>
     
-      <category term="linux" scheme="http://jackroyal.github.io/tags/linux/"/>
+      <category term="Linux" scheme="http://jackroyal.github.io/tags/Linux/"/>
     
-      <category term="linux" scheme="http://jackroyal.github.io/categories/linux/"/>
+      <category term="Linux" scheme="http://jackroyal.github.io/categories/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[kali和ubuntu双系统安装]]></title>
+    <link href="http://jackroyal.github.io/2015/03/03/kali-and-ubuntu/"/>
+    <id>http://jackroyal.github.io/2015/03/03/kali-and-ubuntu/</id>
+    <published>2015-03-03T13:17:41.000Z</published>
+    <updated>2015-03-04T06:42:08.000Z</updated>
+    <content type="html"><![CDATA[<p>时间忽快忽慢，一转眼，年过完了，又回来学校了，又一个多月没有push了，重新回到github。今天我们家笨笨给我找了点kali的资料，索性就把kali捡起来，第一步安装kali的系统。<br>此处背景不再介绍，直奔主题。kali的安装过程和ubuntu的安装过程类似，应该说原理上是一模一样的，只是界面有些不同。我的电脑当前已经安装了win8和ubuntu，现在需要再加一个kali的系统，三系统共存。<br>大体分为如下几个步骤：</p>
+<h3 id="1_下载kali镜像">1 下载kali镜像</h3>
+<h3 id="2_刻录u盘">2 刻录u盘</h3>
+<h3 id="3_安装kali">3 安装kali</h3>
+<h2><a id="more"></a></h2>
+<h1 id="1_下载kali镜像-1">1 下载kali镜像</h1>
+<p>这步很简单，我们去kali的官网下载<a href="https://www.kali.org/downloads/" target="_blank" rel="external">https://www.kali.org/downloads/</a>,下载对应的版本。我这里下载的是第一个64位版本（<a href="http://cdimage.kali.org/kali-1.1.0/kali-linux-1.1.0-amd64.iso" target="_blank" rel="external">http://cdimage.kali.org/kali-1.1.0/kali-linux-1.1.0-amd64.iso</a>）,因为是在ubuntu下，我们可以顺手校验一下文件的hash值，防止文件损坏。<br>在终端中输入<code>sha1sum /home/chen/kali-linux-1.1.0-amd64.iso</code><br>查看输出是否是<code>40a1fd1d4864e7fac70438a1bf2095c8c1a4e764</code>，若正确，则第一步完成。</p>
+<h1 id="2_刻录u盘-1">2 刻录u盘</h1>
+<p>如果采用硬盘安装的话，我们需要在win下面操作，使用easybcd来编辑grub引导，还需要解压文件，相对比较麻烦，我这里采用u盘安装，相对比较简单。<br>和安装ubuntu不同，我之前在win下用UltraISO来刻录,<br><img src="http://ww3.sinaimg.cn/large/692869a3gw1epsvwgs1rqj20fa0c676e.jpg" alt="刻录ubuntu">如图所示，便捷启动是可以不修改的，直接默认，点击写入就行。我今天在刻录kali的时候，发现这样写的u盘无法启动，开机的时候会提示<code>failed to boot from USB disk with error: gfxboot.c32: not a COM32R Image boot:</code>的错误。<br>解决方法有两个<br>1 linux的用mkusb，windows的用Win32DiskImager 来制作U盘启动<br>具体用法：<br><a href="https://wiki.ubuntu.com/Win32DiskImager/iso2usb" target="_blank" rel="external">https://wiki.ubuntu.com/Win32DiskImager/iso2usb</a><br><a href="https://help.ubuntu.com/community/mkusb" target="_blank" rel="external">https://help.ubuntu.com/community/mkusb</a><br>2 在win下用UltraISO来刻录，记得更改便捷启动的设置，如图所示<br><img src="http://ww4.sinaimg.cn/large/692869a3gw1epsw409qr3j20go09rjtp.jpg" alt="更改便捷启动">，点击便捷启动-&gt;选择写入新的启动器引导扇区——&gt;syslinus——&gt;写入</p>
+<p><em>我采用的是法一，我在ubuntu中用mkusb来刻录</em></p>
+<h1 id="3_安装kali-1">3 安装kali</h1>
+<p>下面开始安装kali（以下图片是我用virtualbox虚拟机中安装拍摄的）</p>
+<h2 id="1_引导成功以后，开机画面如图所示">1 引导成功以后，开机画面如图所示</h2>
+<p><img src="http://ww1.sinaimg.cn/large/692869a3gw1eptme5jxk5j20ne0hcjwf.jpg" alt="开机画面"><br>我们选择<code>Graphical install</code>,图形化安装，也可以选择<code>install</code>那是文字界面安装</p>
+<h2 id="2_选择语言，地区">2 选择语言，地区</h2>
+<p>语言： 选择 <code>chinese（simplified）简体中文</code><br>地区： 选择 <code>中国</code></p>
+<h2 id="3_配置网络名称和domain">3 配置网络名称和domain</h2>
+<p>这个代表你的电脑在网络上的名称，比如win默认的就是pc-2000123131，也就是别人在网上邻居中看到你的电脑的名称。我们就用默认的<code>localhost</code><br>domain我们留空不管他，下一步</p>
+<h2 id="4_设置root密码">4 设置root密码</h2>
+<p>我们设置两次一样的密码就行，不要忘记了<br><img src="http://ww2.sinaimg.cn/large/692869a3gw1eptmmnvzlnj20ne0hcdih.jpg" alt="设置root密码"></p>
+<h2 id="5_磁盘分区">5 磁盘分区</h2>
+<p>我们选择第三项<code>手动</code><br><img src="http://ww4.sinaimg.cn/large/692869a3gw1eptmp2uw4ij20ne0hc42t.jpg" alt="磁盘分区选项"><br><strong>分区</strong>，这里我们一共分<code>三个区</code>，一个300M的<code>/boot</code>分区，一个2048M的<code>swap</code>分区，其他的分为一个<code>/</code>（你也可以把/home单独分区出来），因为分区方法类似，所以我只讲一个<code>/boot</code>和<code>swap</code>分区的步骤<br><strong>boot分区</strong><br><strong>注意:</strong>选择<strong>可启动标志</strong>，我们只有/boot设置为<code>开</code>，其他分区的这个选项都是<code>关</code><br><img src="http://ww1.sinaimg.cn/large/692869a3gw1eptmu4nonsj20ne0hctbb.jpg" alt="boot分区设置"><br>设置完成后，选择<code>分区设定结束</code>，点击继续</p>
+<p><strong>交换空间</strong><br><strong>注意:</strong>交换空间是一种<strong>文件类型</strong>，其他的分区是<strong>属于载点</strong><br><img src="http://ww1.sinaimg.cn/large/692869a3gw1eptn2gehkdj20ne0hc77a.jpg" alt="交换空间swap分区设置"><br>设置完成后，选择<code>分区设定结束</code>，点击继续</p>
+<p>等分区完成，就选择<code>分区设定结束并将修改写入磁盘</code>，点击继续，就开始安装kali</p>
+<h2 id="6_启动引导">6 启动引导</h2>
+<p>当系统快安装完成的时候，会出现grub安装的选择,如图所示<br><img src="http://ww3.sinaimg.cn/large/692869a3gw1eptnhakprmj20ns0j7dij.jpg" alt="交换空间swap分区设置"></p>
+<p>因为我的系统是<code>win8</code>和<code>ubuntu</code>和<code>kali</code>多系统共存，当前是由<code>win</code>来引导（当前系统由谁引导就看开机看到的第一个<code>系统选择</code>是谁的，如果是红色的ubuntu选项，那就说明由ubuntu引导）。<br>我这里选择否的话，那么我就需要去<code>win</code>里面手动添加<code>kali</code>的引导（使用easybcd来操作）。<br>如果你是<code>ubuntu</code>来引导系统的话，一样需要手动去添加<code>kali</code>的引导（这里我还不会）。<br>所以我选择<code>是</code>，这样装完三个系统都可以正常开机了。</p>
+<p>到此所有的安装结束。</p>
+<hr>
+<h1 id="参考文献">参考文献</h1>
+<p>1 安装kali 系统 <a href="http://blog.sina.com.cn/s/blog_779dcd090102va9c.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_779dcd090102va9c.html</a><br>2 <a href="http://www.bkjia.com/Linuxjc/844530.html" target="_blank" rel="external">kali系统安装图文教程，kali系统安装图文</a></p>
+<h1 id="致谢">致谢</h1>
+<p>这里，要感谢我最亲爱的笨笨<a href="http://blog.csdn.net/happyhuirong" target="_blank" rel="external">http://blog.csdn.net/happyhuirong</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>时间忽快忽慢，一转眼，年过完了，又回来学校了，又一个多月没有push了，重新回到github。今天我们家笨笨给我找了点kali的资料，索性就把kali捡起来，第一步安装kali的系统。<br>此处背景不再介绍，直奔主题。kali的安装过程和ubuntu的安装过程类似，应该说原理上是一模一样的，只是界面有些不同。我的电脑当前已经安装了win8和ubuntu，现在需要再加一个kali的系统，三系统共存。<br>大体分为如下几个步骤：</p>
+<h3 id="1_下载kali镜像">1 下载kali镜像</h3>
+<h3 id="2_刻录u盘">2 刻录u盘</h3>
+<h3 id="3_安装kali">3 安装kali</h3>
+<h2>]]>
+    
+    </summary>
+    
+      <category term="kali" scheme="http://jackroyal.github.io/tags/kali/"/>
+    
+      <category term="Linux" scheme="http://jackroyal.github.io/tags/Linux/"/>
+    
+      <category term="Linux" scheme="http://jackroyal.github.io/categories/Linux/"/>
     
   </entry>
   
@@ -45,7 +112,7 @@
     <link href="http://jackroyal.github.io/2015/01/19/linux%E4%B8%8B%E4%BD%BF%E7%94%A8github/"/>
     <id>http://jackroyal.github.io/2015/01/19/linux下使用github/</id>
     <published>2015-01-18T16:53:48.000Z</published>
-    <updated>2015-01-18T17:40:31.000Z</updated>
+    <updated>2015-01-19T08:02:55.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>我的惰性真是病入膏肓了，已经整整3周没有在github上提交东西了，今天看了《模拟游戏》，索性又捡起来了。下面来总结一下linux下github的使用，也算是给自己一个备份，因为我自己也是老忘记。</p>
 </blockquote>
@@ -92,7 +159,7 @@
     <link href="http://jackroyal.github.io/2014/12/02/recent-task/"/>
     <id>http://jackroyal.github.io/2014/12/02/recent-task/</id>
     <published>2014-12-02T14:56:31.000Z</published>
-    <updated>2014-12-16T15:43:08.000Z</updated>
+    <updated>2015-01-06T04:35:04.000Z</updated>
     <content type="html"><![CDATA[<p>2014-12-02 22:56:31  接下来的一个星期，我的任务是学习python爬虫的编写，至少要实现csdn博客转markdown的任务</p>
 ]]></content>
     <summary type="html">
@@ -109,7 +176,7 @@
     <link href="http://jackroyal.github.io/2014/11/28/custom-hexo/"/>
     <id>http://jackroyal.github.io/2014/11/28/custom-hexo/</id>
     <published>2014-11-28T13:07:27.000Z</published>
-    <updated>2014-12-16T15:43:08.000Z</updated>
+    <updated>2015-01-06T04:35:04.000Z</updated>
     <content type="html"><![CDATA[<p>经过<a href="/how-to-build-a-blog-with-hexo.html">上篇博客</a>,我们搭建起了自己的博客,接下来我们对它做些个性化的定制.<br>在hexo中,配置文件一共两个(我的hexo安装在F:/blog/),分别是<code>F:/blog/_config.yml</code>和<code>F:/blog/themes/light/_config.yml</code>.第一个是全局的配置文件,第二个是主题的配置文件,在继续说之前,我们先来说一下主题安装.<a id="more"></a></p>
 <h1 id="主题安装">主题安装</h1>
 <p>这个很简单,在hexo的Github的主页上有个主题栏目,<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">https://github.com/hexojs/hexo/wiki/Themes</a>,里面列出了很多主题.<br>安装方法很简单</p>
@@ -167,7 +234,7 @@
     <link href="http://jackroyal.github.io/2014/11/27/how-to-build-a-blog-with-hexo/"/>
     <id>http://jackroyal.github.io/2014/11/27/how-to-build-a-blog-with-hexo/</id>
     <published>2014-11-27T06:48:29.000Z</published>
-    <updated>2014-12-18T16:02:50.000Z</updated>
+    <updated>2015-01-06T04:35:04.000Z</updated>
     <content type="html"><![CDATA[<p>昨天经过一天的<a href="http://jackroyal.github.io/2014/11/26/new-start/" title="生命在于折腾" target="_blank" rel="external">折腾</a>,总算把博客搭建起来了,今天就来写个博客总结一下.<br>网上的资料很多,我主要参考的是这篇博客,一路很顺利.</p>
 <blockquote>
 <p><a href="http://zipperary.com/2013/05/28/hexo-guide-2/" target="_blank" rel="external">http://zipperary.com/2013/05/28/hexo-guide-2/</a></p>
@@ -263,7 +330,7 @@
     <link href="http://jackroyal.github.io/2014/11/26/new-start/"/>
     <id>http://jackroyal.github.io/2014/11/26/new-start/</id>
     <published>2014-11-26T13:29:15.000Z</published>
-    <updated>2014-12-16T15:43:08.000Z</updated>
+    <updated>2015-01-06T04:35:04.000Z</updated>
     <content type="html"><![CDATA[<p>今天<strong>折腾</strong>了一天,终于弄好了,<a href="http://jackroyal.github.io" title="搁浅St的博客" target="_blank" rel="external">我的博客</a>,正式落户Github.<a id="more"></a><br><img src="http://github.global.ssl.fastly.net/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Mark" title="GitHub Mark"></p>
 ]]></content>
     <summary type="html">
@@ -280,7 +347,7 @@
     <link href="http://jackroyal.github.io/2014/11/25/%5Bjs%5Dreplace%E6%9B%BF%E6%8D%A2/"/>
     <id>http://jackroyal.github.io/2014/11/25/[js]replace替换/</id>
     <published>2014-11-25T14:32:00.000Z</published>
-    <updated>2014-12-20T20:05:11.000Z</updated>
+    <updated>2015-01-06T04:35:04.000Z</updated>
     <content type="html"><![CDATA[<p>今天做前端试题,用到了replace函数,来记录一下.<br>(以下部分知识点来自<a href="http://www.w3cschool.cn/jsref_replace.html" target="_blank" rel="external">http://www.w3cschool.cn/jsref_replace.html</a>)</p>
 <h2 id="定义和用法">定义和用法</h2>
 <p>replace() 方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。</p>
@@ -368,7 +435,7 @@
     <link href="http://jackroyal.github.io/2014/11/25/%5Bjs%5D%E5%89%8D%E7%AB%AF%E8%AF%95%E9%A2%98/"/>
     <id>http://jackroyal.github.io/2014/11/25/[js]前端试题/</id>
     <published>2014-11-25T14:26:00.000Z</published>
-    <updated>2014-12-20T20:05:11.000Z</updated>
+    <updated>2015-01-06T04:35:04.000Z</updated>
     <content type="html"><![CDATA[<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 1、获取页面id为 hello 的节点</span></div><div class="line"><span class="keyword">var</span> he=<span class="built_in">document</span>.getElementById(<span class="string">'hello'</span>);</div><div class="line"><span class="comment">// 2、获取页面所有 div 标签</span></div><div class="line"><span class="keyword">var</span> di=<span class="built_in">document</span>.getElementsByTagName(<span class="string">'div'</span>);</div><div class="line"><span class="comment">// 3、给 id 为hello的节点绑定click 事件，点击的时候弹出 "hello"</span></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'hello'</span>).onclick=<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{alert(<span class="string">'helo'</span>)};</div><div class="line"><span class="comment">// 4、将页面上 id为hello的节点隐藏</span></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'hello'</span>).style.visibility=none;</div><div class="line"><span class="comment">// 5、将 "hello world" 用正则替换成 "hello javascript”</span></div><div class="line"><span class="keyword">var</span> str=<span class="string">'hello world'</span>;</div><div class="line">str.replace(<span class="regexp">/hello[\s]+world/g</span>,<span class="string">'hello javascript'</span>);</div><div class="line"><span class="comment">// 6、给节点（假设为element）绑定click事件，当被点击时候，alert 弹出事件的类型（通过jquery）</span></div><div class="line">$(element).click(<span class="function"><span class="keyword">function</span><span class="params">(event)</span> </span>{</div><div class="line">    alert(event.type);</div><div class="line">});</div><div class="line"><span class="comment">// 7、给一个节点添加一个类 "hello"</span></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'kw'</span>).className=<span class="built_in">document</span>.getElementById(<span class="string">'kw'</span>).className+<span class="string">" hello"</span>;</div><div class="line"><span class="comment">// 8、给节点（假设为element）绑定click事件，当被点击时候，alert 弹出事件的类型（要求兼容IE、标准浏览器）</span></div><div class="line">element.onclick=<span class="function"><span class="keyword">function</span><span class="params">(event)</span></span>{<span class="keyword">var</span> e=event||<span class="built_in">window</span>.event};</div><div class="line"><span class="comment">// 9、假设页面有这么两个节点将 id为world的节点的 内容设置成 跟 id 为 hello 的节点一样。</span></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'world'</span>).innerHTML=<span class="built_in">document</span>.getElementById(<span class="string">'hello'</span>).innerHTML;</div><div class="line"><span class="comment">// 10、通过 js 将element的margin-left 设置为 20px</span></div><div class="line">element.style.marginLeft=<span class="string">"20px"</span>;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 1.[{a:3},{a:4},{a:1},{a:2}] sort排序</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sortnum</span><span class="params">(a,b)</span></span>{</div><div class="line">    <span class="keyword">return</span> a.a-b.a;</div><div class="line">}</div><div class="line"><span class="comment">//   [{a:3,b:5},{a:4,b:6},{a:1},{a:2,b:8}]按a的正向排序</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sortab</span><span class="params">(a,b)</span></span>{</div><div class="line">    <span class="keyword">return</span> a.a-b.a!=<span class="number">0</span>?a.a-b.a:a.b-b.b;</div><div class="line">}</div><div class="line"><span class="comment">//   sort 排序原理  使用的算法</span></div><div class="line"><span class="comment">// 2.my name is imweba ... =&gt; my6 name7 is8 imweba9 ...</span></div><div class="line"><span class="comment">//   用正则实现</span></div><div class="line"><span class="string">'my name is imweba '</span>.replace(<span class="regexp">/([\w]+)\b/g</span>,<span class="string">'$1'</span>)</div><div class="line"><span class="keyword">var</span> attr=<span class="string">'my name is imweba '</span>.match(<span class="regexp">/([\w]+)\b/g</span>);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>;i &lt; attr.length; i++) {</div><div class="line">    attr[i]=attr[i]+(<span class="number">6</span>+i);</div><div class="line">};</div><div class="line">attr.join(<span class="string">' '</span>);<span class="comment">//感觉不对,只能做到这个程度</span></div><div class="line"></div><div class="line"><span class="comment">// 3.实现function test(str)(){},将str的每个单词的首字母大写（str为英文字符串）</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">(str)</span></span>{</div><div class="line">    <span class="keyword">return</span> str.replace(<span class="regexp">/((\w)(\w+?))\b/g</span>,<span class="function"><span class="keyword">function</span><span class="params">(m,a,b,c,d,e)</span></span>{<span class="keyword">return</span> b.toUpperCase()+c;});</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">// 4.写一个二分查找的算法   （假设这个数组不是有序的呢）</span></div><div class="line">\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*</div><div class="line"><span class="comment">// 5.123+”+34  直接说结果   12334</span></div><div class="line"><span class="number">12334</span></div><div class="line"><span class="comment">// 加法会将数字转化为字符串，减法和乘法等会将字符串转化为数字</span></div><div class="line"><span class="comment">// "4"\*"5"=20</span></div><div class="line"><span class="comment">// 6.实现function find(attr,val){},找到当前页面里具备属性为attr且值为val的节点，输出其父元素名称</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">find</span><span class="params">(attr,val)</span></span>{</div><div class="line">    <span class="keyword">var</span> dom=<span class="built_in">document</span>.getElementsByTagName(<span class="string">'\*'</span>);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i&lt;dom.length; i++) {</div><div class="line">        <span class="keyword">if</span>(dom[i].getAttribute(attr)==val){</div><div class="line">            <span class="keyword">return</span> dom[i].parentNode.tagName;</div><div class="line">        }</div><div class="line">   }</div><div class="line">}</div></pre></td></tr></table></figure>
 
 ]]></content>
@@ -391,7 +458,7 @@
     <link href="http://jackroyal.github.io/2014/11/24/cmcc520%E6%89%A9%E5%B1%95%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/"/>
     <id>http://jackroyal.github.io/2014/11/24/cmcc520扩展使用说明/</id>
     <published>2014-11-24T13:56:00.000Z</published>
-    <updated>2014-12-20T20:05:11.000Z</updated>
+    <updated>2015-01-06T04:35:04.000Z</updated>
     <content type="html"><![CDATA[<p>我的cmcc520 2.0版本终于完成了,写个使用说明</p>
 <p>学校部分范围有CMCC-EDU可用,通过手动修改ssid,可以免费使用.</p>
 <p>写了个扩展来简化这个过程.</p>
@@ -438,7 +505,7 @@
     <link href="http://jackroyal.github.io/2014/11/24/chrome%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%89%8B%E8%AE%B0%3C3%3E-chrome%E6%89%A9%E5%B1%95%E5%BC%80%E5%A7%8B%E7%AC%AC%E4%B8%80%E6%AD%A5manfest.json/"/>
     <id>http://jackroyal.github.io/2014/11/24/chrome扩展开发手记<3>-chrome扩展开始第一步manfest.json/</id>
     <published>2014-11-24T07:16:00.000Z</published>
-    <updated>2014-12-20T20:05:11.000Z</updated>
+    <updated>2015-01-06T04:35:04.000Z</updated>
     <content type="html"><![CDATA[<p>参考文档   <a href="https://lmk123.duapp.com/" target="_blank" rel="external">https://lmk123.duapp.com/</a></p>
 <p>下面开始写chrome扩展了,第一步就是看文档,官方文档有入门指导,先要过一遍</p>
 <p>我们首先来编写第一个文件manfest.json,这是一个清单文件,告诉系统,我有哪些文件,需要申请哪些权限都在里面,下卖弄给出我的manfest.json</p>
@@ -482,7 +549,7 @@
     <link href="http://jackroyal.github.io/2014/11/24/chrome%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%89%8B%E8%AE%B0%3C2%3E-%E7%99%BB%E5%BD%95%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/"/>
     <id>http://jackroyal.github.io/2014/11/24/chrome扩展开发手记<2>-登录原理分析/</id>
     <published>2014-11-24T03:18:00.000Z</published>
-    <updated>2014-12-20T20:05:11.000Z</updated>
+    <updated>2015-01-06T04:35:04.000Z</updated>
     <content type="html"><![CDATA[<p>上一篇,我们 介绍了一下登录的流程,但是用程序进行登录的话,我们肯定不能那样一步一步,太过复杂,所以我们接下来分下一下登录的具体过程,看看能不能作一些简化</p>
 <p>我们接下来,给几个页面编个号,下面好分析一点<br>A   最原始的跳转 <a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external">http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU</a><br>B  第一次改ssid  <a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external">http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free</a></p>
 <p>C 第一次点击 请点击登录  以后的地址<br><a href="http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free" target="_blank" rel="external">http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free</a></p>
@@ -529,7 +596,7 @@
     <link href="http://jackroyal.github.io/2014/11/21/chrome%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%89%8B%E8%AE%B0%3C1%3E-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/"/>
     <id>http://jackroyal.github.io/2014/11/21/chrome扩展开发手记<1>-需求分析/</id>
     <published>2014-11-21T10:17:00.000Z</published>
-    <updated>2014-12-20T20:05:11.000Z</updated>
+    <updated>2015-01-06T04:35:04.000Z</updated>
     <content type="html"><![CDATA[<p>本人的学校在武汉,有CMCC-EDU的网络覆盖,中国移动和武汉市政府搞了一个活动,可以免费公益上网,说白了,就是可以免费使用EDU的网络,如图.<br><img src="http://img.blog.csdn.net/20141121181910580?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
 <p>以上是前提.</p>
 <p>这个网络的使用流程是这样子的.</p>
@@ -560,7 +627,7 @@
     <link href="http://jackroyal.github.io/2014/11/14/wamp%E4%B8%8Esql_server_%E5%9B%A0%E4%B8%BA%E7%AB%AF%E5%8F%A380%E5%86%B2%E7%AA%81,%E6%97%A0%E6%B3%95%E5%BC%80%E5%90%AFwamp/"/>
     <id>http://jackroyal.github.io/2014/11/14/wamp与sql_server_因为端口80冲突,无法开启wamp/</id>
     <published>2014-11-14T10:09:00.000Z</published>
-    <updated>2014-12-20T20:05:11.000Z</updated>
+    <updated>2015-01-06T04:35:04.000Z</updated>
     <content type="html"><![CDATA[<p>因为80端口占用,导致无法启动,其实不必关闭sql server太多的东西,只需要关闭SQL Server Reporting Services 就行了,这样也不会影响sql server的使用</p>
 <p>如图<br><img src="http://img.blog.csdn.net/20141114175909339?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
 <p>打开sqlserver 配置管理器,关闭以上服务</p>
@@ -585,7 +652,7 @@
     <link href="http://jackroyal.github.io/2014/08/08/sql%E4%B8%ADleft_join%E5%92%8Cright_join%E6%B7%B7%E7%94%A8/"/>
     <id>http://jackroyal.github.io/2014/08/08/sql中left_join和right_join混用/</id>
     <published>2014-08-08T02:02:00.000Z</published>
-    <updated>2014-12-20T20:05:11.000Z</updated>
+    <updated>2015-01-06T04:35:04.000Z</updated>
     <content type="html"><![CDATA[<p>left join(左联接) 返回包括左表中的所有记录和右表中联结字段相等的记录 </p>
 <p>right join(右联接) 返回包括右表中的所有记录和左表中联结字段相等的记录</p>
 <p>inner join(等值连接) 只返回两个表中联结字段相等的行</p>
@@ -642,7 +709,7 @@
     <link href="http://jackroyal.github.io/2014/06/28/%E9%98%BF%E9%87%8C%E4%BA%91windows_server_2003_%E6%90%AD%E5%BB%BA%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     <id>http://jackroyal.github.io/2014/06/28/阿里云windows_server_2003_搭建邮件服务器/</id>
     <published>2014-06-28T14:30:00.000Z</published>
-    <updated>2014-12-20T20:05:11.000Z</updated>
+    <updated>2015-01-06T04:35:04.000Z</updated>
     <content type="html"><![CDATA[<pre><code>笔者最近遇到一个在阿里云上搭建邮件服务器的问题，总算搞定，记录一下。
 
  整个搭建过程，包括pop3服务的安装和开启，smtp服务的安装和开启，dns服务的安装和设置。

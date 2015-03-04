@@ -51,6 +51,47 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2015-03-04T06:14:57.000Z"><a href="/2015/03/04/after-kali/">3月 4 2015</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/03/04/after-kali/">kali安装后设置</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>kali安装好了，还有几件事要做<br>我们用root的身份登进去系统<br>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2015/03/04/after-kali/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+        <div class="alignright">
+          <a href="http://jackroyal.github.io/2015/03/04/after-kali/#duoshuo_thread" class="comment-link">Comments</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2015-03-03T13:17:41.000Z"><a href="/2015/03/03/kali-and-ubuntu/">3月 3 2015</a></time>
       
       
@@ -61,18 +102,19 @@
     </header>
     <div class="entry">
       
-        <p>时间忽快忽慢，一转眼，年过完了，又回来学校了，又一个多月没有push了，重新回到github。今天我们家笨笨给我找了点kali的资料，索性就把kali捡起来，第一步安装kali的系统。<br>此处背景不再介绍，直奔主题。kali的安装过程和ubuntu的安装过程类似，应该说原理上是一模一样的，只是界面有些不同。我的电脑当前已经安装了win8和ubuntu，现在需要再加一个kali的系统，三系统共存。<br>大体分为如下几个步骤：<br>1 下载kali镜像<br>2 刻录u盘<br>3 安装kali</p>
-<h1 id="1_下载kali镜像">1 下载kali镜像</h1>
-<p>这步很简单，我们去kali的官网下载<a href="https://www.kali.org/downloads/" target="_blank" rel="external">https://www.kali.org/downloads/</a>,下载对应的版本。我这里下载的是第一个64位版本（<a href="http://cdimage.kali.org/kali-1.1.0/kali-linux-1.1.0-amd64.iso" target="_blank" rel="external">http://cdimage.kali.org/kali-1.1.0/kali-linux-1.1.0-amd64.iso</a>）,因为是在ubuntu下，我们可以顺手校验一下文件的hash值，防止文件损坏。<br>使用<code>sha1sum /home/chen/kali-linux-1.1.0-amd64.iso</code><br>查看输出是否是<code>40a1fd1d4864e7fac70438a1bf2095c8c1a4e764</code>，若正确，则第一步完成。</p>
-<h1 id="2_刻录u盘">2 刻录u盘</h1>
-<p>如果采用硬盘安装的话，我们需要在win下面操作，使用easybcd来编辑grub引导，还需要解压文件，相对比较麻烦，我这里采用u盘安装，相对比较简单。<br>和安装ubuntu不同，我之前在win下用UltraISO来刻录,<img src="http://ww3.sinaimg.cn/large/692869a3gw1epsvwgs1rqj20fa0c676e.jpg" alt="刻录ubuntu">如图所示，便捷启动是可以不修改的，直接默认，点击写入就行。我今天在刻录kali的时候，发现这样写的u盘无法启动，开机的时候会提示<code>failed to boot from USB disk with error: gfxboot.c32: not a COM32R Image boot:</code>的错误。<br>解决方法有两个<br>1 linux的用mkusb，windows的用Win32DiskImager 来制作U盘启动<br>具体用法：<br><a href="https://wiki.ubuntu.com/Win32DiskImager/iso2usb" target="_blank" rel="external">https://wiki.ubuntu.com/Win32DiskImager/iso2usb</a><br><a href="https://help.ubuntu.com/community/mkusb" target="_blank" rel="external">https://help.ubuntu.com/community/mkusb</a><br>2 在win下用UltraISO来刻录，记得更改便捷启动的设置，如图所示<br><img src="http://ww4.sinaimg.cn/large/692869a3gw1epsw409qr3j20go09rjtp.jpg" alt="更改便捷启动">，点击便捷启动-&gt;选择写入新的启动器引导扇区——&gt;syslinus——&gt;写入</p>
-<p><em>我采用的是法一，我在ubuntu中用mkusb来刻录</em></p>
-<h1 id="3_安装kali">3 安装kali</h1>
-
+        <p>时间忽快忽慢，一转眼，年过完了，又回来学校了，又一个多月没有push了，重新回到github。今天我们家笨笨给我找了点kali的资料，索性就把kali捡起来，第一步安装kali的系统。<br>此处背景不再介绍，直奔主题。kali的安装过程和ubuntu的安装过程类似，应该说原理上是一模一样的，只是界面有些不同。我的电脑当前已经安装了win8和ubuntu，现在需要再加一个kali的系统，三系统共存。<br>大体分为如下几个步骤：</p>
+<h3 id="1_下载kali镜像">1 下载kali镜像</h3>
+<h3 id="2_刻录u盘">2 刻录u盘</h3>
+<h3 id="3_安装kali">3 安装kali</h3>
+<h2>
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2015/03/03/kali-and-ubuntu/#more" class="more-link">Read More</a>
+          </div>
         
         
         <div class="alignright">
@@ -230,54 +272,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-11-27T06:48:29.000Z"><a href="/2014/11/27/how-to-build-a-blog-with-hexo/">11月 27 2014</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/11/27/how-to-build-a-blog-with-hexo/">使用hexo建立自己的Github pages</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>昨天经过一天的<a href="http://jackroyal.github.io/2014/11/26/new-start/" title="生命在于折腾" target="_blank" rel="external">折腾</a>,总算把博客搭建起来了,今天就来写个博客总结一下.<br>网上的资料很多,我主要参考的是这篇博客,一路很顺利.</p>
-<blockquote>
-<p><a href="http://zipperary.com/2013/05/28/hexo-guide-2/" target="_blank" rel="external">http://zipperary.com/2013/05/28/hexo-guide-2/</a></p>
-</blockquote>
-<p>一个很重要的原因就是他是针对windows的,刚好我也在用windows.</p>
-<h1 id="安装过程">安装过程</h1>
-<h2 id="1-_安装Github_for_windows">1. 安装Github for windows</h2>
-<p>因为我之前就在用Github,所以早就安装了这个.已经装过的同学请忽略这一段.<br>下载 <a href="https://windows.github.com/" title="Github for windows" target="_blank" rel="external">Github for windows</a> 并执行即可完成安装(<em>在线安装,会有点慢</em>)。这个软件的的好处是有一个带GUI的界面,还有一个终端界面.如图所示
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2014/11/27/how-to-build-a-blog-with-hexo/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-        <div class="alignright">
-          <a href="http://jackroyal.github.io/2014/11/27/how-to-build-a-blog-with-hexo/#duoshuo_thread" class="comment-link">Comments</a>
-        </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
 
 <nav id="pagination">
   
@@ -299,7 +293,7 @@
   <h3 class="title">分类</h3>
   <ul class="entry">
   
-    <li><a href="/categories/Linux/">Linux</a><small>1</small></li>
+    <li><a href="/categories/Linux/">Linux</a><small>3</small></li>
   
     <li><a href="/categories/chrome扩展/">chrome扩展</a><small>4</small></li>
   
@@ -307,7 +301,7 @@
   
     <li><a href="/categories/javascript/">javascript</a><small>2</small></li>
   
-    <li><a href="/categories/linux/">linux</a><small>1</small></li>
+    <li><a href="/categories/linux/">linux</a><small>0</small></li>
   
     <li><a href="/categories/数据库/">数据库</a><small>1</small></li>
   
@@ -326,7 +320,7 @@
   <h3 class="title">标签</h3>
   <ul class="entry">
   
-    <li><a href="/tags/Linux/">Linux</a><small>1</small></li>
+    <li><a href="/tags/Linux/">Linux</a><small>3</small></li>
   
     <li><a href="/tags/chrome/">chrome</a><small>4</small></li>
   
@@ -340,9 +334,9 @@
   
     <li><a href="/tags/js/">js</a><small>1</small></li>
   
-    <li><a href="/tags/kali/">kali</a><small>1</small></li>
+    <li><a href="/tags/kali/">kali</a><small>2</small></li>
   
-    <li><a href="/tags/linux/">linux</a><small>1</small></li>
+    <li><a href="/tags/linux/">linux</a><small>0</small></li>
   
     <li><a href="/tags/select/">select</a><small>1</small></li>
   
@@ -376,6 +370,10 @@
   <ul class="entry">
     
       <li>
+        <a href="/2015/03/04/after-kali/">kali安装后设置</a>
+      </li>
+    
+      <li>
         <a href="/2015/03/03/kali-and-ubuntu/">kali和ubuntu双系统安装</a>
       </li>
     
@@ -391,10 +389,6 @@
         <a href="/2014/11/28/custom-hexo/">配置hexo</a>
       </li>
     
-      <li>
-        <a href="/2014/11/27/how-to-build-a-blog-with-hexo/">使用hexo建立自己的Github pages</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -403,7 +397,7 @@
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/Linux/" style="font-size: 10.00px;">Linux</a><a href="/tags/chrome/" style="font-size: 20.00px;">chrome</a><a href="/tags/cmcc-edu/" style="font-size: 20.00px;">cmcc-edu</a><a href="/tags/github/" style="font-size: 13.33px;">github</a><a href="/tags/hexo/" style="font-size: 16.67px;">hexo</a><a href="/tags/javascript/" style="font-size: 13.33px;">javascript</a><a href="/tags/js/" style="font-size: 10.00px;">js</a><a href="/tags/kali/" style="font-size: 10.00px;">kali</a><a href="/tags/linux/" style="font-size: 10.00px;">linux</a><a href="/tags/select/" style="font-size: 10.00px;">select</a><a href="/tags/sql/" style="font-size: 10.00px;">sql</a><a href="/tags/sql-server/" style="font-size: 10.00px;">sql server</a><a href="/tags/wamp/" style="font-size: 10.00px;">wamp</a><a href="/tags/中国移动/" style="font-size: 16.67px;">中国移动</a><a href="/tags/前端/" style="font-size: 13.33px;">前端</a><a href="/tags/扩展/" style="font-size: 13.33px;">扩展</a><a href="/tags/正则/" style="font-size: 10.00px;">正则</a><a href="/tags/正则表达式/" style="font-size: 10.00px;">正则表达式</a><a href="/tags/脚本/" style="font-size: 13.33px;">脚本</a><a href="/tags/表单/" style="font-size: 10.00px;">表单</a>
+    <a href="/tags/Linux/" style="font-size: 17.50px;">Linux</a><a href="/tags/chrome/" style="font-size: 20.00px;">chrome</a><a href="/tags/cmcc-edu/" style="font-size: 20.00px;">cmcc-edu</a><a href="/tags/github/" style="font-size: 15.00px;">github</a><a href="/tags/hexo/" style="font-size: 17.50px;">hexo</a><a href="/tags/javascript/" style="font-size: 15.00px;">javascript</a><a href="/tags/js/" style="font-size: 12.50px;">js</a><a href="/tags/kali/" style="font-size: 15.00px;">kali</a><a href="/tags/linux/" style="font-size: 10.00px;">linux</a><a href="/tags/select/" style="font-size: 12.50px;">select</a><a href="/tags/sql/" style="font-size: 12.50px;">sql</a><a href="/tags/sql-server/" style="font-size: 12.50px;">sql server</a><a href="/tags/wamp/" style="font-size: 12.50px;">wamp</a><a href="/tags/中国移动/" style="font-size: 17.50px;">中国移动</a><a href="/tags/前端/" style="font-size: 15.00px;">前端</a><a href="/tags/扩展/" style="font-size: 15.00px;">扩展</a><a href="/tags/正则/" style="font-size: 12.50px;">正则</a><a href="/tags/正则表达式/" style="font-size: 12.50px;">正则表达式</a><a href="/tags/脚本/" style="font-size: 15.00px;">脚本</a><a href="/tags/表单/" style="font-size: 12.50px;">表单</a>
   </div>
 </div>
 

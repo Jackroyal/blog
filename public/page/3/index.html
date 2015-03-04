@@ -51,6 +51,61 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2014-11-24T07:16:00.000Z"><a href="/2014/11/24/chrome扩展开发手记<3>-chrome扩展开始第一步manfest.json/">11月 24 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/11/24/chrome扩展开发手记<3>-chrome扩展开始第一步manfest.json/">chrome扩展开发手记&lt;3&gt;-chrome扩展开始第一步manfest.json</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>参考文档   <a href="https://lmk123.duapp.com/" target="_blank" rel="external">https://lmk123.duapp.com/</a></p>
+<p>下面开始写chrome扩展了,第一步就是看文档,官方文档有入门指导,先要过一遍</p>
+<p>我们首先来编写第一个文件manfest.json,这是一个清单文件,告诉系统,我有哪些文件,需要申请哪些权限都在里面,下卖弄给出我的manfest.json</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">{</div><div class="line">    <span class="string">"name"</span>:<span class="string">"cmcc520"</span>,<span class="comment">//扩展的名称</span></div><div class="line">    <span class="string">"version"</span>:<span class="string">"2.0"</span>,<span class="comment">//扩展的版本号,随便写</span></div><div class="line">    <span class="string">"description"</span>:<span class="string">"powered by 搁浅St"</span>,<span class="comment">//扩展的描述,就是在chrome://extension页面中,扩展名称下面的几个字</span></div><div class="line">    <span class="string">"background"</span>: {<span class="comment">//background.js,整个扩展的运行,有个页面在后台运行</span></div><div class="line">        <span class="string">"scripts"</span>: [<span class="string">"js/function.js"</span>,<span class="string">"bg.js"</span>],</div><div class="line">        <span class="string">"persistent"</span>: <span class="literal">false</span></div><div class="line">    },</div><div class="line">    <span class="string">"page_action"</span>:{<span class="comment">//比较常见有page_action和browser_action有,page会出现在地址栏末端,browser会在浏览器上显示一个图标</span></div><div class="line">        <span class="string">"default_icon"</span>:<span class="string">"icon-48.png"</span>,</div><div class="line">        <span class="string">"default_popup"</span>: <span class="string">"popup.html"</span>,<span class="comment">//popup.html点击弹出的页面</span></div><div class="line">        <span class="string">"default_title"</span>:<span class="string">"cmcc520"</span></div><div class="line">    },</div><div class="line">    <span class="string">"permissions"</span> : [<span class="comment">//申请内容脚本的权限,在插入内容到页面时,需要用哪些权限,此处必须声明</span></div><div class="line">        <span class="string">"tabs"</span>, <span class="string">"http://\*/\*"</span></div><div class="line">    ],</div><div class="line">    <span class="string">"icons"</span> : {<span class="comment">//图标设置</span></div><div class="line">        <span class="string">"48"</span> : <span class="string">"icon-48.png"</span>,</div><div class="line">        <span class="string">"128"</span> : <span class="string">"icon-128.png"</span></div><div class="line">    },</div><div class="line">    <span class="string">"commands"</span>: {<span class="comment">//快捷键设置</span></div><div class="line">        <span class="string">"logout_cmcc"</span>: {</div><div class="line">            <span class="string">"description"</span>: <span class="string">"退出CMCC登录"</span>,</div><div class="line">            <span class="string">"suggested_key"</span>: {</div><div class="line">                <span class="string">"default"</span>: <span class="string">"Alt+X"</span></div><div class="line">            }</div><div class="line">        }</div><div class="line">    },</div><div class="line">    <span class="string">"manifest_version"</span>:<span class="number">2</span><span class="comment">//manifest_version,现在版本1已经不支持,统一都写成2</span></div><div class="line"></div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>简单的属性,这里不再赘述,我重点说一下background,page_action,permissions和commands.</p>
+<p>background  它是一个包含扩展程序主要逻辑的不可见页面。扩展程序也可以包含其他页面，展现扩展程序的用户界面。如果扩展程序需要与用户加载的网页交互（相对于包含在扩展程序中的页面），扩展程序必须使用内容脚本。后台网页分两种：持续运行的后台网页与事件页面(设置persistent属性)。正如它们的名称所述，持续运行的后台网页保持打开状态，事件页面根据需要打开与关闭。除非您绝对需要您的后台网页一直运行，请首选事件页面。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="string">"background"</span>: {<span class="comment">//background.js,整个扩展的运行,有个页面在后台运行</span></div><div class="line">    <span class="string">"scripts"</span>: [<span class="string">"js/function.js"</span>,<span class="string">"bg.js"</span>],</div><div class="line">    <span class="string">"persistent"</span>: <span class="literal">false</span></div><div class="line">},</div></pre></td></tr></table></figure>
+
+<p>比如我的这个 后台执行就是这样的</p>
+<p><img src="http://img.blog.csdn.net/20141124194616706?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>采用pageaction还是browseraction取决于你是否想让图标一直可见.`<img src="http://img.blog.csdn.net/20141124193151343?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>如图,绿色的是广告终结者,他的图标是pageAction,后面的印象笔记还有switchproxy是browserAction.一般来说,适用于少数页面的扩展建议使用pageaction,适用于大多数页面的建议使用browseraction</p>
+<p>permissions属性,用来设置和conten_script相关的选项,举个例子,如果你想插入一段代码到页面中去执行,操作页面上的dom,那就写个content_script就行了,使用 content_scripts 字段，扩展程序可以向一个页面中插入多个内容脚本，每个内容脚本可以有多个<br> JavaScript 和 CSS 文件,详细情况请看这里<a href="https://lmk123.duapp.com/extensions/content_scripts" target="_blank" rel="external">https://lmk123.duapp.com/extensions/content_scripts</a></p>
+<p>我现在在做的一个扩展就是做这样的事,百度的搜索结果会先跳到一个百度的网址,然后才是目标网址,我可以使用cotent_scripts来插入脚本,修改百度搜索结果的链接,让他直接跳转到目标页面,而不是百度的搜索结果页面.</p>
+<p>commands选项是设置快捷键,然后给快捷键设置事件 监听,这样我们按快捷键就会执行相应操作.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="string">"logout_cmcc"</span>: {<span class="comment">//某个快捷操作的名称</span></div><div class="line">    <span class="string">"description"</span>: <span class="string">"退出CMCC登录"</span>,<span class="comment">//快捷操作的描述</span></div><div class="line">    <span class="string">"suggested_key"</span>: {<span class="comment">//默认推荐的快捷键,不能与系统默认的快捷键冲突,否则就会失灵,需要用户手动去设置</span></div><div class="line">        <span class="string">"default"</span>: <span class="string">"Alt+X"</span></div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer>
+      
+        
+        
+        <div class="alignright">
+          <a href="http://jackroyal.github.io/2014/11/24/chrome扩展开发手记<3>-chrome扩展开始第一步manfest.json/#duoshuo_thread" class="comment-link">Comments</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2014-11-24T03:18:00.000Z"><a href="/2014/11/24/chrome扩展开发手记<2>-登录原理分析/">11月 24 2014</a></time>
       
       
@@ -268,104 +323,13 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-06-28T14:30:00.000Z"><a href="/2014/06/28/阿里云windows_server_2003_搭建邮件服务器/">6月 28 2014</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/06/28/阿里云windows_server_2003_搭建邮件服务器/">阿里云windows_server_2003_搭建邮件服务器</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <pre><code>笔者最近遇到一个在阿里云上搭建邮件服务器的问题，总算搞定，记录一下。
-
- 整个搭建过程，包括pop3服务的安装和开启，smtp服务的安装和开启，dns服务的安装和设置。
-参考文章[<span class="link_label">http://hi.baidu.com/senya/item/63bd6588b6817056e63d1996</span>](<span class="link_url">http://hi.baidu.com/senya/item/63bd6588b6817056e63d1996</span>)
-</code></pre><p>   <a href="http://firefish.blog.51cto.com/298258/57983" target="_blank" rel="external">http://firefish.blog.51cto.com/298258/57983</a></p>
-<p>不在赘述，直接粘贴原文</p>
-<p><strong>　　一、安装Windows Server 2003邮件服务器组件</strong></p>
-<p>(因为盗图的缘故,图片都挂了,这里大家都去看上面的参考文章连接吧,设置dns的时候再回来)</p>
-<p>图一　“管理您的服务器”控制台</p>
-<p>　　依次单击“开始”——“管理工具”——“管理您的服务器”，打开“管理您的服务器”控制台。在这个管理控制台中我们可以看到服务器已经成为的角色。单击“添加或删除角色”命令，开始管理服务器的角色。</p>
-<p>图二　配置服务器向导</p>
-<p>　　当我们单击“添加或删除角色”命令，就会运行配置服务器向导。</p>
-<p>图三　服务器管理程序检测网络连接</p>
-<p>图四　管理服务器角色</p>
-<p>　　在图四中，可以查看已经安装的服务和支持而没有安装的服务。此时的服务器还不是邮件服务器，选择“邮件服务器(POP3,SMTP)”，单击“下一步”：</p>
-<p>图五　配置“身份验证方法”及“电子邮件域名”</p>
-<p>图六　单击“下一步”</p>
-<p>图七　安装邮件服务:POP3和SMTP</p>
-<p>图八　安装成功</p>
-<p><strong>　　二、管理邮件服务器</strong></p>
-<p>　　Windows Server 2003的电子邮件服务器的功能很简单，管理界面也很简洁。单击“管理工具”下的“POP3服务”：</p>
-<p>图九 POP3服务</p>
-<p>图十　为用户添加邮箱</p>
-<p>　　在“POP3服务”中单击“添加邮箱”命令，在弹出的对话框内输入邮箱名（用户名）及密码。</p>
-<p>图十一</p>
-<p><strong>　　三、配置smtp</strong></p>
-<p>　　方法和上面类似，在图二的画面中我们选择应用程序服务器</p>
-<p><img src="" alt=""></p>
-<p>如图，我的已经开启了。</p>
-<p>下一步，依次打开“开始-程序-管理工具-internet信息服务”，在窗口左面，鼠标右键点击“smtp虚拟服务器”属性。切换到常规选项卡”IP地址“选择服务器的ip地址，点击确定就行了。</p>
-<p><strong>四、配置DNS</strong></p>
-<p>服务器已经配置好了，我们接下来设置下dns，这样才能解析到，不然还是无法使用的</p>
-<p>依次打开，“开始-程序-管理工具-配置您的服务器向导”</p>
-<p><img src="" alt=""></p>
-<p>选择自定义配置</p>
-<p><img src="" alt=""></p>
-<p>选择dns服务器，下一步</p>
-<p><img src="" alt=""></p>
-<p><img src="" alt=""></p>
-<p><img src="" alt=""></p>
-<p><img src="" alt=""></p>
-<p><img src="" alt=""></p>
-<p><img src="" alt=""></p>
-<p><img src="" alt=""></p>
-<p>点击正向查找域里面的区域名称，在右边的空白处点击右键，新建主机，分别新建POP3，smtp等主机</p>
-<p><img src="" alt=""></p>
-<p>还是空白处，右键，新建邮件交换器，分别新建smtp和pop3的邮件交换器</p>
-<p><img src="" alt=""></p>
-<p><img src="" alt=""></p>
-<p>注意：完全合格的域名后面没有点号，邮件服务器的完全合格的域名后面有点号，例如是smtp.ip-tcp.com.</p>
-<p>到此，邮件服务器搭建完成，可以去测试了</p>
-<p>此处参考原文<a href="http://www.docin.com/p-156566941.html" target="_blank" rel="external">http://www.docin.com/p-156566941.html</a></p>
-<p>经过我的测试，可以收邮件，但是不能发邮件（可以自己给自己发，但是不能给qq，网易等邮箱发），一直报错550 5.7.1 Unable to relay for <a href="mailto:xxx@xxx.com" target="_blank" rel="external"></a><a href="mailto:xxx@xxx.com" target="_blank" rel="external">xxx@xxx.com</a></p>
-<p>最后找到答案</p>
-<p>在IIS管理器里打开“默认SMTP虚拟服务器”的属性设置对话框，在“访问”选项卡中，点击“中继”按钮，弹出“中继限制”对话框，默认为选中了“仅以下列表”，修改为选中“仅以下列表除外”即可。</p>
-<p>另外下面的“允许所有通过身份验证的计算机进行中继，而忽略上表”一项要保持选中状态（默认是选中的）。</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-        <div class="alignright">
-          <a href="http://jackroyal.github.io/2014/06/28/阿里云windows_server_2003_搭建邮件服务器/#duoshuo_thread" class="comment-link">Comments</a>
-        </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
 
 <nav id="pagination">
   
     <a href="/page/2/" class="alignleft prev">上一页</a>
   
+  
+    <a href="/page/4/" class="alignright next">下一页</a>
   
   <div class="clearfix"></div>
 </nav></div></div>
@@ -382,7 +346,7 @@
   <h3 class="title">分类</h3>
   <ul class="entry">
   
-    <li><a href="/categories/Linux/">Linux</a><small>1</small></li>
+    <li><a href="/categories/Linux/">Linux</a><small>3</small></li>
   
     <li><a href="/categories/chrome扩展/">chrome扩展</a><small>4</small></li>
   
@@ -390,7 +354,7 @@
   
     <li><a href="/categories/javascript/">javascript</a><small>2</small></li>
   
-    <li><a href="/categories/linux/">linux</a><small>1</small></li>
+    <li><a href="/categories/linux/">linux</a><small>0</small></li>
   
     <li><a href="/categories/数据库/">数据库</a><small>1</small></li>
   
@@ -409,7 +373,7 @@
   <h3 class="title">标签</h3>
   <ul class="entry">
   
-    <li><a href="/tags/Linux/">Linux</a><small>1</small></li>
+    <li><a href="/tags/Linux/">Linux</a><small>3</small></li>
   
     <li><a href="/tags/chrome/">chrome</a><small>4</small></li>
   
@@ -423,9 +387,9 @@
   
     <li><a href="/tags/js/">js</a><small>1</small></li>
   
-    <li><a href="/tags/kali/">kali</a><small>1</small></li>
+    <li><a href="/tags/kali/">kali</a><small>2</small></li>
   
-    <li><a href="/tags/linux/">linux</a><small>1</small></li>
+    <li><a href="/tags/linux/">linux</a><small>0</small></li>
   
     <li><a href="/tags/select/">select</a><small>1</small></li>
   
@@ -459,6 +423,10 @@
   <ul class="entry">
     
       <li>
+        <a href="/2015/03/04/after-kali/">kali安装后设置</a>
+      </li>
+    
+      <li>
         <a href="/2015/03/03/kali-and-ubuntu/">kali和ubuntu双系统安装</a>
       </li>
     
@@ -474,10 +442,6 @@
         <a href="/2014/11/28/custom-hexo/">配置hexo</a>
       </li>
     
-      <li>
-        <a href="/2014/11/27/how-to-build-a-blog-with-hexo/">使用hexo建立自己的Github pages</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -486,7 +450,7 @@
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/Linux/" style="font-size: 10.00px;">Linux</a><a href="/tags/chrome/" style="font-size: 20.00px;">chrome</a><a href="/tags/cmcc-edu/" style="font-size: 20.00px;">cmcc-edu</a><a href="/tags/github/" style="font-size: 13.33px;">github</a><a href="/tags/hexo/" style="font-size: 16.67px;">hexo</a><a href="/tags/javascript/" style="font-size: 13.33px;">javascript</a><a href="/tags/js/" style="font-size: 10.00px;">js</a><a href="/tags/kali/" style="font-size: 10.00px;">kali</a><a href="/tags/linux/" style="font-size: 10.00px;">linux</a><a href="/tags/select/" style="font-size: 10.00px;">select</a><a href="/tags/sql/" style="font-size: 10.00px;">sql</a><a href="/tags/sql-server/" style="font-size: 10.00px;">sql server</a><a href="/tags/wamp/" style="font-size: 10.00px;">wamp</a><a href="/tags/中国移动/" style="font-size: 16.67px;">中国移动</a><a href="/tags/前端/" style="font-size: 13.33px;">前端</a><a href="/tags/扩展/" style="font-size: 13.33px;">扩展</a><a href="/tags/正则/" style="font-size: 10.00px;">正则</a><a href="/tags/正则表达式/" style="font-size: 10.00px;">正则表达式</a><a href="/tags/脚本/" style="font-size: 13.33px;">脚本</a><a href="/tags/表单/" style="font-size: 10.00px;">表单</a>
+    <a href="/tags/Linux/" style="font-size: 17.50px;">Linux</a><a href="/tags/chrome/" style="font-size: 20.00px;">chrome</a><a href="/tags/cmcc-edu/" style="font-size: 20.00px;">cmcc-edu</a><a href="/tags/github/" style="font-size: 15.00px;">github</a><a href="/tags/hexo/" style="font-size: 17.50px;">hexo</a><a href="/tags/javascript/" style="font-size: 15.00px;">javascript</a><a href="/tags/js/" style="font-size: 12.50px;">js</a><a href="/tags/kali/" style="font-size: 15.00px;">kali</a><a href="/tags/linux/" style="font-size: 10.00px;">linux</a><a href="/tags/select/" style="font-size: 12.50px;">select</a><a href="/tags/sql/" style="font-size: 12.50px;">sql</a><a href="/tags/sql-server/" style="font-size: 12.50px;">sql server</a><a href="/tags/wamp/" style="font-size: 12.50px;">wamp</a><a href="/tags/中国移动/" style="font-size: 17.50px;">中国移动</a><a href="/tags/前端/" style="font-size: 15.00px;">前端</a><a href="/tags/扩展/" style="font-size: 15.00px;">扩展</a><a href="/tags/正则/" style="font-size: 12.50px;">正则</a><a href="/tags/正则表达式/" style="font-size: 12.50px;">正则表达式</a><a href="/tags/脚本/" style="font-size: 15.00px;">脚本</a><a href="/tags/表单/" style="font-size: 12.50px;">表单</a>
   </div>
 </div>
 
