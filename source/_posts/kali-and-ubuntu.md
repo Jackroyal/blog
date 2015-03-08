@@ -80,7 +80,7 @@ domain我们留空不管他，下一步
 2 [kali系统安装图文教程，kali系统安装图文](http://www.bkjia.com/Linuxjc/844530.html)
 
 #致谢
-这里，要感谢我最亲爱的笨笨<http://blog.csdn.net/happyhuirong>
+这里，要感谢我最亲爱的笨笨<http://huirong.github.io>
 
 
 

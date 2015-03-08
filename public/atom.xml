@@ -4,7 +4,7 @@
   <subtitle><![CDATA[我最喜欢笨笨]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://jackroyal.github.io/"/>
-  <updated>2015-03-04T06:43:24.115Z</updated>
+  <updated>2015-03-08T11:01:16.093Z</updated>
   <id>http://jackroyal.github.io/</id>
   
   <author>
@@ -55,7 +55,7 @@
     <link href="http://jackroyal.github.io/2015/03/03/kali-and-ubuntu/"/>
     <id>http://jackroyal.github.io/2015/03/03/kali-and-ubuntu/</id>
     <published>2015-03-03T13:17:41.000Z</published>
-    <updated>2015-03-04T06:42:08.000Z</updated>
+    <updated>2015-03-08T10:57:41.000Z</updated>
     <content type="html"><![CDATA[<p>时间忽快忽慢，一转眼，年过完了，又回来学校了，又一个多月没有push了，重新回到github。今天我们家笨笨给我找了点kali的资料，索性就把kali捡起来，第一步安装kali的系统。<br>此处背景不再介绍，直奔主题。kali的安装过程和ubuntu的安装过程类似，应该说原理上是一模一样的，只是界面有些不同。我的电脑当前已经安装了win8和ubuntu，现在需要再加一个kali的系统，三系统共存。<br>大体分为如下几个步骤：</p>
 <h3 id="1_下载kali镜像">1 下载kali镜像</h3>
 <h3 id="2_刻录u盘">2 刻录u盘</h3>
@@ -88,7 +88,7 @@
 <h1 id="参考文献">参考文献</h1>
 <p>1 安装kali 系统 <a href="http://blog.sina.com.cn/s/blog_779dcd090102va9c.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_779dcd090102va9c.html</a><br>2 <a href="http://www.bkjia.com/Linuxjc/844530.html" target="_blank" rel="external">kali系统安装图文教程，kali系统安装图文</a></p>
 <h1 id="致谢">致谢</h1>
-<p>这里，要感谢我最亲爱的笨笨<a href="http://blog.csdn.net/happyhuirong" target="_blank" rel="external">http://blog.csdn.net/happyhuirong</a></p>
+<p>这里，要感谢我最亲爱的笨笨<a href="http://huirong.github.io" target="_blank" rel="external">http://huirong.github.io</a></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>时间忽快忽慢，一转眼，年过完了，又回来学校了，又一个多月没有push了，重新回到github。今天我们家笨笨给我找了点kali的资料，索性就把kali捡起来，第一步安装kali的系统。<br>此处背景不再介绍，直奔主题。kali的安装过程和ubuntu的安装过程类似，应该说原理上是一模一样的，只是界面有些不同。我的电脑当前已经安装了win8和ubuntu，现在需要再加一个kali的系统，三系统共存。<br>大体分为如下几个步骤：</p>
@@ -234,7 +234,7 @@
     <link href="http://jackroyal.github.io/2014/11/27/how-to-build-a-blog-with-hexo/"/>
     <id>http://jackroyal.github.io/2014/11/27/how-to-build-a-blog-with-hexo/</id>
     <published>2014-11-27T06:48:29.000Z</published>
-    <updated>2015-01-06T04:35:04.000Z</updated>
+    <updated>2015-03-08T10:57:46.000Z</updated>
     <content type="html"><![CDATA[<p>昨天经过一天的<a href="http://jackroyal.github.io/2014/11/26/new-start/" title="生命在于折腾" target="_blank" rel="external">折腾</a>,总算把博客搭建起来了,今天就来写个博客总结一下.<br>网上的资料很多,我主要参考的是这篇博客,一路很顺利.</p>
 <blockquote>
 <p><a href="http://zipperary.com/2013/05/28/hexo-guide-2/" target="_blank" rel="external">http://zipperary.com/2013/05/28/hexo-guide-2/</a></p>
@@ -244,7 +244,7 @@
 <h2 id="1-_安装Github_for_windows">1. 安装Github for windows</h2>
 <p>因为我之前就在用Github,所以早就安装了这个.已经装过的同学请忽略这一段.<br>下载 <a href="https://windows.github.com/" title="Github for windows" target="_blank" rel="external">Github for windows</a> 并执行即可完成安装(<em>在线安装,会有点慢</em>)。这个软件的的好处是有一个带GUI的界面,还有一个终端界面.如图所示<a id="more"></a><br><img src="http://ww2.sinaimg.cn/large/692869a3jw1emplp1lz31j204w033mx0.jpg" alt="Github for windows"><br><img src="http://ww2.sinaimg.cn/large/692869a3gw1empluh6hvej210b0j741r.jpg" alt="GUI and Bash"><br>如果你不喜欢用这个,也可以用上面的博客推荐的<a href="http://code.google.com/p/msysgit/" target="_blank" rel="external">msysgit</a>.</p>
 <h2 id="2-_安装Node-js">2. 安装Node.js</h2>
-<p>在 Windows 环境下安装 <a href="http://nodejs.org/" title="Node.js 官网" target="_blank" rel="external">Node.js</a> 非常简单，仅须下载安装文件并执行即可完成安装。</p>
+<p>在 Windows 环境下安装 <a href="http://nodejs.org/" title="Node.js 官网" target="_blank" rel="external">Node.js</a> 非常简单，仅须下载安装文件并执行即可完成安装。（win下建议下载msi格式的，因为这样可以不用配置环境变量之类的）</p>
 <h2 id="3-_测试node-js是否安装">3. 测试node.js是否安装</h2>
 <p>在任何控制台输入(可以按windows键+R,输入cmd,然后输入npm,一般来说不会有问题)</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">npm</span></div></pre></td></tr></table></figure>
@@ -252,7 +252,7 @@
 <p>返回值如下</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">Usage</span>: <span class="string">npm &lt;command&gt;</span></div><div class="line"></div><div class="line"><span class="applescript"><span class="keyword">where</span> &lt;command&gt; <span class="keyword">is</span> one <span class="keyword">of</span>:</span></div><div class="line">    add-user, adduser, apihelp, author, bin, bugs, c, cache,</div><div class="line">    completion, config, ddp, dedupe, deprecate, docs, edit,</div><div class="line">    explore, faq, find, find-dupes, <span class="keyword">get</span>, help, help-search,</div><div class="line">    home, i, info, init, install, isntall, issues, la, link,</div><div class="line">    <span class="type">list</span>, ll, ln, login, ls, outdated, owner, pack, prefix,</div><div class="line">    prune, publish, r, rb, rebuild, remove, repo, restart, rm,</div><div class="line">    root, <span class="command">run</span>-<span class="keyword">script</span>, s, se, search, <span class="keyword">set</span>, show, shrinkwrap,</div><div class="line">    star, stars, start, stop, submodule, t, tag, test, tst, un,</div><div class="line">    uninstall, unlink, unpublish, unstar, up, update, v,</div><div class="line">    <span class="property">version</span>, view, whoami</div><div class="line"></div><div class="line">npm &lt;cmd&gt; -h     quick help <span class="function_start"><span class="keyword">on</span></span> &lt;cmd&gt;</div><div class="line">npm -l           display full usage info</div><div class="line">npm faq          commonly asked questions</div><div class="line">npm help &lt;term&gt;  search <span class="keyword">for</span> help <span class="function_start"><span class="keyword">on</span></span> &lt;term&gt;</div><div class="line">npm help npm     involved overview</div><div class="line"></div><div class="line">Specify configs <span class="keyword">in</span> <span class="keyword">the</span> ini-formatted <span class="type">file</span>:</div><div class="line">    C:\Users\chenhao\.npmrc</div><div class="line"><span class="keyword">or</span> <span class="function_start"><span class="keyword">on</span></span> <span class="keyword">the</span> command line via: npm &lt;command&gt; <span class="comment">--key value</span></div><div class="line">Config info can be viewed via: npm help config</div><div class="line"></div><div class="line">npm@<span class="number">1.4</span><span class="number">.28</span> D:\Program Files (x86)\nodejs\node_modules\npm</div></pre></td></tr></table></figure>
 
-<p>看到这个结果,就表示你的node.js已经安装上去了</p>
+<p>看到这个结果,就表示你的node.js已经安装上去了<br><em>感谢我们家笨笨的反馈：</em>此处如果npm无效，首先确定win下你采用的是msi格式的安装文件，然后重启下电脑，应该就正常了。</p>
 <h2 id="4-_安装hexo">4. 安装hexo</h2>
 <p>接下来的操作我都是用<strong>Github for windows</strong>自带的Bash来完成的,因为后面会涉及到SSH,用<strong>Github for windows</strong>,就可以避免这个问题.</p>
 <ul>
@@ -263,7 +263,7 @@
 <ul>
 <li>创建hexo文件夹<br>创建你hexo放置的文件夹,先用Bash进入到目标文件夹,比如我的是F:/blog/,接下来初始化hexo,自动生成相关的文件,在F:/blog/环境下,输入</li>
 </ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo <span class="keyword">init</span></div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /f/blog  <span class="comment">#这个命令表示当前进入目录为f：/blog/</span></div><div class="line">hexo init</div></pre></td></tr></table></figure>
 
 <ul>
 <li>安装依赖包</li>
@@ -302,7 +302,8 @@
 <p>我的中间出过一些问题:</p>
 <ol>
 <li>我的<code>hexo d</code>的时候出错,可以尝试手动删除<code>.deploy</code>文件夹,然后执行<code>hexo clean</code>还有可能出现的情况是,<code>deploy</code>没错但是一直没有提示<code>deploy done</code>,那就是骚年,你访问Github网速太慢</li>
-<li>我<code>deploy d</code>成功以后,在Github里面已经看到生成的页面了,访问<a href="http://jackroyal.github.io" target="_blank" rel="external">http://jackroyal.github.io</a>或者<a href="https://jackroyal.github.io" target="_blank" rel="external">https://jackroyal.github.io</a>一直报404的错误,这种时候等一等就好了,一般等几分钟.如果一直不好那就给官方发个邮件,他们很快会回复你的,有什么问题说清楚就行.</li>
+<li>我<code>deploy d</code>成功以后,在Github里面已经看到生成的页面了,访问<a href="http://jackroyal.github.io" target="_blank" rel="external">http://jackroyal.github.io</a>或者<a href="https://jackroyal.github.io" target="_blank" rel="external">https://jackroyal.github.io</a>一直报404的错误,这种时候等一等就好了,一般等几分钟.如果一直不好那就给官方发个邮件,他们很快会回复你的,有什么问题说清楚就行.<h1 id="致谢">致谢</h1>
+这里，要感谢我最亲爱的笨笨，是她给我测试和反馈的<a href="http://huirong.github.io" target="_blank" rel="external">http://huirong.github.io</a></li>
 </ol>
 ]]></content>
     <summary type="html">

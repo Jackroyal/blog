@@ -19,7 +19,7 @@ categories: hexo
 如果你不喜欢用这个,也可以用上面的博客推荐的[msysgit](http://code.google.com/p/msysgit/).
 
 ## 2. 安装Node.js
-在 Windows 环境下安装 [Node.js](http://nodejs.org/ "Node.js 官网") 非常简单，仅须下载安装文件并执行即可完成安装。
+在 Windows 环境下安装 [Node.js](http://nodejs.org/ "Node.js 官网") 非常简单，仅须下载安装文件并执行即可完成安装。（win下建议下载msi格式的，因为这样可以不用配置环境变量之类的）
 
 ## 3. 测试node.js是否安装
 在任何控制台输入(可以按windows键+R,输入cmd,然后输入npm,一般来说不会有问题)
@@ -56,6 +56,7 @@ Config info can be viewed via: npm help config
 npm@1.4.28 D:\Program Files (x86)\nodejs\node_modules\npm
 ```
 看到这个结果,就表示你的node.js已经安装上去了
+*感谢我们家笨笨的反馈：*此处如果npm无效，首先确定win下你采用的是msi格式的安装文件，然后重启下电脑，应该就正常了。
 ## 4. 安装hexo
 接下来的操作我都是用**Github for windows**自带的Bash来完成的,因为后面会涉及到SSH,用**Github for windows**,就可以避免这个问题.
 - 在Bash中输入以下命令
@@ -65,6 +66,7 @@ npm install -g hexo
 - 创建hexo文件夹
 创建你hexo放置的文件夹,先用Bash进入到目标文件夹,比如我的是F:/blog/,接下来初始化hexo,自动生成相关的文件,在F:/blog/环境下,输入
 ```
+cd /f/blog  #这个命令表示当前进入目录为f：/blog/
 hexo init
 ```
 - 安装依赖包
@@ -116,4 +118,6 @@ ok,现在就可以去看看你的个人主页了,逼格满满有木有.
 我的中间出过一些问题:
 1. 我的`hexo d`的时候出错,可以尝试手动删除`.deploy`文件夹,然后执行`hexo clean`还有可能出现的情况是,`deploy`没错但是一直没有提示`deploy done`,那就是骚年,你访问Github网速太慢
 1. 我`deploy d`成功以后,在Github里面已经看到生成的页面了,访问<http://jackroyal.github.io>或者<https://jackroyal.github.io>一直报404的错误,这种时候等一等就好了,一般等几分钟.如果一直不好那就给官方发个邮件,他们很快会回复你的,有什么问题说清楚就行.
+#致谢
+这里，要感谢我最亲爱的笨笨，是她给我测试和反馈的<http://huirong.github.io>
 
