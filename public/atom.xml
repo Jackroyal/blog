@@ -4,7 +4,7 @@
   <subtitle><![CDATA[我最喜欢笨笨]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://jackroyal.github.io/"/>
-  <updated>2015-03-08T11:01:16.093Z</updated>
+  <updated>2015-03-10T05:28:37.068Z</updated>
   <id>http://jackroyal.github.io/</id>
   
   <author>
@@ -13,6 +13,84 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[shadowsocks的安装和配置--在ubuntu和ubuntu中]]></title>
+    <link href="http://jackroyal.github.io/2015/03/09/use-ss/"/>
+    <id>http://jackroyal.github.io/2015/03/09/use-ss/</id>
+    <published>2015-03-09T14:26:21.000Z</published>
+    <updated>2015-03-10T05:28:30.000Z</updated>
+    <content type="html"><![CDATA[<p>最近我的vpn一直在抽风，几乎没法正常使用，而且我的chrome也是各种花屏，我快疯了，没办法，只能改用shadowsocks了。<br>搭建过程分为两部分:服务端和客户端(这里是主要是ubuntu的客户端)。<br><a id="more"></a></p>
+<h1 id="1_系统环境">1 系统环境</h1>
+<p><strong>服务器</strong>:DigitalOcean上的Ubuntu 14.04 LTS<br><strong>客户端</strong>:Ubuntu 14.04 LTS</p>
+<h1 id="2_服务器端安装和配置">2 服务器端安装和配置</h1>
+<p>这里主要是参考github的<a href="https://github.com/shadowsocks/shadowsocks/wiki/Shadowsocks-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E" target="_blank" rel="external">官方说明</a><br>通过ssh登陆的服务器上去,这里不在赘述如何登陆.<br>以下主要针对linux服务器,windows服务器查看<a href="https://github.com/shadowsocks/shadowsocks/wiki/Install-Shadowsocks-Server-on-Windows" target="_blank" rel="external">这里</a></p>
+<h2 id="安装">安装</h2>
+<p>Linux不同的发行版本执行的命令如下</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Debian / Ubuntu:</div><div class="line"></div><div class="line">apt-get <span class="operator"><span class="keyword">install</span> python-pip</span></div><div class="line">pip <span class="keyword">install</span> shadowsocks</div><div class="line"></div><div class="line">CentOS:</div><div class="line"></div><div class="line">yum <span class="keyword">install</span> python-setuptools && easy_install pip</div><div class="line">pip <span class="keyword">install</span> shadowsocks</div></pre></td></tr></table></figure>
+
+<h2 id="配置">配置</h2>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> vi /etc/shadowsocks.json</div></pre></td></tr></table></figure>
+
+<p>配置文件的内容大致如下:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">{</div><div class="line">    "<span class="attribute">server</span>":<span class="value"><span class="string">"你的服务器的ip"</span></span>,</div><div class="line">    "<span class="attribute">server_port</span>":<span class="value"><span class="number">8388</span></span>,</div><div class="line">    "<span class="attribute">local_address</span>": <span class="value"><span class="string">"127.0.0.1"</span></span>,</div><div class="line">    "<span class="attribute">local_port</span>":<span class="value"><span class="number">1080</span></span>,</div><div class="line">    "<span class="attribute">password</span>":<span class="value"><span class="string">"你设置的密码"</span></span>,</div><div class="line">    "<span class="attribute">timeout</span>":<span class="value"><span class="number">300</span></span>,</div><div class="line">    "<span class="attribute">method</span>":<span class="value"><span class="string">"aes-256-cfb"</span></span>,</div><div class="line">    "<span class="attribute">fast_open</span>": <span class="value"><span class="literal">false</span></span></div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p><strong>参数名称       解释</strong><br>server         安装shadowsocks服务器ip<br>server_port    服务器端口号<br>local_address  本地服务器默认是127.0.0.1<br>local_port     本地监听的端口号<br>password       密码<br>timeout        超时时间,单位是秒<br>method         加密方法默认是: “aes-256-cfb”可以用其他加密方法<br>fast_open      是否使用TCP_FASTOPEN,默认为不使用<br>workers        number of workers, available on Unix/Linux</p>
+<h2 id="运行">运行</h2>
+<p>前台运行的命令<br><code>ssserver -c /etc/shadowsocks.json</code><br>后台运行<br><code>ssserver -c /etc/shadowsocks.json -d start</code><br><code>ssserver -c /etc/shadowsocks.json -d stop</code><br>ps:我上述两条命令都会出错,这两条命令来自官方的github,我用的是下面的<br><code>nohup ssserver -c /etc/shadowsocks.json &gt; aa.log</code></p>
+<h2 id="开机自启">开机自启</h2>
+<p>我们把它写入/etc/rc.local中就可以完成开机自启动了.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> vi /etc/rc.local  <span class="comment">#打开rc.local文件</span></div><div class="line"><span class="comment">#然后在exit前面加入下面这一行</span></div><div class="line"><span class="comment">#nohup ssserver -c /etc/shadowsocks.json &gt; aa.log</span></div></pre></td></tr></table></figure>
+
+<h1 id="3_客户端的安装和配置">3 客户端的安装和配置</h1>
+<p>客户端按理说和服务器端类似,安装shadowsocks,但是我的就是这个出了问题.</p>
+<h2 id="1)_安装相关软件">1) 安装相关软件</h2>
+<p>shadowsocks有各种客户端版本,各个系统都有.在ubuntu下带图形化界面的有shadowsocks-qt5,还可以直接用命令行.</p>
+<p><strong>图形化:</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo <span class="built_in">add</span>-apt-repository <span class="keyword">pp</span><span class="variable">a:hzwhuang</span>/ss-qt5</div><div class="line">sudo apt-<span class="built_in">get</span> <span class="keyword">update</span></div><div class="line">sudo apt-<span class="built_in">get</span> install shadowsocks-qt5</div></pre></td></tr></table></figure>
+
+<p><em>PS:</em>我的电脑安装这个以后,会自动卸载我的chrome<br><em>PPS:</em>我刚才又试了一次,我在安装了命令行模式的shadowsocks以后,现在不会卸载我的chrome,总算正常了</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">The following extra packages will be installed:</div><div class="line">  libbotan-<span class="number">1.10</span>-<span class="number">0</span> libqrencode3 libqtshadowsocks libzbar0</div><div class="line">The following packages will be REMOVED:</div><div class="line">  libbotan-<span class="number">1.10</span>-<span class="number">0</span>:i386 libqtshadowsocks:i386 libzbar0:i386</div><div class="line">The following <span class="keyword">NEW</span> packages will be installed:</div><div class="line">  libbotan-<span class="number">1.10</span>-<span class="number">0</span> libqrencode3 libqtshadowsocks libzbar0 shadowsocks-qt5</div><div class="line"><span class="number">0</span> upgraded, <span class="number">5</span> newly installed, <span class="number">3</span> <span class="keyword">to</span> remove <span class="keyword">and</span> <span class="number">19</span> <span class="keyword">not</span> upgraded.</div><div class="line">Need <span class="keyword">to</span> <span class="keyword">get</span> <span class="number">1</span>,<span class="number">280</span> kB <span class="keyword">of</span> archives.</div><div class="line">After this operation, <span class="number">662</span> kB <span class="keyword">of</span> additional disk space will be used.</div><div class="line"><span class="keyword">Do</span> you want <span class="keyword">to</span> <span class="keyword">continue</span>? [Y/n]</div></pre></td></tr></table></figure>
+
+<p><strong>命令行模式:</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo apt-<span class="built_in">get</span> install <span class="keyword">python</span>-pip <span class="keyword">python</span>-dev build-essential </div><div class="line">sudo pip install  pip</div><div class="line">sudo apt-<span class="built_in">get</span> install <span class="keyword">python</span>-m2crypto</div><div class="line">sudo pip install shadowsocks</div></pre></td></tr></table></figure>
+
+<p>我因为之前在环境中就安装过pip,所以我只需要执行倒数第三个和第四个命令.<br>但是我的倒数第四个命令<code>pip install shadowsocks</code>一直报错:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">Exception: Traceback (most recent call <span class="keyword">last</span>):</div><div class="line">File <span class="string">"/usr/lib/python2.7/dist-packages/pip/basecommand.py"</span>, <span class="built_in">line</span> <span class="number">122</span>, <span class="operator">in</span> main</div><div class="line">  status = self.run(options, args)</div><div class="line">File <span class="string">"/usr/lib/python2.7/dist-packages/pip/commands/install.py"</span>, <span class="built_in">line</span> <span class="number">278</span>, <span class="operator">in</span> run</div><div class="line">  requirement_set.prepare_files(finder, force_root_egg_info=self.bundle, bundle=self.bundle) </div><div class="line">File <span class="string">"/usr/lib/python2.7/dist-packages/pip/req.py"</span>, <span class="built_in">line</span> <span class="number">1177</span>, <span class="operator">in</span> prepare_files </div><div class="line">  url = finder.find_requirement(req_to_install, upgrade=self.upgrade) </div><div class="line">File <span class="string">"/usr/lib/python2.7/dist-packages/pip/index.py"</span>, <span class="built_in">line</span> <span class="number">256</span>, <span class="operator">in</span> find_requirement</div><div class="line">  page_versions.extend(self.<span class="title">_package</span>_versions(page.links, req.name.<span class="built_in">lower</span>())) </div><div class="line">File <span class="string">"/usr/lib/python2.7/dist-packages/pip/index.py"</span>, <span class="built_in">line</span> <span class="number">432</span>, <span class="operator">in</span> <span class="title">_package</span>_versions </div><div class="line">  <span class="keyword">for</span> link <span class="operator">in</span> self.<span class="title">_sort</span>_links(links): </div><div class="line">File <span class="string">"/usr/lib/python2.7/dist-packages/pip/index.py"</span>, <span class="built_in">line</span> <span class="number">422</span>, <span class="operator">in</span> <span class="title">_sort</span>_links </div><div class="line">  <span class="keyword">for</span> link <span class="operator">in</span> links: </div><div class="line">File <span class="string">"/usr/lib/python2.7/dist-packages/pip/index.py"</span>, <span class="built_in">line</span> <span class="number">769</span>, <span class="operator">in</span> links </div><div class="line">  <span class="keyword">for</span> anchor <span class="operator">in</span> self.parsed.findall(<span class="string">".//a"</span>):</div><div class="line">AttributeError: <span class="string">'Document'</span> object has no attribute <span class="string">'findall'</span></div><div class="line"></div><div class="line">Storing debug <span class="built_in">log</span> <span class="keyword">for</span> failure <span class="operator">in</span> /root/.pip/pip.<span class="built_in">log</span></div></pre></td></tr></table></figure>
+
+<p>网上搜索一番,在<a href="https://github.com/pypa/pip/issues/1742" target="_blank" rel="external">这里</a>找到答案.<br>解决方法很简单,执行<code>easy_install pip</code>,就ok(貌似是把pip重新安装了一次).</p>
+<h2 id="2)_客户端运行">2) 客户端运行</h2>
+<p>shadowsocks图形化的比较简单,这里不表.<br>命令行模式,启动如下:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sslocal <span class="operator">-s</span> 服务器ip -p <span class="number">8388</span> -k 密码</div></pre></td></tr></table></figure>
+
+<p>启动成功后会有如下输出:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">2015<span class="tag">-03-10</span> 11<span class="pseudo">:12</span><span class="pseudo">:59</span> <span class="tag">INFO</span>     <span class="tag">loading</span> <span class="tag">libcrypto</span> <span class="tag">from</span> <span class="tag">libcrypto</span><span class="class">.so</span><span class="class">.1</span><span class="class">.0</span><span class="class">.0</span></div><div class="line">2015<span class="tag">-03-10</span> 11<span class="pseudo">:12</span><span class="pseudo">:59</span> <span class="tag">INFO</span>     <span class="tag">starting</span> <span class="tag">local</span> <span class="tag">at</span> 127<span class="class">.0</span><span class="class">.0</span><span class="class">.1</span><span class="pseudo">:1080</span></div></pre></td></tr></table></figure>
+
+<h2 id="3)_浏览器代理设置">3) 浏览器代理设置</h2>
+<p>一般来说我们不希望shadowsocks做全局的翻墙,那样,访问国内的速度也会变慢,我们在chome浏览器中安装switchysharp,来管理代理.具体设置如下所示:<br><img src="http://ww3.sinaimg.cn/large/692869a3gw1eq0k16t5ejj20ne0ihmzh.jpg" alt="swichysharp设置"></p>
+<p>enjoy it!</p>
+<h1 id="后记">后记</h1>
+<p>安卓客户端安装,<a href="https://apps.evozi.com/apk-downloader/?id=com.github.shadowsocks" target="_blank" rel="external">点我点我</a></p>
+<h1 id="参考文献">参考文献</h1>
+<p>1 这是一篇好博客 <a href="http://mushapi.com/shadowsocks-install-config-using.html" target="_blank" rel="external">http://mushapi.com/shadowsocks-install-config-using.html</a><br>2 <a href="https://github.com/shadowsocks/shadowsocks/wiki/Shadowsocks-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E" target="_blank" rel="external">shadowsocks使用说明</a><br>3 <a href="https://github.com/pypa/pip/issues/1742" target="_blank" rel="external">修复我pip问题的一个issue</a></p>
+<h1 id="致谢">致谢</h1>
+<p>这个网站可以下载google play的apk,对于我等天朝良民来说,可真是个好东西<br><a href="https://apps.evozi.com/apk-downloader/?id=com.github.shadowsocks" target="_blank" rel="external">https://apps.evozi.com/apk-downloader/?id=com.github.shadowsocks</a></p>
+<p>我们家<a href="http://huirong.github.io" target="_blank" rel="external">笨笨的博客</a>弄好了,欢迎访问</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>最近我的vpn一直在抽风，几乎没法正常使用，而且我的chrome也是各种花屏，我快疯了，没办法，只能改用shadowsocks了。<br>搭建过程分为两部分:服务端和客户端(这里是主要是ubuntu的客户端)。<br>]]>
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://jackroyal.github.io/tags/Linux/"/>
+    
+      <category term="ubuntu" scheme="http://jackroyal.github.io/tags/ubuntu/"/>
+    
+      <category term="shadowsocks" scheme="http://jackroyal.github.io/tags/shadowsocks/"/>
+    
+      <category term="Linux" scheme="http://jackroyal.github.io/categories/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[kali安装后设置]]></title>
