@@ -39,12 +39,56 @@
     
       <li><a href="/archives">Archives</a></li>
     
+    <li> <a href="/atom.xml">RSS</a> </li>
   </ul>
   <div class="clearfix"></div>
 </nav>
-<div class="clearfix"></div></header>
+<div class="clearfix"></div>
+</header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-03-26T13:33:35.000Z"><a href="/2015/03/26/python-im/">3月 26 2015</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/03/26/python-im/">python学习笔记--一个简单聊天室的实现</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>最近项目真多,一个接一个的失之交臂,全部都错过了.最近状态有些不好,容易胡思乱想.<br>这是来自书上的一个python聊天程序,我照着敲了一遍,然后给扩展了一下,加了多个房间和创建选择房间的功能,写了好久好久,感觉都拖了一个星期了.<br>下一步是做一个gui,恩,那将是我的第一个gui程序.</p>
+<h1 id="先贴一下代码_server5-py">先贴一下代码 server5.py</h1>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8-*-</span></div><div class="line">__author__ = <span class="string">'chen'</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> asyncore <span class="keyword">import</span>  dispatcher</div><div class="line"><span class="keyword">from</span>  asynchat <span class="keyword">import</span> async_chat</div><div class="line"><span class="keyword">import</span> socket,asyncore</div><div class="line"></div><div class="line">PORT = <span class="number">5005</span>  <span class="comment">#设定程序的端口号</span></div><div class="line">NAME = <span class="string">'testchat'</span>  <span class="comment">#给服务器一个名称</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">EndSession</span><span class="params">(Exception)</span>:</span><span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CommandHandler</span>:</span></div><div class="line">    <span class="string">"""</span></div><div class="line">    类似标准库中cmd.Cmd的简单命令处理程序</div><div class="line">    """</div><div class="line">    <span class="comment">#如果输入的命令,那么就返回unknown命令</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">unknown</span><span class="params">(self, session, cmd)</span>:</span></div><div class="line">        session.push(<span class="string">'Unknown command: %s \r\n'</span> % cmd)</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">handle</span><span class="params">(self, session, line)</span>:</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> line.strip():</div><div class="line">            <span class="keyword">return</span></div><div class="line">        parts = line.split(<span class="string">' '</span>, <span class="number">1</span>)</div><div class="line">        cmd = parts[<span class="number">0</span>]</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            line = parts[<span class="number">1</span>].strip()</div><div class="line">        <span class="keyword">except</span> IndexError:line = <span class="string">''</span></div><div class="line">        meth = getattr(self, <span class="string">'do_'</span> + cmd, <span class="keyword">None</span>)</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            meth(session, line)</div><div class="line">        <span class="keyword">except</span> TypeError:</div><div class="line">            self.unknown(session, cmd)</div><div class="line"><span class="comment">#这个类是聊天房间的类,继承上面的类是为了继承执行命令的功能</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChatRoom</span><span class="params">(CommandHandler)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, server)</span>:</span></div><div class="line">        self.server = server</div><div class="line">        self.name = name</div><div class="line">        self.sessions = []</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(self, session)</span>:</span></div><div class="line">        self.broadcast(session.name + <span class="string">' has entered the room %s\r\n'</span> % self.name)</div><div class="line">        session.push(<span class="string">'you can type "h" for help\r\n'</span>)</div><div class="line">        <span class="comment">##因为后面要将用户挪动房间,所以必须保存每个用户的session,这样才能挪动和删除</span></div><div class="line">        self.server.users[session.name] = session</div><div class="line">        self.sessions.append(session)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">remove</span><span class="params">(self, session)</span>:</span></div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            self.sessions.remove(session)</div><div class="line">        <span class="keyword">except</span>: <span class="keyword">pass</span> <span class="comment">#如果此处的sessions为空或者已经不存在,会出错,此处不上报</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">broadcast</span><span class="params">(self, line)</span>:</span></div><div class="line">        <span class="comment">#广播,只广播到当前房间</span></div><div class="line">        <span class="keyword">for</span> session <span class="keyword">in</span> self.sessions:</div><div class="line">            session.push(line)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_say</span><span class="params">(self, session, line)</span>:</span></div><div class="line">        <span class="comment">#说话</span></div><div class="line">        self.broadcast(session.name + <span class="string">":"</span> + line + <span class="string">'\r\n'</span>)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_login</span><span class="params">(self, session, line)</span>:</span></div><div class="line">        <span class="comment">#login,其实是实现改名字的功能,懒得去改函数名了</span></div><div class="line">        name = line.strip()</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> name:</div><div class="line">            session.push(<span class="string">'please enter a name\r\n'</span>)</div><div class="line">        <span class="keyword">elif</span> name <span class="keyword">in</span> self.server.users.keys():</div><div class="line">            session.push(<span class="string">'The name %s is taken\r\n'</span> % name)</div><div class="line">            session.push(<span class="string">'please try again\r\n'</span>)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            session.server.users[name] = session.server.users.pop(session.name)</div><div class="line">            session.name = name</div><div class="line">            session.enter(self)</div><div class="line">            self.do_list(session, <span class="string">''</span>)</div><div class="line">            session.push(<span class="string">'type "select name" to choose one room\r\n'</span>)</div><div class="line">    <span class="comment">#查看当前房间有哪些人</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_look</span><span class="params">(self, session, line)</span>:</span></div><div class="line">        session.push(<span class="string">'the following are in this room:\r\n'</span>)</div><div class="line">        <span class="keyword">for</span> other <span class="keyword">in</span> self.sessions:</div><div class="line">            session.push(other.name + <span class="string">"\r\n"</span>)</div><div class="line">    <span class="comment">#查看当前在线的用户,所有房间的用户</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_who</span><span class="params">(self, session, line)</span>:</span></div><div class="line">        session.push(<span class="string">'the following are logged in:\r\n'</span>)</div><div class="line">        <span class="keyword">for</span> name <span class="keyword">in</span> self.server.users:</div><div class="line">            session.push(name + <span class="string">'\r\n'</span>)</div><div class="line">    <span class="comment">#查看当前所有的房间</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_list</span><span class="params">(self, session, line)</span>:</span></div><div class="line">        session.push(<span class="string">'the room list is below\r\n'</span>)</div><div class="line">        session.push(<span class="string">'   '</span>.join(self.server.rooms) + <span class="string">'\r\n'</span>)</div><div class="line">    <span class="comment">#选择房间</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_select</span><span class="params">(self, session, line)</span>:</span></div><div class="line">        name = line.strip()</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> name:</div><div class="line">            session.push(<span class="string">'please enter a room name\r\n'</span>)</div><div class="line">        <span class="keyword">elif</span> name <span class="keyword">in</span> self.server.rooms.keys():</div><div class="line">            session.enter(self.server.rooms[name])</div><div class="line">            self.broadcast(<span class="string">' %s ,welcome to join %s\r\n'</span>% (session.name, name))</div><div class="line">    <span class="comment">#输出帮助</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_h</span><span class="params">(self, session, line)</span>:</span></div><div class="line">        session.push(<span class="string">'you can use this commands:\r\n1,who to see who is on this server(online and offline)\r\n2,'</span></div><div class="line">        <span class="string">'list to see how many room are avaliable\r\n3,look to see who are in this room\r\n4,login to login online and '</span></div><div class="line">        <span class="string">'change a name\r\n5,create to create a new room'</span>)</div><div class="line">    <span class="comment">#创建新房间</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">do_create</span><span class="params">(self, session, line)</span>:</span></div><div class="line">        name = line.strip()</div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> name:</div><div class="line">            session.push(<span class="string">'please enter a name\r\n'</span>)</div><div class="line">        <span class="keyword">elif</span> name <span class="keyword">in</span> self.server.rooms.keys():</div><div class="line">            session.push(<span class="string">'The room name %s is taken\r\n'</span> % name)</div><div class="line">            session.push(<span class="string">'please try again\r\n'</span>)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            ChatRoom(name, self.server)</div><div class="line">            session.server.rooms[name] = ChatRoom(name, self.server)</div><div class="line">            session.push(<span class="string">"the room %s create successful\r\n"</span> % name)</div><div class="line">            session.enter(session.server.rooms[name])</div><div class="line"><span class="comment">#每个用户回话,这个是重点类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChatSession</span><span class="params">(async_chat)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, server, sock)</span>:</span></div><div class="line">        async_chat.__init__(self, sock)</div><div class="line">        self.server = server</div><div class="line">        self.set_terminator(<span class="string">'\r\n'</span>)</div><div class="line">        self.data = []</div><div class="line">        self.name = <span class="string">'visitor'</span> + str(len(server.users))<span class="comment">#初始化用户名,用visitor1之类来表示</span></div><div class="line">        self.room = self.server.main_room</div><div class="line">        self.enter(self.server.main_room)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">enter</span><span class="params">(self, room)</span>:</span></div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            cur = self.room</div><div class="line">        <span class="keyword">except</span> AttributeError: <span class="keyword">pass</span></div><div class="line">        <span class="keyword">else</span>: cur.remove(self)</div><div class="line">        self.room = room</div><div class="line">        room.add(self)</div><div class="line">    <span class="comment">#当用户有输入的时候</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">collect_incoming_data</span><span class="params">(self, data)</span>:</span></div><div class="line">        self.data.append(data)</div><div class="line">    <span class="comment">#当用户输入终止符的时候</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">found_terminator</span><span class="params">(self)</span>:</span></div><div class="line">        line = <span class="string">''</span>.join(self.data)</div><div class="line">        self.data = []</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            self.room.handle(self, line)</div><div class="line">        <span class="keyword">except</span> EndSession:</div><div class="line">            self.handle_close()</div><div class="line">    <span class="comment">#关闭用户回话</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">handle_close</span><span class="params">(self)</span>:</span></div><div class="line">        async_chat.handle_close(self)</div><div class="line">        <span class="comment">#self.enter()</span></div><div class="line"></div><div class="line"><span class="comment">#服务器类,这个也是重点类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChatServer</span><span class="params">(dispatcher)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, port, name)</span>:</span></div><div class="line">        dispatcher.__init__(self)</div><div class="line">        self.create_socket(socket.AF_INET, socket.SOCK_STREAM)</div><div class="line">        <span class="comment">#端口复用</span></div><div class="line">        self.set_reuse_addr()</div><div class="line">        self.bind((<span class="string">''</span>, port))</div><div class="line">        self.listen(<span class="number">5</span>)</div><div class="line">        self.sessions = {}</div><div class="line">        self.name = name</div><div class="line">        self.users = {}</div><div class="line">        self.rooms = {}</div><div class="line">        <span class="comment">#新建一个房间hall,因为每个初始登陆的用户没有房间,但是操作是依赖与ChatRoom类的,所以给一个初始默认的房间</span></div><div class="line">        self.main_room = ChatRoom(<span class="string">'hall'</span>, self)</div><div class="line">        self.rooms[self.main_room.name] = self.main_room</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">handle_accept</span><span class="params">(self)</span>:</span></div><div class="line">        conn,addr = self.accept()</div><div class="line">        ChatSession(self, conn)</div><div class="line">        <span class="keyword">print</span> <span class="string">'connection attempt from '</span>, addr[<span class="number">0</span>]</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">'server start'</span></div><div class="line">    s = ChatServer(PORT, NAME)</div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        asyncore.loop()</div><div class="line">    <span class="keyword">except</span> KeyboardInterrupt: <span class="keyword">print</span></div></pre></td></tr></table></figure>
+
+<p>效果如图所示<br><img src="http://ww3.sinaimg.cn/large/692869a3gw1eqjhaekoz0j20ii0h5q62.jpg" alt="运行效果"></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+        <div class="alignright">
+          <a href="http://jackroyal.github.io/2015/03/26/python-im/#duoshuo_thread" class="comment-link">Comments</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
   <article class="post">
   
   <div class="post-content">
@@ -213,68 +257,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2015-01-18T16:53:48.000Z"><a href="/2015/01/19/linux下使用github/">1月 19 2015</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2015/01/19/linux下使用github/">Linux下使用github</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <blockquote>
-<p>我的惰性真是病入膏肓了，已经整整3周没有在github上提交东西了，今天看了《模拟游戏》，索性又捡起来了。下面来总结一下linux下github的使用，也算是给自己一个备份，因为我自己也是老忘记。</p>
-</blockquote>
-<p>使用环境：Ubuntu 14.04</p>
-<h2 id="1_安装git相关软件">1 安装git相关软件</h2>
-<p>我的Ubuntu里面没有自带git相关软件，所以我们首先需要安装它，很简单。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> apt-get install git</div></pre></td></tr></table></figure>
-
-<h2 id="2_初始化git的设置">2 初始化git的设置</h2>
-<p>接下来，进行初始化设置，也就是设置你的github账号和密码</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git config --global <span class="literal">user</span>.name <span class="string">"zhangsan"</span><span class="comment">#其中的“zhangsan”输入的就是你注册时候的用户名，这步是设置你提交时候默认的用户名</span></div><div class="line"><span class="comment">#之后设置提交时候默认的邮箱，在命令行输入：</span></div><div class="line">git config --global <span class="literal">user</span>.email <span class="string">"haha@qq.com"</span></div><div class="line"><span class="comment">#其中的“haha@qq.com”就是你注册时候用的邮箱，当然也可以用别的邮箱，用别的邮箱的时候你必须在github的主页上设置里面把用的邮箱添加进去</span></div></pre></td></tr></table></figure>
-
-<h2 id="3_开始使用github">3 开始使用github</h2>
-<p>1 首先你的github上应该有一个库，如果没有的话，就去github网站上新建一个库，或者fork一个别人的项目，以下的操作都是建立在这个基础上，<code>假设存在一个库https://github.com/Jackroyal/test.git</code>.<br>如果你的github上已经有库了，可以忽略第1步直接进入第2步<br>2 我们在本地新建一个文件夹(命名随你便，我取名叫做test_git)</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">mkdir</span> test_git</div></pre></td></tr></table></figure>
-
-<p>3 将远程的库复制下来，我们使用git clone命令来完成</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#如果你的环境不在test_git目录</span></div><div class="line"><span class="preprocessor">#cd test_git</span></div><div class="line"><span class="preprocessor">#如果在test_git中</span></div><div class="line">git clone https:<span class="comment">//github.com/Jackroyal/test.git#他会在你的本地新建一个test文件夹</span></div><div class="line">cd test</div><div class="line"><span class="preprocessor">#接下来新建一个测试文件</span></div><div class="line">touch test.md</div><div class="line"><span class="preprocessor">#修改测试文件的内容</span></div><div class="line">vi test.md</div><div class="line"><span class="preprocessor">#提交刚才所做的更改</span></div><div class="line">git add .</div><div class="line">git commit -m <span class="string">"首次提交"</span></div></pre></td></tr></table></figure>
-
-<p>3 push提交到github</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git remote <span class="built_in">add</span> origin http<span class="variable">s:</span>//github.<span class="keyword">com</span>/Jackroyal/test.git</div><div class="line">git push</div></pre></td></tr></table></figure>
-
-<p>之后会提示你输入用户名密码，你输入你github账号和密码就行了<br>打完收工，睡觉<br>后面会陆续介绍hexo在Linux下的使用</p>
-<h1 id="参考文献">参考文献</h1>
-<p>1 <a href="http://blog.chinaunix.net/uid-29040159-id-3799719.html" target="_blank" rel="external">ubuntu 下 github 简单的使用教程</a><br>2 <a href="http://blog.csdn.net/pony_maggie/article/details/23207847" target="_blank" rel="external">Github入门级使用攻略</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-        <div class="alignright">
-          <a href="http://jackroyal.github.io/2015/01/19/linux下使用github/#duoshuo_thread" class="comment-link">Comments</a>
-        </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
 
 <nav id="pagination">
   
@@ -298,23 +280,21 @@
   
     <li><a href="/categories/Linux/">Linux</a><small>4</small></li>
   
-    <li><a href="/categories/chrome扩展/">chrome扩展</a><small>4</small></li>
+    <li><a href="/categories/chrome扩展/">chrome扩展</a><small>1</small></li>
   
     <li><a href="/categories/hexo/">hexo</a><small>2</small></li>
   
     <li><a href="/categories/javascript/">javascript</a><small>2</small></li>
   
-    <li><a href="/categories/linux/">linux</a><small>0</small></li>
-  
-    <li><a href="/categories/python学习笔记/">python学习笔记</a><small>1</small></li>
+    <li><a href="/categories/python学习笔记/">python学习笔记</a><small>2</small></li>
   
     <li><a href="/categories/数据库/">数据库</a><small>1</small></li>
   
-    <li><a href="/categories/服务器/">服务器</a><small>1</small></li>
+    <li><a href="/categories/服务器/">服务器</a><small>0</small></li>
   
     <li><a href="/categories/杂文/">杂文</a><small>1</small></li>
   
-    <li><a href="/categories/软件安装与技巧/">软件安装与技巧</a><small>1</small></li>
+    <li><a href="/categories/软件安装与技巧/">软件安装与技巧</a><small>0</small></li>
   
   </ul>
 </div>
@@ -327,9 +307,9 @@
   
     <li><a href="/tags/Linux/">Linux</a><small>5</small></li>
   
-    <li><a href="/tags/chrome/">chrome</a><small>4</small></li>
+    <li><a href="/tags/chrome/">chrome</a><small>1</small></li>
   
-    <li><a href="/tags/cmcc-edu/">cmcc-edu</a><small>4</small></li>
+    <li><a href="/tags/cmcc-edu/">cmcc-edu</a><small>1</small></li>
   
     <li><a href="/tags/github/">github</a><small>2</small></li>
   
@@ -341,37 +321,35 @@
   
     <li><a href="/tags/kali/">kali</a><small>2</small></li>
   
-    <li><a href="/tags/linux/">linux</a><small>0</small></li>
-  
-    <li><a href="/tags/python/">python</a><small>1</small></li>
+    <li><a href="/tags/python/">python</a><small>2</small></li>
   
     <li><a href="/tags/select/">select</a><small>1</small></li>
   
     <li><a href="/tags/shadowsocks/">shadowsocks</a><small>1</small></li>
   
-    <li><a href="/tags/socket/">socket</a><small>1</small></li>
+    <li><a href="/tags/socket/">socket</a><small>2</small></li>
   
     <li><a href="/tags/sql/">sql</a><small>1</small></li>
   
-    <li><a href="/tags/sql-server/">sql server</a><small>1</small></li>
+    <li><a href="/tags/sql-server/">sql server</a><small>0</small></li>
   
     <li><a href="/tags/ubuntu/">ubuntu</a><small>1</small></li>
   
-    <li><a href="/tags/wamp/">wamp</a><small>1</small></li>
+    <li><a href="/tags/wamp/">wamp</a><small>0</small></li>
   
-    <li><a href="/tags/中国移动/">中国移动</a><small>3</small></li>
+    <li><a href="/tags/中国移动/">中国移动</a><small>1</small></li>
   
     <li><a href="/tags/前端/">前端</a><small>2</small></li>
   
-    <li><a href="/tags/扩展/">扩展</a><small>2</small></li>
+    <li><a href="/tags/扩展/">扩展</a><small>1</small></li>
   
     <li><a href="/tags/正则/">正则</a><small>1</small></li>
   
     <li><a href="/tags/正则表达式/">正则表达式</a><small>1</small></li>
   
-    <li><a href="/tags/脚本/">脚本</a><small>2</small></li>
+    <li><a href="/tags/脚本/">脚本</a><small>1</small></li>
   
-    <li><a href="/tags/表单/">表单</a><small>1</small></li>
+    <li><a href="/tags/表单/">表单</a><small>0</small></li>
   
   </ul>
 </div>
@@ -381,6 +359,10 @@
 <div class="widget tag">
   <h3 class="title">最新文章</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/2015/03/26/python-im/">python学习笔记--一个简单聊天室的实现</a>
+      </li>
     
       <li>
         <a href="/2015/03/18/python-socket-port-reuse/">python学习笔记--socket编程端口复用</a>
@@ -398,10 +380,6 @@
         <a href="/2015/03/03/kali-and-ubuntu/">kali和ubuntu双系统安装</a>
       </li>
     
-      <li>
-        <a href="/2015/01/19/linux下使用github/">Linux下使用github</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -410,7 +388,7 @@
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/Linux/" style="font-size: 20.00px;">Linux</a><a href="/tags/chrome/" style="font-size: 18.00px;">chrome</a><a href="/tags/cmcc-edu/" style="font-size: 18.00px;">cmcc-edu</a><a href="/tags/github/" style="font-size: 14.00px;">github</a><a href="/tags/hexo/" style="font-size: 16.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 14.00px;">javascript</a><a href="/tags/js/" style="font-size: 12.00px;">js</a><a href="/tags/kali/" style="font-size: 14.00px;">kali</a><a href="/tags/linux/" style="font-size: 10.00px;">linux</a><a href="/tags/python/" style="font-size: 12.00px;">python</a><a href="/tags/select/" style="font-size: 12.00px;">select</a><a href="/tags/shadowsocks/" style="font-size: 12.00px;">shadowsocks</a><a href="/tags/socket/" style="font-size: 12.00px;">socket</a><a href="/tags/sql/" style="font-size: 12.00px;">sql</a><a href="/tags/sql-server/" style="font-size: 12.00px;">sql server</a><a href="/tags/ubuntu/" style="font-size: 12.00px;">ubuntu</a><a href="/tags/wamp/" style="font-size: 12.00px;">wamp</a><a href="/tags/中国移动/" style="font-size: 16.00px;">中国移动</a><a href="/tags/前端/" style="font-size: 14.00px;">前端</a><a href="/tags/扩展/" style="font-size: 14.00px;">扩展</a><a href="/tags/正则/" style="font-size: 12.00px;">正则</a><a href="/tags/正则表达式/" style="font-size: 12.00px;">正则表达式</a><a href="/tags/脚本/" style="font-size: 14.00px;">脚本</a><a href="/tags/表单/" style="font-size: 12.00px;">表单</a>
+    <a href="/tags/Linux/" style="font-size: 20.00px;">Linux</a><a href="/tags/chrome/" style="font-size: 12.50px;">chrome</a><a href="/tags/cmcc-edu/" style="font-size: 12.50px;">cmcc-edu</a><a href="/tags/github/" style="font-size: 15.00px;">github</a><a href="/tags/hexo/" style="font-size: 17.50px;">hexo</a><a href="/tags/javascript/" style="font-size: 15.00px;">javascript</a><a href="/tags/js/" style="font-size: 12.50px;">js</a><a href="/tags/kali/" style="font-size: 15.00px;">kali</a><a href="/tags/python/" style="font-size: 15.00px;">python</a><a href="/tags/select/" style="font-size: 12.50px;">select</a><a href="/tags/shadowsocks/" style="font-size: 12.50px;">shadowsocks</a><a href="/tags/socket/" style="font-size: 15.00px;">socket</a><a href="/tags/sql/" style="font-size: 12.50px;">sql</a><a href="/tags/sql-server/" style="font-size: 10.00px;">sql server</a><a href="/tags/ubuntu/" style="font-size: 12.50px;">ubuntu</a><a href="/tags/wamp/" style="font-size: 10.00px;">wamp</a><a href="/tags/中国移动/" style="font-size: 12.50px;">中国移动</a><a href="/tags/前端/" style="font-size: 15.00px;">前端</a><a href="/tags/扩展/" style="font-size: 12.50px;">扩展</a><a href="/tags/正则/" style="font-size: 12.50px;">正则</a><a href="/tags/正则表达式/" style="font-size: 12.50px;">正则表达式</a><a href="/tags/脚本/" style="font-size: 12.50px;">脚本</a><a href="/tags/表单/" style="font-size: 10.00px;">表单</a>
   </div>
 </div>
 
@@ -433,7 +411,7 @@
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="http://libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+  <script src="https://lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 

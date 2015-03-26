@@ -39,12 +39,116 @@
     
       <li><a href="/archives">Archives</a></li>
     
+    <li> <a href="/atom.xml">RSS</a> </li>
   </ul>
   <div class="clearfix"></div>
 </nav>
-<div class="clearfix"></div></header>
+<div class="clearfix"></div>
+</header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-25T14:32:00.000Z"><a href="/2014/11/25/[js]replace替换/">11月 25 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/11/25/[js]replace替换/">[js]replace替换</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>今天做前端试题,用到了replace函数,来记录一下.<br>(以下部分知识点来自<a href="http://www.w3cschool.cn/jsref_replace.html" target="_blank" rel="external">http://www.w3cschool.cn/jsref_replace.html</a>)</p>
+<h2 id="定义和用法">定义和用法</h2>
+<p>replace() 方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。</p>
+<h3 id="语法">语法</h3>
+<table class="dataintable " style="margin-top:10px; border-collapse:collapse; border:1px solid rgb(136,136,136); width:606px; color:rgb(0,0,0); font-size:12px; background-color:rgb(249,249,249)"><br><tbody><br><tr><br><th style="vertical-align:baseline; padding:5px 15px 5px 5px; border:1px solid rgb(136,136,136); background-color:rgb(204,204,204)"><br>参数</th><br><th style="vertical-align:baseline; padding:5px 15px 5px 5px; border:1px solid rgb(136,136,136); background-color:rgb(204,204,204)"><br>描述</th><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>regexp/substr</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br><p style="margin-top:0px; margin-bottom:0px; line-height:18px">必需。规定子字符串或要替换的模式的 RegExp 对象。</p><br><p style="margin-top:0px; margin-bottom:2px; line-height:18px">请注意，如果该值是一个字符串，则将它作为要检索的直接量文本模式，而不是首先被转换为 RegExp 对象。</p><br></td><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>replacement</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>必需。一个字符串值。规定了替换文本或生成替换文本的函数。</td><br></tr><br></tbody><br></table>
+
+<h3 id="返回值">返回值</h3>
+<p>一个新的字符串，是用 <em>replacement</em> 替换了 regexp 的第一次匹配或所有匹配之后得到的。</p>
+<h3 id="说明">说明</h3>
+<p>字符串 stringObject 的 replace() 方法执行的是查找并替换的操作。它将在 stringObject 中查找与 regexp 相匹配的子字符串，然后用 <em>replacement</em> 来替换这些子串。如果 regexp 具有全局标志 g，那么 replace() 方法将替换所有匹配的子串。否则，它只替换第一个匹配子串。</p>
+<p><em>replacement</em> 可以是字符串，也可以是函数。如果它是字符串，那么每个匹配都将由字符串替换。但是 replacement 中的 $ 字符具有特定的含义。如下表所示，它说明从模式匹配得到的字符串将用于替换。</p>
+<table class="dataintable " style="margin-top:10px; border-collapse:collapse; border:1px solid rgb(136,136,136); width:606px; color:rgb(0,0,0); font-size:12px; background-color:rgb(249,249,249)"><br><tbody><br><tr><br><th style="vertical-align:baseline; padding:5px 15px 5px 5px; border:1px solid rgb(136,136,136); background-color:rgb(204,204,204)"><br>字符</th><br><th style="vertical-align:baseline; padding:5px 15px 5px 5px; border:1px solid rgb(136,136,136); background-color:rgb(204,204,204)"><br>替换文本</th><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>$1、$2、…、$99</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>与 regexp 中的第 1 到第 99 个子表达式相匹配的文本。</td><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>$&amp;</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>与 regexp 相匹配的子串。</td><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>$`</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>位于匹配子串左侧的文本。</td><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>$’</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>位于匹配子串右侧的文本。</td><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>$$</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>直接量符号。</td><br></tr><br></tbody><br></table>
+
+<p><strong>注意：</strong>ECMAScript v3 规定，replace() 方法的参数 replacement 可以是函数而不是字符串。在这种情况下，每个匹配都调用该函数，它返回的字符串将作为替换文本使用。该函数的第一个参数是匹配模式的字符串。接下来的参数是与模式中的子表达式匹配的字符串，可以有 0 个或多个这样的参数。接下来的参数是一个整数，声明了匹配在 stringObject 中出现的位置。最后一个参数是<br> stringObject 本身。</p>
+<p>下面给几个简单的例子来说明一下</p>
+<p>ps:介绍一下正则的小知识,\w表示匹配一个英文字符,+表示匹配数量必须大于一个,\b就是分节符,单词中间分隔用的,连在一起就是取出前面字符串中所有的单词</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">'my name is'</span>.replace(<span class="regexp">/(\w+)\b/g</span>,<span class="string">'haha  '</span>);<span class="comment">//输出结果为   "haha   haha   haha  "</span></div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">'my name is'</span>.replace(<span class="regexp">/(\w+)\b/g</span>,<span class="string">'$1aa'</span>);<span class="comment">//输出结果为"myaa nameaa isaa"</span></div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">'my name is'</span>.replace(<span class="regexp">/((\w)(\w+?))\b/g</span>,<span class="function"><span class="keyword">function</span><span class="params">(m,a,b,c,d,e)</span></span>{<span class="keyword">return</span> b.toUpperCase()+c;});<span class="comment">//输出结果为"My Name Is"</span></div></pre></td></tr></table></figure>
+
+<p>重点讲解一下第三个,replace返回值为函数的例子(function必须要return)</p>
+<p>当replace返回值为函数的时候</p>
+<p>如果只有一个分组的话,他的参数是funciton(match,pos,originalText),分别表示模式的匹配项,模式匹配项在字符串中的位置和原始字符串</p>
+<p>如果有多个分组的话,他的参数是funciton(match,arr1,arr2,arr3,….arrn,pos,originalText),分别表示模式的匹配项,模式匹配项,还有n个匹配的分组,最后的两个参数是在字符串中的位置和原始字符串</p>
+<p>比如下面的例子,执行的结果就是</p>
+<p>‘my name is imweba ‘.replace(/((\w)(\w+?))\b/g,function(m,a,b,c,d,e){</p>
+<p>console.log(m);</p>
+<p>console.log(a);</p>
+<p>console.log(b);</p>
+<p>console.log(c);</p>
+<p>console.log(d);</p>
+<p>console.log(e);</p>
+<p>});<br>执行结果</p>
+<p>my//模式匹配的值,因为上面匹配了整个单词,虽然分了多个组</p>
+<p>my//第一个分组的值</p>
+<p>m//第二个分组的值</p>
+<p>y//第三个分组的值</p>
+<p>0//模式匹配在字符串中的起始位置</p>
+<p>my name is imweba  //原始字符串</p>
+<p>name</p>
+<p>name</p>
+<p>n</p>
+<p>ame</p>
+<p>3</p>
+<p>my name is imweba </p>
+<p>is</p>
+<p>is</p>
+<p>i</p>
+<p>s</p>
+<p>8</p>
+<p>my name is imweba </p>
+<p>imweba</p>
+<p>imweba</p>
+<p>i</p>
+<p>mweba</p>
+<p>11</p>
+<p>my name is imweba </p>
+<p>“undefined undefined undefined undefined “//这一行是因为function必须要有return,我没写return,所以就都是undefined</p>
+<p>ok  打完收工</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+        <div class="alignright">
+          <a href="http://jackroyal.github.io/2014/11/25/[js]replace替换/#duoshuo_thread" class="comment-link">Comments</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
   <article class="post">
   
   <div class="post-content">
@@ -146,34 +250,51 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2014-11-24T07:16:00.000Z"><a href="/2014/11/24/chrome扩展开发手记<3>-chrome扩展开始第一步manfest.json/">11月 24 2014</a></time>
+        <time datetime="2014-08-08T02:02:00.000Z"><a href="/2014/08/08/sql中left_join和right_join混用/">8月 8 2014</a></time>
       
       
   
-    <h1 class="title"><a href="/2014/11/24/chrome扩展开发手记<3>-chrome扩展开始第一步manfest.json/">chrome扩展开发手记&lt;3&gt;-chrome扩展开始第一步manfest.json</a></h1>
+    <h1 class="title"><a href="/2014/08/08/sql中left_join和right_join混用/">sql中left_join和right_join混用</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>参考文档   <a href="https://lmk123.duapp.com/" target="_blank" rel="external">https://lmk123.duapp.com/</a></p>
-<p>下面开始写chrome扩展了,第一步就是看文档,官方文档有入门指导,先要过一遍</p>
-<p>我们首先来编写第一个文件manfest.json,这是一个清单文件,告诉系统,我有哪些文件,需要申请哪些权限都在里面,下卖弄给出我的manfest.json</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">{</div><div class="line">    <span class="string">"name"</span>:<span class="string">"cmcc520"</span>,<span class="comment">//扩展的名称</span></div><div class="line">    <span class="string">"version"</span>:<span class="string">"2.0"</span>,<span class="comment">//扩展的版本号,随便写</span></div><div class="line">    <span class="string">"description"</span>:<span class="string">"powered by 搁浅St"</span>,<span class="comment">//扩展的描述,就是在chrome://extension页面中,扩展名称下面的几个字</span></div><div class="line">    <span class="string">"background"</span>: {<span class="comment">//background.js,整个扩展的运行,有个页面在后台运行</span></div><div class="line">        <span class="string">"scripts"</span>: [<span class="string">"js/function.js"</span>,<span class="string">"bg.js"</span>],</div><div class="line">        <span class="string">"persistent"</span>: <span class="literal">false</span></div><div class="line">    },</div><div class="line">    <span class="string">"page_action"</span>:{<span class="comment">//比较常见有page_action和browser_action有,page会出现在地址栏末端,browser会在浏览器上显示一个图标</span></div><div class="line">        <span class="string">"default_icon"</span>:<span class="string">"icon-48.png"</span>,</div><div class="line">        <span class="string">"default_popup"</span>: <span class="string">"popup.html"</span>,<span class="comment">//popup.html点击弹出的页面</span></div><div class="line">        <span class="string">"default_title"</span>:<span class="string">"cmcc520"</span></div><div class="line">    },</div><div class="line">    <span class="string">"permissions"</span> : [<span class="comment">//申请内容脚本的权限,在插入内容到页面时,需要用哪些权限,此处必须声明</span></div><div class="line">        <span class="string">"tabs"</span>, <span class="string">"http://\*/\*"</span></div><div class="line">    ],</div><div class="line">    <span class="string">"icons"</span> : {<span class="comment">//图标设置</span></div><div class="line">        <span class="string">"48"</span> : <span class="string">"icon-48.png"</span>,</div><div class="line">        <span class="string">"128"</span> : <span class="string">"icon-128.png"</span></div><div class="line">    },</div><div class="line">    <span class="string">"commands"</span>: {<span class="comment">//快捷键设置</span></div><div class="line">        <span class="string">"logout_cmcc"</span>: {</div><div class="line">            <span class="string">"description"</span>: <span class="string">"退出CMCC登录"</span>,</div><div class="line">            <span class="string">"suggested_key"</span>: {</div><div class="line">                <span class="string">"default"</span>: <span class="string">"Alt+X"</span></div><div class="line">            }</div><div class="line">        }</div><div class="line">    },</div><div class="line">    <span class="string">"manifest_version"</span>:<span class="number">2</span><span class="comment">//manifest_version,现在版本1已经不支持,统一都写成2</span></div><div class="line"></div><div class="line">}</div></pre></td></tr></table></figure>
+        <p>left join(左联接) 返回包括左表中的所有记录和右表中联结字段相等的记录 </p>
+<p>right join(右联接) 返回包括右表中的所有记录和左表中联结字段相等的记录</p>
+<p>inner join(等值连接) 只返回两个表中联结字段相等的行</p>
+<p>如上所言,我们只做一下left join的实验,right join和left join 类似</p>
+<p>测试一共三张表,a  b   c<br><img src="" alt=""></p>
+<p>表结构和数据分别如下</p>
+<p>a表                                                                  b表                                                              c表<br><img src="" alt="">         <img src="" alt="">          <img src="" alt=""></p>
+<p>然后我们来试一下左连接</p>
+<p>1,  我们来查询a b两张表,连接他们aid=bid的选项<br>sql&gt;&gt;SELECT *  FROM a   LEFT JOIN b on aid=bid</p>
+<p><img src="" alt=""></p>
+<p>看图很好理解,因为是a左连接b,所以b中为空的元素 ,在查询结果中以NULL的形式补全</p>
+<p>同理可得</p>
+<p>sql&gt;&gt;SELECT * FROM a LEFT JOIN c on aid=cid<br><img src="" alt=""></p>
+<p>sql&gt;&gt;SELECT * FROM c LEFT JOIN b on bid=cid<br>sql&gt;&gt;SELECT * FROM c LEFT JOIN b on cid=bid</p>
+<p><img src="" alt=""></p>
+<p>也就是on后面的顺序无所谓,无论是bid=cid还是cid=bid,重点是前面的left join还是right join</p>
+<p>2,我们来试一下如果三张表左连接呢,会有什么情况?</p>
+<p>sql&gt;&gt;SELECT * FROM a</p>
+<pre><code>       <span class="built_in">LEFT</span> <span class="built_in">JOIN</span> b <span class="keyword">on</span> bid=aid 
 
-<p>简单的属性,这里不再赘述,我重点说一下background,page_action,permissions和commands.</p>
-<p>background  它是一个包含扩展程序主要逻辑的不可见页面。扩展程序也可以包含其他页面，展现扩展程序的用户界面。如果扩展程序需要与用户加载的网页交互（相对于包含在扩展程序中的页面），扩展程序必须使用内容脚本。后台网页分两种：持续运行的后台网页与事件页面(设置persistent属性)。正如它们的名称所述，持续运行的后台网页保持打开状态，事件页面根据需要打开与关闭。除非您绝对需要您的后台网页一直运行，请首选事件页面。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="string">"background"</span>: {<span class="comment">//background.js,整个扩展的运行,有个页面在后台运行</span></div><div class="line">    <span class="string">"scripts"</span>: [<span class="string">"js/function.js"</span>,<span class="string">"bg.js"</span>],</div><div class="line">    <span class="string">"persistent"</span>: <span class="literal">false</span></div><div class="line">},</div></pre></td></tr></table></figure>
-
-<p>比如我的这个 后台执行就是这样的</p>
-<p><img src="http://img.blog.csdn.net/20141124194616706?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
-<p>采用pageaction还是browseraction取决于你是否想让图标一直可见.`<img src="http://img.blog.csdn.net/20141124193151343?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
-<p>如图,绿色的是广告终结者,他的图标是pageAction,后面的印象笔记还有switchproxy是browserAction.一般来说,适用于少数页面的扩展建议使用pageaction,适用于大多数页面的建议使用browseraction</p>
-<p>permissions属性,用来设置和conten_script相关的选项,举个例子,如果你想插入一段代码到页面中去执行,操作页面上的dom,那就写个content_script就行了,使用 content_scripts 字段，扩展程序可以向一个页面中插入多个内容脚本，每个内容脚本可以有多个<br> JavaScript 和 CSS 文件,详细情况请看这里<a href="https://lmk123.duapp.com/extensions/content_scripts" target="_blank" rel="external">https://lmk123.duapp.com/extensions/content_scripts</a></p>
-<p>我现在在做的一个扩展就是做这样的事,百度的搜索结果会先跳到一个百度的网址,然后才是目标网址,我可以使用cotent_scripts来插入脚本,修改百度搜索结果的链接,让他直接跳转到目标页面,而不是百度的搜索结果页面.</p>
-<p>commands选项是设置快捷键,然后给快捷键设置事件 监听,这样我们按快捷键就会执行相应操作.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="string">"logout_cmcc"</span>: {<span class="comment">//某个快捷操作的名称</span></div><div class="line">    <span class="string">"description"</span>: <span class="string">"退出CMCC登录"</span>,<span class="comment">//快捷操作的描述</span></div><div class="line">    <span class="string">"suggested_key"</span>: {<span class="comment">//默认推荐的快捷键,不能与系统默认的快捷键冲突,否则就会失灵,需要用户手动去设置</span></div><div class="line">        <span class="string">"default"</span>: <span class="string">"Alt+X"</span></div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
-
+       <span class="built_in">LEFT</span> <span class="built_in">JOIN</span> c <span class="keyword">on</span> aid=cid
+</code></pre><p><img src="" alt=""></p>
+<p>sql&gt;&gt;SELECT * FROM a LEFT JOIN b on bid=aid LEFT JOIN c on bid=cid<br><img src="" alt=""></p>
+<p>3,如果我用了一个right join呢?</p>
+<p>sql&gt;&gt;SELECT * FROM a LEFT JOIN b on bid=aid RIGHT JOIN c on bid=cid<br><img src="" alt=""></p>
+<p>这里该怎么理解呢?<br>感谢<a href="http://blog.csdn.net/sqlserverdiscovery/article/details/6893288" target="_blank" rel="external">http://blog.csdn.net/sqlserverdiscovery/article/details/6893288</a></p>
+<p>我们理解的时候可以把它拆成两部分去理解</p>
+<p>比如第一部分<br>sql&gt;&gt;SELECT * FROM a LEFT JOIN b on bid=aid</p>
+<p><img src="" alt=""></p>
+<p>然后再思考第二部分,假如上图是一张表  我们叫它a_b</p>
+<p>你可以新建一个视图,就可以真成为一张虚表了</p>
+<p>sql&gt;&gt;create  VIEW a_b  as (SELECT * FROM a LEFT JOIN b on bid=aid)<br><img src="" alt=""></p>
+<p>然后我们继续做下面一部分</p>
+<p>sql&gt;&gt;select * from a_b right join c on bid=cid<br><img src="" alt=""></p>
+<p>可见,与上面的结果是一样的,当然这是我们理解的过程,实际数据库服务器执行的时候可能不是这样的,它会做一些优化,提高效率</p>
 
       
     </div>
@@ -182,116 +303,7 @@
         
         
         <div class="alignright">
-          <a href="http://jackroyal.github.io/2014/11/24/chrome扩展开发手记<3>-chrome扩展开始第一步manfest.json/#duoshuo_thread" class="comment-link">Comments</a>
-        </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-11-24T03:18:00.000Z"><a href="/2014/11/24/chrome扩展开发手记<2>-登录原理分析/">11月 24 2014</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/11/24/chrome扩展开发手记<2>-登录原理分析/">chrome扩展开发手记&lt;2&gt;-登录原理分析</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>上一篇,我们 介绍了一下登录的流程,但是用程序进行登录的话,我们肯定不能那样一步一步,太过复杂,所以我们接下来分下一下登录的具体过程,看看能不能作一些简化</p>
-<p>我们接下来,给几个页面编个号,下面好分析一点<br>A   最原始的跳转 <a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external">http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU</a><br>B  第一次改ssid  <a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external">http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free</a></p>
-<p>C 第一次点击 请点击登录  以后的地址<br><a href="http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free" target="_blank" rel="external">http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free</a></p>
-<p>D 第二次改ssid<br><a href="http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free" target="_blank" rel="external">http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC520</a></p>
-<ol>
-<li>从www.baidu.com跳转到A地址,这个步骤没什么特别的,服务器那边做了一个302跳转,然后我们这边就自动跳转到A地址了</li>
-<li><p>第一次改ssid,也就是从A到B,这个过程也没什么,只是一个单纯的地址跳转,B地址中有一个表单<br><br><img src="http://img.blog.csdn.net/20141124134725891?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br><br>这个表单里面 主要包含四个字段,<br><br>wlanacname:1022.0027.270.00<br><br>wlanuserip:10.80.97.209<br>ssid:iWuhan-Free<br><br>userAgent_1:Mozilla/5.0 (Windows NT 6.2)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36</p>
-</li>
-<li><p>我们第一次点击 请提交登录,所做的操作就是把上面的表单提交到  <a href="http://120.202.164.10:8080/portal/servlets/SingleLoginServlet" target="_blank" rel="external">http://120.202.164.10:8080/portal/servlets/SingleLoginServlet</a><br><br>服务器返回的地址是C,这一步的表单提交主要是为了获取C的地址,就是因为多了的那个loginFree.jsp,这样下一步才能改ssid为CMCC520,否则,如果你越过这一步直接改ssid为CMCC520,就会跳转到其他的页面,比如下面这个<img src="http://img.blog.csdn.net/20141124133708801?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br><br>这个地址如果点击提交,是没有办法正常登陆的,我们必须要到武汉的那个页面才行.</p>
-</li>
-<li>在我们到达C那个页面以后,我们再次修改ssid,就到了D页面,然后在D页面点击  请点击登录,流程和上面的一样,页面效果也是一样,不过表单的值变了一个,具体表单post内容如下<br><br>wlanacname:1022.0027.270.00<br><br>wlanuserip:10.80.97.209<br>ssid:CMCC520<br>userAgent_1:Mozilla/5.0 (Windows NT 6.2)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36<br><br>提交以后,我们就可以登录成功了,成功以后服务器会做一个302跳转,页面跳转到一个登录计时的页面.</li>
-</ol>
-<p>************************************************************************************************************************************************************<br><em><br>
-</em><br>从整体来看,最核心的一个操作就是向<a href="http://120.202.164.10:8080/portal/servlets/SingleLoginServlet" target="_blank" rel="external">http://120.202.164.10:8080/portal/servlets/SingleLoginServlet</a>提交一个表单,表单内容是<br>wlanacname:1022.0027.270.00<br>wlanuserip:10.80.97.209<br>ssid:CMCC520<br>userAgent<em>1:Mozilla/5.0 (Windows NT 6.2)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36<br>然后,然后就没有然后了,那个最后计时页面的跳转没有多大的实际作用,我们只需要post这一个请求就好了<br>下一步我们开始制作chrome扩展,核心也是要实现这个post的请求
-</em>************************************************************************************************************************************************************<em>
-</em>退出登录也是如此,发一个get请求过去,然后从获得的内容中进行判断,判断成功与否<em><br>_</em></p>
-<p>下线请求<br><a href="http://120.202.164.10:8080/portal/servlets/LogoutServlet?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC520&amp;ATTRIBUTE_USERNAME=iWuhanFree4300&amp;ATTRIBUTE_UUID=26FBE9A694B6221958CF6DE2704F0ECA&amp;ATTRIBUTE_IPADDRESS=10.80.97.209&amp;cancelAutomatismLogin=false" target="_blank" rel="external">http://120.202.164.10:8080/portal/servlets/LogoutServlet?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC520&amp;ATTRIBUTE_USERNAME=iWuhanFree4300&amp;ATTRIBUTE_UUID=26FBE9A694B6221958CF6DE2704F0ECA&amp;ATTRIBUTE_IPADDRESS=10.80.97.209&amp;cancelAutomatismLogin=false</a></p>
-<p>表单实际内容</p>
-<p>wlanacname:1022.0027.270.00</p>
-<p>wlanuserip:10.80.97.209</p>
-<p>ssid:CMCC520</p>
-<p>ATTRIBUTE_USERNAME:iWuhanFree4300</p>
-<p>ATTRIBUTE_UUID:26FBE9A694B6221958CF6DE2704F0ECA</p>
-<p>ATTRIBUTE_IPADDRESS:10.80.97.209</p>
-<p>cancelAutomatismLogin:false</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-        <div class="alignright">
-          <a href="http://jackroyal.github.io/2014/11/24/chrome扩展开发手记<2>-登录原理分析/#duoshuo_thread" class="comment-link">Comments</a>
-        </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-11-21T10:17:00.000Z"><a href="/2014/11/21/chrome扩展开发手记<1>-需求分析/">11月 21 2014</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/11/21/chrome扩展开发手记<1>-需求分析/">chrome扩展开发手记&lt;1&gt;-需求分析</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>本人的学校在武汉,有CMCC-EDU的网络覆盖,中国移动和武汉市政府搞了一个活动,可以免费公益上网,说白了,就是可以免费使用EDU的网络,如图.<br><img src="http://img.blog.csdn.net/20141121181910580?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
-<p>以上是前提.</p>
-<p>这个网络的使用流程是这样子的.</p>
-<ol>
-<li>你打开任何一个网址,比如<a href="http://www.baidu.com" target="_blank" rel="external">http://www.baidu.com</a>  <br><br>都会跳转到 <a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external"></a><a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external">http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU</a>  界面如图所示<br><br><img src="http://img.blog.csdn.net/20141124103645611?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></li>
-<li>接下来我们手动更改最上面的网址栏,把ssid改为iWuhan-Free,(注意大小写)<br><br>修改后的网址如下<a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external">http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free</a>界面如下<br><br><img src="http://img.blog.csdn.net/20141124104120281?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></li>
-<li>接下来我们点击,请点击登录按钮,系统反馈如下<br><br><img src="http://img.blog.csdn.net/20141124104623968?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br><br>我们忽略这个警告,可以注意到,上面的地址栏已经变掉了,多了个loginFree.jsp完整的地址<a href="http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free" target="_blank" rel="external">http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free</a></li>
-<li>接下来,我们再改一次ssid,改为CMCC520,完整地址如下<a href="http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free" target="_blank" rel="external">http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC520</a> 界面还是和上图一样,就不贴图了,我们再点击一次,请点击登录,然后就会跳到一个计时页面,这样就表示你登录成功,可以上网了</li>
-</ol>
-<p>登录的流程走完了,下一篇,接下来我们分析一下登录的原理,简化一下登录的流程</p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-        <div class="alignright">
-          <a href="http://jackroyal.github.io/2014/11/21/chrome扩展开发手记<1>-需求分析/#duoshuo_thread" class="comment-link">Comments</a>
+          <a href="http://jackroyal.github.io/2014/08/08/sql中left_join和right_join混用/#duoshuo_thread" class="comment-link">Comments</a>
         </div>
         
       
@@ -310,8 +322,6 @@
     <a href="/page/2/" class="alignleft prev">上一页</a>
   
   
-    <a href="/page/4/" class="alignright next">下一页</a>
-  
   <div class="clearfix"></div>
 </nav></div></div>
     <aside id="sidebar" class="alignright">
@@ -329,23 +339,21 @@
   
     <li><a href="/categories/Linux/">Linux</a><small>4</small></li>
   
-    <li><a href="/categories/chrome扩展/">chrome扩展</a><small>4</small></li>
+    <li><a href="/categories/chrome扩展/">chrome扩展</a><small>1</small></li>
   
     <li><a href="/categories/hexo/">hexo</a><small>2</small></li>
   
     <li><a href="/categories/javascript/">javascript</a><small>2</small></li>
   
-    <li><a href="/categories/linux/">linux</a><small>0</small></li>
-  
-    <li><a href="/categories/python学习笔记/">python学习笔记</a><small>1</small></li>
+    <li><a href="/categories/python学习笔记/">python学习笔记</a><small>2</small></li>
   
     <li><a href="/categories/数据库/">数据库</a><small>1</small></li>
   
-    <li><a href="/categories/服务器/">服务器</a><small>1</small></li>
+    <li><a href="/categories/服务器/">服务器</a><small>0</small></li>
   
     <li><a href="/categories/杂文/">杂文</a><small>1</small></li>
   
-    <li><a href="/categories/软件安装与技巧/">软件安装与技巧</a><small>1</small></li>
+    <li><a href="/categories/软件安装与技巧/">软件安装与技巧</a><small>0</small></li>
   
   </ul>
 </div>
@@ -358,9 +366,9 @@
   
     <li><a href="/tags/Linux/">Linux</a><small>5</small></li>
   
-    <li><a href="/tags/chrome/">chrome</a><small>4</small></li>
+    <li><a href="/tags/chrome/">chrome</a><small>1</small></li>
   
-    <li><a href="/tags/cmcc-edu/">cmcc-edu</a><small>4</small></li>
+    <li><a href="/tags/cmcc-edu/">cmcc-edu</a><small>1</small></li>
   
     <li><a href="/tags/github/">github</a><small>2</small></li>
   
@@ -372,37 +380,35 @@
   
     <li><a href="/tags/kali/">kali</a><small>2</small></li>
   
-    <li><a href="/tags/linux/">linux</a><small>0</small></li>
-  
-    <li><a href="/tags/python/">python</a><small>1</small></li>
+    <li><a href="/tags/python/">python</a><small>2</small></li>
   
     <li><a href="/tags/select/">select</a><small>1</small></li>
   
     <li><a href="/tags/shadowsocks/">shadowsocks</a><small>1</small></li>
   
-    <li><a href="/tags/socket/">socket</a><small>1</small></li>
+    <li><a href="/tags/socket/">socket</a><small>2</small></li>
   
     <li><a href="/tags/sql/">sql</a><small>1</small></li>
   
-    <li><a href="/tags/sql-server/">sql server</a><small>1</small></li>
+    <li><a href="/tags/sql-server/">sql server</a><small>0</small></li>
   
     <li><a href="/tags/ubuntu/">ubuntu</a><small>1</small></li>
   
-    <li><a href="/tags/wamp/">wamp</a><small>1</small></li>
+    <li><a href="/tags/wamp/">wamp</a><small>0</small></li>
   
-    <li><a href="/tags/中国移动/">中国移动</a><small>3</small></li>
+    <li><a href="/tags/中国移动/">中国移动</a><small>1</small></li>
   
     <li><a href="/tags/前端/">前端</a><small>2</small></li>
   
-    <li><a href="/tags/扩展/">扩展</a><small>2</small></li>
+    <li><a href="/tags/扩展/">扩展</a><small>1</small></li>
   
     <li><a href="/tags/正则/">正则</a><small>1</small></li>
   
     <li><a href="/tags/正则表达式/">正则表达式</a><small>1</small></li>
   
-    <li><a href="/tags/脚本/">脚本</a><small>2</small></li>
+    <li><a href="/tags/脚本/">脚本</a><small>1</small></li>
   
-    <li><a href="/tags/表单/">表单</a><small>1</small></li>
+    <li><a href="/tags/表单/">表单</a><small>0</small></li>
   
   </ul>
 </div>
@@ -412,6 +418,10 @@
 <div class="widget tag">
   <h3 class="title">最新文章</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/2015/03/26/python-im/">python学习笔记--一个简单聊天室的实现</a>
+      </li>
     
       <li>
         <a href="/2015/03/18/python-socket-port-reuse/">python学习笔记--socket编程端口复用</a>
@@ -429,10 +439,6 @@
         <a href="/2015/03/03/kali-and-ubuntu/">kali和ubuntu双系统安装</a>
       </li>
     
-      <li>
-        <a href="/2015/01/19/linux下使用github/">Linux下使用github</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -441,7 +447,7 @@
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/Linux/" style="font-size: 20.00px;">Linux</a><a href="/tags/chrome/" style="font-size: 18.00px;">chrome</a><a href="/tags/cmcc-edu/" style="font-size: 18.00px;">cmcc-edu</a><a href="/tags/github/" style="font-size: 14.00px;">github</a><a href="/tags/hexo/" style="font-size: 16.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 14.00px;">javascript</a><a href="/tags/js/" style="font-size: 12.00px;">js</a><a href="/tags/kali/" style="font-size: 14.00px;">kali</a><a href="/tags/linux/" style="font-size: 10.00px;">linux</a><a href="/tags/python/" style="font-size: 12.00px;">python</a><a href="/tags/select/" style="font-size: 12.00px;">select</a><a href="/tags/shadowsocks/" style="font-size: 12.00px;">shadowsocks</a><a href="/tags/socket/" style="font-size: 12.00px;">socket</a><a href="/tags/sql/" style="font-size: 12.00px;">sql</a><a href="/tags/sql-server/" style="font-size: 12.00px;">sql server</a><a href="/tags/ubuntu/" style="font-size: 12.00px;">ubuntu</a><a href="/tags/wamp/" style="font-size: 12.00px;">wamp</a><a href="/tags/中国移动/" style="font-size: 16.00px;">中国移动</a><a href="/tags/前端/" style="font-size: 14.00px;">前端</a><a href="/tags/扩展/" style="font-size: 14.00px;">扩展</a><a href="/tags/正则/" style="font-size: 12.00px;">正则</a><a href="/tags/正则表达式/" style="font-size: 12.00px;">正则表达式</a><a href="/tags/脚本/" style="font-size: 14.00px;">脚本</a><a href="/tags/表单/" style="font-size: 12.00px;">表单</a>
+    <a href="/tags/Linux/" style="font-size: 20.00px;">Linux</a><a href="/tags/chrome/" style="font-size: 12.50px;">chrome</a><a href="/tags/cmcc-edu/" style="font-size: 12.50px;">cmcc-edu</a><a href="/tags/github/" style="font-size: 15.00px;">github</a><a href="/tags/hexo/" style="font-size: 17.50px;">hexo</a><a href="/tags/javascript/" style="font-size: 15.00px;">javascript</a><a href="/tags/js/" style="font-size: 12.50px;">js</a><a href="/tags/kali/" style="font-size: 15.00px;">kali</a><a href="/tags/python/" style="font-size: 15.00px;">python</a><a href="/tags/select/" style="font-size: 12.50px;">select</a><a href="/tags/shadowsocks/" style="font-size: 12.50px;">shadowsocks</a><a href="/tags/socket/" style="font-size: 15.00px;">socket</a><a href="/tags/sql/" style="font-size: 12.50px;">sql</a><a href="/tags/sql-server/" style="font-size: 10.00px;">sql server</a><a href="/tags/ubuntu/" style="font-size: 12.50px;">ubuntu</a><a href="/tags/wamp/" style="font-size: 10.00px;">wamp</a><a href="/tags/中国移动/" style="font-size: 12.50px;">中国移动</a><a href="/tags/前端/" style="font-size: 15.00px;">前端</a><a href="/tags/扩展/" style="font-size: 12.50px;">扩展</a><a href="/tags/正则/" style="font-size: 12.50px;">正则</a><a href="/tags/正则表达式/" style="font-size: 12.50px;">正则表达式</a><a href="/tags/脚本/" style="font-size: 12.50px;">脚本</a><a href="/tags/表单/" style="font-size: 10.00px;">表单</a>
   </div>
 </div>
 
@@ -464,7 +470,7 @@
   
 </div>
 <div class="clearfix"></div></footer>
-  <script src="http://libs.baidu.com/jquery/2.0.3/jquery.min.js"></script>
+  <script src="https://lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
 <script src="/js/gallery.js"></script>
 
