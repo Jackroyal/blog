@@ -4,7 +4,7 @@
   <subtitle><![CDATA[我最喜欢笨笨]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://jackroyal.github.io/"/>
-  <updated>2015-03-29T09:59:50.505Z</updated>
+  <updated>2015-03-29T14:35:25.346Z</updated>
   <id>http://jackroyal.github.io/</id>
   
   <author>
@@ -13,6 +13,98 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[blog2markdown程序打包,csdn爬虫]]></title>
+    <link href="http://jackroyal.github.io/2015/03/29/blog2markdown-csdn-windows/"/>
+    <id>http://jackroyal.github.io/2015/03/29/blog2markdown-csdn-windows/</id>
+    <published>2015-03-29T14:08:22.000Z</published>
+    <updated>2015-03-29T14:34:52.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>项目地址<a href="https://github.com/Jackroyal/blog2markdown.git" target="_blank" rel="external">https://github.com/Jackroyal/blog2markdown.git</a></p>
+</blockquote>
+<p>用来实现普通blog到markdown的搬家，自动将blog的html转换成HEXO可用的Markdown格式<br>暂时只做了CSDN</p>
+<h3 id="UPDATE:">UPDATE:</h3>
+<p>2015-03-29 连夜修复了在win下乱码的问题,删除了冗余代码<br>2015-03-28 将某些参数改为从配置文件中读取,加入更多异常判断<br>2014-12-15 优化标签解析功能,添加了标题,tag和category<br>2014-12-13 实现解析功能,基本完成解析功能<br>2014-12-10 实现CSDN的抓取，正在实现parse解析过程<br><a id="more"></a></p>
+<h3 id="BUG">BUG</h3>
+<p>如果代码中有#和*会被转义成<code>\#</code>和<code>\*</code><br>对table的支持不好</p>
+<h3 id="依赖库">依赖库</h3>
+<p>爬虫使用了<code>beautifulsoup  4.3.2</code><br><a href="http://www.crummy.com/software/BeautifulSoup/" target="_blank" rel="external">点我点我</a><br>你必须安装这个才可以正常使用<br>PS:我打包了exe<a href="http://pan.baidu.com/s/1dDERlOP" target="_blank" rel="external">点此下载</a>,可以什么不装,改完配置文件,直接运行</p>
+<h1 id="使用:">使用:</h1>
+<h2 id="首先,编辑配置文件spider-conf">首先,编辑配置文件<code>spider.conf</code></h2>
+<p>格式如下:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[blog]</div><div class="line"><span class="comment">#此处url不需要单引号或者双引号,不然类型识别错误,网址最后不要/</span></div><div class="line"><span class="variable">url=</span>http://blog.csdn.net/jackroyal</div><div class="line">[setting]</div><div class="line"><span class="variable">wait_time=</span><span class="number">5</span></div></pre></td></tr></table></figure>
+
+<p>这里的<code>url</code>地址注意不要加引号,下面的<code>wait_time</code>是指两次抓取的间隔时间,这是为了安全起见,如果高频访问,可能会被封,我设置的<code>5</code>秒,你可以根据自己需要去设置</p>
+<h2 id="打包">打包</h2>
+<p>我打包了一个<a href="http://pan.baidu.com/s/1dDERlOP" target="_blank" rel="external">exe程序</a>,放在github项目的dist目录下,在windows系统中,<code>直接下载</code>,<code>运行</code></p>
+<p>PS:由于pyInstaller的问题,导致无法在中文路径下正常运行</p>
+<p>比如你放在C:/users/张三/spider.exe<br>这样是无法正常运行的<br>所以应该放在全英文的目录下<br>C:/software/spider.exe<br>运行结果如图<br><img src="http://ww2.sinaimg.cn/large/692869a3gw1eqmymt6bhrj20ip0cata6.jpg" alt="spider运行截图"><br><img src="http://ww1.sinaimg.cn/large/692869a3gw1eqmyur9uihj20mb0gqmzf.jpg" alt="运行结果截图"></p>
+<h1 id="源码执行">源码执行</h1>
+<p>如果你对我的exe不放心,可以自己执行python源码</p>
+<h3 id="执行">执行</h3>
+<p>在linux下,首先要给予执行权限</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chmod <span class="keyword">a</span>+<span class="keyword">x</span> spider.<span class="keyword">py</span> ParseBlog.<span class="keyword">py</span></div><div class="line"><span class="keyword">python</span> spider.<span class="keyword">py</span></div></pre></td></tr></table></figure>
+
+<p>然后就可以了,输出文件在output文件夹</p>
+<p>在win下,经过修复也可以正常运行了,在idle(在win中你安装了python2.7的话就会有这个编辑器)中是可以完全正常的显示中文,在系统自带的cmd里中文显示会有问题,因为cmd中的编码默认是GBK,我程序基本都是utf-8,如果要在cmd显示正常,显示的代码都要加个str.encode(‘utf-8’)才行.<br>不过抓取是没有问题的,此处就不纠结了哈,能用就好</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#在win下,没有权限的问题,直接执行就好了</div><div class="line"><span class="keyword">python</span> spider.<span class="keyword">py</span></div></pre></td></tr></table></figure>
+
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>项目地址<a href="https://github.com/Jackroyal/blog2markdown.git" target="_blank" rel="external">https://github.com/Jackroyal/blog2markdown.git</a></p>
+</blockquote>
+<p>用来实现普通blog到markdown的搬家，自动将blog的html转换成HEXO可用的Markdown格式<br>暂时只做了CSDN</p>
+<h3 id="UPDATE:">UPDATE:</h3>
+<p>2015-03-29 连夜修复了在win下乱码的问题,删除了冗余代码<br>2015-03-28 将某些参数改为从配置文件中读取,加入更多异常判断<br>2014-12-15 优化标签解析功能,添加了标题,tag和category<br>2014-12-13 实现解析功能,基本完成解析功能<br>2014-12-10 实现CSDN的抓取，正在实现parse解析过程<br>]]>
+    
+    </summary>
+    
+      <category term="github" scheme="http://jackroyal.github.io/tags/github/"/>
+    
+      <category term="hexo" scheme="http://jackroyal.github.io/tags/hexo/"/>
+    
+      <category term="windows" scheme="http://jackroyal.github.io/tags/windows/"/>
+    
+      <category term="python" scheme="http://jackroyal.github.io/tags/python/"/>
+    
+      <category term="python学习笔记" scheme="http://jackroyal.github.io/categories/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[hexo发布失败]]></title>
+    <link href="http://jackroyal.github.io/2015/03/29/hexo-deploy-error/"/>
+    <id>http://jackroyal.github.io/2015/03/29/hexo-deploy-error/</id>
+    <published>2015-03-29T10:09:28.000Z</published>
+    <updated>2015-03-29T10:32:22.000Z</updated>
+    <content type="html"><![CDATA[<p>可能受到上次ddos的问题,这两天国内访问github,总是感觉不顺畅.<br>今天下午写了一篇博客,可是却发布不成功,一直卡在这一步:<br><img src="http://ww3.sinaimg.cn/large/692869a3gw1eqmrrf20j1j20g006676y.jpg" alt="hexo发布的时候卡住"></p>
+<p>然后我继续等,得到如下错误:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo <span class="variable">Failed</span> to <span class="keyword">receive</span> <span class="variable">SOCKS4</span> connect request ack.</div></pre></td></tr></table></figure>
+
+<p>我执行了<code>hexo clean</code>命令,手动删掉了<code>.deploy</code>文件夹,可是还是不行<br>最后报错<br>无法连接<code>https://github.com/Jackroyal/Jackroyal.github.io.git</code></p>
+<p><em>(ps:此处已经无法重现了,抽风啊)</em></p>
+<p>最后我换了下这条链接<br>我修改了博客目录下的<code>_config.yml</code>,改了deploy参数<br>原参数设置</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  <span class="class"><span class="keyword">type</span>: <span class="title">github</span></span></div><div class="line">  repo: https:<span class="comment">//github.com/Jackroyal/Jackroyal.github.io.git</span></div><div class="line">  branch: master</div></pre></td></tr></table></figure>
+
+<p>修改以后:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  <span class="built_in">type</span>: github</div><div class="line">  repo: git@github.com:Jackroyal/Jackroyal.github.<span class="built_in">io</span>.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
+
+<p>然后就deploy成功了.</p>
+<h2 id="PPPS:千万注意,上面的参数设置repo:后面有一个空格,没有空格会报错"><em>PPPS:千万注意,上面的参数设置repo:后面有一个空格,没有空格会报错</em></h2>
+<h3 id="友情链接">友情链接</h3>
+<p><a href="http://rolight.cn/blog/?p=34" target="_blank" rel="external">ubuntu  shadowsocks 全局 代理</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>可能受到上次ddos的问题,这两天国内访问github,总是感觉不顺畅.<br>今天下午写了一篇博客,可是却发布不成功,一直卡在这一步:<br><img src="http://ww3.sinaimg.cn/large/692869a3gw1eqmrrf20j1j20g00]]>
+    </summary>
+    
+      <category term="hexo" scheme="http://jackroyal.github.io/tags/hexo/"/>
+    
+      <category term="hexo" scheme="http://jackroyal.github.io/categories/hexo/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[python学习笔记--python和beautifulsoup遇到的编码问题]]></title>
@@ -901,137 +993,6 @@
       <category term="wamp" scheme="http://jackroyal.github.io/tags/wamp/"/>
     
       <category term="软件安装与技巧" scheme="http://jackroyal.github.io/categories/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E4%B8%8E%E6%8A%80%E5%B7%A7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[sql中left_join和right_join混用]]></title>
-    <link href="http://jackroyal.github.io/2014/08/08/sql%E4%B8%ADleft_join%E5%92%8Cright_join%E6%B7%B7%E7%94%A8/"/>
-    <id>http://jackroyal.github.io/2014/08/08/sql中left_join和right_join混用/</id>
-    <published>2014-08-08T02:02:00.000Z</published>
-    <updated>2015-01-06T04:35:04.000Z</updated>
-    <content type="html"><![CDATA[<p>left join(左联接) 返回包括左表中的所有记录和右表中联结字段相等的记录 </p>
-<p>right join(右联接) 返回包括右表中的所有记录和左表中联结字段相等的记录</p>
-<p>inner join(等值连接) 只返回两个表中联结字段相等的行</p>
-<p>如上所言,我们只做一下left join的实验,right join和left join 类似</p>
-<p>测试一共三张表,a  b   c<br><img src="" alt=""></p>
-<p>表结构和数据分别如下</p>
-<p>a表                                                                  b表                                                              c表<br><img src="" alt="">         <img src="" alt="">          <img src="" alt=""></p>
-<p>然后我们来试一下左连接</p>
-<p>1,  我们来查询a b两张表,连接他们aid=bid的选项<br>sql&gt;&gt;SELECT *  FROM a   LEFT JOIN b on aid=bid</p>
-<p><img src="" alt=""></p>
-<p>看图很好理解,因为是a左连接b,所以b中为空的元素 ,在查询结果中以NULL的形式补全</p>
-<p>同理可得</p>
-<p>sql&gt;&gt;SELECT * FROM a LEFT JOIN c on aid=cid<br><img src="" alt=""></p>
-<p>sql&gt;&gt;SELECT * FROM c LEFT JOIN b on bid=cid<br>sql&gt;&gt;SELECT * FROM c LEFT JOIN b on cid=bid</p>
-<p><img src="" alt=""></p>
-<p>也就是on后面的顺序无所谓,无论是bid=cid还是cid=bid,重点是前面的left join还是right join</p>
-<p>2,我们来试一下如果三张表左连接呢,会有什么情况?</p>
-<p>sql&gt;&gt;SELECT * FROM a</p>
-<pre><code>       <span class="built_in">LEFT</span> <span class="built_in">JOIN</span> b <span class="keyword">on</span> bid=aid 
-
-       <span class="built_in">LEFT</span> <span class="built_in">JOIN</span> c <span class="keyword">on</span> aid=cid
-</code></pre><p><img src="" alt=""></p>
-<p>sql&gt;&gt;SELECT * FROM a LEFT JOIN b on bid=aid LEFT JOIN c on bid=cid<br><img src="" alt=""></p>
-<p>3,如果我用了一个right join呢?</p>
-<p>sql&gt;&gt;SELECT * FROM a LEFT JOIN b on bid=aid RIGHT JOIN c on bid=cid<br><img src="" alt=""></p>
-<p>这里该怎么理解呢?<br>感谢<a href="http://blog.csdn.net/sqlserverdiscovery/article/details/6893288" target="_blank" rel="external">http://blog.csdn.net/sqlserverdiscovery/article/details/6893288</a></p>
-<p>我们理解的时候可以把它拆成两部分去理解</p>
-<p>比如第一部分<br>sql&gt;&gt;SELECT * FROM a LEFT JOIN b on bid=aid</p>
-<p><img src="" alt=""></p>
-<p>然后再思考第二部分,假如上图是一张表  我们叫它a_b</p>
-<p>你可以新建一个视图,就可以真成为一张虚表了</p>
-<p>sql&gt;&gt;create  VIEW a_b  as (SELECT * FROM a LEFT JOIN b on bid=aid)<br><img src="" alt=""></p>
-<p>然后我们继续做下面一部分</p>
-<p>sql&gt;&gt;select * from a_b right join c on bid=cid<br><img src="" alt=""></p>
-<p>可见,与上面的结果是一样的,当然这是我们理解的过程,实际数据库服务器执行的时候可能不是这样的,它会做一些优化,提高效率</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>left join(左联接) 返回包括左表中的所有记录和右表中联结字段相等的记录 </p>
-<p>right join(右联接) 返回包括右表中的所有记录和左表中联结字段相等的记录</p>
-<p>inner join(等值连接) 只返回两个表中联结字段相等的行</p>
-<p]]>
-    </summary>
-    
-      <category term="sql" scheme="http://jackroyal.github.io/tags/sql/"/>
-    
-      <category term="select" scheme="http://jackroyal.github.io/tags/select/"/>
-    
-      <category term="数据库" scheme="http://jackroyal.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[阿里云windows_server_2003_搭建邮件服务器]]></title>
-    <link href="http://jackroyal.github.io/2014/06/28/%E9%98%BF%E9%87%8C%E4%BA%91windows_server_2003_%E6%90%AD%E5%BB%BA%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    <id>http://jackroyal.github.io/2014/06/28/阿里云windows_server_2003_搭建邮件服务器/</id>
-    <published>2014-06-28T14:30:00.000Z</published>
-    <updated>2015-03-29T06:41:58.000Z</updated>
-    <content type="html"><![CDATA[<pre><code>笔者最近遇到一个在阿里云上搭建邮件服务器的问题，总算搞定，记录一下。
-
- 整个搭建过程，包括pop3服务的安装和开启，smtp服务的安装和开启，dns服务的安装和设置。
-参考文章[<span class="link_label">http://hi.baidu.com/senya/item/63bd6588b6817056e63d1996</span>](<span class="link_url">http://hi.baidu.com/senya/item/63bd6588b6817056e63d1996</span>)
-</code></pre><p>   <a href="http://firefish.blog.51cto.com/298258/57983" target="_blank" rel="external">http://firefish.blog.51cto.com/298258/57983</a></p>
-<p>不在赘述，直接粘贴原文</p>
-<p><strong>　　一、安装Windows Server 2003邮件服务器组件</strong></p>
-<p>(因为盗图的缘故,图片都挂了,这里大家都去看上面的参考文章连接吧,设置dns的时候再回来)</p>
-<p>图一　“管理您的服务器”控制台</p>
-<p>　　依次单击“开始”——“管理工具”——“管理您的服务器”，打开“管理您的服务器”控制台。在这个管理控制台中我们可以看到服务器已经成为的角色。单击“添加或删除角色”命令，开始管理服务器的角色。</p>
-<p>图二　配置服务器向导</p>
-<p>　　当我们单击“添加或删除角色”命令，就会运行配置服务器向导。</p>
-<p>图三　服务器管理程序检测网络连接</p>
-<p>图四　管理服务器角色</p>
-<p>　　在图四中，可以查看已经安装的服务和支持而没有安装的服务。此时的服务器还不是邮件服务器，选择“邮件服务器(POP3,SMTP)”，单击“下一步”：</p>
-<p>图五　配置“身份验证方法”及“电子邮件域名”</p>
-<p>图六　单击“下一步”</p>
-<p>图七　安装邮件服务:POP3和SMTP</p>
-<p>图八　安装成功</p>
-<p><strong>　　二、管理邮件服务器</strong></p>
-<p>　　Windows Server 2003的电子邮件服务器的功能很简单，管理界面也很简洁。单击“管理工具”下的“POP3服务”：</p>
-<p>图九 POP3服务</p>
-<p>图十　为用户添加邮箱</p>
-<p>　　在“POP3服务”中单击“添加邮箱”命令，在弹出的对话框内输入邮箱名（用户名）及密码。</p>
-<p>图十一</p>
-<p><strong>　　三、配置smtp</strong></p>
-<p>　　方法和上面类似，在图二的画面中我们选择应用程序服务器</p>
-<p><img src="" alt=""></p>
-<p>如图，我的已经开启了。</p>
-<p>下一步，依次打开“开始-程序-管理工具-internet信息服务”，在窗口左面，鼠标右键点击“smtp虚拟服务器”属性。切换到常规选项卡”IP地址“选择服务器的ip地址，点击确定就行了。</p>
-<p><strong>四、配置DNS</strong></p>
-<p>服务器已经配置好了，我们接下来设置下dns，这样才能解析到，不然还是无法使用的</p>
-<p>依次打开，“开始-程序-管理工具-配置您的服务器向导”</p>
-<p><img src="" alt=""></p>
-<p>选择自定义配置</p>
-<p><img src="" alt=""></p>
-<p>选择dns服务器，下一步</p>
-<p><img src="" alt=""></p>
-<p><img src="" alt=""></p>
-<p><img src="" alt=""></p>
-<p><img src="" alt=""></p>
-<p><img src="" alt=""></p>
-<p><img src="" alt=""></p>
-<p><img src="" alt=""></p>
-<p>点击正向查找域里面的区域名称，在右边的空白处点击右键，新建主机，分别新建POP3，smtp等主机</p>
-<p><img src="" alt=""></p>
-<p>还是空白处，右键，新建邮件交换器，分别新建smtp和pop3的邮件交换器</p>
-<p><img src="" alt=""></p>
-<p><img src="" alt=""></p>
-<p>注意：完全合格的域名后面没有点号，邮件服务器的完全合格的域名后面有点号，例如是smtp.ip-tcp.com.</p>
-<p>到此，邮件服务器搭建完成，可以去测试了</p>
-<p>此处参考原文<a href="http://www.docin.com/p-156566941.html" target="_blank" rel="external">http://www.docin.com/p-156566941.html</a></p>
-<p>经过我的测试，可以收邮件，但是不能发邮件（可以自己给自己发，但是不能给qq，网易等邮箱发），一直报错550 5.7.1 Unable to relay for <a href="mailto:xxx@xxx.com" target="_blank" rel="external"></a><a href="mailto:xxx@xxx.com" target="_blank" rel="external">xxx@xxx.com</a></p>
-<p>最后找到答案</p>
-<p>在IIS管理器里打开“默认SMTP虚拟服务器”的属性设置对话框，在“访问”选项卡中，点击“中继”按钮，弹出“中继限制”对话框，默认为选中了“仅以下列表”，修改为选中“仅以下列表除外”即可。</p>
-<p>另外下面的“允许所有通过身份验证的计算机进行中继，而忽略上表”一项要保持选中状态（默认是选中的）。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<pre><code>笔者最近遇到一个在阿里云上搭建邮件服务器的问题，总算搞定，记录一下。
-
- 整个搭建过程，包括pop3服务的安装和开启，smtp服务的安装和开启，dns服务的安装和设置。
-参考文章[<span class="link_label">http://hi.baid]]>
-    </summary>
-    
-      <category term="服务器" scheme="http://jackroyal.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
   </entry>
   

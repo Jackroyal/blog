@@ -53,6 +53,105 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2015-03-29T14:08:22.000Z"><a href="/2015/03/29/blog2markdown-csdn-windows/">3月 29 2015</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/03/29/blog2markdown-csdn-windows/">blog2markdown程序打包,csdn爬虫</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <blockquote>
+<p>项目地址<a href="https://github.com/Jackroyal/blog2markdown.git" target="_blank" rel="external">https://github.com/Jackroyal/blog2markdown.git</a></p>
+</blockquote>
+<p>用来实现普通blog到markdown的搬家，自动将blog的html转换成HEXO可用的Markdown格式<br>暂时只做了CSDN</p>
+<h3 id="UPDATE:">UPDATE:</h3>
+<p>2015-03-29 连夜修复了在win下乱码的问题,删除了冗余代码<br>2015-03-28 将某些参数改为从配置文件中读取,加入更多异常判断<br>2014-12-15 优化标签解析功能,添加了标题,tag和category<br>2014-12-13 实现解析功能,基本完成解析功能<br>2014-12-10 实现CSDN的抓取，正在实现parse解析过程<br>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2015/03/29/blog2markdown-csdn-windows/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+        <div class="alignright">
+          <a href="http://jackroyal.github.io/2015/03/29/blog2markdown-csdn-windows/#duoshuo_thread" class="comment-link">Comments</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-03-29T10:09:28.000Z"><a href="/2015/03/29/hexo-deploy-error/">3月 29 2015</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/03/29/hexo-deploy-error/">hexo发布失败</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>可能受到上次ddos的问题,这两天国内访问github,总是感觉不顺畅.<br>今天下午写了一篇博客,可是却发布不成功,一直卡在这一步:<br><img src="http://ww3.sinaimg.cn/large/692869a3gw1eqmrrf20j1j20g006676y.jpg" alt="hexo发布的时候卡住"></p>
+<p>然后我继续等,得到如下错误:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo <span class="variable">Failed</span> to <span class="keyword">receive</span> <span class="variable">SOCKS4</span> connect request ack.</div></pre></td></tr></table></figure>
+
+<p>我执行了<code>hexo clean</code>命令,手动删掉了<code>.deploy</code>文件夹,可是还是不行<br>最后报错<br>无法连接<code>https://github.com/Jackroyal/Jackroyal.github.io.git</code></p>
+<p><em>(ps:此处已经无法重现了,抽风啊)</em></p>
+<p>最后我换了下这条链接<br>我修改了博客目录下的<code>_config.yml</code>,改了deploy参数<br>原参数设置</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  <span class="class"><span class="keyword">type</span>: <span class="title">github</span></span></div><div class="line">  repo: https:<span class="comment">//github.com/Jackroyal/Jackroyal.github.io.git</span></div><div class="line">  branch: master</div></pre></td></tr></table></figure>
+
+<p>修改以后:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  <span class="built_in">type</span>: github</div><div class="line">  repo: git@github.com:Jackroyal/Jackroyal.github.<span class="built_in">io</span>.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
+
+<p>然后就deploy成功了.</p>
+<h2 id="PPPS:千万注意,上面的参数设置repo:后面有一个空格,没有空格会报错"><em>PPPS:千万注意,上面的参数设置repo:后面有一个空格,没有空格会报错</em></h2>
+<h3 id="友情链接">友情链接</h3>
+<p><a href="http://rolight.cn/blog/?p=34" target="_blank" rel="external">ubuntu  shadowsocks 全局 代理</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+        <div class="alignright">
+          <a href="http://jackroyal.github.io/2015/03/29/hexo-deploy-error/#duoshuo_thread" class="comment-link">Comments</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2015-03-29T06:43:45.000Z"><a href="/2015/03/29/python-blog-spider/">3月 29 2015</a></time>
       
       
@@ -174,88 +273,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2015-03-09T14:26:21.000Z"><a href="/2015/03/09/use-ss/">3月 9 2015</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2015/03/09/use-ss/">shadowsocks的安装和配置--在ubuntu和ubuntu中</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>最近我的vpn一直在抽风，几乎没法正常使用，而且我的chrome也是各种花屏，我快疯了，没办法，只能改用shadowsocks了。<br>搭建过程分为两部分:服务端和客户端(这里是主要是ubuntu的客户端)。<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2015/03/09/use-ss/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-        <div class="alignright">
-          <a href="http://jackroyal.github.io/2015/03/09/use-ss/#duoshuo_thread" class="comment-link">Comments</a>
-        </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2015-03-04T06:14:57.000Z"><a href="/2015/03/04/after-kali/">3月 4 2015</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2015/03/04/after-kali/">kali安装后设置</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>kali安装好了，还有几件事要做<br>我们用root的身份登进去系统<br>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2015/03/04/after-kali/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-        <div class="alignright">
-          <a href="http://jackroyal.github.io/2015/03/04/after-kali/#duoshuo_thread" class="comment-link">Comments</a>
-        </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
 
 <nav id="pagination">
   
@@ -281,11 +298,11 @@
   
     <li><a href="/categories/chrome扩展/">chrome扩展</a><small>4</small></li>
   
-    <li><a href="/categories/hexo/">hexo</a><small>2</small></li>
+    <li><a href="/categories/hexo/">hexo</a><small>3</small></li>
   
     <li><a href="/categories/javascript/">javascript</a><small>2</small></li>
   
-    <li><a href="/categories/python学习笔记/">python学习笔记</a><small>3</small></li>
+    <li><a href="/categories/python学习笔记/">python学习笔记</a><small>4</small></li>
   
     <li><a href="/categories/数据库/">数据库</a><small>1</small></li>
   
@@ -310,9 +327,9 @@
   
     <li><a href="/tags/cmcc-edu/">cmcc-edu</a><small>4</small></li>
   
-    <li><a href="/tags/github/">github</a><small>2</small></li>
+    <li><a href="/tags/github/">github</a><small>3</small></li>
   
-    <li><a href="/tags/hexo/">hexo</a><small>3</small></li>
+    <li><a href="/tags/hexo/">hexo</a><small>5</small></li>
   
     <li><a href="/tags/javascript/">javascript</a><small>2</small></li>
   
@@ -320,7 +337,7 @@
   
     <li><a href="/tags/kali/">kali</a><small>2</small></li>
   
-    <li><a href="/tags/python/">python</a><small>3</small></li>
+    <li><a href="/tags/python/">python</a><small>4</small></li>
   
     <li><a href="/tags/select/">select</a><small>1</small></li>
   
@@ -335,6 +352,8 @@
     <li><a href="/tags/ubuntu/">ubuntu</a><small>1</small></li>
   
     <li><a href="/tags/wamp/">wamp</a><small>1</small></li>
+  
+    <li><a href="/tags/windows/">windows</a><small>1</small></li>
   
     <li><a href="/tags/中国移动/">中国移动</a><small>3</small></li>
   
@@ -362,6 +381,14 @@
   <ul class="entry">
     
       <li>
+        <a href="/2015/03/29/blog2markdown-csdn-windows/">blog2markdown程序打包,csdn爬虫</a>
+      </li>
+    
+      <li>
+        <a href="/2015/03/29/hexo-deploy-error/">hexo发布失败</a>
+      </li>
+    
+      <li>
         <a href="/2015/03/29/python-blog-spider/">python学习笔记--python和beautifulsoup遇到的编码问题</a>
       </li>
     
@@ -373,14 +400,6 @@
         <a href="/2015/03/18/python-socket-port-reuse/">python学习笔记--socket编程端口复用</a>
       </li>
     
-      <li>
-        <a href="/2015/03/09/use-ss/">shadowsocks的安装和配置--在ubuntu和ubuntu中</a>
-      </li>
-    
-      <li>
-        <a href="/2015/03/04/after-kali/">kali安装后设置</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -389,7 +408,7 @@
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/Linux/" style="font-size: 20.00px;">Linux</a><a href="/tags/chrome/" style="font-size: 17.50px;">chrome</a><a href="/tags/cmcc-edu/" style="font-size: 17.50px;">cmcc-edu</a><a href="/tags/github/" style="font-size: 12.50px;">github</a><a href="/tags/hexo/" style="font-size: 15.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 12.50px;">javascript</a><a href="/tags/js/" style="font-size: 10.00px;">js</a><a href="/tags/kali/" style="font-size: 12.50px;">kali</a><a href="/tags/python/" style="font-size: 15.00px;">python</a><a href="/tags/select/" style="font-size: 10.00px;">select</a><a href="/tags/shadowsocks/" style="font-size: 10.00px;">shadowsocks</a><a href="/tags/socket/" style="font-size: 12.50px;">socket</a><a href="/tags/sql/" style="font-size: 10.00px;">sql</a><a href="/tags/sql-server/" style="font-size: 10.00px;">sql server</a><a href="/tags/ubuntu/" style="font-size: 10.00px;">ubuntu</a><a href="/tags/wamp/" style="font-size: 10.00px;">wamp</a><a href="/tags/中国移动/" style="font-size: 15.00px;">中国移动</a><a href="/tags/前端/" style="font-size: 12.50px;">前端</a><a href="/tags/扩展/" style="font-size: 12.50px;">扩展</a><a href="/tags/正则/" style="font-size: 10.00px;">正则</a><a href="/tags/正则表达式/" style="font-size: 10.00px;">正则表达式</a><a href="/tags/爬虫/" style="font-size: 10.00px;">爬虫</a><a href="/tags/脚本/" style="font-size: 12.50px;">脚本</a><a href="/tags/表单/" style="font-size: 10.00px;">表单</a>
+    <a href="/tags/Linux/" style="font-size: 20.00px;">Linux</a><a href="/tags/chrome/" style="font-size: 17.50px;">chrome</a><a href="/tags/cmcc-edu/" style="font-size: 17.50px;">cmcc-edu</a><a href="/tags/github/" style="font-size: 15.00px;">github</a><a href="/tags/hexo/" style="font-size: 20.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 12.50px;">javascript</a><a href="/tags/js/" style="font-size: 10.00px;">js</a><a href="/tags/kali/" style="font-size: 12.50px;">kali</a><a href="/tags/python/" style="font-size: 17.50px;">python</a><a href="/tags/select/" style="font-size: 10.00px;">select</a><a href="/tags/shadowsocks/" style="font-size: 10.00px;">shadowsocks</a><a href="/tags/socket/" style="font-size: 12.50px;">socket</a><a href="/tags/sql/" style="font-size: 10.00px;">sql</a><a href="/tags/sql-server/" style="font-size: 10.00px;">sql server</a><a href="/tags/ubuntu/" style="font-size: 10.00px;">ubuntu</a><a href="/tags/wamp/" style="font-size: 10.00px;">wamp</a><a href="/tags/windows/" style="font-size: 10.00px;">windows</a><a href="/tags/中国移动/" style="font-size: 15.00px;">中国移动</a><a href="/tags/前端/" style="font-size: 12.50px;">前端</a><a href="/tags/扩展/" style="font-size: 12.50px;">扩展</a><a href="/tags/正则/" style="font-size: 10.00px;">正则</a><a href="/tags/正则表达式/" style="font-size: 10.00px;">正则表达式</a><a href="/tags/爬虫/" style="font-size: 10.00px;">爬虫</a><a href="/tags/脚本/" style="font-size: 12.50px;">脚本</a><a href="/tags/表单/" style="font-size: 10.00px;">表单</a>
   </div>
 </div>
 
