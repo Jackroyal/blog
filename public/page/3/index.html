@@ -53,6 +53,47 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2014-11-26T13:29:15.000Z"><a href="/2014/11/26/new-start/">11月 26 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/11/26/new-start/">新的开始</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>今天<strong>折腾</strong>了一天,终于弄好了,<a href="http://jackroyal.github.io" title="搁浅St的博客" target="_blank" rel="external">我的博客</a>,正式落户Github.
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2014/11/26/new-start/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+        <div class="alignright">
+          <a href="http://jackroyal.github.io/2014/11/26/new-start/#duoshuo_thread" class="comment-link">Comments</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2014-11-25T14:32:00.000Z"><a href="/2014/11/25/[js]replace替换/">11月 25 2014</a></time>
       
       
@@ -250,51 +291,34 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2014-08-08T02:02:00.000Z"><a href="/2014/08/08/sql中left_join和right_join混用/">8月 8 2014</a></time>
+        <time datetime="2014-11-24T07:16:00.000Z"><a href="/2014/11/24/chrome扩展开发手记-chrome扩展开始第一步manfest.json/">11月 24 2014</a></time>
       
       
   
-    <h1 class="title"><a href="/2014/08/08/sql中left_join和right_join混用/">sql中left_join和right_join混用</a></h1>
+    <h1 class="title"><a href="/2014/11/24/chrome扩展开发手记-chrome扩展开始第一步manfest.json/">chrome扩展开发手记-chrome扩展开始第一步manfest.json</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>left join(左联接) 返回包括左表中的所有记录和右表中联结字段相等的记录 </p>
-<p>right join(右联接) 返回包括右表中的所有记录和左表中联结字段相等的记录</p>
-<p>inner join(等值连接) 只返回两个表中联结字段相等的行</p>
-<p>如上所言,我们只做一下left join的实验,right join和left join 类似</p>
-<p>测试一共三张表,a  b   c<br><img src="" alt=""></p>
-<p>表结构和数据分别如下</p>
-<p>a表                                                                  b表                                                              c表<br><img src="" alt="">         <img src="" alt="">          <img src="" alt=""></p>
-<p>然后我们来试一下左连接</p>
-<p>1,  我们来查询a b两张表,连接他们aid=bid的选项<br>sql&gt;&gt;SELECT *  FROM a   LEFT JOIN b on aid=bid</p>
-<p><img src="" alt=""></p>
-<p>看图很好理解,因为是a左连接b,所以b中为空的元素 ,在查询结果中以NULL的形式补全</p>
-<p>同理可得</p>
-<p>sql&gt;&gt;SELECT * FROM a LEFT JOIN c on aid=cid<br><img src="" alt=""></p>
-<p>sql&gt;&gt;SELECT * FROM c LEFT JOIN b on bid=cid<br>sql&gt;&gt;SELECT * FROM c LEFT JOIN b on cid=bid</p>
-<p><img src="" alt=""></p>
-<p>也就是on后面的顺序无所谓,无论是bid=cid还是cid=bid,重点是前面的left join还是right join</p>
-<p>2,我们来试一下如果三张表左连接呢,会有什么情况?</p>
-<p>sql&gt;&gt;SELECT * FROM a</p>
-<pre><code>       <span class="built_in">LEFT</span> <span class="built_in">JOIN</span> b <span class="keyword">on</span> bid=aid 
+        <p>参考文档   <a href="https://lmk123.duapp.com/" target="_blank" rel="external">https://lmk123.duapp.com/</a></p>
+<p>下面开始写chrome扩展了,第一步就是看文档,官方文档有入门指导,先要过一遍</p>
+<p>我们首先来编写第一个文件manfest.json,这是一个清单文件,告诉系统,我有哪些文件,需要申请哪些权限都在里面,下卖弄给出我的manfest.json</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">{</div><div class="line">    <span class="string">"name"</span>:<span class="string">"cmcc520"</span>,<span class="comment">//扩展的名称</span></div><div class="line">    <span class="string">"version"</span>:<span class="string">"2.0"</span>,<span class="comment">//扩展的版本号,随便写</span></div><div class="line">    <span class="string">"description"</span>:<span class="string">"powered by 搁浅St"</span>,<span class="comment">//扩展的描述,就是在chrome://extension页面中,扩展名称下面的几个字</span></div><div class="line">    <span class="string">"background"</span>: {<span class="comment">//background.js,整个扩展的运行,有个页面在后台运行</span></div><div class="line">        <span class="string">"scripts"</span>: [<span class="string">"js/function.js"</span>,<span class="string">"bg.js"</span>],</div><div class="line">        <span class="string">"persistent"</span>: <span class="literal">false</span></div><div class="line">    },</div><div class="line">    <span class="string">"page_action"</span>:{<span class="comment">//比较常见有page_action和browser_action有,page会出现在地址栏末端,browser会在浏览器上显示一个图标</span></div><div class="line">        <span class="string">"default_icon"</span>:<span class="string">"icon-48.png"</span>,</div><div class="line">        <span class="string">"default_popup"</span>: <span class="string">"popup.html"</span>,<span class="comment">//popup.html点击弹出的页面</span></div><div class="line">        <span class="string">"default_title"</span>:<span class="string">"cmcc520"</span></div><div class="line">    },</div><div class="line">    <span class="string">"permissions"</span> : [<span class="comment">//申请内容脚本的权限,在插入内容到页面时,需要用哪些权限,此处必须声明</span></div><div class="line">        <span class="string">"tabs"</span>, <span class="string">"http://\*/\*"</span></div><div class="line">    ],</div><div class="line">    <span class="string">"icons"</span> : {<span class="comment">//图标设置</span></div><div class="line">        <span class="string">"48"</span> : <span class="string">"icon-48.png"</span>,</div><div class="line">        <span class="string">"128"</span> : <span class="string">"icon-128.png"</span></div><div class="line">    },</div><div class="line">    <span class="string">"commands"</span>: {<span class="comment">//快捷键设置</span></div><div class="line">        <span class="string">"logout_cmcc"</span>: {</div><div class="line">            <span class="string">"description"</span>: <span class="string">"退出CMCC登录"</span>,</div><div class="line">            <span class="string">"suggested_key"</span>: {</div><div class="line">                <span class="string">"default"</span>: <span class="string">"Alt+X"</span></div><div class="line">            }</div><div class="line">        }</div><div class="line">    },</div><div class="line">    <span class="string">"manifest_version"</span>:<span class="number">2</span><span class="comment">//manifest_version,现在版本1已经不支持,统一都写成2</span></div><div class="line"></div><div class="line">}</div></pre></td></tr></table></figure>
 
-       <span class="built_in">LEFT</span> <span class="built_in">JOIN</span> c <span class="keyword">on</span> aid=cid
-</code></pre><p><img src="" alt=""></p>
-<p>sql&gt;&gt;SELECT * FROM a LEFT JOIN b on bid=aid LEFT JOIN c on bid=cid<br><img src="" alt=""></p>
-<p>3,如果我用了一个right join呢?</p>
-<p>sql&gt;&gt;SELECT * FROM a LEFT JOIN b on bid=aid RIGHT JOIN c on bid=cid<br><img src="" alt=""></p>
-<p>这里该怎么理解呢?<br>感谢<a href="http://blog.csdn.net/sqlserverdiscovery/article/details/6893288" target="_blank" rel="external">http://blog.csdn.net/sqlserverdiscovery/article/details/6893288</a></p>
-<p>我们理解的时候可以把它拆成两部分去理解</p>
-<p>比如第一部分<br>sql&gt;&gt;SELECT * FROM a LEFT JOIN b on bid=aid</p>
-<p><img src="" alt=""></p>
-<p>然后再思考第二部分,假如上图是一张表  我们叫它a_b</p>
-<p>你可以新建一个视图,就可以真成为一张虚表了</p>
-<p>sql&gt;&gt;create  VIEW a_b  as (SELECT * FROM a LEFT JOIN b on bid=aid)<br><img src="" alt=""></p>
-<p>然后我们继续做下面一部分</p>
-<p>sql&gt;&gt;select * from a_b right join c on bid=cid<br><img src="" alt=""></p>
-<p>可见,与上面的结果是一样的,当然这是我们理解的过程,实际数据库服务器执行的时候可能不是这样的,它会做一些优化,提高效率</p>
+<p>简单的属性,这里不再赘述,我重点说一下background,page_action,permissions和commands.</p>
+<p>background  它是一个包含扩展程序主要逻辑的不可见页面。扩展程序也可以包含其他页面，展现扩展程序的用户界面。如果扩展程序需要与用户加载的网页交互（相对于包含在扩展程序中的页面），扩展程序必须使用内容脚本。后台网页分两种：持续运行的后台网页与事件页面(设置persistent属性)。正如它们的名称所述，持续运行的后台网页保持打开状态，事件页面根据需要打开与关闭。除非您绝对需要您的后台网页一直运行，请首选事件页面。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="string">"background"</span>: {<span class="comment">//background.js,整个扩展的运行,有个页面在后台运行</span></div><div class="line">    <span class="string">"scripts"</span>: [<span class="string">"js/function.js"</span>,<span class="string">"bg.js"</span>],</div><div class="line">    <span class="string">"persistent"</span>: <span class="literal">false</span></div><div class="line">},</div></pre></td></tr></table></figure>
+
+<p>比如我的这个 后台执行就是这样的</p>
+<p><img src="http://img.blog.csdn.net/20141124194616706?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>采用pageaction还是browseraction取决于你是否想让图标一直可见.`<img src="http://img.blog.csdn.net/20141124193151343?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>如图,绿色的是广告终结者,他的图标是pageAction,后面的印象笔记还有switchproxy是browserAction.一般来说,适用于少数页面的扩展建议使用pageaction,适用于大多数页面的建议使用browseraction</p>
+<p>permissions属性,用来设置和conten_script相关的选项,举个例子,如果你想插入一段代码到页面中去执行,操作页面上的dom,那就写个content_script就行了,使用 content_scripts 字段，扩展程序可以向一个页面中插入多个内容脚本，每个内容脚本可以有多个<br> JavaScript 和 CSS 文件,详细情况请看这里<a href="https://lmk123.duapp.com/extensions/content_scripts" target="_blank" rel="external">https://lmk123.duapp.com/extensions/content_scripts</a></p>
+<p>我现在在做的一个扩展就是做这样的事,百度的搜索结果会先跳到一个百度的网址,然后才是目标网址,我可以使用cotent_scripts来插入脚本,修改百度搜索结果的链接,让他直接跳转到目标页面,而不是百度的搜索结果页面.</p>
+<p>commands选项是设置快捷键,然后给快捷键设置事件 监听,这样我们按快捷键就会执行相应操作.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="string">"logout_cmcc"</span>: {<span class="comment">//某个快捷操作的名称</span></div><div class="line">    <span class="string">"description"</span>: <span class="string">"退出CMCC登录"</span>,<span class="comment">//快捷操作的描述</span></div><div class="line">    <span class="string">"suggested_key"</span>: {<span class="comment">//默认推荐的快捷键,不能与系统默认的快捷键冲突,否则就会失灵,需要用户手动去设置</span></div><div class="line">        <span class="string">"default"</span>: <span class="string">"Alt+X"</span></div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -303,7 +327,7 @@
         
         
         <div class="alignright">
-          <a href="http://jackroyal.github.io/2014/08/08/sql中left_join和right_join混用/#duoshuo_thread" class="comment-link">Comments</a>
+          <a href="http://jackroyal.github.io/2014/11/24/chrome扩展开发手记-chrome扩展开始第一步manfest.json/#duoshuo_thread" class="comment-link">Comments</a>
         </div>
         
       
@@ -322,6 +346,8 @@
     <a href="/page/2/" class="alignleft prev">上一页</a>
   
   
+    <a href="/page/4/" class="alignright next">下一页</a>
+  
   <div class="clearfix"></div>
 </nav></div></div>
     <aside id="sidebar" class="alignright">
@@ -339,21 +365,21 @@
   
     <li><a href="/categories/Linux/">Linux</a><small>4</small></li>
   
-    <li><a href="/categories/chrome扩展/">chrome扩展</a><small>1</small></li>
+    <li><a href="/categories/chrome扩展/">chrome扩展</a><small>4</small></li>
   
     <li><a href="/categories/hexo/">hexo</a><small>2</small></li>
   
     <li><a href="/categories/javascript/">javascript</a><small>2</small></li>
   
-    <li><a href="/categories/python学习笔记/">python学习笔记</a><small>2</small></li>
+    <li><a href="/categories/python学习笔记/">python学习笔记</a><small>3</small></li>
   
     <li><a href="/categories/数据库/">数据库</a><small>1</small></li>
   
-    <li><a href="/categories/服务器/">服务器</a><small>0</small></li>
+    <li><a href="/categories/服务器/">服务器</a><small>1</small></li>
   
     <li><a href="/categories/杂文/">杂文</a><small>1</small></li>
   
-    <li><a href="/categories/软件安装与技巧/">软件安装与技巧</a><small>0</small></li>
+    <li><a href="/categories/软件安装与技巧/">软件安装与技巧</a><small>1</small></li>
   
   </ul>
 </div>
@@ -366,9 +392,9 @@
   
     <li><a href="/tags/Linux/">Linux</a><small>5</small></li>
   
-    <li><a href="/tags/chrome/">chrome</a><small>1</small></li>
+    <li><a href="/tags/chrome/">chrome</a><small>4</small></li>
   
-    <li><a href="/tags/cmcc-edu/">cmcc-edu</a><small>1</small></li>
+    <li><a href="/tags/cmcc-edu/">cmcc-edu</a><small>4</small></li>
   
     <li><a href="/tags/github/">github</a><small>2</small></li>
   
@@ -380,7 +406,7 @@
   
     <li><a href="/tags/kali/">kali</a><small>2</small></li>
   
-    <li><a href="/tags/python/">python</a><small>2</small></li>
+    <li><a href="/tags/python/">python</a><small>3</small></li>
   
     <li><a href="/tags/select/">select</a><small>1</small></li>
   
@@ -390,25 +416,27 @@
   
     <li><a href="/tags/sql/">sql</a><small>1</small></li>
   
-    <li><a href="/tags/sql-server/">sql server</a><small>0</small></li>
+    <li><a href="/tags/sql-server/">sql server</a><small>1</small></li>
   
     <li><a href="/tags/ubuntu/">ubuntu</a><small>1</small></li>
   
-    <li><a href="/tags/wamp/">wamp</a><small>0</small></li>
+    <li><a href="/tags/wamp/">wamp</a><small>1</small></li>
   
-    <li><a href="/tags/中国移动/">中国移动</a><small>1</small></li>
+    <li><a href="/tags/中国移动/">中国移动</a><small>3</small></li>
   
     <li><a href="/tags/前端/">前端</a><small>2</small></li>
   
-    <li><a href="/tags/扩展/">扩展</a><small>1</small></li>
+    <li><a href="/tags/扩展/">扩展</a><small>2</small></li>
   
     <li><a href="/tags/正则/">正则</a><small>1</small></li>
   
     <li><a href="/tags/正则表达式/">正则表达式</a><small>1</small></li>
   
-    <li><a href="/tags/脚本/">脚本</a><small>1</small></li>
+    <li><a href="/tags/爬虫/">爬虫</a><small>1</small></li>
   
-    <li><a href="/tags/表单/">表单</a><small>0</small></li>
+    <li><a href="/tags/脚本/">脚本</a><small>2</small></li>
+  
+    <li><a href="/tags/表单/">表单</a><small>1</small></li>
   
   </ul>
 </div>
@@ -418,6 +446,10 @@
 <div class="widget tag">
   <h3 class="title">最新文章</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/2015/03/29/python-blog-spider/">python学习笔记--python和beautifulsoup遇到的编码问题</a>
+      </li>
     
       <li>
         <a href="/2015/03/26/python-im/">python学习笔记--一个简单聊天室的实现</a>
@@ -435,10 +467,6 @@
         <a href="/2015/03/04/after-kali/">kali安装后设置</a>
       </li>
     
-      <li>
-        <a href="/2015/03/03/kali-and-ubuntu/">kali和ubuntu双系统安装</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -447,7 +475,7 @@
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/Linux/" style="font-size: 20.00px;">Linux</a><a href="/tags/chrome/" style="font-size: 12.50px;">chrome</a><a href="/tags/cmcc-edu/" style="font-size: 12.50px;">cmcc-edu</a><a href="/tags/github/" style="font-size: 15.00px;">github</a><a href="/tags/hexo/" style="font-size: 17.50px;">hexo</a><a href="/tags/javascript/" style="font-size: 15.00px;">javascript</a><a href="/tags/js/" style="font-size: 12.50px;">js</a><a href="/tags/kali/" style="font-size: 15.00px;">kali</a><a href="/tags/python/" style="font-size: 15.00px;">python</a><a href="/tags/select/" style="font-size: 12.50px;">select</a><a href="/tags/shadowsocks/" style="font-size: 12.50px;">shadowsocks</a><a href="/tags/socket/" style="font-size: 15.00px;">socket</a><a href="/tags/sql/" style="font-size: 12.50px;">sql</a><a href="/tags/sql-server/" style="font-size: 10.00px;">sql server</a><a href="/tags/ubuntu/" style="font-size: 12.50px;">ubuntu</a><a href="/tags/wamp/" style="font-size: 10.00px;">wamp</a><a href="/tags/中国移动/" style="font-size: 12.50px;">中国移动</a><a href="/tags/前端/" style="font-size: 15.00px;">前端</a><a href="/tags/扩展/" style="font-size: 12.50px;">扩展</a><a href="/tags/正则/" style="font-size: 12.50px;">正则</a><a href="/tags/正则表达式/" style="font-size: 12.50px;">正则表达式</a><a href="/tags/脚本/" style="font-size: 12.50px;">脚本</a><a href="/tags/表单/" style="font-size: 10.00px;">表单</a>
+    <a href="/tags/Linux/" style="font-size: 20.00px;">Linux</a><a href="/tags/chrome/" style="font-size: 17.50px;">chrome</a><a href="/tags/cmcc-edu/" style="font-size: 17.50px;">cmcc-edu</a><a href="/tags/github/" style="font-size: 12.50px;">github</a><a href="/tags/hexo/" style="font-size: 15.00px;">hexo</a><a href="/tags/javascript/" style="font-size: 12.50px;">javascript</a><a href="/tags/js/" style="font-size: 10.00px;">js</a><a href="/tags/kali/" style="font-size: 12.50px;">kali</a><a href="/tags/python/" style="font-size: 15.00px;">python</a><a href="/tags/select/" style="font-size: 10.00px;">select</a><a href="/tags/shadowsocks/" style="font-size: 10.00px;">shadowsocks</a><a href="/tags/socket/" style="font-size: 12.50px;">socket</a><a href="/tags/sql/" style="font-size: 10.00px;">sql</a><a href="/tags/sql-server/" style="font-size: 10.00px;">sql server</a><a href="/tags/ubuntu/" style="font-size: 10.00px;">ubuntu</a><a href="/tags/wamp/" style="font-size: 10.00px;">wamp</a><a href="/tags/中国移动/" style="font-size: 15.00px;">中国移动</a><a href="/tags/前端/" style="font-size: 12.50px;">前端</a><a href="/tags/扩展/" style="font-size: 12.50px;">扩展</a><a href="/tags/正则/" style="font-size: 10.00px;">正则</a><a href="/tags/正则表达式/" style="font-size: 10.00px;">正则表达式</a><a href="/tags/爬虫/" style="font-size: 10.00px;">爬虫</a><a href="/tags/脚本/" style="font-size: 12.50px;">脚本</a><a href="/tags/表单/" style="font-size: 10.00px;">表单</a>
   </div>
 </div>
 

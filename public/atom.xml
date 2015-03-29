@@ -4,7 +4,7 @@
   <subtitle><![CDATA[我最喜欢笨笨]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://jackroyal.github.io/"/>
-  <updated>2015-03-26T14:10:05.417Z</updated>
+  <updated>2015-03-29T08:46:59.285Z</updated>
   <id>http://jackroyal.github.io/</id>
   
   <author>
@@ -13,6 +13,117 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[python学习笔记--python和beautifulsoup遇到的编码问题]]></title>
+    <link href="http://jackroyal.github.io/2015/03/29/python-blog-spider/"/>
+    <id>http://jackroyal.github.io/2015/03/29/python-blog-spider/</id>
+    <published>2015-03-29T06:43:45.000Z</published>
+    <updated>2015-03-29T08:37:14.000Z</updated>
+    <content type="html"><![CDATA[<p>在刚开始使用github pages的时候,我用python写了一个爬虫,计划是从csdn和cnblogs等博客网站上,把自己之前写的博客爬取下来,然后再转换成hexo用的markdown格式,样就可以直接添加到我的github pages.</p>
+<blockquote>
+<p>项目主页: <a href="https://github.com/Jackroyal/blog2markdown" target="_blank" rel="external">https://github.com/Jackroyal/blog2markdown</a></p>
+</blockquote>
+<p>最近刚好在学习python,刚好就把它给优化了一下,顺便做了个跨平台(哈哈,win和ubuntu都可以跑哈),昨天遇到很蛋疼的问题,一它给了我很多思路帮助我定位问题,.直搞到凌晨两点才弄好.<br>非常非常感谢<a href="http://www.crifan.com/summary_python_2_x_common_string_encode_decode_error_reason_and_solution/" target="_blank" rel="external">【总结】Python 2.x中常见字符编码和解码方面的错误及其解决办法</a><br>作者做了一个很好的总结,帮助我们定位问题.<br><a id="more"></a></p>
+<h1 id="1_编码类型">1 编码类型</h1>
+<p>首先确定好你的编码类型,比如一般推荐用utf-8.当确定编码类型后,就要保持统一,不要又弄些GBK的编码在里面.</p>
+<ul>
+<li>1.1  编辑器编码<ul>
+<li>我们有时候会犯一个错误,我在py文件的头部声明当前文件是按照utf-8来编码.但是文件实际保存的编却不是utf-8,这样也会导致乱码.建议使用可以查看当前文件编码的编辑器,比如sublime text或者notepad++ 或者pycharm.<br>在sublime下如图所示<br><img src="http://ww2.sinaimg.cn/large/692869a3gw1eqmn535qb7j208u028t8k.jpg" alt="sublime显示当前文件编码"></li>
+<li>文件编码声明,我们要在py文件的头部添加一行<code># -*- coding: utf-8 -*-</code>,表明我接下来要使用utf-8编码</li>
+</ul>
+</li>
+<li>1.2  python解释器<ul>
+<li>如果是Python的IDLE，如果你没修改defaultencoding，那么就使用默认的字符编码可以通过sys.getdefaultencoding()而获得，比如此处获得是：ascii<br><img src="http://ww4.sinaimg.cn/large/692869a3gw1eqmnd8fgrjj20b205kabi.jpg" alt="win中python解释器编码"><br><img src="http://ww3.sinaimg.cn/large/692869a3gw1eqmnfd29u7j20k5047wfv.jpg" alt="ubuntu终端解释器的编码"></li>
+</ul>
+</li>
+<li>1.3  执行python代码<ul>
+<li>其中，很常见的几种动作是：<ul>
+<li>打印print对应的所获得的字符<ul>
+<li>对于字符串打印,Python的逻辑:<ul>
+<li>如果是Unicode字符串,则可以,自动地,编码为对应的终端所用编码,然后正确的显示出来</li>
+<li>比如unicode的字符串,输出到windows的默认编码为GBK的cmd中,则Python可以自动将Unicode编码为GBK,然后输出到cmd中</li>
+<li>个别特殊情况,也会出错:<ul>
+<li>当此unicode字符串中包含某特殊字符,而目标终端的编码集合中,没有此字符,则很明显也是无法实现将Unicode编码为对应的特定编码的字符串,无法正确显示的</li>
+</ul>
+</li>
+<li>如果是某种编码类型的str,则需要该str的编码类型,和目标终端编码匹配<ul>
+<li>比如GBK的字符串,输出到windows的默认编码为GBK的cmd,则是可以正常输出的</li>
+<li>此处后来经过代码测试，就发现一个有趣或者说诡异的问题，虽然我们python文件声明的UTF-8编码，但是实际上实际上是用GBK编码，而此时，文件中的字符串，很明显是用GBK存储的，所以，将此GBK字符，输出到GBK的cmd中，是可以正常输出的。即，此处字符串的类型，很明显只和文件所用的实际编码有关，而和文件所声明的代码无关。</li>
+</ul>
+</li>
+<li>如果是UTF-8的字符串,输出到windows的默认编码为GBK的cmd,就会出错<ul>
+<li>对相应的字符，进行编码（为某种特定类型的字符str），或解码（为对应的unicode类型的字符）</li>
+<li>比如将当前的某种编码的字符串，解码为Unicode字符串<ul>
+<li>很明显，也是要保证，你字符串本身的编码和所指定的编码，两者之间要一致的</li>
+<li>比如：decodedUnicode = someUtf8Str.decode(“UTF-8”)</li>
+<li>而如果用这样的：decodedUnicode = someGbkStr.decode(“UTF-8”)，那就会出现错误</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="2_常用方法">2 常用方法</h1>
+<h3 id="2-1_encode和decode">2.1 encode和decode</h3>
+<p>encode()  unicode编码-&gt;其他编码</p>
+<p>decode()  其他编码-&gt;unicode编码</p>
+<p>使用这两个方法的前提是,你要知道当前是什么编码.然后用对应的编码去进行解码<br>比如对于s字符串可以用</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">s.encode(<span class="string">'utf-8'</span>) <span class="comment">#将s由unicode转码成utf-8</span></div><div class="line">s.decode(<span class="string">'GBK'</span>) <span class="comment">#s是GBK编码,将s转换成unicode</span></div></pre></td></tr></table></figure>
+
+<h3 id="2-2_isinstance()">2.2 isinstance()</h3>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">isinstance(s , <span class="keyword">unicode</span>) <span class="preprocessor">#检测s是否是unicode编码</span></div><div class="line"></div><div class="line">isinstance(s , str) <span class="preprocessor">#检测s是否是str格式</span></div></pre></td></tr></table></figure>
+
+<h1 id="3_beautifulsoup编码问题">3 beautifulsoup编码问题</h1>
+<h3 id="Beautiful_Soup_会按顺序尝试不同的编码将你的文档转换为Unicode：">Beautiful Soup 会按顺序尝试不同的编码将你的文档转换为Unicode：</h3>
+<ul>
+<li>可以通过from_encoding参数传递编码类型给soup的构造器</li>
+<li>通过文档本身找到编码类型：例如XML的声明或者HTML文档http-equiv的META标签。 </li>
+<li>如果Beautiful Soup在文档中发现编码类型，它试着使用找到的类型转换文档。 +</li>
+<li>但是，如果你明显的指定一个编码类型， </li>
+<li>并且成功使用了编码：这时它会忽略任何它在文档中发现的编码类型。</li>
+<li>通过嗅探文件开头的一下数据，判断编码。如果编码类型可以被检测到，</li>
+<li>它将是这些中的一个：UTF-*编码，EBCDIC或者ASCII。</li>
+<li>通过chardet库,嗅探编码，如果你安装了这个库。</li>
+<li>UTF-8</li>
+<li>Windows-1252</li>
+</ul>
+<p>一般来说,bs的自动识别,是不会有问题的,但是在我这里除了问题,具体原因不太清楚<br>我的网页上已经声明了是<code>utf-8</code>编码<br>原来代码如下</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#这是原来的编码,在win下面乱码</span></div><div class="line"><span class="keyword">self</span>.soup = bs((response.read()))</div><div class="line"><span class="keyword">print</span> <span class="keyword">self</span>.soup.originalEncoding   <span class="comment">#此处结果竟然返回Windows-1252</span></div></pre></td></tr></table></figure>
+
+<p>修改后代码如下</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#win下乱码的关键在这里,beautifulsoup解析的编码不对,我们这里直接指定编码</span></div><div class="line"><span class="keyword">self</span>.soup = bs((response.read()), from_encoding=<span class="string">'utf-8'</span>)</div><div class="line"><span class="keyword">print</span> <span class="keyword">self</span>.soup.originalEncoding   <span class="comment">#修正后代码正确返回'utf-8'</span></div></pre></td></tr></table></figure>
+
+<p>看来beautifulsoup的自动识别编码不能全部依赖.<br>好不容易才定位到这里的问题,折腾了一天啊<br>这里用了一个方法来检测编码.就是soup.iriginalEncoding属性</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="keyword">self</span>.soup.originalEncoding   <span class="comment">#修正后代码正确返回'utf-8'</span></div></pre></td></tr></table></figure>
+
+<p>这篇博客好水,毕竟不是很懂,所以说不出来</p>
+<h1 id="参考文献">参考文献</h1>
+<p>1 <a href="http://www.crifan.com/summary_python_2_x_common_string_encode_decode_error_reason_and_solution/" target="_blank" rel="external">【总结】Python 2.x中常见字符编码和解码方面的错误及其解决办法</a><br>2 <a href="http://www.crifan.com/resolved_python_garbled_chinese_characters_gb2312_gbk_gb18030-related_issues/" target="_blank" rel="external">【已解决】python中文字符乱码（GB2312，GBK，GB18030相关的问题）</a><br>参考资料太多,贴不过来啊,主要都是cifan的博客,里面资料很多,一步一步都有过程,非常好用,谢谢cifan作者</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>在刚开始使用github pages的时候,我用python写了一个爬虫,计划是从csdn和cnblogs等博客网站上,把自己之前写的博客爬取下来,然后再转换成hexo用的markdown格式,样就可以直接添加到我的github pages.</p>
+<blockquote>
+<p>项目主页: <a href="https://github.com/Jackroyal/blog2markdown" target="_blank" rel="external">https://github.com/Jackroyal/blog2markdown</a></p>
+</blockquote>
+<p>最近刚好在学习python,刚好就把它给优化了一下,顺便做了个跨平台(哈哈,win和ubuntu都可以跑哈),昨天遇到很蛋疼的问题,一它给了我很多思路帮助我定位问题,.直搞到凌晨两点才弄好.<br>非常非常感谢<a href="http://www.crifan.com/summary_python_2_x_common_string_encode_decode_error_reason_and_solution/" target="_blank" rel="external">【总结】Python 2.x中常见字符编码和解码方面的错误及其解决办法</a><br>作者做了一个很好的总结,帮助我们定位问题.<br>]]>
+    
+    </summary>
+    
+      <category term="python" scheme="http://jackroyal.github.io/tags/python/"/>
+    
+      <category term="爬虫" scheme="http://jackroyal.github.io/tags/%E7%88%AC%E8%99%AB/"/>
+    
+      <category term="python学习笔记" scheme="http://jackroyal.github.io/categories/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[python学习笔记--一个简单聊天室的实现]]></title>
@@ -647,6 +758,153 @@
   </entry>
   
   <entry>
+    <title><![CDATA[chrome扩展开发手记-chrome扩展开始第一步manfest.json]]></title>
+    <link href="http://jackroyal.github.io/2014/11/24/chrome%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%89%8B%E8%AE%B0-chrome%E6%89%A9%E5%B1%95%E5%BC%80%E5%A7%8B%E7%AC%AC%E4%B8%80%E6%AD%A5manfest.json/"/>
+    <id>http://jackroyal.github.io/2014/11/24/chrome扩展开发手记-chrome扩展开始第一步manfest.json/</id>
+    <published>2014-11-24T07:16:00.000Z</published>
+    <updated>2015-03-29T06:41:45.000Z</updated>
+    <content type="html"><![CDATA[<p>参考文档   <a href="https://lmk123.duapp.com/" target="_blank" rel="external">https://lmk123.duapp.com/</a></p>
+<p>下面开始写chrome扩展了,第一步就是看文档,官方文档有入门指导,先要过一遍</p>
+<p>我们首先来编写第一个文件manfest.json,这是一个清单文件,告诉系统,我有哪些文件,需要申请哪些权限都在里面,下卖弄给出我的manfest.json</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">{</div><div class="line">    <span class="string">"name"</span>:<span class="string">"cmcc520"</span>,<span class="comment">//扩展的名称</span></div><div class="line">    <span class="string">"version"</span>:<span class="string">"2.0"</span>,<span class="comment">//扩展的版本号,随便写</span></div><div class="line">    <span class="string">"description"</span>:<span class="string">"powered by 搁浅St"</span>,<span class="comment">//扩展的描述,就是在chrome://extension页面中,扩展名称下面的几个字</span></div><div class="line">    <span class="string">"background"</span>: {<span class="comment">//background.js,整个扩展的运行,有个页面在后台运行</span></div><div class="line">        <span class="string">"scripts"</span>: [<span class="string">"js/function.js"</span>,<span class="string">"bg.js"</span>],</div><div class="line">        <span class="string">"persistent"</span>: <span class="literal">false</span></div><div class="line">    },</div><div class="line">    <span class="string">"page_action"</span>:{<span class="comment">//比较常见有page_action和browser_action有,page会出现在地址栏末端,browser会在浏览器上显示一个图标</span></div><div class="line">        <span class="string">"default_icon"</span>:<span class="string">"icon-48.png"</span>,</div><div class="line">        <span class="string">"default_popup"</span>: <span class="string">"popup.html"</span>,<span class="comment">//popup.html点击弹出的页面</span></div><div class="line">        <span class="string">"default_title"</span>:<span class="string">"cmcc520"</span></div><div class="line">    },</div><div class="line">    <span class="string">"permissions"</span> : [<span class="comment">//申请内容脚本的权限,在插入内容到页面时,需要用哪些权限,此处必须声明</span></div><div class="line">        <span class="string">"tabs"</span>, <span class="string">"http://\*/\*"</span></div><div class="line">    ],</div><div class="line">    <span class="string">"icons"</span> : {<span class="comment">//图标设置</span></div><div class="line">        <span class="string">"48"</span> : <span class="string">"icon-48.png"</span>,</div><div class="line">        <span class="string">"128"</span> : <span class="string">"icon-128.png"</span></div><div class="line">    },</div><div class="line">    <span class="string">"commands"</span>: {<span class="comment">//快捷键设置</span></div><div class="line">        <span class="string">"logout_cmcc"</span>: {</div><div class="line">            <span class="string">"description"</span>: <span class="string">"退出CMCC登录"</span>,</div><div class="line">            <span class="string">"suggested_key"</span>: {</div><div class="line">                <span class="string">"default"</span>: <span class="string">"Alt+X"</span></div><div class="line">            }</div><div class="line">        }</div><div class="line">    },</div><div class="line">    <span class="string">"manifest_version"</span>:<span class="number">2</span><span class="comment">//manifest_version,现在版本1已经不支持,统一都写成2</span></div><div class="line"></div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>简单的属性,这里不再赘述,我重点说一下background,page_action,permissions和commands.</p>
+<p>background  它是一个包含扩展程序主要逻辑的不可见页面。扩展程序也可以包含其他页面，展现扩展程序的用户界面。如果扩展程序需要与用户加载的网页交互（相对于包含在扩展程序中的页面），扩展程序必须使用内容脚本。后台网页分两种：持续运行的后台网页与事件页面(设置persistent属性)。正如它们的名称所述，持续运行的后台网页保持打开状态，事件页面根据需要打开与关闭。除非您绝对需要您的后台网页一直运行，请首选事件页面。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="string">"background"</span>: {<span class="comment">//background.js,整个扩展的运行,有个页面在后台运行</span></div><div class="line">    <span class="string">"scripts"</span>: [<span class="string">"js/function.js"</span>,<span class="string">"bg.js"</span>],</div><div class="line">    <span class="string">"persistent"</span>: <span class="literal">false</span></div><div class="line">},</div></pre></td></tr></table></figure>
+
+<p>比如我的这个 后台执行就是这样的</p>
+<p><img src="http://img.blog.csdn.net/20141124194616706?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>采用pageaction还是browseraction取决于你是否想让图标一直可见.`<img src="http://img.blog.csdn.net/20141124193151343?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>如图,绿色的是广告终结者,他的图标是pageAction,后面的印象笔记还有switchproxy是browserAction.一般来说,适用于少数页面的扩展建议使用pageaction,适用于大多数页面的建议使用browseraction</p>
+<p>permissions属性,用来设置和conten_script相关的选项,举个例子,如果你想插入一段代码到页面中去执行,操作页面上的dom,那就写个content_script就行了,使用 content_scripts 字段，扩展程序可以向一个页面中插入多个内容脚本，每个内容脚本可以有多个<br> JavaScript 和 CSS 文件,详细情况请看这里<a href="https://lmk123.duapp.com/extensions/content_scripts" target="_blank" rel="external">https://lmk123.duapp.com/extensions/content_scripts</a></p>
+<p>我现在在做的一个扩展就是做这样的事,百度的搜索结果会先跳到一个百度的网址,然后才是目标网址,我可以使用cotent_scripts来插入脚本,修改百度搜索结果的链接,让他直接跳转到目标页面,而不是百度的搜索结果页面.</p>
+<p>commands选项是设置快捷键,然后给快捷键设置事件 监听,这样我们按快捷键就会执行相应操作.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="string">"logout_cmcc"</span>: {<span class="comment">//某个快捷操作的名称</span></div><div class="line">    <span class="string">"description"</span>: <span class="string">"退出CMCC登录"</span>,<span class="comment">//快捷操作的描述</span></div><div class="line">    <span class="string">"suggested_key"</span>: {<span class="comment">//默认推荐的快捷键,不能与系统默认的快捷键冲突,否则就会失灵,需要用户手动去设置</span></div><div class="line">        <span class="string">"default"</span>: <span class="string">"Alt+X"</span></div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>参考文档   <a href="https://lmk123.duapp.com/" target="_blank" rel="external">https://lmk123.duapp.com/</a></p>
+<p>下面开始写chrome扩展了,第一步就是看文档,官方]]>
+    </summary>
+    
+      <category term="chrome" scheme="http://jackroyal.github.io/tags/chrome/"/>
+    
+      <category term="cmcc-edu" scheme="http://jackroyal.github.io/tags/cmcc-edu/"/>
+    
+      <category term="扩展" scheme="http://jackroyal.github.io/tags/%E6%89%A9%E5%B1%95/"/>
+    
+      <category term="脚本" scheme="http://jackroyal.github.io/tags/%E8%84%9A%E6%9C%AC/"/>
+    
+      <category term="中国移动" scheme="http://jackroyal.github.io/tags/%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8/"/>
+    
+      <category term="chrome扩展" scheme="http://jackroyal.github.io/categories/chrome%E6%89%A9%E5%B1%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[chrome扩展开发手记<2>-登录原理分析]]></title>
+    <link href="http://jackroyal.github.io/2014/11/24/chrome%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%89%8B%E8%AE%B02-%E7%99%BB%E5%BD%95%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90/"/>
+    <id>http://jackroyal.github.io/2014/11/24/chrome扩展开发手记2-登录原理分析/</id>
+    <published>2014-11-24T03:18:00.000Z</published>
+    <updated>2015-03-29T06:41:49.000Z</updated>
+    <content type="html"><![CDATA[<p>上一篇,我们 介绍了一下登录的流程,但是用程序进行登录的话,我们肯定不能那样一步一步,太过复杂,所以我们接下来分下一下登录的具体过程,看看能不能作一些简化</p>
+<p>我们接下来,给几个页面编个号,下面好分析一点<br>A   最原始的跳转 <a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external">http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU</a><br>B  第一次改ssid  <a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external">http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free</a></p>
+<p>C 第一次点击 请点击登录  以后的地址<br><a href="http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free" target="_blank" rel="external">http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free</a></p>
+<p>D 第二次改ssid<br><a href="http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free" target="_blank" rel="external">http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC520</a></p>
+<ol>
+<li>从www.baidu.com跳转到A地址,这个步骤没什么特别的,服务器那边做了一个302跳转,然后我们这边就自动跳转到A地址了</li>
+<li><p>第一次改ssid,也就是从A到B,这个过程也没什么,只是一个单纯的地址跳转,B地址中有一个表单<br><br><img src="http://img.blog.csdn.net/20141124134725891?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br><br>这个表单里面 主要包含四个字段,<br><br>wlanacname:1022.0027.270.00<br><br>wlanuserip:10.80.97.209<br>ssid:iWuhan-Free<br><br>userAgent_1:Mozilla/5.0 (Windows NT 6.2)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36</p>
+</li>
+<li><p>我们第一次点击 请提交登录,所做的操作就是把上面的表单提交到  <a href="http://120.202.164.10:8080/portal/servlets/SingleLoginServlet" target="_blank" rel="external">http://120.202.164.10:8080/portal/servlets/SingleLoginServlet</a><br><br>服务器返回的地址是C,这一步的表单提交主要是为了获取C的地址,就是因为多了的那个loginFree.jsp,这样下一步才能改ssid为CMCC520,否则,如果你越过这一步直接改ssid为CMCC520,就会跳转到其他的页面,比如下面这个<img src="http://img.blog.csdn.net/20141124133708801?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br><br>这个地址如果点击提交,是没有办法正常登陆的,我们必须要到武汉的那个页面才行.</p>
+</li>
+<li>在我们到达C那个页面以后,我们再次修改ssid,就到了D页面,然后在D页面点击  请点击登录,流程和上面的一样,页面效果也是一样,不过表单的值变了一个,具体表单post内容如下<br><br>wlanacname:1022.0027.270.00<br><br>wlanuserip:10.80.97.209<br>ssid:CMCC520<br>userAgent_1:Mozilla/5.0 (Windows NT 6.2)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36<br><br>提交以后,我们就可以登录成功了,成功以后服务器会做一个302跳转,页面跳转到一个登录计时的页面.</li>
+</ol>
+<p>************************************************************************************************************************************************************<br><em><br>
+</em><br>从整体来看,最核心的一个操作就是向<a href="http://120.202.164.10:8080/portal/servlets/SingleLoginServlet" target="_blank" rel="external">http://120.202.164.10:8080/portal/servlets/SingleLoginServlet</a>提交一个表单,表单内容是<br>wlanacname:1022.0027.270.00<br>wlanuserip:10.80.97.209<br>ssid:CMCC520<br>userAgent<em>1:Mozilla/5.0 (Windows NT 6.2)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36<br>然后,然后就没有然后了,那个最后计时页面的跳转没有多大的实际作用,我们只需要post这一个请求就好了<br>下一步我们开始制作chrome扩展,核心也是要实现这个post的请求
+</em>************************************************************************************************************************************************************<em>
+</em>退出登录也是如此,发一个get请求过去,然后从获得的内容中进行判断,判断成功与否<em><br>_</em></p>
+<p>下线请求<br><a href="http://120.202.164.10:8080/portal/servlets/LogoutServlet?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC520&amp;ATTRIBUTE_USERNAME=iWuhanFree4300&amp;ATTRIBUTE_UUID=26FBE9A694B6221958CF6DE2704F0ECA&amp;ATTRIBUTE_IPADDRESS=10.80.97.209&amp;cancelAutomatismLogin=false" target="_blank" rel="external">http://120.202.164.10:8080/portal/servlets/LogoutServlet?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC520&amp;ATTRIBUTE_USERNAME=iWuhanFree4300&amp;ATTRIBUTE_UUID=26FBE9A694B6221958CF6DE2704F0ECA&amp;ATTRIBUTE_IPADDRESS=10.80.97.209&amp;cancelAutomatismLogin=false</a></p>
+<p>表单实际内容</p>
+<p>wlanacname:1022.0027.270.00</p>
+<p>wlanuserip:10.80.97.209</p>
+<p>ssid:CMCC520</p>
+<p>ATTRIBUTE_USERNAME:iWuhanFree4300</p>
+<p>ATTRIBUTE_UUID:26FBE9A694B6221958CF6DE2704F0ECA</p>
+<p>ATTRIBUTE_IPADDRESS:10.80.97.209</p>
+<p>cancelAutomatismLogin:false</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>上一篇,我们 介绍了一下登录的流程,但是用程序进行登录的话,我们肯定不能那样一步一步,太过复杂,所以我们接下来分下一下登录的具体过程,看看能不能作一些简化</p>
+<p>我们接下来,给几个页面编个号,下面好分析一点<br>A   最原始的跳转 <a href="http:/]]>
+    </summary>
+    
+      <category term="chrome" scheme="http://jackroyal.github.io/tags/chrome/"/>
+    
+      <category term="cmcc-edu" scheme="http://jackroyal.github.io/tags/cmcc-edu/"/>
+    
+      <category term="表单" scheme="http://jackroyal.github.io/tags/%E8%A1%A8%E5%8D%95/"/>
+    
+      <category term="chrome扩展" scheme="http://jackroyal.github.io/categories/chrome%E6%89%A9%E5%B1%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[chrome扩展开发手记<1>-需求分析]]></title>
+    <link href="http://jackroyal.github.io/2014/11/21/chrome%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%89%8B%E8%AE%B01-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/"/>
+    <id>http://jackroyal.github.io/2014/11/21/chrome扩展开发手记1-需求分析/</id>
+    <published>2014-11-21T10:17:00.000Z</published>
+    <updated>2015-03-29T06:41:54.000Z</updated>
+    <content type="html"><![CDATA[<p>本人的学校在武汉,有CMCC-EDU的网络覆盖,中国移动和武汉市政府搞了一个活动,可以免费公益上网,说白了,就是可以免费使用EDU的网络,如图.<br><img src="http://img.blog.csdn.net/20141121181910580?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>以上是前提.</p>
+<p>这个网络的使用流程是这样子的.</p>
+<ol>
+<li>你打开任何一个网址,比如<a href="http://www.baidu.com" target="_blank" rel="external">http://www.baidu.com</a>  <br><br>都会跳转到 <a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external"></a><a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external">http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU</a>  界面如图所示<br><br><img src="http://img.blog.csdn.net/20141124103645611?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></li>
+<li>接下来我们手动更改最上面的网址栏,把ssid改为iWuhan-Free,(注意大小写)<br><br>修改后的网址如下<a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external">http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free</a>界面如下<br><br><img src="http://img.blog.csdn.net/20141124104120281?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></li>
+<li>接下来我们点击,请点击登录按钮,系统反馈如下<br><br><img src="http://img.blog.csdn.net/20141124104623968?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br><br>我们忽略这个警告,可以注意到,上面的地址栏已经变掉了,多了个loginFree.jsp完整的地址<a href="http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free" target="_blank" rel="external">http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free</a></li>
+<li>接下来,我们再改一次ssid,改为CMCC520,完整地址如下<a href="http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free" target="_blank" rel="external">http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC520</a> 界面还是和上图一样,就不贴图了,我们再点击一次,请点击登录,然后就会跳到一个计时页面,这样就表示你登录成功,可以上网了</li>
+</ol>
+<p>登录的流程走完了,下一篇,接下来我们分析一下登录的原理,简化一下登录的流程</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>本人的学校在武汉,有CMCC-EDU的网络覆盖,中国移动和武汉市政府搞了一个活动,可以免费公益上网,说白了,就是可以免费使用EDU的网络,如图.<br><img src="http://img.blog.csdn.net/20141121181910580?watermar]]>
+    </summary>
+    
+      <category term="chrome" scheme="http://jackroyal.github.io/tags/chrome/"/>
+    
+      <category term="cmcc-edu" scheme="http://jackroyal.github.io/tags/cmcc-edu/"/>
+    
+      <category term="中国移动" scheme="http://jackroyal.github.io/tags/%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8/"/>
+    
+      <category term="chrome扩展" scheme="http://jackroyal.github.io/categories/chrome%E6%89%A9%E5%B1%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[wamp与sql_server_因为端口80冲突,无法开启wamp]]></title>
+    <link href="http://jackroyal.github.io/2014/11/14/wamp%E4%B8%8Esql_server_%E5%9B%A0%E4%B8%BA%E7%AB%AF%E5%8F%A380%E5%86%B2%E7%AA%81,%E6%97%A0%E6%B3%95%E5%BC%80%E5%90%AFwamp/"/>
+    <id>http://jackroyal.github.io/2014/11/14/wamp与sql_server_因为端口80冲突,无法开启wamp/</id>
+    <published>2014-11-14T10:09:00.000Z</published>
+    <updated>2015-03-29T06:41:56.000Z</updated>
+    <content type="html"><![CDATA[<p>因为80端口占用,导致无法启动,其实不必关闭sql server太多的东西,只需要关闭SQL Server Reporting Services 就行了,这样也不会影响sql server的使用</p>
+<p>如图<br><img src="http://img.blog.csdn.net/20141114175909339?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>打开sqlserver 配置管理器,关闭以上服务</p>
+<p>或者打开控制面板-&gt;管理-&gt;服务工具-&gt;SQL Server Reporting Services</p>
+<p>然后就可以打开wamp了</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>因为80端口占用,导致无法启动,其实不必关闭sql server太多的东西,只需要关闭SQL Server Reporting Services 就行了,这样也不会影响sql server的使用</p>
+<p>如图<br><img src="http://img.blog.]]>
+    </summary>
+    
+      <category term="sql server" scheme="http://jackroyal.github.io/tags/sql-server/"/>
+    
+      <category term="wamp" scheme="http://jackroyal.github.io/tags/wamp/"/>
+    
+      <category term="软件安装与技巧" scheme="http://jackroyal.github.io/categories/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E4%B8%8E%E6%8A%80%E5%B7%A7/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[sql中left_join和right_join混用]]></title>
     <link href="http://jackroyal.github.io/2014/08/08/sql%E4%B8%ADleft_join%E5%92%8Cright_join%E6%B7%B7%E7%94%A8/"/>
     <id>http://jackroyal.github.io/2014/08/08/sql中left_join和right_join混用/</id>
@@ -700,6 +958,80 @@
       <category term="select" scheme="http://jackroyal.github.io/tags/select/"/>
     
       <category term="数据库" scheme="http://jackroyal.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[阿里云windows_server_2003_搭建邮件服务器]]></title>
+    <link href="http://jackroyal.github.io/2014/06/28/%E9%98%BF%E9%87%8C%E4%BA%91windows_server_2003_%E6%90%AD%E5%BB%BA%E9%82%AE%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    <id>http://jackroyal.github.io/2014/06/28/阿里云windows_server_2003_搭建邮件服务器/</id>
+    <published>2014-06-28T14:30:00.000Z</published>
+    <updated>2015-03-29T06:41:58.000Z</updated>
+    <content type="html"><![CDATA[<pre><code>笔者最近遇到一个在阿里云上搭建邮件服务器的问题，总算搞定，记录一下。
+
+ 整个搭建过程，包括pop3服务的安装和开启，smtp服务的安装和开启，dns服务的安装和设置。
+参考文章[<span class="link_label">http://hi.baidu.com/senya/item/63bd6588b6817056e63d1996</span>](<span class="link_url">http://hi.baidu.com/senya/item/63bd6588b6817056e63d1996</span>)
+</code></pre><p>   <a href="http://firefish.blog.51cto.com/298258/57983" target="_blank" rel="external">http://firefish.blog.51cto.com/298258/57983</a></p>
+<p>不在赘述，直接粘贴原文</p>
+<p><strong>　　一、安装Windows Server 2003邮件服务器组件</strong></p>
+<p>(因为盗图的缘故,图片都挂了,这里大家都去看上面的参考文章连接吧,设置dns的时候再回来)</p>
+<p>图一　“管理您的服务器”控制台</p>
+<p>　　依次单击“开始”——“管理工具”——“管理您的服务器”，打开“管理您的服务器”控制台。在这个管理控制台中我们可以看到服务器已经成为的角色。单击“添加或删除角色”命令，开始管理服务器的角色。</p>
+<p>图二　配置服务器向导</p>
+<p>　　当我们单击“添加或删除角色”命令，就会运行配置服务器向导。</p>
+<p>图三　服务器管理程序检测网络连接</p>
+<p>图四　管理服务器角色</p>
+<p>　　在图四中，可以查看已经安装的服务和支持而没有安装的服务。此时的服务器还不是邮件服务器，选择“邮件服务器(POP3,SMTP)”，单击“下一步”：</p>
+<p>图五　配置“身份验证方法”及“电子邮件域名”</p>
+<p>图六　单击“下一步”</p>
+<p>图七　安装邮件服务:POP3和SMTP</p>
+<p>图八　安装成功</p>
+<p><strong>　　二、管理邮件服务器</strong></p>
+<p>　　Windows Server 2003的电子邮件服务器的功能很简单，管理界面也很简洁。单击“管理工具”下的“POP3服务”：</p>
+<p>图九 POP3服务</p>
+<p>图十　为用户添加邮箱</p>
+<p>　　在“POP3服务”中单击“添加邮箱”命令，在弹出的对话框内输入邮箱名（用户名）及密码。</p>
+<p>图十一</p>
+<p><strong>　　三、配置smtp</strong></p>
+<p>　　方法和上面类似，在图二的画面中我们选择应用程序服务器</p>
+<p><img src="" alt=""></p>
+<p>如图，我的已经开启了。</p>
+<p>下一步，依次打开“开始-程序-管理工具-internet信息服务”，在窗口左面，鼠标右键点击“smtp虚拟服务器”属性。切换到常规选项卡”IP地址“选择服务器的ip地址，点击确定就行了。</p>
+<p><strong>四、配置DNS</strong></p>
+<p>服务器已经配置好了，我们接下来设置下dns，这样才能解析到，不然还是无法使用的</p>
+<p>依次打开，“开始-程序-管理工具-配置您的服务器向导”</p>
+<p><img src="" alt=""></p>
+<p>选择自定义配置</p>
+<p><img src="" alt=""></p>
+<p>选择dns服务器，下一步</p>
+<p><img src="" alt=""></p>
+<p><img src="" alt=""></p>
+<p><img src="" alt=""></p>
+<p><img src="" alt=""></p>
+<p><img src="" alt=""></p>
+<p><img src="" alt=""></p>
+<p><img src="" alt=""></p>
+<p>点击正向查找域里面的区域名称，在右边的空白处点击右键，新建主机，分别新建POP3，smtp等主机</p>
+<p><img src="" alt=""></p>
+<p>还是空白处，右键，新建邮件交换器，分别新建smtp和pop3的邮件交换器</p>
+<p><img src="" alt=""></p>
+<p><img src="" alt=""></p>
+<p>注意：完全合格的域名后面没有点号，邮件服务器的完全合格的域名后面有点号，例如是smtp.ip-tcp.com.</p>
+<p>到此，邮件服务器搭建完成，可以去测试了</p>
+<p>此处参考原文<a href="http://www.docin.com/p-156566941.html" target="_blank" rel="external">http://www.docin.com/p-156566941.html</a></p>
+<p>经过我的测试，可以收邮件，但是不能发邮件（可以自己给自己发，但是不能给qq，网易等邮箱发），一直报错550 5.7.1 Unable to relay for <a href="mailto:xxx@xxx.com" target="_blank" rel="external"></a><a href="mailto:xxx@xxx.com" target="_blank" rel="external">xxx@xxx.com</a></p>
+<p>最后找到答案</p>
+<p>在IIS管理器里打开“默认SMTP虚拟服务器”的属性设置对话框，在“访问”选项卡中，点击“中继”按钮，弹出“中继限制”对话框，默认为选中了“仅以下列表”，修改为选中“仅以下列表除外”即可。</p>
+<p>另外下面的“允许所有通过身份验证的计算机进行中继，而忽略上表”一项要保持选中状态（默认是选中的）。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<pre><code>笔者最近遇到一个在阿里云上搭建邮件服务器的问题，总算搞定，记录一下。
+
+ 整个搭建过程，包括pop3服务的安装和开启，smtp服务的安装和开启，dns服务的安装和设置。
+参考文章[<span class="link_label">http://hi.baid]]>
+    </summary>
+    
+      <category term="服务器" scheme="http://jackroyal.github.io/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
   </entry>
   
