@@ -97,6 +97,9 @@ print self.soup.originalEncoding   #修正后代码正确返回'utf-8'
 
 这篇博客好水,毕竟不是很懂,所以说不出来
 
+update:2015-03-30
+#4 新技能get
+之前都没好好理解原作者的博客,觉得没办法一个程序在win和ubuntu中不更改正常运行,现在发现,如果把编码改为unicode格式输出,那么系统会自动转换,这样就不存在utf-8编码在windows下cmd乱码了.
 
 
 #参考文献
