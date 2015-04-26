@@ -4,7 +4,7 @@
   <subtitle><![CDATA[我最喜欢笨笨]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://jackroyal.github.io/"/>
-  <updated>2015-03-29T14:35:25.346Z</updated>
+  <updated>2015-04-26T05:21:31.949Z</updated>
   <id>http://jackroyal.github.io/</id>
   
   <author>
@@ -15,17 +15,73 @@
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[使用opencv实现人脸检测]]></title>
+    <link href="http://jackroyal.github.io/2015/04/26/face-detection/"/>
+    <id>http://jackroyal.github.io/2015/04/26/face-detection/</id>
+    <published>2015-04-26T04:54:24.000Z</published>
+    <updated>2015-04-26T05:21:21.000Z</updated>
+    <content type="html"><![CDATA[<p>这两个星期，都在搞这个，就把代码都分享一下，太烂，就不分享到github了。<br><a id="more"></a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8-*-</span></div><div class="line">__author__ = <span class="string">'chen'</span></div><div class="line"><span class="keyword">import</span> cv2</div><div class="line"><span class="keyword">import</span> Image</div><div class="line"><span class="keyword">import</span> ImageDraw</div><div class="line"><span class="keyword">import</span> sys,os</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">detectFaces</span><span class="params">(image_name)</span>:</span></div><div class="line">    img = cv2.imread(image_name)</div><div class="line">    face_cascade = cv2.CascadeClassifier(<span class="string">'../data2/haarcascades/haarcascade_frontalface_alt.xml'</span>)<span class="comment">#加载级联分类器，这里使用的是intel训练出来的人脸识别分类器</span></div><div class="line">    <span class="keyword">if</span> img.ndim == <span class="number">3</span>:<span class="comment">#判断图片是否是灰度图像，如果img.ndim==3那就表示不是灰度图像</span></div><div class="line">        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)<span class="comment">#将图片转化为灰度图像</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        gray = img</div><div class="line"></div><div class="line">    faces = face_cascade.detectMultiScale(gray, scaleFactor=<span class="number">1.2</span>, minNeighbors=<span class="number">4</span>, minSize=(<span class="number">30</span>, <span class="number">30</span>), flags = cv2.CASCADE_SCALE_IMAGE)<span class="comment">#核心操作，返回图片中所有的人脸的坐标和宽高度</span></div><div class="line">    result = []</div><div class="line">    <span class="keyword">for</span> (x, y, width, height) <span class="keyword">in</span> faces:</div><div class="line">        <span class="keyword">print</span> (x, y, width, height)</div><div class="line">        result.append((x, y, x+width, y+height))<span class="comment">#将原始数据，转化为人脸的四个点的坐标</span></div><div class="line">    <span class="keyword">return</span> result</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">drawFaces</span><span class="params">(image_name)</span>:</span></div><div class="line">    faces = detectFaces(image_name)<span class="comment">#此处的返回值是一个元组，(x, y, width, height)，每一个元组都包括人脸的（x,y）坐标，还有人脸的宽度和高度，有这些数据，我们就可以把人脸标记出来，比如画一个矩形框出来</span></div><div class="line">    <span class="keyword">print</span> faces</div><div class="line">    <span class="keyword">if</span> faces:</div><div class="line">        imga = cv2.imread(image_name)<span class="comment">#读取图片</span></div><div class="line">        draw_rects(imga, faces, (<span class="number">0</span>,<span class="number">255</span>,<span class="number">0</span>))<span class="comment">#画矩形标记</span></div><div class="line">        cv2.imshow(<span class="string">'img'</span>, imga)<span class="comment">#显示修改后的矩形</span></div><div class="line">        cv2.waitKey(<span class="number">0</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">draw_rects</span><span class="params">(img, rects, color)</span>:</span></div><div class="line">    <span class="keyword">for</span> x1, y1, x2, y2 <span class="keyword">in</span> rects:</div><div class="line">        cv2.rectangle(img, (x1, y1), (x2, y2), color, <span class="number">2</span>)<span class="comment">#调用cv2的矩形函数，画矩形</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">saveFaces</span><span class="params">(image_name)</span>:</span><span class="comment">#将人脸截取并保存成图片</span></div><div class="line">    faces = detectFaces(image_name)</div><div class="line">    <span class="keyword">if</span> faces:</div><div class="line">        save_dir = image_name.split(<span class="string">'.'</span>)[<span class="number">0</span>] + <span class="string">"_faces_"</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(save_dir):<span class="comment">#检测目录是否存在，如果不存在那就创建目录</span></div><div class="line">            os.mkdir(save_dir)</div><div class="line">        count = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> (x1, y1, x2, y2) <span class="keyword">in</span> faces:</div><div class="line">            imga = cv2.imread(image_name)</div><div class="line">            file_name = os.path.join(save_dir,str(count)+<span class="string">".jpg"</span>)</div><div class="line">            roi = imga[y1:y2,x1:x2]<span class="comment">#这一步是重点，他就像取一个数组一样，把人脸的部分保存出来</span></div><div class="line">            cv2.imwrite(file_name,cv2.cvtColor(cv2.resize(roi,(<span class="number">92</span>,<span class="number">112</span>)), cv2.COLOR_BGR2GRAY))<span class="comment">#把图片的size重新设定维（92,112），并将图片转换为灰度图像</span></div><div class="line">            <span class="comment"># cv2.imshow('aaa',imga)</span></div><div class="line"></div><div class="line"></div><div class="line">drawFaces(<span class="string">'../at/chen.jpg'</span>)</div><div class="line">saveFaces(<span class="string">'../at/chen.jpg'</span>)</div></pre></td></tr></table></figure>
+
+<p>这里面的截取人脸并保存的saveFaces函数，我觉得还不错。网上找到的代码，调用了Image库，我的代码全部都是用cv2搞定的，没有用Image库。画矩形也是，我也都是用cv2自带的东西完成的。<br>我用以上代码生成的数据，去进行人脸识别，惨不忍睹。</p>
+<h1 id="参考文献">参考文献</h1>
+<p>1 <a href="http://blog.csdn.net/u012162613/article/details/43523507" target="_blank" rel="external">Python-OpenCV人脸检测(代码)</a><br>2 <a href="http://wangwei007.blog.51cto.com/68019/1104940" target="_blank" rel="external">python os.path模块常用方法详解</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>这两个星期，都在搞这个，就把代码都分享一下，太烂，就不分享到github了。<br>]]>
+    
+    </summary>
+    
+      <category term="opencv" scheme="http://jackroyal.github.io/tags/opencv/"/>
+    
+      <category term="图像处理" scheme="http://jackroyal.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
+    
+      <category term="python" scheme="http://jackroyal.github.io/tags/python/"/>
+    
+      <category term="图像处理" scheme="http://jackroyal.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[使用opencv实现人脸识别]]></title>
+    <link href="http://jackroyal.github.io/2015/04/26/face-recognizer/"/>
+    <id>http://jackroyal.github.io/2015/04/26/face-recognizer/</id>
+    <published>2015-04-26T02:50:00.000Z</published>
+    <updated>2015-04-26T04:51:05.000Z</updated>
+    <content type="html"><![CDATA[<p>最近搞了两个星期的opencv，人脸识别方向，感觉没有什么前途，看不到论文在哪里啊。<br><a id="more"></a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8-*-</span></div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> cv2</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">z = {} <span class="comment">#存储关于每张图片对应的lable</span></div><div class="line">for_pre = []  <span class="comment">#存储用来进行测试的图片，规则是每个人10张图，5张用来训练，5张用来测试</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">normalize</span><span class="params">(X, low, high, dtype=None)</span>:</span></div><div class="line">    <span class="string">"""对数据进行正常化处理，让其处于最高和最低值之间."""</span></div><div class="line">    X = np.asarray(X)</div><div class="line">    minX, maxX = np.min(X), np.max(X)</div><div class="line">    <span class="comment"># normalize to [0...1].</span></div><div class="line">    X = X - float(minX)</div><div class="line">    X = X / float((maxX - minX))</div><div class="line">    <span class="comment"># scale to [low...high].</span></div><div class="line">    X = X * (high-low)</div><div class="line">    X = X + low</div><div class="line">    <span class="keyword">if</span> dtype <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">        <span class="keyword">return</span> np.asarray(X)</div><div class="line">    <span class="keyword">return</span> np.asarray(X, dtype=dtype)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_images</span><span class="params">(path, sz=None)</span>:</span></div><div class="line">    <span class="string">"""从文件夹中读取图像，并且将其大小限制在一定范围之内</span></div><div class="line"></div><div class="line">    参数:</div><div class="line">        path: 图片的路径</div><div class="line">        sz: 设定图像的大小以元组的形式，例如(92,112)</div><div class="line"></div><div class="line">    返回值:</div><div class="line">        返回一个list的数据[X,y]</div><div class="line"></div><div class="line">            X: 一个numpy的数组，里面存储的是所有的图片的矩阵.</div><div class="line">            y:一个list存储的，都是与X中图片对应的lable</div><div class="line">    """</div><div class="line">    c = <span class="number">0</span></div><div class="line">    X,y = [], []</div><div class="line">    <span class="keyword">for</span> dirname, dirnames, filenames <span class="keyword">in</span> os.walk(path):</div><div class="line">        <span class="keyword">for</span> subdirname <span class="keyword">in</span> dirnames:</div><div class="line">            subject_path = os.path.join(dirname, subdirname)</div><div class="line">            <span class="keyword">for</span> filename <span class="keyword">in</span> os.listdir(subject_path):</div><div class="line">                <span class="keyword">try</span>:</div><div class="line">                    im = cv2.imread(os.path.join(subject_path, filename), cv2.IMREAD_GRAYSCALE)</div><div class="line">                    <span class="comment"># resize to given size (if given)</span></div><div class="line">                    <span class="keyword">if</span> (sz <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>):</div><div class="line">                        im = cv2.resize(im, sz)</div><div class="line">                    <span class="keyword">if</span> y.count(c) &gt; <span class="number">4</span>:</div><div class="line">                        for_pre.append({<span class="string">'no'</span>:c,<span class="string">'src'</span>:np.asarray(im, dtype=np.uint8)})</div><div class="line">                    <span class="keyword">else</span>:</div><div class="line">                        X.append(np.asarray(im, dtype=np.uint8))</div><div class="line">                        y.append(c)</div><div class="line">                    <span class="keyword">global</span> z</div><div class="line">                    z[os.path.join(subject_path, filename)] = c</div><div class="line">                <span class="keyword">except</span> IOError, (errno, strerror):</div><div class="line">                    <span class="keyword">print</span> <span class="string">"I/O error({0}): {1}"</span>.format(errno, strerror)</div><div class="line">                <span class="keyword">except</span>:</div><div class="line">                    <span class="keyword">print</span> <span class="string">"Unexpected error:"</span>, sys.exc_info()[<span class="number">0</span>]</div><div class="line">                    <span class="keyword">raise</span></div><div class="line">            c = c+<span class="number">1</span></div><div class="line">    <span class="keyword">return</span> [X,y]</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">prediction</span><span class="params">(model)</span>:</span></div><div class="line">    <span class="string">"""图像预测</span></div><div class="line"></div><div class="line">    参数:</div><div class="line">        model: 就是图片训练的那个model</div><div class="line"></div><div class="line">    数据集中每个人存储了10张图片，我把其中的5张存储到for_pre，作为训练数据。用已知的lable和预测的lable作比较，得出图片识别正确的概率</div><div class="line">    """</div><div class="line">    tn = <span class="number">0</span> <span class="comment">#识别正确的图片数</span></div><div class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> for_pre:</div><div class="line">        [p_label, p_confidence] = model.predict(cv2.resize(item[<span class="string">'src'</span>],(<span class="number">92</span>,<span class="number">112</span>)))</div><div class="line">        <span class="keyword">if</span> p_label == item[<span class="string">'no'</span>]:</div><div class="line">            tn = tn+<span class="number">1</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">print</span> <span class="string">'the answer is %d,'</span> % item[<span class="string">'no'</span>],</div><div class="line">            <span class="keyword">print</span> <span class="string">"Predicted label = %d (confidence=%.2f)"</span> % (p_label, p_confidence)</div><div class="line"></div><div class="line">    <span class="keyword">print</span> <span class="string">"总共有%d次预测，其中正确次数为%d"</span> %(len(for_pre),tn)</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    <span class="comment"># This is where we write the images, if an output_dir is given</span></div><div class="line">    <span class="comment"># in command line:</span></div><div class="line">    out_dir = <span class="keyword">None</span></div><div class="line">    <span class="comment"># You'll need at least a path to your image data, please see</span></div><div class="line">    <span class="comment"># the tutorial coming with this source code on how to prepare</span></div><div class="line">    <span class="comment"># your image data:</span></div><div class="line">    <span class="keyword">if</span> len(sys.argv) &lt; <span class="number">2</span>:</div><div class="line">        <span class="keyword">print</span> <span class="string">"USAGE: face_rec.py &lt;/path/to/images&gt; [&lt;/path/to/store/images/at&gt;]"</span></div><div class="line">        sys.exit()</div><div class="line">    <span class="comment"># Now read in the image data. This must be a valid path!</span></div><div class="line">    [X,y] = read_images(sys.argv[<span class="number">1</span>], (<span class="number">92</span>, <span class="number">112</span>))</div><div class="line"> </div><div class="line">    <span class="comment"># Convert labels to 32bit integers. This is a workaround for 64bit machines,</span></div><div class="line">    <span class="comment"># because the labels will truncated else. This will be fixed in code as</span></div><div class="line">    <span class="comment"># soon as possible, so Python users don't need to know about this.</span></div><div class="line">    <span class="comment"># Thanks to Leo Dirac for reporting:</span></div><div class="line">    y = np.asarray(y, dtype=np.int32)</div><div class="line">    <span class="comment"># If a out_dir is given, set it:</span></div><div class="line">    <span class="keyword">if</span> len(sys.argv) == <span class="number">3</span>:</div><div class="line">        out_dir = sys.argv[<span class="number">2</span>]</div><div class="line">    <span class="comment"># Create the Eigenfaces model. We are going to use the default</span></div><div class="line">    <span class="comment"># parameters for this simple example, please read the documentation</span></div><div class="line">    <span class="comment"># for thresholding:</span></div><div class="line">    model = cv2.createEigenFaceRecognizer()</div><div class="line">    <span class="comment"># Read</span></div><div class="line">    <span class="comment"># Learn the model. Remember our function returns Python lists,</span></div><div class="line">    <span class="comment"># so we use np.asarray to turn them into NumPy lists to make</span></div><div class="line">    <span class="comment"># the OpenCV wrapper happy:</span></div><div class="line">    model.train(np.asarray(X), np.asarray(y))</div><div class="line">    prediction(model) <span class="comment">#图片预测</span></div><div class="line">    <span class="comment">#</span></div><div class="line">    <span class="comment">#</span></div><div class="line">    <span class="comment"># You can see the available parameters with getParams():</span></div><div class="line">    <span class="keyword">print</span> model.getParams()</div><div class="line">    <span class="comment"># Now let's get some data:</span></div><div class="line">    mean = model.getMat(<span class="string">"mean"</span>)</div><div class="line">    <span class="keyword">print</span> out_dir + <span class="string">'/out.xml'</span></div><div class="line">    f = open(out_dir + <span class="string">'/out.xml'</span>,<span class="string">'w'</span>)</div><div class="line">    model.save(out_dir + <span class="string">'/out.xml'</span>)</div><div class="line">    eigenvectors = model.getMat(<span class="string">"eigenvectors"</span>)</div><div class="line">    <span class="comment"># We'll save the mean, by first normalizing it:</span></div><div class="line">    mean_norm = normalize(mean, <span class="number">0</span>, <span class="number">255</span>, dtype=np.uint8)</div><div class="line">    mean_resized = mean_norm.reshape(X[<span class="number">0</span>].shape)</div><div class="line">    <span class="keyword">if</span> out_dir <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">        cv2.imshow(<span class="string">"mean"</span>, mean_resized)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        cv2.imwrite(<span class="string">"%s/mean.png"</span> % (out_dir), mean_resized)</div><div class="line">    <span class="comment"># Turn the first (at most) 16 eigenvectors into grayscale</span></div><div class="line">    <span class="comment"># images. You could also use cv::normalize here, but sticking</span></div><div class="line">    <span class="comment"># to NumPy is much easier for now.</span></div><div class="line">    <span class="comment"># Note: eigenvectors are stored by column:</span></div><div class="line">    <span class="comment"># for i in xrange(min(len(X), 16)):</span></div><div class="line">    <span class="comment">#     eigenvector_i = eigenvectors[:,i].reshape(X[0].shape)</span></div><div class="line">    <span class="comment">#     eigenvector_i_norm = normalize(eigenvector_i, 0, 255, dtype=np.uint8)</span></div><div class="line">    <span class="comment">#     # Show or save the images:</span></div><div class="line">    <span class="comment">#     if out_dir is None:</span></div><div class="line">    <span class="comment">#         cv2.imshow("%s/eigenface_%d" % (out_dir,i), eigenvector_i_norm)</span></div><div class="line">    <span class="comment">#     else:</span></div><div class="line">    <span class="comment">#         cv2.imwrite("%s/eigenface_%d.png" % (out_dir,i), eigenvector_i_norm)</span></div><div class="line">    <span class="comment"># Show the images:</span></div><div class="line">    <span class="keyword">print</span> z</div><div class="line">    <span class="keyword">if</span> out_dir <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">        cv2.waitKey(<span class="number">0</span>)</div></pre></td></tr></table></figure>
+
+<p>代码执行效果如下<br><img src="http://ww1.sinaimg.cn/large/692869a3gw1eriuc3wsckj20nr08qn2q.jpg" alt="人脸识别执行效果"><br>我在这里输出的是那些预测错误的。<code>总共有200次预测，其中正确次数为186。</code>这预测率有点低啊，我用的数据都是来自于<a href="http://www.cl.cam.ac.uk/research/dtg/attarchive/facedatabase.html" target="_blank" rel="external"> AT&amp;T Facedatabase</a>。一共40个人，每个人10张图，图片宽高是92*112像素，全部是灰度图像。<br>至于如何提高图片识别的效率，我也不知道。</p>
+<h1 id="参考文献">参考文献</h1>
+<p>1 <a href="http://docs.opencv.org/modules/contrib/doc/facerec/facerec_tutorial.html" target="_blank" rel="external">http://docs.opencv.org/modules/contrib/doc/facerec/facerec_tutorial.html</a><br>2 <a href="https://code.google.com/p/pythonxy/source/browse/src/python/OpenCV/DOC/samples/python2/facerec_demo.py?repo=xy-27&amp;r=a2e41c7a3cb6db536b948747872cab71c696b44e" target="_blank" rel="external">python调用opencv实现人脸识别</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>最近搞了两个星期的opencv，人脸识别方向，感觉没有什么前途，看不到论文在哪里啊。<br>]]>
+    
+    </summary>
+    
+      <category term="opencv" scheme="http://jackroyal.github.io/tags/opencv/"/>
+    
+      <category term="图像处理" scheme="http://jackroyal.github.io/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
+    
+      <category term="python" scheme="http://jackroyal.github.io/tags/python/"/>
+    
+      <category term="图像处理" scheme="http://jackroyal.github.io/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[blog2markdown程序打包,csdn爬虫]]></title>
     <link href="http://jackroyal.github.io/2015/03/29/blog2markdown-csdn-windows/"/>
     <id>http://jackroyal.github.io/2015/03/29/blog2markdown-csdn-windows/</id>
     <published>2015-03-29T14:08:22.000Z</published>
-    <updated>2015-03-29T14:34:52.000Z</updated>
+    <updated>2015-03-30T13:47:05.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>项目地址<a href="https://github.com/Jackroyal/blog2markdown.git" target="_blank" rel="external">https://github.com/Jackroyal/blog2markdown.git</a></p>
 </blockquote>
 <p>用来实现普通blog到markdown的搬家，自动将blog的html转换成HEXO可用的Markdown格式<br>暂时只做了CSDN</p>
 <h3 id="UPDATE:">UPDATE:</h3>
-<p>2015-03-29 连夜修复了在win下乱码的问题,删除了冗余代码<br>2015-03-28 将某些参数改为从配置文件中读取,加入更多异常判断<br>2014-12-15 优化标签解析功能,添加了标题,tag和category<br>2014-12-13 实现解析功能,基本完成解析功能<br>2014-12-10 实现CSDN的抓取，正在实现parse解析过程<br><a id="more"></a></p>
+<p>2015-03-29 添加了打包成exe的程序,修复cmd下乱码,win和ubuntu完美运行<br>2015-03-29 连夜修复了在win下乱码的问题,删除了冗余代码<br>2015-03-28 将某些参数改为从配置文件中读取,加入更多异常判断<br>2014-12-15 优化标签解析功能,添加了标题,tag和category<br>2014-12-13 实现解析功能,基本完成解析功能<br>2014-12-10 实现CSDN的抓取，正在实现parse解析过程<br><a id="more"></a></p>
 <h3 id="BUG">BUG</h3>
 <p>如果代码中有#和*会被转义成<code>\#</code>和<code>\*</code><br>对table的支持不好</p>
 <h3 id="依赖库">依赖库</h3>
@@ -47,7 +103,11 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chmod <span class="keyword">a</span>+<span class="keyword">x</span> spider.<span class="keyword">py</span> ParseBlog.<span class="keyword">py</span></div><div class="line"><span class="keyword">python</span> spider.<span class="keyword">py</span></div></pre></td></tr></table></figure>
 
 <p>然后就可以了,输出文件在output文件夹</p>
-<p>在win下,经过修复也可以正常运行了,在idle(在win中你安装了python2.7的话就会有这个编辑器)中是可以完全正常的显示中文,在系统自带的cmd里中文显示会有问题,因为cmd中的编码默认是GBK,我程序基本都是utf-8,如果要在cmd显示正常,显示的代码都要加个str.encode(‘utf-8’)才行.<br>不过抓取是没有问题的,此处就不纠结了哈,能用就好</p>
+<p>在win下,经过修复也可以正常运行了,在idle(在win中你安装了python2.7的话就会有这个编辑器)中是可以完全正常的显示中文</p>
+<figure class="highlight ,在系统自带的cmd里中文显示会有问题,因为cmd中的编码默认是GBK,我程序基本都是utf-8,如果要在cmd显示正常,显示的代码都要加个str.encode('utf-8')才行."><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">不过抓取是没有问题的,此处就不纠结了哈,能用就好</div></pre></td></tr></table></figure>
+
+
+
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#在win下,没有权限的问题,直接执行就好了</div><div class="line"><span class="keyword">python</span> spider.<span class="keyword">py</span></div></pre></td></tr></table></figure>
 
 ]]></content>
@@ -57,7 +117,7 @@
 </blockquote>
 <p>用来实现普通blog到markdown的搬家，自动将blog的html转换成HEXO可用的Markdown格式<br>暂时只做了CSDN</p>
 <h3 id="UPDATE:">UPDATE:</h3>
-<p>2015-03-29 连夜修复了在win下乱码的问题,删除了冗余代码<br>2015-03-28 将某些参数改为从配置文件中读取,加入更多异常判断<br>2014-12-15 优化标签解析功能,添加了标题,tag和category<br>2014-12-13 实现解析功能,基本完成解析功能<br>2014-12-10 实现CSDN的抓取，正在实现parse解析过程<br>]]>
+<p>2015-03-29 添加了打包成exe的程序,修复cmd下乱码,win和ubuntu完美运行<br>2015-03-29 连夜修复了在win下乱码的问题,删除了冗余代码<br>2015-03-28 将某些参数改为从配置文件中读取,加入更多异常判断<br>2014-12-15 优化标签解析功能,添加了标题,tag和category<br>2014-12-13 实现解析功能,基本完成解析功能<br>2014-12-10 实现CSDN的抓取，正在实现parse解析过程<br>]]>
     
     </summary>
     
@@ -78,7 +138,7 @@
     <link href="http://jackroyal.github.io/2015/03/29/hexo-deploy-error/"/>
     <id>http://jackroyal.github.io/2015/03/29/hexo-deploy-error/</id>
     <published>2015-03-29T10:09:28.000Z</published>
-    <updated>2015-03-29T10:32:22.000Z</updated>
+    <updated>2015-03-30T13:59:23.000Z</updated>
     <content type="html"><![CDATA[<p>可能受到上次ddos的问题,这两天国内访问github,总是感觉不顺畅.<br>今天下午写了一篇博客,可是却发布不成功,一直卡在这一步:<br><img src="http://ww3.sinaimg.cn/large/692869a3gw1eqmrrf20j1j20g006676y.jpg" alt="hexo发布的时候卡住"></p>
 <p>然后我继续等,得到如下错误:</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo <span class="variable">Failed</span> to <span class="keyword">receive</span> <span class="variable">SOCKS4</span> connect request ack.</div></pre></td></tr></table></figure>
@@ -92,7 +152,10 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  <span class="built_in">type</span>: github</div><div class="line">  repo: git@github.com:Jackroyal/Jackroyal.github.<span class="built_in">io</span>.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
 
 <p>然后就deploy成功了.</p>
-<h2 id="PPPS:千万注意,上面的参数设置repo:后面有一个空格,没有空格会报错"><em>PPPS:千万注意,上面的参数设置repo:后面有一个空格,没有空格会报错</em></h2>
+<p><em>PPPS:千万注意,上面的参数设置repo:后面有一个空格,没有空格会报错</em></p>
+<h1 id="update:">update:</h1>
+<p>repo的两种方式分别为ssh和https<br>昨天没搞清楚,专门去查了一下,ssh和https两种提交的区别<br>官方推荐用https,因为这回要求你输入用户名和密码,这样更安全<br>用ssh的话,只要你的ssh-key(可以设置一道类似密码的东西,和你的key一起加密,这样使用的时候会要求输入这段密码)对,那么就都可以提交,没有了更多的验证过程(可以设置一个para加密,提交会要求输入这段para)</p>
+<hr>
 <h3 id="友情链接">友情链接</h3>
 <p><a href="http://rolight.cn/blog/?p=34" target="_blank" rel="external">ubuntu  shadowsocks 全局 代理</a></p>
 ]]></content>
@@ -111,7 +174,7 @@
     <link href="http://jackroyal.github.io/2015/03/29/python-blog-spider/"/>
     <id>http://jackroyal.github.io/2015/03/29/python-blog-spider/</id>
     <published>2015-03-29T06:43:45.000Z</published>
-    <updated>2015-03-29T08:37:14.000Z</updated>
+    <updated>2015-03-30T13:56:03.000Z</updated>
     <content type="html"><![CDATA[<p>在刚开始使用github pages的时候,我用python写了一个爬虫,计划是从csdn和cnblogs等博客网站上,把自己之前写的博客爬取下来,然后再转换成hexo用的markdown格式,样就可以直接添加到我的github pages.</p>
 <blockquote>
 <p>项目主页: <a href="https://github.com/Jackroyal/blog2markdown" target="_blank" rel="external">https://github.com/Jackroyal/blog2markdown</a></p>
@@ -197,6 +260,9 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> <span class="keyword">self</span>.soup.originalEncoding   <span class="comment">#修正后代码正确返回'utf-8'</span></div></pre></td></tr></table></figure>
 
 <p>这篇博客好水,毕竟不是很懂,所以说不出来</p>
+<p>update:2015-03-30</p>
+<h1 id="4_新技能get">4 新技能get</h1>
+<p>之前都没好好理解原作者的博客,觉得没办法一个程序在win和ubuntu中不更改正常运行,现在发现,如果把编码改为unicode格式输出,那么系统会自动转换,这样就不存在utf-8编码在windows下cmd乱码了.</p>
 <h1 id="参考文献">参考文献</h1>
 <p>1 <a href="http://www.crifan.com/summary_python_2_x_common_string_encode_decode_error_reason_and_solution/" target="_blank" rel="external">【总结】Python 2.x中常见字符编码和解码方面的错误及其解决办法</a><br>2 <a href="http://www.crifan.com/resolved_python_garbled_chinese_characters_gb2312_gbk_gb18030-related_issues/" target="_blank" rel="external">【已解决】python中文字符乱码（GB2312，GBK，GB18030相关的问题）</a><br>参考资料太多,贴不过来啊,主要都是cifan的博客,里面资料很多,一步一步都有过程,非常好用,谢谢cifan作者</p>
 ]]></content>
@@ -937,62 +1003,6 @@
       <category term="表单" scheme="http://jackroyal.github.io/tags/%E8%A1%A8%E5%8D%95/"/>
     
       <category term="chrome扩展" scheme="http://jackroyal.github.io/categories/chrome%E6%89%A9%E5%B1%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[chrome扩展开发手记<1>-需求分析]]></title>
-    <link href="http://jackroyal.github.io/2014/11/21/chrome%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%89%8B%E8%AE%B01-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90/"/>
-    <id>http://jackroyal.github.io/2014/11/21/chrome扩展开发手记1-需求分析/</id>
-    <published>2014-11-21T10:17:00.000Z</published>
-    <updated>2015-03-29T06:41:54.000Z</updated>
-    <content type="html"><![CDATA[<p>本人的学校在武汉,有CMCC-EDU的网络覆盖,中国移动和武汉市政府搞了一个活动,可以免费公益上网,说白了,就是可以免费使用EDU的网络,如图.<br><img src="http://img.blog.csdn.net/20141121181910580?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
-<p>以上是前提.</p>
-<p>这个网络的使用流程是这样子的.</p>
-<ol>
-<li>你打开任何一个网址,比如<a href="http://www.baidu.com" target="_blank" rel="external">http://www.baidu.com</a>  <br><br>都会跳转到 <a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external"></a><a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external">http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU</a>  界面如图所示<br><br><img src="http://img.blog.csdn.net/20141124103645611?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></li>
-<li>接下来我们手动更改最上面的网址栏,把ssid改为iWuhan-Free,(注意大小写)<br><br>修改后的网址如下<a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external">http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free</a>界面如下<br><br><img src="http://img.blog.csdn.net/20141124104120281?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></li>
-<li>接下来我们点击,请点击登录按钮,系统反馈如下<br><br><img src="http://img.blog.csdn.net/20141124104623968?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br><br>我们忽略这个警告,可以注意到,上面的地址栏已经变掉了,多了个loginFree.jsp完整的地址<a href="http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free" target="_blank" rel="external">http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free</a></li>
-<li>接下来,我们再改一次ssid,改为CMCC520,完整地址如下<a href="http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free" target="_blank" rel="external">http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC520</a> 界面还是和上图一样,就不贴图了,我们再点击一次,请点击登录,然后就会跳到一个计时页面,这样就表示你登录成功,可以上网了</li>
-</ol>
-<p>登录的流程走完了,下一篇,接下来我们分析一下登录的原理,简化一下登录的流程</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>本人的学校在武汉,有CMCC-EDU的网络覆盖,中国移动和武汉市政府搞了一个活动,可以免费公益上网,说白了,就是可以免费使用EDU的网络,如图.<br><img src="http://img.blog.csdn.net/20141121181910580?watermar]]>
-    </summary>
-    
-      <category term="chrome" scheme="http://jackroyal.github.io/tags/chrome/"/>
-    
-      <category term="cmcc-edu" scheme="http://jackroyal.github.io/tags/cmcc-edu/"/>
-    
-      <category term="中国移动" scheme="http://jackroyal.github.io/tags/%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8/"/>
-    
-      <category term="chrome扩展" scheme="http://jackroyal.github.io/categories/chrome%E6%89%A9%E5%B1%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[wamp与sql_server_因为端口80冲突,无法开启wamp]]></title>
-    <link href="http://jackroyal.github.io/2014/11/14/wamp%E4%B8%8Esql_server_%E5%9B%A0%E4%B8%BA%E7%AB%AF%E5%8F%A380%E5%86%B2%E7%AA%81,%E6%97%A0%E6%B3%95%E5%BC%80%E5%90%AFwamp/"/>
-    <id>http://jackroyal.github.io/2014/11/14/wamp与sql_server_因为端口80冲突,无法开启wamp/</id>
-    <published>2014-11-14T10:09:00.000Z</published>
-    <updated>2015-03-29T06:41:56.000Z</updated>
-    <content type="html"><![CDATA[<p>因为80端口占用,导致无法启动,其实不必关闭sql server太多的东西,只需要关闭SQL Server Reporting Services 就行了,这样也不会影响sql server的使用</p>
-<p>如图<br><img src="http://img.blog.csdn.net/20141114175909339?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
-<p>打开sqlserver 配置管理器,关闭以上服务</p>
-<p>或者打开控制面板-&gt;管理-&gt;服务工具-&gt;SQL Server Reporting Services</p>
-<p>然后就可以打开wamp了</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>因为80端口占用,导致无法启动,其实不必关闭sql server太多的东西,只需要关闭SQL Server Reporting Services 就行了,这样也不会影响sql server的使用</p>
-<p>如图<br><img src="http://img.blog.]]>
-    </summary>
-    
-      <category term="sql server" scheme="http://jackroyal.github.io/tags/sql-server/"/>
-    
-      <category term="wamp" scheme="http://jackroyal.github.io/tags/wamp/"/>
-    
-      <category term="软件安装与技巧" scheme="http://jackroyal.github.io/categories/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E4%B8%8E%E6%8A%80%E5%B7%A7/"/>
     
   </entry>
   
