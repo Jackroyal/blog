@@ -4,7 +4,7 @@
   <subtitle><![CDATA[我最喜欢笨笨]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://jackroyal.github.io/"/>
-  <updated>2015-04-27T01:32:07.946Z</updated>
+  <updated>2015-04-28T14:09:56.051Z</updated>
   <id>http://jackroyal.github.io/</id>
   
   <author>
@@ -13,6 +13,72 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[ubuntu 14.04 安装denyhosts]]></title>
+    <link href="http://jackroyal.github.io/2015/04/28/ubuntu-denyhosts/"/>
+    <id>http://jackroyal.github.io/2015/04/28/ubuntu-denyhosts/</id>
+    <published>2015-04-28T12:19:23.000Z</published>
+    <updated>2015-04-28T14:09:28.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="起因">起因</h1>
+<p>因为之前服务器两次被黑，妈蛋。今天在上google+的时候，无意中看到一个维护vps的帖子，就顺手把我的服务器维护下。<br>之前被黑经历也很简单，因为方便管理的缘故，我给root用户设置了密码，没错，是弱口令，一扫不要一分钟就可以出来的那种。<br>我在那篇帖子中看到denyhosts这货。东西很简单，分析你的日志，如果有人连续登陆几次密码都错误，那么把他的ip添加到denyhost当中，禁止它继续扫描。这货还很多功能，可以设置禁止时间以后，自动解禁；可以配置自动解禁的次数;还可以配置用户密码尝试的次数，给管理员发邮件等。<br><a id="more"></a></p>
+<h1 id="安装">安装</h1>
+<h2 id="1、下载源码包,解压源码包">1、下载源码包,解压源码包</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wget http://sourceforge.net/projects/denyhosts/files/denyhosts/<span class="number">2.6</span>/DenyHosts-<span class="number">2.6</span>.tar.gz</div><div class="line">tar zxvf DenyHosts-<span class="number">2.6</span>.tar.gz</div><div class="line">cd DenyHosts-<span class="number">2.6</span></div></pre></td></tr></table></figure>
+
+<h2 id="2、安装部署">2、安装部署</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">python setup.py install</div><div class="line">cd /usr/share/denyhosts/</div><div class="line">cp denyhosts.cfg-dist denyhosts.cfg</div><div class="line">cp daemon-control-dist daemon-control</div></pre></td></tr></table></figure>
+
+<h2 id="3、编辑配置文件denyhosts-cfg">3、编辑配置文件denyhosts.cfg</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo vi denyhosts.cfg</div></pre></td></tr></table></figure>
+
+<p>几个常见的参数如下所示：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">PURGE_DENY：当一个<span class="literal">IP</span>被阻止以后，过多长时间被自动解禁。可选如3m（三分钟）、<span class="number">5h</span>（<span class="number">5</span>小时）、<span class="number">2d</span>（两天）、8w（<span class="number">8</span>周）、<span class="number">1y</span>（一年）；</div><div class="line">PURGE_THRESHOLD：定义了某一<span class="literal">IP</span>最多被解封多少次。即某一<span class="literal">IP</span>由于暴力破解SSH密码被阻止/解封达到了PURGE_THRESHOLD次，则会被永久禁止；</div><div class="line">BLOCK_SERVICE：需要阻止的服务名；</div><div class="line">DENY_THRESHOLD_INVALID：某一无效用户名（不存在的用户）尝试多少次登录后被阻止；</div><div class="line">DENY_THRESHOLD_VALID：某一有效用户名尝试多少次登陆后被阻止（比如账号正确但密码错误），root除外；</div><div class="line">DENY_THRESHOLD_ROOT：root用户尝试登录多少次后被阻止；</div><div class="line">HOSTNAME_LOOKUP：是否尝试解析源<span class="literal">IP</span>的域名；</div></pre></td></tr></table></figure>
+
+<p>一般我们就用默认就好，我们只需要改两个地方：</p>
+<h3 id="第一个，我们注释掉第12行，启用第15行，修改以后结果如下(原因是ubuntu中的log不在/var/log/secure中，而是在/var/log/auth-log中)">第一个，我们注释掉第12行，启用第15行，修改以后结果如下(原因是ubuntu中的log不在/var/log/secure中，而是在/var/log/auth.log中)</h3>
+<p><img src="http://ww3.sinaimg.cn/large/692869a3gw1erll3zp3xpj20id0b5q63.jpg" alt="修改后的denyhosts.cfg"></p>
+<h3 id="第二个，我们启用第64行，也就是设置，ip被禁止后，禁止5天，这个时间你可以自行设置">第二个，我们启用第64行，也就是设置，ip被禁止后，禁止5天，这个时间你可以自行设置</h3>
+<p>去掉前面的<code>#</code>,就行了，修改后结果如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="number">63</span> <span class="comment"># purge entries older than 5 days</span></div><div class="line"><span class="number">64</span> PURGE_DENY = <span class="number">5</span>d</div><div class="line"><span class="number">65</span> <span class="comment">#######################################################################</span></div><div class="line"><span class="number">66</span></div></pre></td></tr></table></figure>
+
+<h2 id="4、编辑配置文件daemon-control">4、编辑配置文件daemon-control</h2>
+<p>因为在ubuntu系统中，有些文件不在预设的位置，所以我们需要编辑这个文件<br>我们只需要改第14行就好了，修改<code>/usr/bin/denyhosts.py</code>为<code>/usr/local/bin/denyhosts.py</code>，修改后结果如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="number">13</span> </div><div class="line"><span class="number">14</span> DENYHOSTS_BIN   = <span class="string">"/usr/local/bin/denyhosts.py"</span></div><div class="line"><span class="number">15</span> DENYHOSTS_LOCK  = <span class="string">"/var/lock/subsys/denyhosts"</span></div><div class="line"><span class="number">16</span> DENYHOSTS_CFG   = <span class="string">"/usr/share/denyhosts/denyhosts.cfg"</span></div><div class="line"><span class="number">17</span> </div><div class="line"><span class="number">18</span> PYTHON_BIN      = <span class="string">"/usr/bin/env python"</span></div><div class="line"><span class="number">19</span></div></pre></td></tr></table></figure>
+
+<h2 id="5、运行">5、运行</h2>
+<p>运行，额，错误一堆啊，我们执行<code>sudo ./daemon-control start</code>,然后得到如下错误</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">starting DenyHosts:    /usr/bin/env python /usr/local/bin/denyhosts.py --daemon --config=/usr/share/denyhosts/denyhosts.cfg</div><div class="line">DenyHosts could not obtain lock (pid: )</div><div class="line">[Errno <span class="number">2</span>] No such file or directory: <span class="string">'/var/lock/subsys/denyhosts'</span></div></pre></td></tr></table></figure>
+
+<p>我们可以去<code>/var/lock</code>下面的确看不到subsys这个文件夹，那我们就手动创建他</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir -p /var/lock/subsys</div></pre></td></tr></table></figure>
+
+<p>继续执行<code>sudo ./daemon-control start</code>，应该就会成功<br>ps：如果还不成功，他缺什么文件我们就用<code>touch</code>新建这个文件，如果说<code>file exists</code>,我们就删除那个文件</p>
+<h2 id="6、添加到开机启动">6、添加到开机启动</h2>
+<p>第一种是将DenyHosts作为类似apache、mysql一样的服务，这种方法可以通过 /etc/init.d/denyhosts 命令来控制其状态。方法如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /etc/init.d</div><div class="line">ln <span class="operator">-s</span> /usr/share/denyhosts/daemon-control denyhosts</div><div class="line"><span class="comment">#上面的操作就把他变成了一个服务 我们可以使用service denyhosts start来启动服务</span></div><div class="line"><span class="comment">#下面把他添加到开机自启动，我们这里需要安装一个软件来实现</span></div><div class="line"><span class="comment">#ubuntu中没有chkconfig命令，网上的教程是用的chkconfig，具体操作查看后面的参考文献1，ubuntu中对应的是update-rc.d，但是不好用，所以我用sysv-rc-conf </span></div><div class="line"><span class="built_in">sudo</span> apt-get install sysv-rc-conf</div><div class="line"><span class="built_in">sudo</span> sysv-rc-conf</div></pre></td></tr></table></figure>
+
+<p>我们设置运行级别2345，编辑以后如下所示<br><img src="http://ww2.sinaimg.cn/large/692869a3gw1erlmrt5ht5j20j80m40zg.jpg" alt="设置denyhosts开机自启动"><br>按<code>q</code>，退出并保存</p>
+<p>第二种是将Denyhosts直接加入rc.local中自动启动（类似于Windows中的“启动文件夹”）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="string">'/usr/share/denyhosts/daemon-control start'</span> &gt;&gt; /etc/rc.local</div></pre></td></tr></table></figure>
+
+<h1 id="参考文献">参考文献</h1>
+<p>1 <a href="http://www.bootf.com/571.html" target="_blank" rel="external">通过DenyHosts阻止SSH暴力攻击教程</a></p>
+<p>2 <a href="http://askubuntu.com/questions/534324/var-log-secure-not-present-in-14-04-is-there-any-alternative" target="_blank" rel="external">/var/log/secure not present in 14.04 ,is there any alternative?</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="起因">起因</h1>
+<p>因为之前服务器两次被黑，妈蛋。今天在上google+的时候，无意中看到一个维护vps的帖子，就顺手把我的服务器维护下。<br>之前被黑经历也很简单，因为方便管理的缘故，我给root用户设置了密码，没错，是弱口令，一扫不要一分钟就可以出来的那种。<br>我在那篇帖子中看到denyhosts这货。东西很简单，分析你的日志，如果有人连续登陆几次密码都错误，那么把他的ip添加到denyhost当中，禁止它继续扫描。这货还很多功能，可以设置禁止时间以后，自动解禁；可以配置自动解禁的次数;还可以配置用户密码尝试的次数，给管理员发邮件等。<br>]]>
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://jackroyal.github.io/tags/Linux/"/>
+    
+      <category term="ubuntu" scheme="http://jackroyal.github.io/tags/ubuntu/"/>
+    
+      <category term="Linux" scheme="http://jackroyal.github.io/categories/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[ubuntu下使用scrapy抓取cnblogs]]></title>
@@ -559,7 +625,7 @@
     <link href="http://jackroyal.github.io/2015/03/03/kali-and-ubuntu/"/>
     <id>http://jackroyal.github.io/2015/03/03/kali-and-ubuntu/</id>
     <published>2015-03-03T13:17:41.000Z</published>
-    <updated>2015-03-08T10:57:41.000Z</updated>
+    <updated>2015-04-28T14:09:49.000Z</updated>
     <content type="html"><![CDATA[<p>时间忽快忽慢，一转眼，年过完了，又回来学校了，又一个多月没有push了，重新回到github。今天我们家笨笨给我找了点kali的资料，索性就把kali捡起来，第一步安装kali的系统。<br>此处背景不再介绍，直奔主题。kali的安装过程和ubuntu的安装过程类似，应该说原理上是一模一样的，只是界面有些不同。我的电脑当前已经安装了win8和ubuntu，现在需要再加一个kali的系统，三系统共存。<br>大体分为如下几个步骤：</p>
 <h3 id="1_下载kali镜像">1 下载kali镜像</h3>
 <h3 id="2_刻录u盘">2 刻录u盘</h3>
@@ -588,7 +654,6 @@
 <p>当系统快安装完成的时候，会出现grub安装的选择,如图所示<br><img src="http://ww3.sinaimg.cn/large/692869a3gw1eptnhakprmj20ns0j7dij.jpg" alt="交换空间swap分区设置"></p>
 <p>因为我的系统是<code>win8</code>和<code>ubuntu</code>和<code>kali</code>多系统共存，当前是由<code>win</code>来引导（当前系统由谁引导就看开机看到的第一个<code>系统选择</code>是谁的，如果是红色的ubuntu选项，那就说明由ubuntu引导）。<br>我这里选择否的话，那么我就需要去<code>win</code>里面手动添加<code>kali</code>的引导（使用easybcd来操作）。<br>如果你是<code>ubuntu</code>来引导系统的话，一样需要手动去添加<code>kali</code>的引导（这里我还不会）。<br>所以我选择<code>是</code>，这样装完三个系统都可以正常开机了。</p>
 <p>到此所有的安装结束。</p>
-<hr>
 <h1 id="参考文献">参考文献</h1>
 <p>1 安装kali 系统 <a href="http://blog.sina.com.cn/s/blog_779dcd090102va9c.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_779dcd090102va9c.html</a><br>2 <a href="http://www.bkjia.com/Linuxjc/844530.html" target="_blank" rel="external">kali系统安装图文教程，kali系统安装图文</a></p>
 <h1 id="致谢">致谢</h1>
@@ -1000,50 +1065,6 @@
       <category term="扩展" scheme="http://jackroyal.github.io/tags/%E6%89%A9%E5%B1%95/"/>
     
       <category term="脚本" scheme="http://jackroyal.github.io/tags/%E8%84%9A%E6%9C%AC/"/>
-    
-      <category term="chrome扩展" scheme="http://jackroyal.github.io/categories/chrome%E6%89%A9%E5%B1%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[chrome扩展开发手记-chrome扩展开始第一步manfest.json]]></title>
-    <link href="http://jackroyal.github.io/2014/11/24/chrome%E6%89%A9%E5%B1%95%E5%BC%80%E5%8F%91%E6%89%8B%E8%AE%B0-chrome%E6%89%A9%E5%B1%95%E5%BC%80%E5%A7%8B%E7%AC%AC%E4%B8%80%E6%AD%A5manfest.json/"/>
-    <id>http://jackroyal.github.io/2014/11/24/chrome扩展开发手记-chrome扩展开始第一步manfest.json/</id>
-    <published>2014-11-24T07:16:00.000Z</published>
-    <updated>2015-03-29T06:41:45.000Z</updated>
-    <content type="html"><![CDATA[<p>参考文档   <a href="https://lmk123.duapp.com/" target="_blank" rel="external">https://lmk123.duapp.com/</a></p>
-<p>下面开始写chrome扩展了,第一步就是看文档,官方文档有入门指导,先要过一遍</p>
-<p>我们首先来编写第一个文件manfest.json,这是一个清单文件,告诉系统,我有哪些文件,需要申请哪些权限都在里面,下卖弄给出我的manfest.json</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">{</div><div class="line">    <span class="string">"name"</span>:<span class="string">"cmcc520"</span>,<span class="comment">//扩展的名称</span></div><div class="line">    <span class="string">"version"</span>:<span class="string">"2.0"</span>,<span class="comment">//扩展的版本号,随便写</span></div><div class="line">    <span class="string">"description"</span>:<span class="string">"powered by 搁浅St"</span>,<span class="comment">//扩展的描述,就是在chrome://extension页面中,扩展名称下面的几个字</span></div><div class="line">    <span class="string">"background"</span>: {<span class="comment">//background.js,整个扩展的运行,有个页面在后台运行</span></div><div class="line">        <span class="string">"scripts"</span>: [<span class="string">"js/function.js"</span>,<span class="string">"bg.js"</span>],</div><div class="line">        <span class="string">"persistent"</span>: <span class="literal">false</span></div><div class="line">    },</div><div class="line">    <span class="string">"page_action"</span>:{<span class="comment">//比较常见有page_action和browser_action有,page会出现在地址栏末端,browser会在浏览器上显示一个图标</span></div><div class="line">        <span class="string">"default_icon"</span>:<span class="string">"icon-48.png"</span>,</div><div class="line">        <span class="string">"default_popup"</span>: <span class="string">"popup.html"</span>,<span class="comment">//popup.html点击弹出的页面</span></div><div class="line">        <span class="string">"default_title"</span>:<span class="string">"cmcc520"</span></div><div class="line">    },</div><div class="line">    <span class="string">"permissions"</span> : [<span class="comment">//申请内容脚本的权限,在插入内容到页面时,需要用哪些权限,此处必须声明</span></div><div class="line">        <span class="string">"tabs"</span>, <span class="string">"http://\*/\*"</span></div><div class="line">    ],</div><div class="line">    <span class="string">"icons"</span> : {<span class="comment">//图标设置</span></div><div class="line">        <span class="string">"48"</span> : <span class="string">"icon-48.png"</span>,</div><div class="line">        <span class="string">"128"</span> : <span class="string">"icon-128.png"</span></div><div class="line">    },</div><div class="line">    <span class="string">"commands"</span>: {<span class="comment">//快捷键设置</span></div><div class="line">        <span class="string">"logout_cmcc"</span>: {</div><div class="line">            <span class="string">"description"</span>: <span class="string">"退出CMCC登录"</span>,</div><div class="line">            <span class="string">"suggested_key"</span>: {</div><div class="line">                <span class="string">"default"</span>: <span class="string">"Alt+X"</span></div><div class="line">            }</div><div class="line">        }</div><div class="line">    },</div><div class="line">    <span class="string">"manifest_version"</span>:<span class="number">2</span><span class="comment">//manifest_version,现在版本1已经不支持,统一都写成2</span></div><div class="line"></div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>简单的属性,这里不再赘述,我重点说一下background,page_action,permissions和commands.</p>
-<p>background  它是一个包含扩展程序主要逻辑的不可见页面。扩展程序也可以包含其他页面，展现扩展程序的用户界面。如果扩展程序需要与用户加载的网页交互（相对于包含在扩展程序中的页面），扩展程序必须使用内容脚本。后台网页分两种：持续运行的后台网页与事件页面(设置persistent属性)。正如它们的名称所述，持续运行的后台网页保持打开状态，事件页面根据需要打开与关闭。除非您绝对需要您的后台网页一直运行，请首选事件页面。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="string">"background"</span>: {<span class="comment">//background.js,整个扩展的运行,有个页面在后台运行</span></div><div class="line">    <span class="string">"scripts"</span>: [<span class="string">"js/function.js"</span>,<span class="string">"bg.js"</span>],</div><div class="line">    <span class="string">"persistent"</span>: <span class="literal">false</span></div><div class="line">},</div></pre></td></tr></table></figure>
-
-<p>比如我的这个 后台执行就是这样的</p>
-<p><img src="http://img.blog.csdn.net/20141124194616706?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
-<p>采用pageaction还是browseraction取决于你是否想让图标一直可见.`<img src="http://img.blog.csdn.net/20141124193151343?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
-<p>如图,绿色的是广告终结者,他的图标是pageAction,后面的印象笔记还有switchproxy是browserAction.一般来说,适用于少数页面的扩展建议使用pageaction,适用于大多数页面的建议使用browseraction</p>
-<p>permissions属性,用来设置和conten_script相关的选项,举个例子,如果你想插入一段代码到页面中去执行,操作页面上的dom,那就写个content_script就行了,使用 content_scripts 字段，扩展程序可以向一个页面中插入多个内容脚本，每个内容脚本可以有多个<br> JavaScript 和 CSS 文件,详细情况请看这里<a href="https://lmk123.duapp.com/extensions/content_scripts" target="_blank" rel="external">https://lmk123.duapp.com/extensions/content_scripts</a></p>
-<p>我现在在做的一个扩展就是做这样的事,百度的搜索结果会先跳到一个百度的网址,然后才是目标网址,我可以使用cotent_scripts来插入脚本,修改百度搜索结果的链接,让他直接跳转到目标页面,而不是百度的搜索结果页面.</p>
-<p>commands选项是设置快捷键,然后给快捷键设置事件 监听,这样我们按快捷键就会执行相应操作.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="string">"logout_cmcc"</span>: {<span class="comment">//某个快捷操作的名称</span></div><div class="line">    <span class="string">"description"</span>: <span class="string">"退出CMCC登录"</span>,<span class="comment">//快捷操作的描述</span></div><div class="line">    <span class="string">"suggested_key"</span>: {<span class="comment">//默认推荐的快捷键,不能与系统默认的快捷键冲突,否则就会失灵,需要用户手动去设置</span></div><div class="line">        <span class="string">"default"</span>: <span class="string">"Alt+X"</span></div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
-
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>参考文档   <a href="https://lmk123.duapp.com/" target="_blank" rel="external">https://lmk123.duapp.com/</a></p>
-<p>下面开始写chrome扩展了,第一步就是看文档,官方]]>
-    </summary>
-    
-      <category term="chrome" scheme="http://jackroyal.github.io/tags/chrome/"/>
-    
-      <category term="cmcc-edu" scheme="http://jackroyal.github.io/tags/cmcc-edu/"/>
-    
-      <category term="扩展" scheme="http://jackroyal.github.io/tags/%E6%89%A9%E5%B1%95/"/>
-    
-      <category term="脚本" scheme="http://jackroyal.github.io/tags/%E8%84%9A%E6%9C%AC/"/>
-    
-      <category term="中国移动" scheme="http://jackroyal.github.io/tags/%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8/"/>
     
       <category term="chrome扩展" scheme="http://jackroyal.github.io/categories/chrome%E6%89%A9%E5%B1%95/"/>
     

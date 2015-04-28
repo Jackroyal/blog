@@ -74,7 +74,6 @@ domain我们留空不管他，下一步
 
 到此所有的安装结束。
 
----
 #参考文献
 1 安装kali 系统 <http://blog.sina.com.cn/s/blog_779dcd090102va9c.html>
 2 [kali系统安装图文教程，kali系统安装图文](http://www.bkjia.com/Linuxjc/844530.html)
