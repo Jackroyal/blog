@@ -1,0 +1,322 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Linux下使用github | 搁浅St的blog</title>
+  <meta name="author" content="搁浅St">
+  
+  <meta name="description" content="jackroyal 博客 搁浅St 笨笨">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Linux下使用github"/>
+  <meta property="og:site_name" content="搁浅St的blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="搁浅St的blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">搁浅St的blog</a></h1>
+  <h2><a href="/">我最喜欢笨笨</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+    <li> <a href="/atom.xml">RSS</a> </li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-01-18T16:53:48.000Z"><a href="/2015/01/19/linux下使用github/">1月 19 2015</a></time>
+      
+      
+  
+    <h1 class="title">Linux下使用github</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <blockquote>
+<p>我的惰性真是病入膏肓了，已经整整3周没有在github上提交东西了，今天看了《模拟游戏》，索性又捡起来了。下面来总结一下linux下github的使用，也算是给自己一个备份，因为我自己也是老忘记。</p>
+</blockquote>
+<p>使用环境：Ubuntu 14.04</p>
+<h2 id="1_安装git相关软件">1 安装git相关软件</h2>
+<p>我的Ubuntu里面没有自带git相关软件，所以我们首先需要安装它，很简单。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> apt-get install git</div></pre></td></tr></table></figure>
+
+<h2 id="2_初始化git的设置">2 初始化git的设置</h2>
+<p>接下来，进行初始化设置，也就是设置你的github账号和密码</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git config --global <span class="literal">user</span>.name <span class="string">"zhangsan"</span><span class="comment">#其中的“zhangsan”输入的就是你注册时候的用户名，这步是设置你提交时候默认的用户名</span></div><div class="line"><span class="comment">#之后设置提交时候默认的邮箱，在命令行输入：</span></div><div class="line">git config --global <span class="literal">user</span>.email <span class="string">"haha@qq.com"</span></div><div class="line"><span class="comment">#其中的“haha@qq.com”就是你注册时候用的邮箱，当然也可以用别的邮箱，用别的邮箱的时候你必须在github的主页上设置里面把用的邮箱添加进去</span></div></pre></td></tr></table></figure>
+
+<h2 id="3_开始使用github">3 开始使用github</h2>
+<p>1 首先你的github上应该有一个库，如果没有的话，就去github网站上新建一个库，或者fork一个别人的项目，以下的操作都是建立在这个基础上，<code>假设存在一个库https://github.com/Jackroyal/test.git</code>.<br>如果你的github上已经有库了，可以忽略第1步直接进入第2步<br>2 我们在本地新建一个文件夹(命名随你便，我取名叫做test_git)</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">mkdir</span> test_git</div></pre></td></tr></table></figure>
+
+<p>3 将远程的库复制下来，我们使用git clone命令来完成</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#如果你的环境不在test_git目录</span></div><div class="line"><span class="preprocessor">#cd test_git</span></div><div class="line"><span class="preprocessor">#如果在test_git中</span></div><div class="line">git clone https:<span class="comment">//github.com/Jackroyal/test.git#他会在你的本地新建一个test文件夹</span></div><div class="line">cd test</div><div class="line"><span class="preprocessor">#接下来新建一个测试文件</span></div><div class="line">touch test.md</div><div class="line"><span class="preprocessor">#修改测试文件的内容</span></div><div class="line">vi test.md</div><div class="line"><span class="preprocessor">#提交刚才所做的更改</span></div><div class="line">git add .</div><div class="line">git commit -m <span class="string">"首次提交"</span></div></pre></td></tr></table></figure>
+
+<p>3 push提交到github</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git remote <span class="built_in">add</span> origin http<span class="variable">s:</span>//github.<span class="keyword">com</span>/Jackroyal/test.git</div><div class="line">git push</div></pre></td></tr></table></figure>
+
+<p>之后会提示你输入用户名密码，你输入你github账号和密码就行了<br>打完收工，睡觉<br>后面会陆续介绍hexo在Linux下的使用</p>
+<h1 id="参考文献">参考文献</h1>
+<p>1 <a href="http://blog.chinaunix.net/uid-29040159-id-3799719.html" target="_blank" rel="external">ubuntu 下 github 简单的使用教程</a><br>2 <a href="http://blog.csdn.net/pony_maggie/article/details/23207847" target="_blank" rel="external">Github入门级使用攻略</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/Linux/">Linux</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/Linux/">Linux</a>, <a href="/tags/github/">github</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+ <nav id="pagination" >
+    
+    <a href="/2015/03/03/kali-and-ubuntu/" class="alignleft prev" > kali和ubuntu双系统安装 </a>
+    
+    
+    <a href="/2014/12/02/recent-task/" class="alignright next" > 近期任务 </a>
+    
+    <div class="clearfix"></div>
+</nav>
+<section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-linux下使用github" data-title="Linux下使用github" data-url="http://jackroyal.github.io/2015/01/19/linux下使用github/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'jackroyal'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:jackroyal.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Linux/">Linux</a><small>5</small></li>
+  
+    <li><a href="/categories/chrome扩展/">chrome扩展</a><small>4</small></li>
+  
+    <li><a href="/categories/hexo/">hexo</a><small>3</small></li>
+  
+    <li><a href="/categories/javascript/">javascript</a><small>2</small></li>
+  
+    <li><a href="/categories/python学习笔记/">python学习笔记</a><small>5</small></li>
+  
+    <li><a href="/categories/图像处理/">图像处理</a><small>3</small></li>
+  
+    <li><a href="/categories/数据库/">数据库</a><small>1</small></li>
+  
+    <li><a href="/categories/服务器/">服务器</a><small>1</small></li>
+  
+    <li><a href="/categories/杂文/">杂文</a><small>1</small></li>
+  
+    <li><a href="/categories/软件安装与技巧/">软件安装与技巧</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Linux/">Linux</a><small>6</small></li>
+  
+    <li><a href="/tags/chrome/">chrome</a><small>4</small></li>
+  
+    <li><a href="/tags/cmcc-edu/">cmcc-edu</a><small>4</small></li>
+  
+    <li><a href="/tags/github/">github</a><small>3</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>5</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>2</small></li>
+  
+    <li><a href="/tags/js/">js</a><small>1</small></li>
+  
+    <li><a href="/tags/kali/">kali</a><small>2</small></li>
+  
+    <li><a href="/tags/lbph/">lbph</a><small>1</small></li>
+  
+    <li><a href="/tags/opencv/">opencv</a><small>3</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>7</small></li>
+  
+    <li><a href="/tags/scrapy/">scrapy</a><small>1</small></li>
+  
+    <li><a href="/tags/select/">select</a><small>1</small></li>
+  
+    <li><a href="/tags/shadowsocks/">shadowsocks</a><small>1</small></li>
+  
+    <li><a href="/tags/socket/">socket</a><small>2</small></li>
+  
+    <li><a href="/tags/sql/">sql</a><small>1</small></li>
+  
+    <li><a href="/tags/sql-server/">sql server</a><small>1</small></li>
+  
+    <li><a href="/tags/ubuntu/">ubuntu</a><small>2</small></li>
+  
+    <li><a href="/tags/wamp/">wamp</a><small>1</small></li>
+  
+    <li><a href="/tags/windows/">windows</a><small>1</small></li>
+  
+    <li><a href="/tags/中国移动/">中国移动</a><small>3</small></li>
+  
+    <li><a href="/tags/前端/">前端</a><small>2</small></li>
+  
+    <li><a href="/tags/图像处理/">图像处理</a><small>3</small></li>
+  
+    <li><a href="/tags/扩展/">扩展</a><small>2</small></li>
+  
+    <li><a href="/tags/正则/">正则</a><small>1</small></li>
+  
+    <li><a href="/tags/正则表达式/">正则表达式</a><small>1</small></li>
+  
+    <li><a href="/tags/爬虫/">爬虫</a><small>2</small></li>
+  
+    <li><a href="/tags/脚本/">脚本</a><small>2</small></li>
+  
+    <li><a href="/tags/表单/">表单</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2015/05/06/opencv-lbph-source-code-analysis/">opencv中LBPH的人脸识别代码分析</a>
+      </li>
+    
+      <li>
+        <a href="/2015/04/28/ubuntu-denyhosts/">ubuntu 14.04 安装denyhosts</a>
+      </li>
+    
+      <li>
+        <a href="/2015/04/26/ubuntu-scrapy-stackoverflow/">ubuntu下使用scrapy抓取cnblogs</a>
+      </li>
+    
+      <li>
+        <a href="/2015/04/26/face-detection/">使用opencv实现人脸检测</a>
+      </li>
+    
+      <li>
+        <a href="/2015/04/26/face-recognizer/">使用opencv实现人脸识别</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/Linux/" style="font-size: 18.33px;">Linux</a><a href="/tags/chrome/" style="font-size: 15.00px;">chrome</a><a href="/tags/cmcc-edu/" style="font-size: 15.00px;">cmcc-edu</a><a href="/tags/github/" style="font-size: 13.33px;">github</a><a href="/tags/hexo/" style="font-size: 16.67px;">hexo</a><a href="/tags/javascript/" style="font-size: 11.67px;">javascript</a><a href="/tags/js/" style="font-size: 10.00px;">js</a><a href="/tags/kali/" style="font-size: 11.67px;">kali</a><a href="/tags/lbph/" style="font-size: 10.00px;">lbph</a><a href="/tags/opencv/" style="font-size: 13.33px;">opencv</a><a href="/tags/python/" style="font-size: 20.00px;">python</a><a href="/tags/scrapy/" style="font-size: 10.00px;">scrapy</a><a href="/tags/select/" style="font-size: 10.00px;">select</a><a href="/tags/shadowsocks/" style="font-size: 10.00px;">shadowsocks</a><a href="/tags/socket/" style="font-size: 11.67px;">socket</a><a href="/tags/sql/" style="font-size: 10.00px;">sql</a><a href="/tags/sql-server/" style="font-size: 10.00px;">sql server</a><a href="/tags/ubuntu/" style="font-size: 11.67px;">ubuntu</a><a href="/tags/wamp/" style="font-size: 10.00px;">wamp</a><a href="/tags/windows/" style="font-size: 10.00px;">windows</a><a href="/tags/中国移动/" style="font-size: 13.33px;">中国移动</a><a href="/tags/前端/" style="font-size: 11.67px;">前端</a><a href="/tags/图像处理/" style="font-size: 13.33px;">图像处理</a><a href="/tags/扩展/" style="font-size: 11.67px;">扩展</a><a href="/tags/正则/" style="font-size: 10.00px;">正则</a><a href="/tags/正则表达式/" style="font-size: 10.00px;">正则表达式</a><a href="/tags/爬虫/" style="font-size: 11.67px;">爬虫</a><a href="/tags/脚本/" style="font-size: 11.67px;">脚本</a><a href="/tags/表单/" style="font-size: 10.00px;">表单</a>
+  </div>
+</div>
+
+
+  <div class="widget tag">
+<h3 class="title">友情链接</h3>
+<ul class="entry">
+<li><a href="http://blog.csdn.net/jackroyal" title="搁浅St的blog">我的CSDN</a></li>
+<li><a href="http://www.cnblogs.com/geqianst" title="搁浅St的blog">我的cnblogs</a></li>
+<li><a href="http://blog.csdn.net/happyhuirong" title="笨笨的blog">笨笨的blog</a></li>
+</ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 搁浅St
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="https://lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用opencv实现人脸识别 | 搁浅St的blog</title>
+  <meta name="author" content="搁浅St">
+  
+  <meta name="description" content="jackroyal 博客 搁浅St 笨笨">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="使用opencv实现人脸识别"/>
+  <meta property="og:site_name" content="搁浅St的blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="搁浅St的blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">搁浅St的blog</a></h1>
+  <h2><a href="/">我最喜欢笨笨</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+    <li> <a href="/atom.xml">RSS</a> </li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-04-26T02:50:00.000Z"><a href="/2015/04/26/face-recognizer/">4月 26 2015</a></time>
+      
+      
+  
+    <h1 class="title">使用opencv实现人脸识别</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>最近搞了两个星期的opencv，人脸识别方向，感觉没有什么前途，看不到论文在哪里啊。<br><a id="more"></a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8-*-</span></div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> cv2</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"></div><div class="line">z = {} <span class="comment">#存储关于每张图片对应的lable</span></div><div class="line">for_pre = []  <span class="comment">#存储用来进行测试的图片，规则是每个人10张图，5张用来训练，5张用来测试</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">normalize</span><span class="params">(X, low, high, dtype=None)</span>:</span></div><div class="line">    <span class="string">"""对数据进行正常化处理，让其处于最高和最低值之间."""</span></div><div class="line">    X = np.asarray(X)</div><div class="line">    minX, maxX = np.min(X), np.max(X)</div><div class="line">    <span class="comment"># normalize to [0...1].</span></div><div class="line">    X = X - float(minX)</div><div class="line">    X = X / float((maxX - minX))</div><div class="line">    <span class="comment"># scale to [low...high].</span></div><div class="line">    X = X * (high-low)</div><div class="line">    X = X + low</div><div class="line">    <span class="keyword">if</span> dtype <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">        <span class="keyword">return</span> np.asarray(X)</div><div class="line">    <span class="keyword">return</span> np.asarray(X, dtype=dtype)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_images</span><span class="params">(path, sz=None)</span>:</span></div><div class="line">    <span class="string">"""从文件夹中读取图像，并且将其大小限制在一定范围之内</span></div><div class="line"></div><div class="line">    参数:</div><div class="line">        path: 图片的路径</div><div class="line">        sz: 设定图像的大小以元组的形式，例如(92,112)</div><div class="line"></div><div class="line">    返回值:</div><div class="line">        返回一个list的数据[X,y]</div><div class="line"></div><div class="line">            X: 一个numpy的数组，里面存储的是所有的图片的矩阵.</div><div class="line">            y:一个list存储的，都是与X中图片对应的lable</div><div class="line">    """</div><div class="line">    c = <span class="number">0</span></div><div class="line">    X,y = [], []</div><div class="line">    <span class="keyword">for</span> dirname, dirnames, filenames <span class="keyword">in</span> os.walk(path):</div><div class="line">        <span class="keyword">for</span> subdirname <span class="keyword">in</span> dirnames:</div><div class="line">            subject_path = os.path.join(dirname, subdirname)</div><div class="line">            <span class="keyword">for</span> filename <span class="keyword">in</span> os.listdir(subject_path):</div><div class="line">                <span class="keyword">try</span>:</div><div class="line">                    im = cv2.imread(os.path.join(subject_path, filename), cv2.IMREAD_GRAYSCALE)</div><div class="line">                    <span class="comment"># resize to given size (if given)</span></div><div class="line">                    <span class="keyword">if</span> (sz <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>):</div><div class="line">                        im = cv2.resize(im, sz)</div><div class="line">                    <span class="keyword">if</span> y.count(c) &gt; <span class="number">4</span>:</div><div class="line">                        for_pre.append({<span class="string">'no'</span>:c,<span class="string">'src'</span>:np.asarray(im, dtype=np.uint8)})</div><div class="line">                    <span class="keyword">else</span>:</div><div class="line">                        X.append(np.asarray(im, dtype=np.uint8))</div><div class="line">                        y.append(c)</div><div class="line">                    <span class="keyword">global</span> z</div><div class="line">                    z[os.path.join(subject_path, filename)] = c</div><div class="line">                <span class="keyword">except</span> IOError, (errno, strerror):</div><div class="line">                    <span class="keyword">print</span> <span class="string">"I/O error({0}): {1}"</span>.format(errno, strerror)</div><div class="line">                <span class="keyword">except</span>:</div><div class="line">                    <span class="keyword">print</span> <span class="string">"Unexpected error:"</span>, sys.exc_info()[<span class="number">0</span>]</div><div class="line">                    <span class="keyword">raise</span></div><div class="line">            c = c+<span class="number">1</span></div><div class="line">    <span class="keyword">return</span> [X,y]</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">prediction</span><span class="params">(model)</span>:</span></div><div class="line">    <span class="string">"""图像预测</span></div><div class="line"></div><div class="line">    参数:</div><div class="line">        model: 就是图片训练的那个model</div><div class="line"></div><div class="line">    数据集中每个人存储了10张图片，我把其中的5张存储到for_pre，作为训练数据。用已知的lable和预测的lable作比较，得出图片识别正确的概率</div><div class="line">    """</div><div class="line">    tn = <span class="number">0</span> <span class="comment">#识别正确的图片数</span></div><div class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> for_pre:</div><div class="line">        [p_label, p_confidence] = model.predict(cv2.resize(item[<span class="string">'src'</span>],(<span class="number">92</span>,<span class="number">112</span>)))</div><div class="line">        <span class="keyword">if</span> p_label == item[<span class="string">'no'</span>]:</div><div class="line">            tn = tn+<span class="number">1</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">print</span> <span class="string">'the answer is %d,'</span> % item[<span class="string">'no'</span>],</div><div class="line">            <span class="keyword">print</span> <span class="string">"Predicted label = %d (confidence=%.2f)"</span> % (p_label, p_confidence)</div><div class="line"></div><div class="line">    <span class="keyword">print</span> <span class="string">"总共有%d次预测，其中正确次数为%d"</span> %(len(for_pre),tn)</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">    <span class="comment"># This is where we write the images, if an output_dir is given</span></div><div class="line">    <span class="comment"># in command line:</span></div><div class="line">    out_dir = <span class="keyword">None</span></div><div class="line">    <span class="comment"># You'll need at least a path to your image data, please see</span></div><div class="line">    <span class="comment"># the tutorial coming with this source code on how to prepare</span></div><div class="line">    <span class="comment"># your image data:</span></div><div class="line">    <span class="keyword">if</span> len(sys.argv) &lt; <span class="number">2</span>:</div><div class="line">        <span class="keyword">print</span> <span class="string">"USAGE: face_rec.py &lt;/path/to/images&gt; [&lt;/path/to/store/images/at&gt;]"</span></div><div class="line">        sys.exit()</div><div class="line">    <span class="comment"># Now read in the image data. This must be a valid path!</span></div><div class="line">    [X,y] = read_images(sys.argv[<span class="number">1</span>], (<span class="number">92</span>, <span class="number">112</span>))</div><div class="line"> </div><div class="line">    <span class="comment"># Convert labels to 32bit integers. This is a workaround for 64bit machines,</span></div><div class="line">    <span class="comment"># because the labels will truncated else. This will be fixed in code as</span></div><div class="line">    <span class="comment"># soon as possible, so Python users don't need to know about this.</span></div><div class="line">    <span class="comment"># Thanks to Leo Dirac for reporting:</span></div><div class="line">    y = np.asarray(y, dtype=np.int32)</div><div class="line">    <span class="comment"># If a out_dir is given, set it:</span></div><div class="line">    <span class="keyword">if</span> len(sys.argv) == <span class="number">3</span>:</div><div class="line">        out_dir = sys.argv[<span class="number">2</span>]</div><div class="line">    <span class="comment"># Create the Eigenfaces model. We are going to use the default</span></div><div class="line">    <span class="comment"># parameters for this simple example, please read the documentation</span></div><div class="line">    <span class="comment"># for thresholding:</span></div><div class="line">    model = cv2.createEigenFaceRecognizer()</div><div class="line">    <span class="comment"># Read</span></div><div class="line">    <span class="comment"># Learn the model. Remember our function returns Python lists,</span></div><div class="line">    <span class="comment"># so we use np.asarray to turn them into NumPy lists to make</span></div><div class="line">    <span class="comment"># the OpenCV wrapper happy:</span></div><div class="line">    model.train(np.asarray(X), np.asarray(y))</div><div class="line">    prediction(model) <span class="comment">#图片预测</span></div><div class="line">    <span class="comment">#</span></div><div class="line">    <span class="comment">#</span></div><div class="line">    <span class="comment"># You can see the available parameters with getParams():</span></div><div class="line">    <span class="keyword">print</span> model.getParams()</div><div class="line">    <span class="comment"># Now let's get some data:</span></div><div class="line">    mean = model.getMat(<span class="string">"mean"</span>)</div><div class="line">    <span class="keyword">print</span> out_dir + <span class="string">'/out.xml'</span></div><div class="line">    f = open(out_dir + <span class="string">'/out.xml'</span>,<span class="string">'w'</span>)</div><div class="line">    model.save(out_dir + <span class="string">'/out.xml'</span>)</div><div class="line">    eigenvectors = model.getMat(<span class="string">"eigenvectors"</span>)</div><div class="line">    <span class="comment"># We'll save the mean, by first normalizing it:</span></div><div class="line">    mean_norm = normalize(mean, <span class="number">0</span>, <span class="number">255</span>, dtype=np.uint8)</div><div class="line">    mean_resized = mean_norm.reshape(X[<span class="number">0</span>].shape)</div><div class="line">    <span class="keyword">if</span> out_dir <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">        cv2.imshow(<span class="string">"mean"</span>, mean_resized)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        cv2.imwrite(<span class="string">"%s/mean.png"</span> % (out_dir), mean_resized)</div><div class="line">    <span class="comment"># Turn the first (at most) 16 eigenvectors into grayscale</span></div><div class="line">    <span class="comment"># images. You could also use cv::normalize here, but sticking</span></div><div class="line">    <span class="comment"># to NumPy is much easier for now.</span></div><div class="line">    <span class="comment"># Note: eigenvectors are stored by column:</span></div><div class="line">    <span class="comment"># for i in xrange(min(len(X), 16)):</span></div><div class="line">    <span class="comment">#     eigenvector_i = eigenvectors[:,i].reshape(X[0].shape)</span></div><div class="line">    <span class="comment">#     eigenvector_i_norm = normalize(eigenvector_i, 0, 255, dtype=np.uint8)</span></div><div class="line">    <span class="comment">#     # Show or save the images:</span></div><div class="line">    <span class="comment">#     if out_dir is None:</span></div><div class="line">    <span class="comment">#         cv2.imshow("%s/eigenface_%d" % (out_dir,i), eigenvector_i_norm)</span></div><div class="line">    <span class="comment">#     else:</span></div><div class="line">    <span class="comment">#         cv2.imwrite("%s/eigenface_%d.png" % (out_dir,i), eigenvector_i_norm)</span></div><div class="line">    <span class="comment"># Show the images:</span></div><div class="line">    <span class="keyword">print</span> z</div><div class="line">    <span class="keyword">if</span> out_dir <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">        cv2.waitKey(<span class="number">0</span>)</div></pre></td></tr></table></figure>
+
+<p>代码执行效果如下<br><img src="http://ww1.sinaimg.cn/large/692869a3gw1eriuc3wsckj20nr08qn2q.jpg" alt="人脸识别执行效果"><br>我在这里输出的是那些预测错误的。<code>总共有200次预测，其中正确次数为186。</code>这预测率有点低啊，我用的数据都是来自于<a href="http://www.cl.cam.ac.uk/research/dtg/attarchive/facedatabase.html" target="_blank" rel="external"> AT&amp;T Facedatabase</a>。一共40个人，每个人10张图，图片宽高是92*112像素，全部是灰度图像。<br>至于如何提高图片识别的效率，我也不知道。</p>
+<h1 id="参考文献">参考文献</h1>
+<p>1 <a href="http://docs.opencv.org/modules/contrib/doc/facerec/facerec_tutorial.html" target="_blank" rel="external">http://docs.opencv.org/modules/contrib/doc/facerec/facerec_tutorial.html</a><br>2 <a href="https://code.google.com/p/pythonxy/source/browse/src/python/OpenCV/DOC/samples/python2/facerec_demo.py?repo=xy-27&amp;r=a2e41c7a3cb6db536b948747872cab71c696b44e" target="_blank" rel="external">python调用opencv实现人脸识别</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/图像处理/">图像处理</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/opencv/">opencv</a>, <a href="/tags/图像处理/">图像处理</a>, <a href="/tags/python/">python</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+ <nav id="pagination" >
+    
+    <a href="/2015/04/26/face-detection/" class="alignleft prev" > 使用opencv实现人脸检测 </a>
+    
+    
+    <a href="/2015/03/29/blog2markdown-csdn-windows/" class="alignright next" > blog2markdown程序打包,csdn爬虫 </a>
+    
+    <div class="clearfix"></div>
+</nav>
+<section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-face-recognizer" data-title="使用opencv实现人脸识别" data-url="http://jackroyal.github.io/2015/04/26/face-recognizer/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'jackroyal'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:jackroyal.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Linux/">Linux</a><small>5</small></li>
+  
+    <li><a href="/categories/chrome扩展/">chrome扩展</a><small>4</small></li>
+  
+    <li><a href="/categories/hexo/">hexo</a><small>3</small></li>
+  
+    <li><a href="/categories/javascript/">javascript</a><small>2</small></li>
+  
+    <li><a href="/categories/python学习笔记/">python学习笔记</a><small>5</small></li>
+  
+    <li><a href="/categories/图像处理/">图像处理</a><small>3</small></li>
+  
+    <li><a href="/categories/数据库/">数据库</a><small>1</small></li>
+  
+    <li><a href="/categories/服务器/">服务器</a><small>1</small></li>
+  
+    <li><a href="/categories/杂文/">杂文</a><small>1</small></li>
+  
+    <li><a href="/categories/软件安装与技巧/">软件安装与技巧</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Linux/">Linux</a><small>6</small></li>
+  
+    <li><a href="/tags/chrome/">chrome</a><small>4</small></li>
+  
+    <li><a href="/tags/cmcc-edu/">cmcc-edu</a><small>4</small></li>
+  
+    <li><a href="/tags/github/">github</a><small>3</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>5</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>2</small></li>
+  
+    <li><a href="/tags/js/">js</a><small>1</small></li>
+  
+    <li><a href="/tags/kali/">kali</a><small>2</small></li>
+  
+    <li><a href="/tags/lbph/">lbph</a><small>1</small></li>
+  
+    <li><a href="/tags/opencv/">opencv</a><small>3</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>7</small></li>
+  
+    <li><a href="/tags/scrapy/">scrapy</a><small>1</small></li>
+  
+    <li><a href="/tags/select/">select</a><small>1</small></li>
+  
+    <li><a href="/tags/shadowsocks/">shadowsocks</a><small>1</small></li>
+  
+    <li><a href="/tags/socket/">socket</a><small>2</small></li>
+  
+    <li><a href="/tags/sql/">sql</a><small>1</small></li>
+  
+    <li><a href="/tags/sql-server/">sql server</a><small>1</small></li>
+  
+    <li><a href="/tags/ubuntu/">ubuntu</a><small>2</small></li>
+  
+    <li><a href="/tags/wamp/">wamp</a><small>1</small></li>
+  
+    <li><a href="/tags/windows/">windows</a><small>1</small></li>
+  
+    <li><a href="/tags/中国移动/">中国移动</a><small>3</small></li>
+  
+    <li><a href="/tags/前端/">前端</a><small>2</small></li>
+  
+    <li><a href="/tags/图像处理/">图像处理</a><small>3</small></li>
+  
+    <li><a href="/tags/扩展/">扩展</a><small>2</small></li>
+  
+    <li><a href="/tags/正则/">正则</a><small>1</small></li>
+  
+    <li><a href="/tags/正则表达式/">正则表达式</a><small>1</small></li>
+  
+    <li><a href="/tags/爬虫/">爬虫</a><small>2</small></li>
+  
+    <li><a href="/tags/脚本/">脚本</a><small>2</small></li>
+  
+    <li><a href="/tags/表单/">表单</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2015/05/06/opencv-lbph-source-code-analysis/">opencv中LBPH的人脸识别代码分析</a>
+      </li>
+    
+      <li>
+        <a href="/2015/04/28/ubuntu-denyhosts/">ubuntu 14.04 安装denyhosts</a>
+      </li>
+    
+      <li>
+        <a href="/2015/04/26/ubuntu-scrapy-stackoverflow/">ubuntu下使用scrapy抓取cnblogs</a>
+      </li>
+    
+      <li>
+        <a href="/2015/04/26/face-detection/">使用opencv实现人脸检测</a>
+      </li>
+    
+      <li>
+        <a href="/2015/04/26/face-recognizer/">使用opencv实现人脸识别</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/Linux/" style="font-size: 18.33px;">Linux</a><a href="/tags/chrome/" style="font-size: 15.00px;">chrome</a><a href="/tags/cmcc-edu/" style="font-size: 15.00px;">cmcc-edu</a><a href="/tags/github/" style="font-size: 13.33px;">github</a><a href="/tags/hexo/" style="font-size: 16.67px;">hexo</a><a href="/tags/javascript/" style="font-size: 11.67px;">javascript</a><a href="/tags/js/" style="font-size: 10.00px;">js</a><a href="/tags/kali/" style="font-size: 11.67px;">kali</a><a href="/tags/lbph/" style="font-size: 10.00px;">lbph</a><a href="/tags/opencv/" style="font-size: 13.33px;">opencv</a><a href="/tags/python/" style="font-size: 20.00px;">python</a><a href="/tags/scrapy/" style="font-size: 10.00px;">scrapy</a><a href="/tags/select/" style="font-size: 10.00px;">select</a><a href="/tags/shadowsocks/" style="font-size: 10.00px;">shadowsocks</a><a href="/tags/socket/" style="font-size: 11.67px;">socket</a><a href="/tags/sql/" style="font-size: 10.00px;">sql</a><a href="/tags/sql-server/" style="font-size: 10.00px;">sql server</a><a href="/tags/ubuntu/" style="font-size: 11.67px;">ubuntu</a><a href="/tags/wamp/" style="font-size: 10.00px;">wamp</a><a href="/tags/windows/" style="font-size: 10.00px;">windows</a><a href="/tags/中国移动/" style="font-size: 13.33px;">中国移动</a><a href="/tags/前端/" style="font-size: 11.67px;">前端</a><a href="/tags/图像处理/" style="font-size: 13.33px;">图像处理</a><a href="/tags/扩展/" style="font-size: 11.67px;">扩展</a><a href="/tags/正则/" style="font-size: 10.00px;">正则</a><a href="/tags/正则表达式/" style="font-size: 10.00px;">正则表达式</a><a href="/tags/爬虫/" style="font-size: 11.67px;">爬虫</a><a href="/tags/脚本/" style="font-size: 11.67px;">脚本</a><a href="/tags/表单/" style="font-size: 10.00px;">表单</a>
+  </div>
+</div>
+
+
+  <div class="widget tag">
+<h3 class="title">友情链接</h3>
+<ul class="entry">
+<li><a href="http://blog.csdn.net/jackroyal" title="搁浅St的blog">我的CSDN</a></li>
+<li><a href="http://www.cnblogs.com/geqianst" title="搁浅St的blog">我的cnblogs</a></li>
+<li><a href="http://blog.csdn.net/happyhuirong" title="笨笨的blog">笨笨的blog</a></li>
+</ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 搁浅St
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="https://lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+</body>
+</html>

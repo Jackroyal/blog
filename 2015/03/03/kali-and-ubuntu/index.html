@@ -1,0 +1,329 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>kali和ubuntu双系统安装 | 搁浅St的blog</title>
+  <meta name="author" content="搁浅St">
+  
+  <meta name="description" content="jackroyal 博客 搁浅St 笨笨">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="kali和ubuntu双系统安装"/>
+  <meta property="og:site_name" content="搁浅St的blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="搁浅St的blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">搁浅St的blog</a></h1>
+  <h2><a href="/">我最喜欢笨笨</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+    <li> <a href="/atom.xml">RSS</a> </li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-03-03T13:17:41.000Z"><a href="/2015/03/03/kali-and-ubuntu/">3月 3 2015</a></time>
+      
+      
+  
+    <h1 class="title">kali和ubuntu双系统安装</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>时间忽快忽慢，一转眼，年过完了，又回来学校了，又一个多月没有push了，重新回到github。今天我们家笨笨给我找了点kali的资料，索性就把kali捡起来，第一步安装kali的系统。<br>此处背景不再介绍，直奔主题。kali的安装过程和ubuntu的安装过程类似，应该说原理上是一模一样的，只是界面有些不同。我的电脑当前已经安装了win8和ubuntu，现在需要再加一个kali的系统，三系统共存。<br>大体分为如下几个步骤：</p>
+<h3 id="1_下载kali镜像">1 下载kali镜像</h3>
+<h3 id="2_刻录u盘">2 刻录u盘</h3>
+<h3 id="3_安装kali">3 安装kali</h3>
+<h2><a id="more"></a></h2>
+<h1 id="1_下载kali镜像-1">1 下载kali镜像</h1>
+<p>这步很简单，我们去kali的官网下载<a href="https://www.kali.org/downloads/" target="_blank" rel="external">https://www.kali.org/downloads/</a>,下载对应的版本。我这里下载的是第一个64位版本（<a href="http://cdimage.kali.org/kali-1.1.0/kali-linux-1.1.0-amd64.iso" target="_blank" rel="external">http://cdimage.kali.org/kali-1.1.0/kali-linux-1.1.0-amd64.iso</a>）,因为是在ubuntu下，我们可以顺手校验一下文件的hash值，防止文件损坏。<br>在终端中输入<code>sha1sum /home/chen/kali-linux-1.1.0-amd64.iso</code><br>查看输出是否是<code>40a1fd1d4864e7fac70438a1bf2095c8c1a4e764</code>，若正确，则第一步完成。</p>
+<h1 id="2_刻录u盘-1">2 刻录u盘</h1>
+<p>如果采用硬盘安装的话，我们需要在win下面操作，使用easybcd来编辑grub引导，还需要解压文件，相对比较麻烦，我这里采用u盘安装，相对比较简单。<br>和安装ubuntu不同，我之前在win下用UltraISO来刻录,<br><img src="http://ww3.sinaimg.cn/large/692869a3gw1epsvwgs1rqj20fa0c676e.jpg" alt="刻录ubuntu">如图所示，便捷启动是可以不修改的，直接默认，点击写入就行。我今天在刻录kali的时候，发现这样写的u盘无法启动，开机的时候会提示<code>failed to boot from USB disk with error: gfxboot.c32: not a COM32R Image boot:</code>的错误。<br>解决方法有两个<br>1 linux的用mkusb，windows的用Win32DiskImager 来制作U盘启动<br>具体用法：<br><a href="https://wiki.ubuntu.com/Win32DiskImager/iso2usb" target="_blank" rel="external">https://wiki.ubuntu.com/Win32DiskImager/iso2usb</a><br><a href="https://help.ubuntu.com/community/mkusb" target="_blank" rel="external">https://help.ubuntu.com/community/mkusb</a><br>2 在win下用UltraISO来刻录，记得更改便捷启动的设置，如图所示<br><img src="http://ww4.sinaimg.cn/large/692869a3gw1epsw409qr3j20go09rjtp.jpg" alt="更改便捷启动">，点击便捷启动-&gt;选择写入新的启动器引导扇区——&gt;syslinus——&gt;写入</p>
+<p><em>我采用的是法一，我在ubuntu中用mkusb来刻录</em></p>
+<h1 id="3_安装kali-1">3 安装kali</h1>
+<p>下面开始安装kali（以下图片是我用virtualbox虚拟机中安装拍摄的）</p>
+<h2 id="1_引导成功以后，开机画面如图所示">1 引导成功以后，开机画面如图所示</h2>
+<p><img src="http://ww1.sinaimg.cn/large/692869a3gw1eptme5jxk5j20ne0hcjwf.jpg" alt="开机画面"><br>我们选择<code>Graphical install</code>,图形化安装，也可以选择<code>install</code>那是文字界面安装</p>
+<h2 id="2_选择语言，地区">2 选择语言，地区</h2>
+<p>语言： 选择 <code>chinese（simplified）简体中文</code><br>地区： 选择 <code>中国</code></p>
+<h2 id="3_配置网络名称和domain">3 配置网络名称和domain</h2>
+<p>这个代表你的电脑在网络上的名称，比如win默认的就是pc-2000123131，也就是别人在网上邻居中看到你的电脑的名称。我们就用默认的<code>localhost</code><br>domain我们留空不管他，下一步</p>
+<h2 id="4_设置root密码">4 设置root密码</h2>
+<p>我们设置两次一样的密码就行，不要忘记了<br><img src="http://ww2.sinaimg.cn/large/692869a3gw1eptmmnvzlnj20ne0hcdih.jpg" alt="设置root密码"></p>
+<h2 id="5_磁盘分区">5 磁盘分区</h2>
+<p>我们选择第三项<code>手动</code><br><img src="http://ww4.sinaimg.cn/large/692869a3gw1eptmp2uw4ij20ne0hc42t.jpg" alt="磁盘分区选项"><br><strong>分区</strong>，这里我们一共分<code>三个区</code>，一个300M的<code>/boot</code>分区，一个2048M的<code>swap</code>分区，其他的分为一个<code>/</code>（你也可以把/home单独分区出来），因为分区方法类似，所以我只讲一个<code>/boot</code>和<code>swap</code>分区的步骤<br><strong>boot分区</strong><br><strong>注意:</strong>选择<strong>可启动标志</strong>，我们只有/boot设置为<code>开</code>，其他分区的这个选项都是<code>关</code><br><img src="http://ww1.sinaimg.cn/large/692869a3gw1eptmu4nonsj20ne0hctbb.jpg" alt="boot分区设置"><br>设置完成后，选择<code>分区设定结束</code>，点击继续</p>
+<p><strong>交换空间</strong><br><strong>注意:</strong>交换空间是一种<strong>文件类型</strong>，其他的分区是<strong>属于载点</strong><br><img src="http://ww1.sinaimg.cn/large/692869a3gw1eptn2gehkdj20ne0hc77a.jpg" alt="交换空间swap分区设置"><br>设置完成后，选择<code>分区设定结束</code>，点击继续</p>
+<p>等分区完成，就选择<code>分区设定结束并将修改写入磁盘</code>，点击继续，就开始安装kali</p>
+<h2 id="6_启动引导">6 启动引导</h2>
+<p>当系统快安装完成的时候，会出现grub安装的选择,如图所示<br><img src="http://ww3.sinaimg.cn/large/692869a3gw1eptnhakprmj20ns0j7dij.jpg" alt="交换空间swap分区设置"></p>
+<p>因为我的系统是<code>win8</code>和<code>ubuntu</code>和<code>kali</code>多系统共存，当前是由<code>win</code>来引导（当前系统由谁引导就看开机看到的第一个<code>系统选择</code>是谁的，如果是红色的ubuntu选项，那就说明由ubuntu引导）。<br>我这里选择否的话，那么我就需要去<code>win</code>里面手动添加<code>kali</code>的引导（使用easybcd来操作）。<br>如果你是<code>ubuntu</code>来引导系统的话，一样需要手动去添加<code>kali</code>的引导（这里我还不会）。<br>所以我选择<code>是</code>，这样装完三个系统都可以正常开机了。</p>
+<p>到此所有的安装结束。</p>
+<h1 id="参考文献">参考文献</h1>
+<p>1 安装kali 系统 <a href="http://blog.sina.com.cn/s/blog_779dcd090102va9c.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_779dcd090102va9c.html</a><br>2 <a href="http://www.bkjia.com/Linuxjc/844530.html" target="_blank" rel="external">kali系统安装图文教程，kali系统安装图文</a></p>
+<h1 id="致谢">致谢</h1>
+<p>这里，要感谢我最亲爱的笨笨<a href="http://huirong.github.io" target="_blank" rel="external">http://huirong.github.io</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/Linux/">Linux</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/kali/">kali</a>, <a href="/tags/Linux/">Linux</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+ <nav id="pagination" >
+    
+    <a href="/2015/03/04/after-kali/" class="alignleft prev" > kali安装后设置 </a>
+    
+    
+    <a href="/2015/01/19/linux下使用github/" class="alignright next" > Linux下使用github </a>
+    
+    <div class="clearfix"></div>
+</nav>
+<section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-kali-and-ubuntu" data-title="kali和ubuntu双系统安装" data-url="http://jackroyal.github.io/2015/03/03/kali-and-ubuntu/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'jackroyal'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:jackroyal.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Linux/">Linux</a><small>5</small></li>
+  
+    <li><a href="/categories/chrome扩展/">chrome扩展</a><small>4</small></li>
+  
+    <li><a href="/categories/hexo/">hexo</a><small>3</small></li>
+  
+    <li><a href="/categories/javascript/">javascript</a><small>2</small></li>
+  
+    <li><a href="/categories/python学习笔记/">python学习笔记</a><small>5</small></li>
+  
+    <li><a href="/categories/图像处理/">图像处理</a><small>3</small></li>
+  
+    <li><a href="/categories/数据库/">数据库</a><small>1</small></li>
+  
+    <li><a href="/categories/服务器/">服务器</a><small>1</small></li>
+  
+    <li><a href="/categories/杂文/">杂文</a><small>1</small></li>
+  
+    <li><a href="/categories/软件安装与技巧/">软件安装与技巧</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Linux/">Linux</a><small>6</small></li>
+  
+    <li><a href="/tags/chrome/">chrome</a><small>4</small></li>
+  
+    <li><a href="/tags/cmcc-edu/">cmcc-edu</a><small>4</small></li>
+  
+    <li><a href="/tags/github/">github</a><small>3</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>5</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>2</small></li>
+  
+    <li><a href="/tags/js/">js</a><small>1</small></li>
+  
+    <li><a href="/tags/kali/">kali</a><small>2</small></li>
+  
+    <li><a href="/tags/lbph/">lbph</a><small>1</small></li>
+  
+    <li><a href="/tags/opencv/">opencv</a><small>3</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>7</small></li>
+  
+    <li><a href="/tags/scrapy/">scrapy</a><small>1</small></li>
+  
+    <li><a href="/tags/select/">select</a><small>1</small></li>
+  
+    <li><a href="/tags/shadowsocks/">shadowsocks</a><small>1</small></li>
+  
+    <li><a href="/tags/socket/">socket</a><small>2</small></li>
+  
+    <li><a href="/tags/sql/">sql</a><small>1</small></li>
+  
+    <li><a href="/tags/sql-server/">sql server</a><small>1</small></li>
+  
+    <li><a href="/tags/ubuntu/">ubuntu</a><small>2</small></li>
+  
+    <li><a href="/tags/wamp/">wamp</a><small>1</small></li>
+  
+    <li><a href="/tags/windows/">windows</a><small>1</small></li>
+  
+    <li><a href="/tags/中国移动/">中国移动</a><small>3</small></li>
+  
+    <li><a href="/tags/前端/">前端</a><small>2</small></li>
+  
+    <li><a href="/tags/图像处理/">图像处理</a><small>3</small></li>
+  
+    <li><a href="/tags/扩展/">扩展</a><small>2</small></li>
+  
+    <li><a href="/tags/正则/">正则</a><small>1</small></li>
+  
+    <li><a href="/tags/正则表达式/">正则表达式</a><small>1</small></li>
+  
+    <li><a href="/tags/爬虫/">爬虫</a><small>2</small></li>
+  
+    <li><a href="/tags/脚本/">脚本</a><small>2</small></li>
+  
+    <li><a href="/tags/表单/">表单</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2015/05/06/opencv-lbph-source-code-analysis/">opencv中LBPH的人脸识别代码分析</a>
+      </li>
+    
+      <li>
+        <a href="/2015/04/28/ubuntu-denyhosts/">ubuntu 14.04 安装denyhosts</a>
+      </li>
+    
+      <li>
+        <a href="/2015/04/26/ubuntu-scrapy-stackoverflow/">ubuntu下使用scrapy抓取cnblogs</a>
+      </li>
+    
+      <li>
+        <a href="/2015/04/26/face-detection/">使用opencv实现人脸检测</a>
+      </li>
+    
+      <li>
+        <a href="/2015/04/26/face-recognizer/">使用opencv实现人脸识别</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/Linux/" style="font-size: 18.33px;">Linux</a><a href="/tags/chrome/" style="font-size: 15.00px;">chrome</a><a href="/tags/cmcc-edu/" style="font-size: 15.00px;">cmcc-edu</a><a href="/tags/github/" style="font-size: 13.33px;">github</a><a href="/tags/hexo/" style="font-size: 16.67px;">hexo</a><a href="/tags/javascript/" style="font-size: 11.67px;">javascript</a><a href="/tags/js/" style="font-size: 10.00px;">js</a><a href="/tags/kali/" style="font-size: 11.67px;">kali</a><a href="/tags/lbph/" style="font-size: 10.00px;">lbph</a><a href="/tags/opencv/" style="font-size: 13.33px;">opencv</a><a href="/tags/python/" style="font-size: 20.00px;">python</a><a href="/tags/scrapy/" style="font-size: 10.00px;">scrapy</a><a href="/tags/select/" style="font-size: 10.00px;">select</a><a href="/tags/shadowsocks/" style="font-size: 10.00px;">shadowsocks</a><a href="/tags/socket/" style="font-size: 11.67px;">socket</a><a href="/tags/sql/" style="font-size: 10.00px;">sql</a><a href="/tags/sql-server/" style="font-size: 10.00px;">sql server</a><a href="/tags/ubuntu/" style="font-size: 11.67px;">ubuntu</a><a href="/tags/wamp/" style="font-size: 10.00px;">wamp</a><a href="/tags/windows/" style="font-size: 10.00px;">windows</a><a href="/tags/中国移动/" style="font-size: 13.33px;">中国移动</a><a href="/tags/前端/" style="font-size: 11.67px;">前端</a><a href="/tags/图像处理/" style="font-size: 13.33px;">图像处理</a><a href="/tags/扩展/" style="font-size: 11.67px;">扩展</a><a href="/tags/正则/" style="font-size: 10.00px;">正则</a><a href="/tags/正则表达式/" style="font-size: 10.00px;">正则表达式</a><a href="/tags/爬虫/" style="font-size: 11.67px;">爬虫</a><a href="/tags/脚本/" style="font-size: 11.67px;">脚本</a><a href="/tags/表单/" style="font-size: 10.00px;">表单</a>
+  </div>
+</div>
+
+
+  <div class="widget tag">
+<h3 class="title">友情链接</h3>
+<ul class="entry">
+<li><a href="http://blog.csdn.net/jackroyal" title="搁浅St的blog">我的CSDN</a></li>
+<li><a href="http://www.cnblogs.com/geqianst" title="搁浅St的blog">我的cnblogs</a></li>
+<li><a href="http://blog.csdn.net/happyhuirong" title="笨笨的blog">笨笨的blog</a></li>
+</ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 搁浅St
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="https://lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+</body>
+</html>

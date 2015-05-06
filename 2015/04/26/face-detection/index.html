@@ -1,0 +1,303 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用opencv实现人脸检测 | 搁浅St的blog</title>
+  <meta name="author" content="搁浅St">
+  
+  <meta name="description" content="jackroyal 博客 搁浅St 笨笨">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="使用opencv实现人脸检测"/>
+  <meta property="og:site_name" content="搁浅St的blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="搁浅St的blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">搁浅St的blog</a></h1>
+  <h2><a href="/">我最喜欢笨笨</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+    <li> <a href="/atom.xml">RSS</a> </li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-04-26T04:54:24.000Z"><a href="/2015/04/26/face-detection/">4月 26 2015</a></time>
+      
+      
+  
+    <h1 class="title">使用opencv实现人脸检测</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>这两个星期，都在搞这个，就把代码都分享一下，太烂，就不分享到github了。<br><a id="more"></a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment"># -*- coding:utf-8-*-</span></div><div class="line">__author__ = <span class="string">'chen'</span></div><div class="line"><span class="keyword">import</span> cv2</div><div class="line"><span class="keyword">import</span> Image</div><div class="line"><span class="keyword">import</span> ImageDraw</div><div class="line"><span class="keyword">import</span> sys,os</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">detectFaces</span><span class="params">(image_name)</span>:</span></div><div class="line">    img = cv2.imread(image_name)</div><div class="line">    face_cascade = cv2.CascadeClassifier(<span class="string">'../data2/haarcascades/haarcascade_frontalface_alt.xml'</span>)<span class="comment">#加载级联分类器，这里使用的是intel训练出来的人脸识别分类器</span></div><div class="line">    <span class="keyword">if</span> img.ndim == <span class="number">3</span>:<span class="comment">#判断图片是否是灰度图像，如果img.ndim==3那就表示不是灰度图像</span></div><div class="line">        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)<span class="comment">#将图片转化为灰度图像</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        gray = img</div><div class="line"></div><div class="line">    faces = face_cascade.detectMultiScale(gray, scaleFactor=<span class="number">1.2</span>, minNeighbors=<span class="number">4</span>, minSize=(<span class="number">30</span>, <span class="number">30</span>), flags = cv2.CASCADE_SCALE_IMAGE)<span class="comment">#核心操作，返回图片中所有的人脸的坐标和宽高度</span></div><div class="line">    result = []</div><div class="line">    <span class="keyword">for</span> (x, y, width, height) <span class="keyword">in</span> faces:</div><div class="line">        <span class="keyword">print</span> (x, y, width, height)</div><div class="line">        result.append((x, y, x+width, y+height))<span class="comment">#将原始数据，转化为人脸的四个点的坐标</span></div><div class="line">    <span class="keyword">return</span> result</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">drawFaces</span><span class="params">(image_name)</span>:</span></div><div class="line">    faces = detectFaces(image_name)<span class="comment">#此处的返回值是一个元组，(x, y, width, height)，每一个元组都包括人脸的（x,y）坐标，还有人脸的宽度和高度，有这些数据，我们就可以把人脸标记出来，比如画一个矩形框出来</span></div><div class="line">    <span class="keyword">print</span> faces</div><div class="line">    <span class="keyword">if</span> faces:</div><div class="line">        imga = cv2.imread(image_name)<span class="comment">#读取图片</span></div><div class="line">        draw_rects(imga, faces, (<span class="number">0</span>,<span class="number">255</span>,<span class="number">0</span>))<span class="comment">#画矩形标记</span></div><div class="line">        cv2.imshow(<span class="string">'img'</span>, imga)<span class="comment">#显示修改后的矩形</span></div><div class="line">        cv2.waitKey(<span class="number">0</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">draw_rects</span><span class="params">(img, rects, color)</span>:</span></div><div class="line">    <span class="keyword">for</span> x1, y1, x2, y2 <span class="keyword">in</span> rects:</div><div class="line">        cv2.rectangle(img, (x1, y1), (x2, y2), color, <span class="number">2</span>)<span class="comment">#调用cv2的矩形函数，画矩形</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">saveFaces</span><span class="params">(image_name)</span>:</span><span class="comment">#将人脸截取并保存成图片</span></div><div class="line">    faces = detectFaces(image_name)</div><div class="line">    <span class="keyword">if</span> faces:</div><div class="line">        save_dir = image_name.split(<span class="string">'.'</span>)[<span class="number">0</span>] + <span class="string">"_faces_"</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(save_dir):<span class="comment">#检测目录是否存在，如果不存在那就创建目录</span></div><div class="line">            os.mkdir(save_dir)</div><div class="line">        count = <span class="number">0</span></div><div class="line">        <span class="keyword">for</span> (x1, y1, x2, y2) <span class="keyword">in</span> faces:</div><div class="line">            imga = cv2.imread(image_name)</div><div class="line">            file_name = os.path.join(save_dir,str(count)+<span class="string">".jpg"</span>)</div><div class="line">            roi = imga[y1:y2,x1:x2]<span class="comment">#这一步是重点，他就像取一个数组一样，把人脸的部分保存出来</span></div><div class="line">            cv2.imwrite(file_name,cv2.cvtColor(cv2.resize(roi,(<span class="number">92</span>,<span class="number">112</span>)), cv2.COLOR_BGR2GRAY))<span class="comment">#把图片的size重新设定维（92,112），并将图片转换为灰度图像</span></div><div class="line">            <span class="comment"># cv2.imshow('aaa',imga)</span></div><div class="line"></div><div class="line"></div><div class="line">drawFaces(<span class="string">'../at/chen.jpg'</span>)</div><div class="line">saveFaces(<span class="string">'../at/chen.jpg'</span>)</div></pre></td></tr></table></figure>
+
+<p>这里面的截取人脸并保存的saveFaces函数，我觉得还不错。网上找到的代码，调用了Image库，我的代码全部都是用cv2搞定的，没有用Image库。画矩形也是，我也都是用cv2自带的东西完成的。<br>我用以上代码生成的数据，去进行人脸识别，惨不忍睹。</p>
+<h1 id="参考文献">参考文献</h1>
+<p>1 <a href="http://blog.csdn.net/u012162613/article/details/43523507" target="_blank" rel="external">Python-OpenCV人脸检测(代码)</a><br>2 <a href="http://wangwei007.blog.51cto.com/68019/1104940" target="_blank" rel="external">python os.path模块常用方法详解</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/图像处理/">图像处理</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/opencv/">opencv</a>, <a href="/tags/图像处理/">图像处理</a>, <a href="/tags/python/">python</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+ <nav id="pagination" >
+    
+    <a href="/2015/04/26/ubuntu-scrapy-stackoverflow/" class="alignleft prev" > ubuntu下使用scrapy抓取cnblogs </a>
+    
+    
+    <a href="/2015/04/26/face-recognizer/" class="alignright next" > 使用opencv实现人脸识别 </a>
+    
+    <div class="clearfix"></div>
+</nav>
+<section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-face-detection" data-title="使用opencv实现人脸检测" data-url="http://jackroyal.github.io/2015/04/26/face-detection/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'jackroyal'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:jackroyal.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Linux/">Linux</a><small>5</small></li>
+  
+    <li><a href="/categories/chrome扩展/">chrome扩展</a><small>4</small></li>
+  
+    <li><a href="/categories/hexo/">hexo</a><small>3</small></li>
+  
+    <li><a href="/categories/javascript/">javascript</a><small>2</small></li>
+  
+    <li><a href="/categories/python学习笔记/">python学习笔记</a><small>5</small></li>
+  
+    <li><a href="/categories/图像处理/">图像处理</a><small>3</small></li>
+  
+    <li><a href="/categories/数据库/">数据库</a><small>1</small></li>
+  
+    <li><a href="/categories/服务器/">服务器</a><small>1</small></li>
+  
+    <li><a href="/categories/杂文/">杂文</a><small>1</small></li>
+  
+    <li><a href="/categories/软件安装与技巧/">软件安装与技巧</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Linux/">Linux</a><small>6</small></li>
+  
+    <li><a href="/tags/chrome/">chrome</a><small>4</small></li>
+  
+    <li><a href="/tags/cmcc-edu/">cmcc-edu</a><small>4</small></li>
+  
+    <li><a href="/tags/github/">github</a><small>3</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>5</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>2</small></li>
+  
+    <li><a href="/tags/js/">js</a><small>1</small></li>
+  
+    <li><a href="/tags/kali/">kali</a><small>2</small></li>
+  
+    <li><a href="/tags/lbph/">lbph</a><small>1</small></li>
+  
+    <li><a href="/tags/opencv/">opencv</a><small>3</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>7</small></li>
+  
+    <li><a href="/tags/scrapy/">scrapy</a><small>1</small></li>
+  
+    <li><a href="/tags/select/">select</a><small>1</small></li>
+  
+    <li><a href="/tags/shadowsocks/">shadowsocks</a><small>1</small></li>
+  
+    <li><a href="/tags/socket/">socket</a><small>2</small></li>
+  
+    <li><a href="/tags/sql/">sql</a><small>1</small></li>
+  
+    <li><a href="/tags/sql-server/">sql server</a><small>1</small></li>
+  
+    <li><a href="/tags/ubuntu/">ubuntu</a><small>2</small></li>
+  
+    <li><a href="/tags/wamp/">wamp</a><small>1</small></li>
+  
+    <li><a href="/tags/windows/">windows</a><small>1</small></li>
+  
+    <li><a href="/tags/中国移动/">中国移动</a><small>3</small></li>
+  
+    <li><a href="/tags/前端/">前端</a><small>2</small></li>
+  
+    <li><a href="/tags/图像处理/">图像处理</a><small>3</small></li>
+  
+    <li><a href="/tags/扩展/">扩展</a><small>2</small></li>
+  
+    <li><a href="/tags/正则/">正则</a><small>1</small></li>
+  
+    <li><a href="/tags/正则表达式/">正则表达式</a><small>1</small></li>
+  
+    <li><a href="/tags/爬虫/">爬虫</a><small>2</small></li>
+  
+    <li><a href="/tags/脚本/">脚本</a><small>2</small></li>
+  
+    <li><a href="/tags/表单/">表单</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2015/05/06/opencv-lbph-source-code-analysis/">opencv中LBPH的人脸识别代码分析</a>
+      </li>
+    
+      <li>
+        <a href="/2015/04/28/ubuntu-denyhosts/">ubuntu 14.04 安装denyhosts</a>
+      </li>
+    
+      <li>
+        <a href="/2015/04/26/ubuntu-scrapy-stackoverflow/">ubuntu下使用scrapy抓取cnblogs</a>
+      </li>
+    
+      <li>
+        <a href="/2015/04/26/face-detection/">使用opencv实现人脸检测</a>
+      </li>
+    
+      <li>
+        <a href="/2015/04/26/face-recognizer/">使用opencv实现人脸识别</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/Linux/" style="font-size: 18.33px;">Linux</a><a href="/tags/chrome/" style="font-size: 15.00px;">chrome</a><a href="/tags/cmcc-edu/" style="font-size: 15.00px;">cmcc-edu</a><a href="/tags/github/" style="font-size: 13.33px;">github</a><a href="/tags/hexo/" style="font-size: 16.67px;">hexo</a><a href="/tags/javascript/" style="font-size: 11.67px;">javascript</a><a href="/tags/js/" style="font-size: 10.00px;">js</a><a href="/tags/kali/" style="font-size: 11.67px;">kali</a><a href="/tags/lbph/" style="font-size: 10.00px;">lbph</a><a href="/tags/opencv/" style="font-size: 13.33px;">opencv</a><a href="/tags/python/" style="font-size: 20.00px;">python</a><a href="/tags/scrapy/" style="font-size: 10.00px;">scrapy</a><a href="/tags/select/" style="font-size: 10.00px;">select</a><a href="/tags/shadowsocks/" style="font-size: 10.00px;">shadowsocks</a><a href="/tags/socket/" style="font-size: 11.67px;">socket</a><a href="/tags/sql/" style="font-size: 10.00px;">sql</a><a href="/tags/sql-server/" style="font-size: 10.00px;">sql server</a><a href="/tags/ubuntu/" style="font-size: 11.67px;">ubuntu</a><a href="/tags/wamp/" style="font-size: 10.00px;">wamp</a><a href="/tags/windows/" style="font-size: 10.00px;">windows</a><a href="/tags/中国移动/" style="font-size: 13.33px;">中国移动</a><a href="/tags/前端/" style="font-size: 11.67px;">前端</a><a href="/tags/图像处理/" style="font-size: 13.33px;">图像处理</a><a href="/tags/扩展/" style="font-size: 11.67px;">扩展</a><a href="/tags/正则/" style="font-size: 10.00px;">正则</a><a href="/tags/正则表达式/" style="font-size: 10.00px;">正则表达式</a><a href="/tags/爬虫/" style="font-size: 11.67px;">爬虫</a><a href="/tags/脚本/" style="font-size: 11.67px;">脚本</a><a href="/tags/表单/" style="font-size: 10.00px;">表单</a>
+  </div>
+</div>
+
+
+  <div class="widget tag">
+<h3 class="title">友情链接</h3>
+<ul class="entry">
+<li><a href="http://blog.csdn.net/jackroyal" title="搁浅St的blog">我的CSDN</a></li>
+<li><a href="http://www.cnblogs.com/geqianst" title="搁浅St的blog">我的cnblogs</a></li>
+<li><a href="http://blog.csdn.net/happyhuirong" title="笨笨的blog">笨笨的blog</a></li>
+</ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 搁浅St
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="https://lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+</body>
+</html>

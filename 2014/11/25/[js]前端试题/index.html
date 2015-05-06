@@ -1,0 +1,299 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>[js]前端试题 | 搁浅St的blog</title>
+  <meta name="author" content="搁浅St">
+  
+  <meta name="description" content="jackroyal 博客 搁浅St 笨笨">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="[js]前端试题"/>
+  <meta property="og:site_name" content="搁浅St的blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="搁浅St的blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">搁浅St的blog</a></h1>
+  <h2><a href="/">我最喜欢笨笨</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+    <li> <a href="/atom.xml">RSS</a> </li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-25T14:26:00.000Z"><a href="/2014/11/25/[js]前端试题/">11月 25 2014</a></time>
+      
+      
+  
+    <h1 class="title">[js]前端试题</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 1、获取页面id为 hello 的节点</span></div><div class="line"><span class="keyword">var</span> he=<span class="built_in">document</span>.getElementById(<span class="string">'hello'</span>);</div><div class="line"><span class="comment">// 2、获取页面所有 div 标签</span></div><div class="line"><span class="keyword">var</span> di=<span class="built_in">document</span>.getElementsByTagName(<span class="string">'div'</span>);</div><div class="line"><span class="comment">// 3、给 id 为hello的节点绑定click 事件，点击的时候弹出 "hello"</span></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'hello'</span>).onclick=<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{alert(<span class="string">'helo'</span>)};</div><div class="line"><span class="comment">// 4、将页面上 id为hello的节点隐藏</span></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'hello'</span>).style.visibility=none;</div><div class="line"><span class="comment">// 5、将 "hello world" 用正则替换成 "hello javascript”</span></div><div class="line"><span class="keyword">var</span> str=<span class="string">'hello world'</span>;</div><div class="line">str.replace(<span class="regexp">/hello[\s]+world/g</span>,<span class="string">'hello javascript'</span>);</div><div class="line"><span class="comment">// 6、给节点（假设为element）绑定click事件，当被点击时候，alert 弹出事件的类型（通过jquery）</span></div><div class="line">$(element).click(<span class="function"><span class="keyword">function</span><span class="params">(event)</span> </span>{</div><div class="line">    alert(event.type);</div><div class="line">});</div><div class="line"><span class="comment">// 7、给一个节点添加一个类 "hello"</span></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'kw'</span>).className=<span class="built_in">document</span>.getElementById(<span class="string">'kw'</span>).className+<span class="string">" hello"</span>;</div><div class="line"><span class="comment">// 8、给节点（假设为element）绑定click事件，当被点击时候，alert 弹出事件的类型（要求兼容IE、标准浏览器）</span></div><div class="line">element.onclick=<span class="function"><span class="keyword">function</span><span class="params">(event)</span></span>{<span class="keyword">var</span> e=event||<span class="built_in">window</span>.event};</div><div class="line"><span class="comment">// 9、假设页面有这么两个节点将 id为world的节点的 内容设置成 跟 id 为 hello 的节点一样。</span></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'world'</span>).innerHTML=<span class="built_in">document</span>.getElementById(<span class="string">'hello'</span>).innerHTML;</div><div class="line"><span class="comment">// 10、通过 js 将element的margin-left 设置为 20px</span></div><div class="line">element.style.marginLeft=<span class="string">"20px"</span>;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 1.[{a:3},{a:4},{a:1},{a:2}] sort排序</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sortnum</span><span class="params">(a,b)</span></span>{</div><div class="line">    <span class="keyword">return</span> a.a-b.a;</div><div class="line">}</div><div class="line"><span class="comment">//   [{a:3,b:5},{a:4,b:6},{a:1},{a:2,b:8}]按a的正向排序</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sortab</span><span class="params">(a,b)</span></span>{</div><div class="line">    <span class="keyword">return</span> a.a-b.a!=<span class="number">0</span>?a.a-b.a:a.b-b.b;</div><div class="line">}</div><div class="line"><span class="comment">//   sort 排序原理  使用的算法</span></div><div class="line"><span class="comment">// 2.my name is imweba ... =&gt; my6 name7 is8 imweba9 ...</span></div><div class="line"><span class="comment">//   用正则实现</span></div><div class="line"><span class="string">'my name is imweba '</span>.replace(<span class="regexp">/([\w]+)\b/g</span>,<span class="string">'$1'</span>)</div><div class="line"><span class="keyword">var</span> attr=<span class="string">'my name is imweba '</span>.match(<span class="regexp">/([\w]+)\b/g</span>);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>;i &lt; attr.length; i++) {</div><div class="line">    attr[i]=attr[i]+(<span class="number">6</span>+i);</div><div class="line">};</div><div class="line">attr.join(<span class="string">' '</span>);<span class="comment">//感觉不对,只能做到这个程度</span></div><div class="line"></div><div class="line"><span class="comment">// 3.实现function test(str)(){},将str的每个单词的首字母大写（str为英文字符串）</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">(str)</span></span>{</div><div class="line">    <span class="keyword">return</span> str.replace(<span class="regexp">/((\w)(\w+?))\b/g</span>,<span class="function"><span class="keyword">function</span><span class="params">(m,a,b,c,d,e)</span></span>{<span class="keyword">return</span> b.toUpperCase()+c;});</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">// 4.写一个二分查找的算法   （假设这个数组不是有序的呢）</span></div><div class="line">\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*</div><div class="line"><span class="comment">// 5.123+”+34  直接说结果   12334</span></div><div class="line"><span class="number">12334</span></div><div class="line"><span class="comment">// 加法会将数字转化为字符串，减法和乘法等会将字符串转化为数字</span></div><div class="line"><span class="comment">// "4"\*"5"=20</span></div><div class="line"><span class="comment">// 6.实现function find(attr,val){},找到当前页面里具备属性为attr且值为val的节点，输出其父元素名称</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">find</span><span class="params">(attr,val)</span></span>{</div><div class="line">    <span class="keyword">var</span> dom=<span class="built_in">document</span>.getElementsByTagName(<span class="string">'\*'</span>);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i&lt;dom.length; i++) {</div><div class="line">        <span class="keyword">if</span>(dom[i].getAttribute(attr)==val){</div><div class="line">            <span class="keyword">return</span> dom[i].parentNode.tagName;</div><div class="line">        }</div><div class="line">   }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/javascript/">javascript</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/javascript/">javascript</a>, <a href="/tags/前端/">前端</a>, <a href="/tags/正则/">正则</a>
+  </div>
+
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+ <nav id="pagination" >
+    
+    <a href="/2014/11/25/[js]replace替换/" class="alignleft prev" > [js]replace替换 </a>
+    
+    
+    <a href="/2014/11/24/cmcc520扩展使用说明/" class="alignright next" > cmcc520扩展使用说明 </a>
+    
+    <div class="clearfix"></div>
+</nav>
+<section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-[js]前端试题" data-title="[js]前端试题" data-url="http://jackroyal.github.io/2014/11/25/[js]前端试题/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'jackroyal'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:jackroyal.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Linux/">Linux</a><small>5</small></li>
+  
+    <li><a href="/categories/chrome扩展/">chrome扩展</a><small>4</small></li>
+  
+    <li><a href="/categories/hexo/">hexo</a><small>3</small></li>
+  
+    <li><a href="/categories/javascript/">javascript</a><small>2</small></li>
+  
+    <li><a href="/categories/python学习笔记/">python学习笔记</a><small>5</small></li>
+  
+    <li><a href="/categories/图像处理/">图像处理</a><small>3</small></li>
+  
+    <li><a href="/categories/数据库/">数据库</a><small>1</small></li>
+  
+    <li><a href="/categories/服务器/">服务器</a><small>1</small></li>
+  
+    <li><a href="/categories/杂文/">杂文</a><small>1</small></li>
+  
+    <li><a href="/categories/软件安装与技巧/">软件安装与技巧</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">标签</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Linux/">Linux</a><small>6</small></li>
+  
+    <li><a href="/tags/chrome/">chrome</a><small>4</small></li>
+  
+    <li><a href="/tags/cmcc-edu/">cmcc-edu</a><small>4</small></li>
+  
+    <li><a href="/tags/github/">github</a><small>3</small></li>
+  
+    <li><a href="/tags/hexo/">hexo</a><small>5</small></li>
+  
+    <li><a href="/tags/javascript/">javascript</a><small>2</small></li>
+  
+    <li><a href="/tags/js/">js</a><small>1</small></li>
+  
+    <li><a href="/tags/kali/">kali</a><small>2</small></li>
+  
+    <li><a href="/tags/lbph/">lbph</a><small>1</small></li>
+  
+    <li><a href="/tags/opencv/">opencv</a><small>3</small></li>
+  
+    <li><a href="/tags/python/">python</a><small>7</small></li>
+  
+    <li><a href="/tags/scrapy/">scrapy</a><small>1</small></li>
+  
+    <li><a href="/tags/select/">select</a><small>1</small></li>
+  
+    <li><a href="/tags/shadowsocks/">shadowsocks</a><small>1</small></li>
+  
+    <li><a href="/tags/socket/">socket</a><small>2</small></li>
+  
+    <li><a href="/tags/sql/">sql</a><small>1</small></li>
+  
+    <li><a href="/tags/sql-server/">sql server</a><small>1</small></li>
+  
+    <li><a href="/tags/ubuntu/">ubuntu</a><small>2</small></li>
+  
+    <li><a href="/tags/wamp/">wamp</a><small>1</small></li>
+  
+    <li><a href="/tags/windows/">windows</a><small>1</small></li>
+  
+    <li><a href="/tags/中国移动/">中国移动</a><small>3</small></li>
+  
+    <li><a href="/tags/前端/">前端</a><small>2</small></li>
+  
+    <li><a href="/tags/图像处理/">图像处理</a><small>3</small></li>
+  
+    <li><a href="/tags/扩展/">扩展</a><small>2</small></li>
+  
+    <li><a href="/tags/正则/">正则</a><small>1</small></li>
+  
+    <li><a href="/tags/正则表达式/">正则表达式</a><small>1</small></li>
+  
+    <li><a href="/tags/爬虫/">爬虫</a><small>2</small></li>
+  
+    <li><a href="/tags/脚本/">脚本</a><small>2</small></li>
+  
+    <li><a href="/tags/表单/">表单</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">最新文章</h3>
+  <ul class="entry">
+    
+      <li>
+        <a href="/2015/05/06/opencv-lbph-source-code-analysis/">opencv中LBPH的人脸识别代码分析</a>
+      </li>
+    
+      <li>
+        <a href="/2015/04/28/ubuntu-denyhosts/">ubuntu 14.04 安装denyhosts</a>
+      </li>
+    
+      <li>
+        <a href="/2015/04/26/ubuntu-scrapy-stackoverflow/">ubuntu下使用scrapy抓取cnblogs</a>
+      </li>
+    
+      <li>
+        <a href="/2015/04/26/face-detection/">使用opencv实现人脸检测</a>
+      </li>
+    
+      <li>
+        <a href="/2015/04/26/face-recognizer/">使用opencv实现人脸识别</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/Linux/" style="font-size: 18.33px;">Linux</a><a href="/tags/chrome/" style="font-size: 15.00px;">chrome</a><a href="/tags/cmcc-edu/" style="font-size: 15.00px;">cmcc-edu</a><a href="/tags/github/" style="font-size: 13.33px;">github</a><a href="/tags/hexo/" style="font-size: 16.67px;">hexo</a><a href="/tags/javascript/" style="font-size: 11.67px;">javascript</a><a href="/tags/js/" style="font-size: 10.00px;">js</a><a href="/tags/kali/" style="font-size: 11.67px;">kali</a><a href="/tags/lbph/" style="font-size: 10.00px;">lbph</a><a href="/tags/opencv/" style="font-size: 13.33px;">opencv</a><a href="/tags/python/" style="font-size: 20.00px;">python</a><a href="/tags/scrapy/" style="font-size: 10.00px;">scrapy</a><a href="/tags/select/" style="font-size: 10.00px;">select</a><a href="/tags/shadowsocks/" style="font-size: 10.00px;">shadowsocks</a><a href="/tags/socket/" style="font-size: 11.67px;">socket</a><a href="/tags/sql/" style="font-size: 10.00px;">sql</a><a href="/tags/sql-server/" style="font-size: 10.00px;">sql server</a><a href="/tags/ubuntu/" style="font-size: 11.67px;">ubuntu</a><a href="/tags/wamp/" style="font-size: 10.00px;">wamp</a><a href="/tags/windows/" style="font-size: 10.00px;">windows</a><a href="/tags/中国移动/" style="font-size: 13.33px;">中国移动</a><a href="/tags/前端/" style="font-size: 11.67px;">前端</a><a href="/tags/图像处理/" style="font-size: 13.33px;">图像处理</a><a href="/tags/扩展/" style="font-size: 11.67px;">扩展</a><a href="/tags/正则/" style="font-size: 10.00px;">正则</a><a href="/tags/正则表达式/" style="font-size: 10.00px;">正则表达式</a><a href="/tags/爬虫/" style="font-size: 11.67px;">爬虫</a><a href="/tags/脚本/" style="font-size: 11.67px;">脚本</a><a href="/tags/表单/" style="font-size: 10.00px;">表单</a>
+  </div>
+</div>
+
+
+  <div class="widget tag">
+<h3 class="title">友情链接</h3>
+<ul class="entry">
+<li><a href="http://blog.csdn.net/jackroyal" title="搁浅St的blog">我的CSDN</a></li>
+<li><a href="http://www.cnblogs.com/geqianst" title="搁浅St的blog">我的cnblogs</a></li>
+<li><a href="http://blog.csdn.net/happyhuirong" title="笨笨的blog">笨笨的blog</a></li>
+</ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 搁浅St
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="https://lib.sinaapp.com/js/jquery/2.0.3/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+</body>
+</html>
