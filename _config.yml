@@ -87,5 +87,5 @@ exclude_generator:
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: github
-  repo: https://github.com/Jackroyal/blog.git
+  repo: https://github.com/Jackroyal/Jackroyal.github.io.git
   branch: master

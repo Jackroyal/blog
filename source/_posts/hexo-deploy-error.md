@@ -46,6 +46,8 @@ repo的两种方式分别为ssh和https
 官方推荐用https,因为这回要求你输入用户名和密码,这样更安全
 用ssh的话,只要你的ssh-key(可以设置一道类似密码的东西,和你的key一起加密,这样使用的时候会要求输入这段密码)对,那么就都可以提交,没有了更多的验证过程(可以设置一个para加密,提交会要求输入这段para)
 
----
+2015-05-06
+最近又发现，使用ssh提交的话，github不会计算到你的conribute里面去，也就是你今天提交了，但是github的contribute不会变化，所以还是改成https吧，不然怎么装B呢？
+
 ###友情链接
 [ubuntu  shadowsocks 全局 代理](http://rolight.cn/blog/?p=34)
