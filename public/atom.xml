@@ -4,7 +4,7 @@
   <subtitle><![CDATA[我最喜欢笨笨]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://jackroyal.github.io/"/>
-  <updated>2015-05-15T17:23:11.190Z</updated>
+  <updated>2015-05-15T17:27:28.845Z</updated>
   <id>http://jackroyal.github.io/</id>
   
   <author>
@@ -76,19 +76,6 @@
       <category term="兼容性" scheme="http://jackroyal.github.io/tags/%E5%85%BC%E5%AE%B9%E6%80%A7/"/>
     
       <category term="前端" scheme="http://jackroyal.github.io/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[holes in ie's html5]]></title>
-    <link href="http://jackroyal.github.io/2015/05/15/holes-in-ie-s-html5/"/>
-    <id>http://jackroyal.github.io/2015/05/15/holes-in-ie-s-html5/</id>
-    <published>2015-05-15T15:19:09.000Z</published>
-    <updated>2015-05-15T15:19:09.000Z</updated>
-    <content type="html"><![CDATA[]]></content>
-    <summary type="html">
-    <![CDATA[]]>
-    </summary>
     
   </entry>
   
@@ -1057,6 +1044,23 @@
       <category term="github" scheme="http://jackroyal.github.io/tags/github/"/>
     
       <category term="hexo" scheme="http://jackroyal.github.io/categories/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[新的开始]]></title>
+    <link href="http://jackroyal.github.io/2014/11/26/new-start/"/>
+    <id>http://jackroyal.github.io/2014/11/26/new-start/</id>
+    <published>2014-11-26T13:29:15.000Z</published>
+    <updated>2015-05-06T14:25:45.000Z</updated>
+    <content type="html"><![CDATA[<p>今天<strong>折腾</strong>了一天,终于弄好了,<a href="http://jackroyal.github.io" title="搁浅St的博客" target="_blank" rel="external">我的博客</a>,正式落户Github.<a id="more"></a><br><img src="http://github.global.ssl.fastly.net/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Mark" title="GitHub Mark"></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>今天<strong>折腾</strong>了一天,终于弄好了,<a href="http://jackroyal.github.io" title="搁浅St的博客" target="_blank" rel="external">我的博客</a>,正式落户Github.]]>
+    
+    </summary>
+    
+      <category term="hexo" scheme="http://jackroyal.github.io/tags/hexo/"/>
     
   </entry>
   
