@@ -4,7 +4,7 @@
   <subtitle><![CDATA[我最喜欢笨笨]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://jackroyal.github.io/"/>
-  <updated>2015-05-15T17:27:28.845Z</updated>
+  <updated>2015-05-23T12:52:01.056Z</updated>
   <id>http://jackroyal.github.io/</id>
   
   <author>
@@ -15,11 +15,74 @@
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[基于python的requests库，模拟登录csdn博客]]></title>
+    <link href="http://jackroyal.github.io/2015/05/23/python-requests-login-csdn-blog/"/>
+    <id>http://jackroyal.github.io/2015/05/23/python-requests-login-csdn-blog/</id>
+    <published>2015-05-23T11:06:04.000Z</published>
+    <updated>2015-05-23T12:51:08.000Z</updated>
+    <content type="html"><![CDATA[<p>还是继续我的python学习。以前写的爬虫用的urllib2来实现，也用过scrapy的爬虫框架，这次试试requests，刚开始用，用起来确实比urllib2好，封装的更好一些，使用起来简单方便很多。<br><a id="more"></a></p>
+<h1 id="安装requests库">安装requests库</h1>
+<p>在ubuntu下面安装很简单</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install requests</div></pre></td></tr></table></figure>
+
+<p>就搞定了</p>
+<h1 id="快速上手的小例子">快速上手的小例子</h1>
+<p>下面给个快速入门，最简单的例子</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> requests</div><div class="line">r = requests.get(<span class="string">'http://www.baidu.com'</span>)</div><div class="line"><span class="keyword">print</span> r.text</div></pre></td></tr></table></figure>
+
+<p>这段代码，很简单。<br>第一行，引入requests库，这是必然的。<br>第二行，通过get方式获取baidu首页的内容。<br>第三行，把返回的response内容，输出出来</p>
+<p>果然很简单，这样就可以发送一个get请求，同理，你还可以使用<br><code>requests.post</code>,<code>requests.put</code>,<code>requests.options</code>,<code>requests.head</code>，发送请求，没错就是这么简单，果然比urllib2好用。</p>
+<h1 id="模拟登录csdn">模拟登录csdn</h1>
+<p>我们需要其他的辅助工具</p>
+<h3 id="浏览器：Firefox">浏览器：Firefox</h3>
+<h3 id="浏览器插件：tamper_data，firebug">浏览器插件：tamper data，firebug</h3>
+<p>我们需要tamper data来拦截请求，因为chrome没有这个功能的插件，所以这个只能使用firefox来做（除了拦截请求chrome没有，其他的工作都可以用chrome，看个人喜好吧）。</p>
+<h1 id="分析登录过程">分析登录过程</h1>
+<h2 id="1_打开登录页面">1 打开登录页面</h2>
+<p>我们首先打开csdn的登录页面<code>https://passport.csdn.net/account/login?ref=toolbar</code><br>这个链接，前面部分是登录的网址，问号后面的参数，顾名思义，referer，就是你从哪里跳过来的，也许是一个页面跳转到登录的，toolbar就是我自己点击顶部导航栏，然后跳转到登录页面的。</p>
+<h2 id="2_清除相关的cookie">2 清除相关的cookie</h2>
+<p>为了排除不必要的干扰，我们先清除掉所有的相关的cookie，这样方便我们分析哪些参数是必须的。<br><img src="http://ww1.sinaimg.cn/large/692869a3gw1esegc1itw2j20qu075779.jpg" alt="firefox中，清除cookie"></p>
+<h2 id="3_登录过程分析">3 登录过程分析</h2>
+<p>清除了cookie后，我们刷新一下页面<code>https://passport.csdn.net/account/login?ref=toolbar</code>，重新获取对应的cookie。<br>然后我们就开始用tamper data来拦截请求。<br><img src="http://ww2.sinaimg.cn/large/692869a3gw1esegfztiz7j20s40ftdjw.jpg" alt="使用tamper data"><br>我们点击<code>start tamper</code>，在网页中填写用户名和密码。点击<code>登录</code>，会发出一个请求，然后tamper data会拦截下这个请求，询问我们是否拦截，点击tamper，我们可以在这个请求提交之前，查看请求的内容，还可以做删改。<br><img src="http://ww1.sinaimg.cn/large/692869a3gw1esegkslypyj20y20gntdt.jpg" alt="发出第一个登录请求前拦截下来，查看表单内容"><br>csdn的登录过程比较简单，发送一个登录表单过去，就登录成功了，不过记得修改headers，这是后话。</p>
+<h2 id="4_开始模拟登录">4 开始模拟登录</h2>
+<p>知道登录过程了，我们就开始写登录的代码。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="comment">#使用beautifulsoup来处理获取的html内容，这个库需要安装，还是使用pip install beautifulsoup4来安装</span></div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup <span class="keyword">as</span> bs</div><div class="line"><span class="comment">#这个函数使用来提取流水号的</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">toJson</span><span class="params">(str)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    提取lt流水号，将数据化为一个字典</div><div class="line">    '''</div><div class="line">    soup = bs(str)</div><div class="line">    tt = {}</div><div class="line">    <span class="comment">#提取form表单中所有的input标签，以字典的形式来保存name：value</span></div><div class="line">    <span class="keyword">for</span> inp <span class="keyword">in</span> soup.form.find_all(<span class="string">'input'</span>):</div><div class="line">        <span class="keyword">if</span> inp.get(<span class="string">'name'</span>) != <span class="keyword">None</span>:</div><div class="line">            tt[inp.get(<span class="string">'name'</span>)] =inp.get(<span class="string">'value'</span>)</div><div class="line">    <span class="keyword">return</span> tt</div><div class="line">    </div><div class="line"><span class="comment">#这行代码，是用来维持cookie的，你后续的操作都不用担心cookie，他会自动带上相应的cookie</span></div><div class="line">s = requests.Session()</div><div class="line"><span class="comment">#我们需要带表单的参数,这里面有个参数lt,登录操作的流水号，我们需要从html页面中进行提取</span></div><div class="line">payload ={<span class="string">'username'</span>:<span class="string">'jackroyal'</span>,<span class="string">'password'</span>:<span class="string">'123456'</span>,<span class="string">'lt'</span>:soup[<span class="string">"lt"</span>],<span class="string">'execution'</span>:<span class="string">'e1s1'</span>,<span class="string">'_eventId'</span>:<span class="string">'submit'</span>}</div><div class="line">r = s.post(<span class="string">"http://passport.csdn.net/account/login"</span>,data=payload,headers=header)</div><div class="line"><span class="keyword">print</span> r.text</div></pre></td></tr></table></figure>
+
+<p>ok，至此，登录就成功了</p>
+<h2 id="5_优化">5 优化</h2>
+<p>当你登录成功后，你会问，我怎么知道登录成功了呢？当你试图去抓取<code>http://write.blog.csdn.net/postlist</code>的内容的时候，你会发现一个403的错误，这是为啥呢？<br>很简单，<code>user agent</code>没有修改，我们用的是默认的<code>user agent</code>，这可不是一个正常的用户，所以被网站拒绝了。我们加上他就好了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">header = {<span class="string">'User-Agent'</span>:<span class="string">'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:38.0) Gecko/20100101 Firefox/38.0'</span>}</div><div class="line">r = s.post(<span class="string">"http://passport.csdn.net/account/login"</span>,data=payload,headers=header)</div><div class="line"><span class="keyword">print</span> r.text</div></pre></td></tr></table></figure>
+
+<h1 id="后话">后话</h1>
+<p>上面的代码还是太简单，我们都知道cookie是有有效期的，我在做调试的时候，没修改一次，就要模拟登录一次，这样不好，我们要保存cookie，这样下次就不需要重新发送登录请求了<br>分享出完整的代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment">#-*- coding: utf-8 -*-</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> requests</div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup <span class="keyword">as</span> bs</div><div class="line"><span class="keyword">from</span> cookielib <span class="keyword">import</span> LWPCookieJar</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">toJson</span><span class="params">(str)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    提取lt流水号，将数据化为一个字典</div><div class="line">    '''</div><div class="line">    soup = bs(str)</div><div class="line">    tt = {}</div><div class="line">    <span class="keyword">for</span> inp <span class="keyword">in</span> soup.form.find_all(<span class="string">'input'</span>):</div><div class="line">        <span class="keyword">if</span> inp.get(<span class="string">'name'</span>) != <span class="keyword">None</span>:</div><div class="line">            tt[inp.get(<span class="string">'name'</span>)] =inp.get(<span class="string">'value'</span>)</div><div class="line">    <span class="keyword">return</span> tt</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#cookie setting</span></div><div class="line">s = requests.Session()</div><div class="line">s.cookies = LWPCookieJar(<span class="string">'cookiejar'</span>)</div><div class="line">header = {<span class="string">'User-Agent'</span>:<span class="string">'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:38.0) Gecko/20100101 Firefox/38.0'</span>}</div><div class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(<span class="string">'cookiejar'</span>):</div><div class="line">    <span class="keyword">print</span> <span class="string">"there is no cookie,setting"</span></div><div class="line">    r = s.get(<span class="string">"http://passport.csdn.net/account/login"</span>)</div><div class="line">    soup = toJson(r.text)</div><div class="line">    payload ={<span class="string">'username'</span>:<span class="string">'jackroyal'</span>,<span class="string">'password'</span>:<span class="string">'123456'</span>,<span class="string">'lt'</span>:soup[<span class="string">"lt"</span>],<span class="string">'execution'</span>:<span class="string">'e1s1'</span>,<span class="string">'_eventId'</span>:<span class="string">'submit'</span>}</div><div class="line"></div><div class="line">    <span class="keyword">print</span> payload</div><div class="line">    r = s.post(<span class="string">"http://passport.csdn.net/account/login"</span>,data=payload,headers=header)</div><div class="line">    s.cookies.save(ignore_discard=<span class="keyword">True</span>)</div><div class="line"></div><div class="line">    <span class="keyword">print</span> r.text</div><div class="line"><span class="keyword">else</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"cookie exists,restore"</span></div><div class="line">    s.cookies.load(ignore_discard=<span class="keyword">True</span>)</div><div class="line"></div><div class="line"><span class="comment">#r = s.get("https://passport.csdn.net/content/loginbox/loginapi.js")</span></div><div class="line">r = s.get(<span class="string">"http://write.blog.csdn.net/postlist"</span>,headers=header)</div><div class="line"><span class="keyword">print</span> r.text</div></pre></td></tr></table></figure>
+
+<h1 id="参考文献">参考文献</h1>
+<p>1 <a href="http://requests-docs-cn.readthedocs.org/zh_CN/latest/user/quickstart.html" target="_blank" rel="external">requests官方文档快速上手——中文版</a><br>2 <a href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/index.zh.html" target="_blank" rel="external">beautifuisoup官方文档</a><br>3 <a href="http://stackoverflow.com/questions/13030095/how-to-save-requests-python-cookies-to-a-file" target="_blank" rel="external">python的requests如何保存cookie到文件</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>还是继续我的python学习。以前写的爬虫用的urllib2来实现，也用过scrapy的爬虫框架，这次试试requests，刚开始用，用起来确实比urllib2好，封装的更好一些，使用起来简单方便很多。<br>]]>
+    
+    </summary>
+    
+      <category term="python" scheme="http://jackroyal.github.io/tags/python/"/>
+    
+      <category term="csdn" scheme="http://jackroyal.github.io/tags/csdn/"/>
+    
+      <category term="模拟登录" scheme="http://jackroyal.github.io/tags/%E6%A8%A1%E6%8B%9F%E7%99%BB%E5%BD%95/"/>
+    
+      <category term="requests" scheme="http://jackroyal.github.io/tags/requests/"/>
+    
+      <category term="python 学习笔记" scheme="http://jackroyal.github.io/categories/python-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[html5在ie中遇到的那些坑]]></title>
     <link href="http://jackroyal.github.io/2015/05/15/holes-in-ie6-about-html5/"/>
     <id>http://jackroyal.github.io/2015/05/15/holes-in-ie6-about-html5/</id>
     <published>2015-05-15T15:19:43.000Z</published>
-    <updated>2015-05-15T17:23:02.000Z</updated>
+    <updated>2015-05-23T10:03:46.000Z</updated>
     <content type="html"><![CDATA[<p>这段时间,笨笨找了个活儿,做一个页面,能够适配所有的主流浏览器,包括pc,平板和手机等终端(这和当年某刘提的要求一样啊).<br>我第一个想到的是bootstrap,可惜这货太大了,我只是几个简单的页面,没必要用这么大体量的东西.<br>搜索一番以后,我找到了我的解决方案,media query,支付宝也是这么解决的.<br><a id="more"></a></p>
 <h1 id="前提条件">前提条件</h1>
 <p>以下所给出的例子,都是html5的页面,不合适html4.0的页面,也就是说你的头部必须是<br><code>&lt;!DOCTYPE html&gt;</code>才行,如果是<code>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;</code>,是不行的,要仔细看清楚哈.<br>下面就来罗列一下,这次经过的那些坑:</p>
@@ -84,7 +147,7 @@
     <link href="http://jackroyal.github.io/2015/05/15/opencv-and-vs2010-in-win8/"/>
     <id>http://jackroyal.github.io/2015/05/15/opencv-and-vs2010-in-win8/</id>
     <published>2015-05-15T11:56:06.000Z</published>
-    <updated>2015-05-15T15:16:43.000Z</updated>
+    <updated>2015-05-23T10:03:46.000Z</updated>
     <content type="html"><![CDATA[<p>今天在师兄的帮助下,总算配置好了opencv.</p>
 <h1 id="1_系统环境和软件版本">1 系统环境和软件版本</h1>
 <p>操作系统:win8 64位<br>vs版本:vs2010 32位<br>opencv版本:opencv 2.4.10<br><a id="more"></a></p>
@@ -141,7 +204,7 @@
     <link href="http://jackroyal.github.io/2015/05/06/opencv-lbph-source-code-analysis/"/>
     <id>http://jackroyal.github.io/2015/05/06/opencv-lbph-source-code-analysis/</id>
     <published>2015-05-06T14:32:42.000Z</published>
-    <updated>2015-05-06T14:45:31.000Z</updated>
+    <updated>2015-05-23T10:03:46.000Z</updated>
     <content type="html"><![CDATA[<p>我开始用opencv的时候，用的是opencv最新的3.0版本。不过我死活找不到LBPH的代码，网上的教程也都是opencv 2.4的，so  我也去下一份2.4的源码来读读。<br>opencv目前支持一下三种方法来实现人脸识别：</p>
 <ul>
 <li><strong>Eigenfaces特征脸createEigenFaceRecognizer()</strong></li>
@@ -446,7 +509,7 @@
     <link href="http://jackroyal.github.io/2015/03/29/hexo-deploy-error/"/>
     <id>http://jackroyal.github.io/2015/03/29/hexo-deploy-error/</id>
     <published>2015-03-29T10:09:28.000Z</published>
-    <updated>2015-05-06T14:51:50.000Z</updated>
+    <updated>2015-05-23T10:03:46.000Z</updated>
     <content type="html"><![CDATA[<p>可能受到上次ddos的问题,这两天国内访问github,总是感觉不顺畅.<br>今天下午写了一篇博客,可是却发布不成功,一直卡在这一步:<br><img src="http://ww3.sinaimg.cn/large/692869a3gw1eqmrrf20j1j20g006676y.jpg" alt="hexo发布的时候卡住"></p>
 <p>然后我继续等,得到如下错误:</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo <span class="variable">Failed</span> to <span class="keyword">receive</span> <span class="variable">SOCKS4</span> connect request ack.</div></pre></td></tr></table></figure>
@@ -1044,23 +1107,6 @@
       <category term="github" scheme="http://jackroyal.github.io/tags/github/"/>
     
       <category term="hexo" scheme="http://jackroyal.github.io/categories/hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[新的开始]]></title>
-    <link href="http://jackroyal.github.io/2014/11/26/new-start/"/>
-    <id>http://jackroyal.github.io/2014/11/26/new-start/</id>
-    <published>2014-11-26T13:29:15.000Z</published>
-    <updated>2015-05-06T14:25:45.000Z</updated>
-    <content type="html"><![CDATA[<p>今天<strong>折腾</strong>了一天,终于弄好了,<a href="http://jackroyal.github.io" title="搁浅St的博客" target="_blank" rel="external">我的博客</a>,正式落户Github.<a id="more"></a><br><img src="http://github.global.ssl.fastly.net/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Mark" title="GitHub Mark"></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>今天<strong>折腾</strong>了一天,终于弄好了,<a href="http://jackroyal.github.io" title="搁浅St的博客" target="_blank" rel="external">我的博客</a>,正式落户Github.]]>
-    
-    </summary>
-    
-      <category term="hexo" scheme="http://jackroyal.github.io/tags/hexo/"/>
     
   </entry>
   
