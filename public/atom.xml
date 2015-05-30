@@ -4,7 +4,7 @@
   <subtitle><![CDATA[我最喜欢笨笨]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://jackroyal.github.io/"/>
-  <updated>2015-05-23T12:52:01.056Z</updated>
+  <updated>2015-05-30T05:57:51.597Z</updated>
   <id>http://jackroyal.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://jackroyal.github.io/2015/05/23/python-requests-login-csdn-blog/"/>
     <id>http://jackroyal.github.io/2015/05/23/python-requests-login-csdn-blog/</id>
     <published>2015-05-23T11:06:04.000Z</published>
-    <updated>2015-05-23T12:51:08.000Z</updated>
+    <updated>2015-05-30T02:33:46.000Z</updated>
     <content type="html"><![CDATA[<p>还是继续我的python学习。以前写的爬虫用的urllib2来实现，也用过scrapy的爬虫框架，这次试试requests，刚开始用，用起来确实比urllib2好，封装的更好一些，使用起来简单方便很多。<br><a id="more"></a></p>
 <h1 id="安装requests库">安装requests库</h1>
 <p>在ubuntu下面安装很简单</p>
