@@ -6,7 +6,7 @@ tags:
 - 模拟登录
 - requests
 categories:
-- python 学习笔记
+- python学习笔记
 ---
 还是继续我的python学习。以前写的爬虫用的urllib2来实现，也用过scrapy的爬虫框架，这次试试requests，刚开始用，用起来确实比urllib2好，封装的更好一些，使用起来简单方便很多。
 <!-- more -->

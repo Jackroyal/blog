@@ -157,7 +157,8 @@ facebook:
 
 #创建多说
 首先我们去多说注册一个账号,[点击这里](http://duoshuo.com/ "多说官网")
-我们点击[我要安装](http://duoshuo.com/create-site/ "我要安装"),界面如下![duoshuo 创建界面](http://ww4.sinaimg.cn/large/692869a3gw1emtdlnpsqaj20wo0lp783.jpg "创建多说账号")
+我们点击[我要安装](http://duoshuo.com/create-site/ "我要安装"),界面如下
+![duoshuo 创建界面](http://ww4.sinaimg.cn/large/692869a3gw1emtdlnpsqaj20wo0lp783.jpg "创建多说账号")
 shortname就是jackroyal,创建完成后,跳转到如下界面
 ![获取多说代码](http://ww1.sinaimg.cn/large/692869a3gw1emtdp96x54j20us0jxn18.jpg "获取多说代码")
 我们选择`通用代码`,点击复制,就行了

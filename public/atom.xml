@@ -4,7 +4,7 @@
   <subtitle><![CDATA[我最喜欢笨笨]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://jackroyal.github.io/"/>
-  <updated>2015-05-30T05:57:51.597Z</updated>
+  <updated>2015-05-30T07:36:19.734Z</updated>
   <id>http://jackroyal.github.io/</id>
   
   <author>
@@ -15,11 +15,78 @@
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[给hexo配置上评论和访问量]]></title>
+    <link href="http://jackroyal.github.io/2015/05/30/hexo-setting-with-comments-and-visitors/"/>
+    <id>http://jackroyal.github.io/2015/05/30/hexo-setting-with-comments-and-visitors/</id>
+    <published>2015-05-30T06:08:49.000Z</published>
+    <updated>2015-05-30T07:35:53.000Z</updated>
+    <content type="html"><![CDATA[<p>哈哈,我们家笨笨,绝对是我学习技术的很大很大很大大的动力.更开始用github pages的时候,就觉得没法看访问量和评论数量这事,很蛋疼,不过也没折腾.<br>今天上午,我们家笨笨说没有评论和访问量不好,都不知道多少人看了.妹子都发话了,果断要搞定.<br><a id="more"></a><br>google一番找到解决方法:</p>
+<h4 id="1_关于评论数量的显示,我们可以直接使用多说官网提供的方法,很简单">1 关于评论数量的显示,我们可以直接使用多说官网提供的方法,很简单</h4>
+<h4 id="2_关于访问量统计这事儿,不太好搞,我找到了这个不蒜子,这位非著名码农自己做的访问统计,哈哈,点个赞">2 关于访问量统计这事儿,不太好搞,我找到了这个<a href="http://ibruce.info/2015/04/04/busuanzi/" target="_blank" rel="external">不蒜子</a>,这位非著名码农自己做的访问统计,哈哈,点个赞</h4>
+<h4 id="3_今天还看到了font-awesome,可以显示一些小图标,为了显示效果更好,一并加上去">3 今天还看到了font-awesome,可以显示一些小图标,为了显示效果更好,一并加上去</h4>
+<p>先展示一下最终的效果:<br><br><img src="http://ww1.sinaimg.cn/large/692869a3gw1esm9snxfcuj20su0ad74x.jpg" alt="页底关于整站访问量的显示"><br><img src="http://ww4.sinaimg.cn/large/692869a3gw1esm9tcczdij20r00doq4t.jpg" alt="文章页面关于访问量和评论数量的显示"></p>
+<p>下面,开始动手</p>
+<h1 id="1_配置评论数量的显示">1 配置评论数量的显示</h1>
+<p>首先,确认你的评论系统用的是多说,如果不是,那就不用继续往下看了(参考<a href="http://localhost:4000/2014/11/28/custom-hexo/" target="_blank" rel="external">这里</a>配置多说).<br>我使用的主题是<code>light</code>,其他主题原理类似.我们打开<code>themes/light/layout/_partial/article.ejs</code>,我们在<code>header</code>标签的尾部添加上下面的代码:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="vbscript">&lt;% <span class="keyword">if</span> (item.excerpt && index){ %&gt;</span></div><div class="line"> <span class="vbscript">&lt;% } <span class="keyword">else</span> { %&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"busuanzi_container_page_pv"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"head-plus"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"fa fa-user"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">id</span>=<span class="value">"busuanzi_value_page_pv"</span>&gt;</span><span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"fa fa-spinner fa-spin"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span>次访问</div><div class="line">   <span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"head-plus"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"fa fa-comments"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"ds-thread-count"</span> <span class="attribute">data-thread-key</span>=<span class="value">"&lt;%= page.layout %&gt;-&lt;%= page.slug %&gt;"</span>&gt;</span><span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"fa fa-spinner fa-spin"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span>条评论</div><div class="line">   <span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"> <span class="vbscript">&lt;% } %&gt;</span></div></pre></td></tr></table></figure>
+
+<p>最终效果如图<br><br><img src="http://ww2.sinaimg.cn/large/692869a3gw1esmas5d58oj20x50jc46f.jpg" alt="修改后的article.ejs"><br>以上代码,是最终成型的代码,我加入了一些美化的东西,最核心的就是</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"ds-thread-count"</span> <span class="attribute">data-thread-key</span>=<span class="value">"&lt;%= page.layout %&gt;-&lt;%= page.slug %&gt;"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>尤其注意<code>data-thread-key</code>的设置,他和你之前配置多说的时候是一致的,每篇文章有一个独一无二的key,你可以去你的<code>themes/light/layout/_partial/comment.ejs</code>里找到关于data-thread-key的内容,直接复制过来即可.</p>
+<p>Ps:这里我们可能还需要配置下数据显示的格式,在你的多说后台管理里面,进入设置界面如图<br><img src="http://ww3.sinaimg.cn/large/692869a3gw1esmayan2utj20w50mx0ya.jpg" alt="多说后台设置"><br>我们找到<code>暂无评论</code>,<code>1条评论</code>,<code>{num}条评论</code>,这几个设置,修改成自己要的格式,也可以参照我的修改,<code>0</code>,<code>1</code>,<code>{num}</code></p>
+<h1 id="2_配置文章访问量的显示">2 配置文章访问量的显示</h1>
+<p>这个更简单了,按照作者的说法,只需要引入一个js,再添加一个span就完成了.由于js一般放置在页面的最底部,所以我们找到<code>themes/light/layout/_partial/after_footer.ejs</code>,我们在最后添加上下面的代码:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;script async src=<span class="string">"https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"</span>&gt;</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
+
+<p>上面就完成了js文件的引入,我们再在要显示访问量的地方添加一个span就行了.比如我想显示在标题的下面,那就打开<code>themes/light/layout/_partial/article.ejs</code>,添加的代码,就是<code>第一步</code>里面添加的那个.如果你想简洁一点,也可以只添加下面核心代码就行:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">本站总访问量<span class="tag">&lt;<span class="title">span</span> <span class="attribute">id</span>=<span class="value">"busuanzi_value_site_pv"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span>次</div><div class="line">本站访客数<span class="tag">&lt;<span class="title">span</span> <span class="attribute">id</span>=<span class="value">"busuanzi_value_site_uv"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span>人次</div><div class="line">本文总阅读量<span class="tag">&lt;<span class="title">span</span> <span class="attribute">id</span>=<span class="value">"busuanzi_value_page_pv"</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span>次</div></pre></td></tr></table></figure>
+
+<h1 id="3_经过美化后最终的代码">3  经过美化后最终的代码</h1>
+<p>如果只用官方提供的代码,没有优化,很丑,我优化了下,分享一下.</p>
+<ol>
+<li>修改<code>themes/light/layout/_partial/article.ejs</code>,在header标签的末尾添加以下代码</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="vbscript">&lt;% <span class="keyword">if</span> (item.excerpt && index){ %&gt;</span></div><div class="line"> <span class="vbscript">&lt;% } <span class="keyword">else</span> { %&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"busuanzi_container_page_pv"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"head-plus"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"fa fa-user"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">id</span>=<span class="value">"busuanzi_value_page_pv"</span>&gt;</span><span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"fa fa-spinner fa-spin"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span>次访问</div><div class="line">   <span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"head-plus"</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"fa fa-comments"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span><span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"ds-thread-count"</span> <span class="attribute">data-thread-key</span>=<span class="value">"&lt;%= page.layout %&gt;-&lt;%= page.slug %&gt;"</span>&gt;</span><span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"fa fa-spinner fa-spin"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span>条评论</div><div class="line">   <span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"> <span class="vbscript">&lt;% } %&gt;</span></div></pre></td></tr></table></figure>
+
+<p><img src="http://ww2.sinaimg.cn/large/692869a3gw1esmas5d58oj20x50jc46f.jpg" alt="修改后的article.ejs"><br>2. 修改<code>themes/light/layout/_partial/footer.ejs</code>,下面是footer.ejs的<strong>全部代码</strong>:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"alignleft"</span>&gt;</span></div><div class="line">  <span class="vbscript">&lt;% <span class="keyword">if</span> (config.author){ %&gt;</span></div><div class="line">  &copy; <span class="vbscript">&lt;%= <span class="keyword">new</span> <span class="built_in">Date</span>().getFullYear() %&gt;</span> <span class="vbscript">&lt;%= config.author %&gt;</span></div><div class="line">  <span class="vbscript">&lt;% } <span class="keyword">else</span> { %&gt;</span></div><div class="line">  &copy; <span class="vbscript">&lt;%= <span class="keyword">new</span> <span class="built_in">Date</span>().getFullYear() %&gt;</span> <span class="vbscript">&lt;%= config.title %&gt;</span></div><div class="line">  <span class="vbscript">&lt;% } %&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">span</span> <span class="attribute">id</span>=<span class="value">"busuanzi_container_site_pv"</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"fa fa-flag"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span>    你是第<span class="tag">&lt;<span class="title">span</span> <span class="attribute">id</span>=<span class="value">"busuanzi_value_site_pv"</span>&gt;</span><span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"fa fa-spinner fa-spin"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span>个到访的小伙伴</div><div class="line"><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"clearfix"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p><br>3. 修改<code>themes/light/layout/_partial/after_footer.ejs</code>,我们在<strong>最后</strong>添加上下面的代码:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;script async src=<span class="string">"https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"</span>&gt;</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
+
+<p><br>4. 修改<code>themes\light\source\css\_partial\article.styl</code>,我们在第124行,在<code>.entry</code>之前添加上以下代码,尤其注意与左右的间距,因为它是一个树形结构,它与左侧的距离,影响着它的层级.我们这里应该和entry平级,下面代码应该与<code>.entry</code>对齐</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="class">.busuanzi_container_page_pv</span></div><div class="line">    <span class="tag">margin</span><span class="pseudo">:20px</span> 0</div><div class="line">    <span class="tag">color</span>: <span class="id">#817C7C</span></div><div class="line">    <span class="tag">font-size</span>: 12<span class="tag">px</span></div><div class="line"><span class="id">#busuanzi_value_page_pv</span></div><div class="line">    <span class="tag">padding-left</span><span class="pseudo">:4px</span></div><div class="line"><span class="class">.head-plus</span></div><div class="line">    <span class="tag">padding-left</span><span class="pseudo">:4px</span></div><div class="line"><span class="class">.ds-thread-count</span></div><div class="line">    <span class="tag">padding-left</span><span class="pseudo">:4px</span></div></pre></td></tr></table></figure>
+
+<p>最终效果如图:<br><img src="http://ww4.sinaimg.cn/large/692869a3gw1esmajbsx38j20k30gwadu.jpg" alt="添加css,注意左对齐"><br>5. 修改<code>themes\light\source\css\_partial\footer.styl</code>,在最后添加上以下代码</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="id">#busuanzi_value_site_pv</span></div><div class="line">  <span class="tag">color</span><span class="pseudo">:black</span></div><div class="line">  <span class="tag">padding</span><span class="pseudo">:4px</span></div><div class="line"><span class="id">#busuanzi_container_site_pv</span></div><div class="line">  <span class="tag">padding-left</span><span class="pseudo">:2em</span></div></pre></td></tr></table></figure>
+
+<p><br>6. 修改<code>themes\light\source\css\_partial\variable.styl</code>,在最后添加以下代码</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="at_rule">@<span class="keyword">import</span> <span class="function">url</span>(<span class="string">"http://libs.useso.com/js/font-awesome/4.2.0/css/font-awesome.min.css"</span>)</span></div></pre></td></tr></table></figure>
+
+<p>ok  打完收工</p>
+<h1 id="参考文献">参考文献</h1>
+<p>1 博客访问技术工具—不蒜子 <a href="http://ibruce.info/2015/04/04/busuanzi/" target="_blank" rel="external">http://ibruce.info/2015/04/04/busuanzi/</a><br>2 <a href="http://dev.duoshuo.com/docs/5016427f77cf5fa30500000e" target="_blank" rel="external">多说-代码显示【文章评论数】方法</a></p>
+<h1 id="致谢">致谢</h1>
+<p>这里，要感谢我最亲爱的笨笨<a href="http://huirong.github.io" target="_blank" rel="external">http://huirong.github.io</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>哈哈,我们家笨笨,绝对是我学习技术的很大很大很大大的动力.更开始用github pages的时候,就觉得没法看访问量和评论数量这事,很蛋疼,不过也没折腾.<br>今天上午,我们家笨笨说没有评论和访问量不好,都不知道多少人看了.妹子都发话了,果断要搞定.<br>]]>
+    
+    </summary>
+    
+      <category term="hexo" scheme="http://jackroyal.github.io/tags/hexo/"/>
+    
+      <category term="hexo" scheme="http://jackroyal.github.io/categories/hexo/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[基于python的requests库，模拟登录csdn博客]]></title>
     <link href="http://jackroyal.github.io/2015/05/23/python-requests-login-csdn-blog/"/>
     <id>http://jackroyal.github.io/2015/05/23/python-requests-login-csdn-blog/</id>
     <published>2015-05-23T11:06:04.000Z</published>
-    <updated>2015-05-30T02:33:46.000Z</updated>
+    <updated>2015-05-30T06:09:44.000Z</updated>
     <content type="html"><![CDATA[<p>还是继续我的python学习。以前写的爬虫用的urllib2来实现，也用过scrapy的爬虫框架，这次试试requests，刚开始用，用起来确实比urllib2好，封装的更好一些，使用起来简单方便很多。<br><a id="more"></a></p>
 <h1 id="安装requests库">安装requests库</h1>
 <p>在ubuntu下面安装很简单</p>
@@ -73,7 +140,7 @@
     
       <category term="requests" scheme="http://jackroyal.github.io/tags/requests/"/>
     
-      <category term="python 学习笔记" scheme="http://jackroyal.github.io/categories/python-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+      <category term="python学习笔记" scheme="http://jackroyal.github.io/categories/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
@@ -960,7 +1027,7 @@
     <link href="http://jackroyal.github.io/2014/11/28/custom-hexo/"/>
     <id>http://jackroyal.github.io/2014/11/28/custom-hexo/</id>
     <published>2014-11-28T13:07:27.000Z</published>
-    <updated>2015-05-06T14:25:45.000Z</updated>
+    <updated>2015-05-30T06:20:55.000Z</updated>
     <content type="html"><![CDATA[<p>经过<a href="/how-to-build-a-blog-with-hexo.html">上篇博客</a>,我们搭建起了自己的博客,接下来我们对它做些个性化的定制.<br>在hexo中,配置文件一共两个(我的hexo安装在F:/blog/),分别是<code>F:/blog/_config.yml</code>和<code>F:/blog/themes/light/_config.yml</code>.第一个是全局的配置文件,第二个是主题的配置文件,在继续说之前,我们先来说一下主题安装.<a id="more"></a></p>
 <h1 id="主题安装">主题安装</h1>
 <p>这个很简单,在hexo的Github的主页上有个主题栏目,<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">https://github.com/hexojs/hexo/wiki/Themes</a>,里面列出了很多主题.<br>安装方法很简单</p>
@@ -978,7 +1045,7 @@
 
 <p>至此,配置文件修改完毕,上面提到了我们不适用disqus的评论组件,使用多说,下面教大家来配置多说</p>
 <h1 id="创建多说">创建多说</h1>
-<p>首先我们去多说注册一个账号,<a href="http://duoshuo.com/" title="多说官网" target="_blank" rel="external">点击这里</a><br>我们点击<a href="http://duoshuo.com/create-site/" title="我要安装" target="_blank" rel="external">我要安装</a>,界面如下<img src="http://ww4.sinaimg.cn/large/692869a3gw1emtdlnpsqaj20wo0lp783.jpg" alt="duoshuo 创建界面" title="创建多说账号"><br>shortname就是jackroyal,创建完成后,跳转到如下界面<br><img src="http://ww1.sinaimg.cn/large/692869a3gw1emtdp96x54j20us0jxn18.jpg" alt="获取多说代码" title="获取多说代码"><br>我们选择<code>通用代码</code>,点击复制,就行了</p>
+<p>首先我们去多说注册一个账号,<a href="http://duoshuo.com/" title="多说官网" target="_blank" rel="external">点击这里</a><br>我们点击<a href="http://duoshuo.com/create-site/" title="我要安装" target="_blank" rel="external">我要安装</a>,界面如下<br><img src="http://ww4.sinaimg.cn/large/692869a3gw1emtdlnpsqaj20wo0lp783.jpg" alt="duoshuo 创建界面" title="创建多说账号"><br>shortname就是jackroyal,创建完成后,跳转到如下界面<br><img src="http://ww1.sinaimg.cn/large/692869a3gw1emtdp96x54j20us0jxn18.jpg" alt="获取多说代码" title="获取多说代码"><br>我们选择<code>通用代码</code>,点击复制,就行了</p>
 <h1 id="配置多说">配置多说</h1>
 <p>这里说一个前提,我使用的是light主题,如果你用的是其他主题,接下来的设置可能给我有点区别,但是原理差不多,参考看看</p>
 <ol>
@@ -1008,103 +1075,6 @@
     </summary>
     
       <category term="hexo" scheme="http://jackroyal.github.io/tags/hexo/"/>
-    
-      <category term="hexo" scheme="http://jackroyal.github.io/categories/hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[使用hexo建立自己的Github pages]]></title>
-    <link href="http://jackroyal.github.io/2014/11/27/how-to-build-a-blog-with-hexo/"/>
-    <id>http://jackroyal.github.io/2014/11/27/how-to-build-a-blog-with-hexo/</id>
-    <published>2014-11-27T06:48:29.000Z</published>
-    <updated>2015-05-06T14:25:45.000Z</updated>
-    <content type="html"><![CDATA[<p>昨天经过一天的<a href="http://jackroyal.github.io/2014/11/26/new-start/" title="生命在于折腾" target="_blank" rel="external">折腾</a>,总算把博客搭建起来了,今天就来写个博客总结一下.<br>网上的资料很多,我主要参考的是这篇博客,一路很顺利.</p>
-<blockquote>
-<p><a href="http://zipperary.com/2013/05/28/hexo-guide-2/" target="_blank" rel="external">http://zipperary.com/2013/05/28/hexo-guide-2/</a></p>
-</blockquote>
-<p>一个很重要的原因就是他是针对windows的,刚好我也在用windows.</p>
-<h1 id="安装过程">安装过程</h1>
-<h2 id="1-_安装Github_for_windows">1. 安装Github for windows</h2>
-<p>因为我之前就在用Github,所以早就安装了这个.已经装过的同学请忽略这一段.<br>下载 <a href="https://windows.github.com/" title="Github for windows" target="_blank" rel="external">Github for windows</a> 并执行即可完成安装(<em>在线安装,会有点慢</em>)。这个软件的的好处是有一个带GUI的界面,还有一个终端界面.如图所示<a id="more"></a><br><img src="http://ww2.sinaimg.cn/large/692869a3jw1emplp1lz31j204w033mx0.jpg" alt="Github for windows"><br><img src="http://ww2.sinaimg.cn/large/692869a3gw1empluh6hvej210b0j741r.jpg" alt="GUI and Bash"><br>如果你不喜欢用这个,也可以用上面的博客推荐的<a href="http://code.google.com/p/msysgit/" target="_blank" rel="external">msysgit</a>.</p>
-<h2 id="2-_安装Node-js">2. 安装Node.js</h2>
-<p>在 Windows 环境下安装 <a href="http://nodejs.org/" title="Node.js 官网" target="_blank" rel="external">Node.js</a> 非常简单，仅须下载安装文件并执行即可完成安装。（win下建议下载msi格式的，因为这样可以不用配置环境变量之类的）</p>
-<h2 id="3-_测试node-js是否安装">3. 测试node.js是否安装</h2>
-<p>在任何控制台输入(可以按windows键+R,输入cmd,然后输入npm,一般来说不会有问题)</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">npm</span></div></pre></td></tr></table></figure>
-
-<p>返回值如下</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">Usage</span>: <span class="string">npm &lt;command&gt;</span></div><div class="line"></div><div class="line"><span class="applescript"><span class="keyword">where</span> &lt;command&gt; <span class="keyword">is</span> one <span class="keyword">of</span>:</span></div><div class="line">    add-user, adduser, apihelp, author, bin, bugs, c, cache,</div><div class="line">    completion, config, ddp, dedupe, deprecate, docs, edit,</div><div class="line">    explore, faq, find, find-dupes, <span class="keyword">get</span>, help, help-search,</div><div class="line">    home, i, info, init, install, isntall, issues, la, link,</div><div class="line">    <span class="type">list</span>, ll, ln, login, ls, outdated, owner, pack, prefix,</div><div class="line">    prune, publish, r, rb, rebuild, remove, repo, restart, rm,</div><div class="line">    root, <span class="command">run</span>-<span class="keyword">script</span>, s, se, search, <span class="keyword">set</span>, show, shrinkwrap,</div><div class="line">    star, stars, start, stop, submodule, t, tag, test, tst, un,</div><div class="line">    uninstall, unlink, unpublish, unstar, up, update, v,</div><div class="line">    <span class="property">version</span>, view, whoami</div><div class="line"></div><div class="line">npm &lt;cmd&gt; -h     quick help <span class="function_start"><span class="keyword">on</span></span> &lt;cmd&gt;</div><div class="line">npm -l           display full usage info</div><div class="line">npm faq          commonly asked questions</div><div class="line">npm help &lt;term&gt;  search <span class="keyword">for</span> help <span class="function_start"><span class="keyword">on</span></span> &lt;term&gt;</div><div class="line">npm help npm     involved overview</div><div class="line"></div><div class="line">Specify configs <span class="keyword">in</span> <span class="keyword">the</span> ini-formatted <span class="type">file</span>:</div><div class="line">    C:\Users\chenhao\.npmrc</div><div class="line"><span class="keyword">or</span> <span class="function_start"><span class="keyword">on</span></span> <span class="keyword">the</span> command line via: npm &lt;command&gt; <span class="comment">--key value</span></div><div class="line">Config info can be viewed via: npm help config</div><div class="line"></div><div class="line">npm@<span class="number">1.4</span><span class="number">.28</span> D:\Program Files (x86)\nodejs\node_modules\npm</div></pre></td></tr></table></figure>
-
-<p>看到这个结果,就表示你的node.js已经安装上去了<br><em>感谢我们家笨笨的反馈：</em>此处如果npm无效，首先确定win下你采用的是msi格式的安装文件，然后重启下电脑，应该就正常了。</p>
-<h2 id="4-_安装hexo">4. 安装hexo</h2>
-<p>接下来的操作我都是用<strong>Github for windows</strong>自带的Bash来完成的,因为后面会涉及到SSH,用<strong>Github for windows</strong>,就可以避免这个问题.</p>
-<ul>
-<li>在Bash中输入以下命令</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm <span class="operator"><span class="keyword">install</span> -g hexo</span></div></pre></td></tr></table></figure>
-
-<ul>
-<li>创建hexo文件夹<br>创建你hexo放置的文件夹,先用Bash进入到目标文件夹,比如我的是F:/blog/,接下来初始化hexo,自动生成相关的文件,在F:/blog/环境下,输入</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /f/blog  <span class="comment">#这个命令表示当前进入目录为f：/blog/</span></div><div class="line">hexo init</div></pre></td></tr></table></figure>
-
-<ul>
-<li>安装依赖包</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm <span class="operator"><span class="keyword">install</span></span></div></pre></td></tr></table></figure>
-
-<ul>
-<li>本地预览,做完以上操作,可以本地预览一下</li>
-</ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="title">hexo</span> g</div><div class="line">hexo s</div></pre></td></tr></table></figure>
-
-<p>以上两条命令的意思是:<br>生成相关文件(就是生成目标html,静态博客嘛,就是很多html组成)<br>打开本地服务器预览(node.js就是干这事的,点击访问<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a>,就可以看到了)</p>
-<h2 id="ok,到这里,博客搭建基本完成,现在要做的就是把它发布到你的Github上去"><strong>ok</strong>,到这里,博客搭建基本完成,现在要做的就是把它发布到你的Github上去</h2>
-<p>接下来,教你怎么发布到Github上去</p>
-<h1 id="注册Github">注册Github</h1>
-<p>这一步没什么说的,如果你连简单的注册都不会,我也不会教你╮(╯▽╰)╭</p>
-<h1 id="创建公共库">创建公共库</h1>
-<p>在自己Github主页右下角，创建一个新的repository(<a href="https://github.com/new" title="点我新建" target="_blank" rel="external">点这里</a>)。比如我的Github账号是Jackroyal，那么我应该创建的repository名字应该是Jackroyal.github.io(注意你的repository名字就是Jackroyal.github.io,我之前用的是Jackroyal怎么尝试都不行)。</p>
-<blockquote>
-<p>PS:有个大小写的问题其实我注册的是Jackroyal,大写的J,但是我访问的时候特别是带https的链接,他会自动转为小写访问.怎么说呢?简单点,你就按照你的用户名来,该大写大写,该小写小写</p>
-</blockquote>
-<h1 id="部署">部署</h1>
-<p>现在万事俱备,只差部署了,我们来配置下<code>_config.yml</code>.<br>这个文件在路径是F:/blog/_config.yml.<br>用编辑器把它打开,修改最后一段</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  <span class="class"><span class="keyword">type</span>: <span class="title">github</span></span></div><div class="line">  repo: https:<span class="comment">//github.com/Jackroyal/Jackroyal.github.io.git</span></div><div class="line">  branch: master</div></pre></td></tr></table></figure>
-
-<p>照着我的这个格式修改就好了,把我里面的用户名替换成你的.<br>至此基本完成所有搭建步骤.</p>
-<h1 id="上传">上传</h1>
-<p>我们开始上传项目的代码,再重复一次,我一直以来用的工具都是<em>Github for windows</em>自带的Bash,所以我没有配置SSH,如果你用的windows自带的终端或者其他比如msysgit,可能需要配置SSH,不然无法使用Github(点击<a href="https://help.github.com/articles/generating-ssh-keys/" title="https://help.github.com/articles/generating-ssh-keys/" target="_blank" rel="external"><code>这里</code></a>查看官方教程).<br>我们输入以下命令</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="title">hexo</span> g</div><div class="line">hexo d</div></pre></td></tr></table></figure>
-
-<p>或者偷个懒</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="title">hexo</span> d -g</div></pre></td></tr></table></figure>
-
-<p>ok,现在就可以去看看你的个人主页了,逼格满满有木有.</p>
-<h1 id="问题">问题</h1>
-<p>我的中间出过一些问题:</p>
-<ol>
-<li>我的<code>hexo d</code>的时候出错,可以尝试手动删除<code>.deploy</code>文件夹,然后执行<code>hexo clean</code>还有可能出现的情况是,<code>deploy</code>没错但是一直没有提示<code>deploy done</code>,那就是骚年,你访问Github网速太慢</li>
-<li>我<code>deploy d</code>成功以后,在Github里面已经看到生成的页面了,访问<a href="http://jackroyal.github.io" target="_blank" rel="external">http://jackroyal.github.io</a>或者<a href="https://jackroyal.github.io" target="_blank" rel="external">https://jackroyal.github.io</a>一直报404的错误,这种时候等一等就好了,一般等几分钟.如果一直不好那就给官方发个邮件,他们很快会回复你的,有什么问题说清楚就行.<h1 id="致谢">致谢</h1>
-这里，要感谢我最亲爱的笨笨，是她给我测试和反馈的<a href="http://huirong.github.io" target="_blank" rel="external">http://huirong.github.io</a></li>
-</ol>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>昨天经过一天的<a href="http://jackroyal.github.io/2014/11/26/new-start/" title="生命在于折腾" target="_blank" rel="external">折腾</a>,总算把博客搭建起来了,今天就来写个博客总结一下.<br>网上的资料很多,我主要参考的是这篇博客,一路很顺利.</p>
-<blockquote>
-<p><a href="http://zipperary.com/2013/05/28/hexo-guide-2/" target="_blank" rel="external">http://zipperary.com/2013/05/28/hexo-guide-2/</a></p>
-</blockquote>
-<p>一个很重要的原因就是他是针对windows的,刚好我也在用windows.</p>
-<h1 id="安装过程">安装过程</h1>
-<h2 id="1-_安装Github_for_windows">1. 安装Github for windows</h2>
-<p>因为我之前就在用Github,所以早就安装了这个.已经装过的同学请忽略这一段.<br>下载 <a href="https://windows.github.com/" title="Github for windows" target="_blank" rel="external">Github for windows</a> 并执行即可完成安装(<em>在线安装,会有点慢</em>)。这个软件的的好处是有一个带GUI的界面,还有一个终端界面.如图所示]]>
-    
-    </summary>
-    
-      <category term="hexo" scheme="http://jackroyal.github.io/tags/hexo/"/>
-    
-      <category term="github" scheme="http://jackroyal.github.io/tags/github/"/>
     
       <category term="hexo" scheme="http://jackroyal.github.io/categories/hexo/"/>
     
