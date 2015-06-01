@@ -138,6 +138,45 @@
 <p>“undefined undefined undefined undefined “//这一行是因为function必须要有return,我没写return,所以就都是undefined</p>
 <p>ok  打完收工</p>
 
+             <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate" class="btn_donate" href="javascript:;" title="Donate 打赏"></a>
+        <span class="donate_txt">
+           &uarr;<br>
+           Enjoy it ? Donate me !  此文对你有帮助？求鼓励，求支持！
+        </span>
+        <br>
+      </div>
+
+      <div id="donate_guide" class="donate_bar center hidden">
+          <!-- 支付宝打赏图案 -->
+          <a href="http://ww4.sinaimg.cn/large/692869a3gw1esp065y3aaj207i07i74o.jpg" title="支付宝打赏" class="fancybox" rel="article0"       style="float:left;margin-left:20%;margin-right:2px;">
+          <span class="donate_txt title">
+          支付宝
+          </span>
+          <img src="http://ww4.sinaimg.cn/large/692869a3gw1esp065y3aaj207i07i74o.jpg" title="支付宝打赏" height="164px" width="164px">
+          </a>
+
+    <!-- 微信打赏图案 -->
+          <a href="http://ww2.sinaimg.cn/large/692869a3gw1esp02tdokcj20al0ahgmy.jpg" title="微信打赏" class="fancybox" rel="article0"  >
+          <span class="donate_txt title">
+          微  信
+          </a>
+          <img src="http://ww2.sinaimg.cn/large/692869a3gw1esp02tdokcj20al0ahgmy.jpg" title="微信打赏" height="164px" width="164px">
+          </span>
+        <span class="donate_txt center">
+           <br>
+           Thank You very much !  来来来,小手抖一抖！
+        </span>
+      </div>
+
+<script type="text/javascript">
+document.getElementById('btn_donate').onclick = function(){
+  $('#donate_board').addClass('hidden');
+  $('#donate_guide').removeClass('hidden');
+}
+</script>
+
+        转载请注明文章出处:<a href="http://jackroyal.github.io/2014/11/25/[js]replace替换/">http://jackroyal.github.io/2014/11/25/[js]replace替换/</a>
       
     </div>
     <footer>
@@ -160,6 +199,9 @@
     </footer>
   </div>
 </article>
+
+
+
 
 
  <nav id="pagination" >

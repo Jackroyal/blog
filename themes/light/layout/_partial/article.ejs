@@ -26,6 +26,8 @@
         <%- item.excerpt %>
       <% } else { %>
         <%- item.content %>
+        <%- partial('donate') %>
+        转载请注明文章出处:<a href="<%= page.permalink %>"><%= page.permalink %></a>
       <% } %>
     </div>
     <footer>
@@ -49,5 +51,7 @@
     </footer>
   </div>
 </article>
+
+
 
 <%- partial('comment') %>
