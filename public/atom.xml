@@ -4,7 +4,7 @@
   <subtitle><![CDATA[我最喜欢笨笨]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://jackroyal.github.io/"/>
-  <updated>2015-06-01T15:57:29.123Z</updated>
+  <updated>2015-06-07T09:49:14.499Z</updated>
   <id>http://jackroyal.github.io/</id>
   
   <author>
@@ -149,7 +149,7 @@
     <link href="http://jackroyal.github.io/2015/05/15/holes-in-ie6-about-html5/"/>
     <id>http://jackroyal.github.io/2015/05/15/holes-in-ie6-about-html5/</id>
     <published>2015-05-15T15:19:43.000Z</published>
-    <updated>2015-05-23T10:03:46.000Z</updated>
+    <updated>2015-05-15T17:23:02.000Z</updated>
     <content type="html"><![CDATA[<p>这段时间,笨笨找了个活儿,做一个页面,能够适配所有的主流浏览器,包括pc,平板和手机等终端(这和当年某刘提的要求一样啊).<br>我第一个想到的是bootstrap,可惜这货太大了,我只是几个简单的页面,没必要用这么大体量的东西.<br>搜索一番以后,我找到了我的解决方案,media query,支付宝也是这么解决的.<br><a id="more"></a></p>
 <h1 id="前提条件">前提条件</h1>
 <p>以下所给出的例子,都是html5的页面,不合适html4.0的页面,也就是说你的头部必须是<br><code>&lt;!DOCTYPE html&gt;</code>才行,如果是<code>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;</code>,是不行的,要仔细看清楚哈.<br>下面就来罗列一下,这次经过的那些坑:</p>
@@ -214,7 +214,7 @@
     <link href="http://jackroyal.github.io/2015/05/15/opencv-and-vs2010-in-win8/"/>
     <id>http://jackroyal.github.io/2015/05/15/opencv-and-vs2010-in-win8/</id>
     <published>2015-05-15T11:56:06.000Z</published>
-    <updated>2015-05-23T10:03:46.000Z</updated>
+    <updated>2015-05-15T15:16:43.000Z</updated>
     <content type="html"><![CDATA[<p>今天在师兄的帮助下,总算配置好了opencv.</p>
 <h1 id="1_系统环境和软件版本">1 系统环境和软件版本</h1>
 <p>操作系统:win8 64位<br>vs版本:vs2010 32位<br>opencv版本:opencv 2.4.10<br><a id="more"></a></p>
@@ -271,7 +271,7 @@
     <link href="http://jackroyal.github.io/2015/05/06/opencv-lbph-source-code-analysis/"/>
     <id>http://jackroyal.github.io/2015/05/06/opencv-lbph-source-code-analysis/</id>
     <published>2015-05-06T14:32:42.000Z</published>
-    <updated>2015-05-23T10:03:46.000Z</updated>
+    <updated>2015-05-06T14:45:31.000Z</updated>
     <content type="html"><![CDATA[<p>我开始用opencv的时候，用的是opencv最新的3.0版本。不过我死活找不到LBPH的代码，网上的教程也都是opencv 2.4的，so  我也去下一份2.4的源码来读读。<br>opencv目前支持一下三种方法来实现人脸识别：</p>
 <ul>
 <li><strong>Eigenfaces特征脸createEigenFaceRecognizer()</strong></li>
@@ -576,7 +576,7 @@
     <link href="http://jackroyal.github.io/2015/03/29/hexo-deploy-error/"/>
     <id>http://jackroyal.github.io/2015/03/29/hexo-deploy-error/</id>
     <published>2015-03-29T10:09:28.000Z</published>
-    <updated>2015-05-23T10:03:46.000Z</updated>
+    <updated>2015-05-06T14:51:50.000Z</updated>
     <content type="html"><![CDATA[<p>可能受到上次ddos的问题,这两天国内访问github,总是感觉不顺畅.<br>今天下午写了一篇博客,可是却发布不成功,一直卡在这一步:<br><img src="http://ww3.sinaimg.cn/large/692869a3gw1eqmrrf20j1j20g006676y.jpg" alt="hexo发布的时候卡住"></p>
 <p>然后我继续等,得到如下错误:</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo <span class="variable">Failed</span> to <span class="keyword">receive</span> <span class="variable">SOCKS4</span> connect request ack.</div></pre></td></tr></table></figure>
@@ -793,7 +793,7 @@
     <link href="http://jackroyal.github.io/2015/03/09/use-ss/"/>
     <id>http://jackroyal.github.io/2015/03/09/use-ss/</id>
     <published>2015-03-09T14:26:21.000Z</published>
-    <updated>2015-05-06T14:25:45.000Z</updated>
+    <updated>2015-06-07T09:46:22.000Z</updated>
     <content type="html"><![CDATA[<p>最近我的vpn一直在抽风，几乎没法正常使用，而且我的chrome也是各种花屏，我快疯了，没办法，只能改用shadowsocks了。<br>搭建过程分为两部分:服务端和客户端(这里是主要是ubuntu的客户端)。<br><a id="more"></a></p>
 <h1 id="1_系统环境">1 系统环境</h1>
 <p><strong>服务器</strong>:DigitalOcean上的Ubuntu 14.04 LTS<br><strong>客户端</strong>:Ubuntu 14.04 LTS</p>
@@ -814,8 +814,9 @@
 <p>前台运行的命令<br><code>ssserver -c /etc/shadowsocks.json</code><br>后台运行<br><code>ssserver -c /etc/shadowsocks.json -d start</code><br><code>ssserver -c /etc/shadowsocks.json -d stop</code><br>ps:我上述两条命令都会出错,这两条命令来自官方的github,我用的是下面的<br><code>nohup ssserver -c /etc/shadowsocks.json &gt; aa.log</code></p>
 <h2 id="开机自启">开机自启</h2>
 <p>我们把它写入/etc/rc.local中就可以完成开机自启动了.</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> vi /etc/rc.local  <span class="comment">#打开rc.local文件</span></div><div class="line"><span class="comment">#然后在exit前面加入下面这一行</span></div><div class="line"><span class="comment">#nohup ssserver -c /etc/shadowsocks.json &gt; aa.log</span></div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> vi /etc/rc.local  <span class="comment">#打开rc.local文件</span></div><div class="line"><span class="comment">#然后在exit前面加入下面这一行</span></div><div class="line"><span class="comment">#nohup /usr/local/bin/ssserver -c /etc/shadowsocks.json &gt; aa.log</span></div></pre></td></tr></table></figure>
 
+<p>ps:这里我之前犯了一个错误,没有写<code>ssserver</code>的绝对路径,导致开机无法自启动,但是手动执行的话,又是可以执行的</p>
 <h1 id="3_客户端的安装和配置">3 客户端的安装和配置</h1>
 <p>客户端按理说和服务器端类似,安装shadowsocks,但是我的就是这个出了问题.</p>
 <h2 id="1)_安装相关软件">1) 安装相关软件</h2>

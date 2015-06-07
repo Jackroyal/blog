@@ -73,6 +73,10 @@ time_format: H:mm:ss
 per_page: 8
 pagination_dir: page
 
+plugins:
+- hexo-generator-sitemap
+
+
 # Disqus
 disqus_shortname:
 

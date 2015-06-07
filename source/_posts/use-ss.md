@@ -75,8 +75,9 @@ ps:我上述两条命令都会出错,这两条命令来自官方的github,我用
 ```
 sudo vi /etc/rc.local  #打开rc.local文件
 #然后在exit前面加入下面这一行
-#nohup ssserver -c /etc/shadowsocks.json > aa.log
+#nohup /usr/local/bin/ssserver -c /etc/shadowsocks.json > aa.log
 ```
+ps:这里我之前犯了一个错误,没有写`ssserver`的绝对路径,导致开机无法自启动,但是手动执行的话,又是可以执行的
 #3 客户端的安装和配置
 客户端按理说和服务器端类似,安装shadowsocks,但是我的就是这个出了问题.
 ##1) 安装相关软件
