@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   
   <title>第 2 页 | 搁浅St的blog</title>
-  <meta name="author" content="搁浅St">
+  <meta name="author" content="John Doe">
   
   <meta name="description" content="jackroyal 博客 搁浅St 笨笨">
   
@@ -53,7 +53,7 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-04-26T02:50:00.000Z"><a href="/2015/04/26/face-recognizer/">4月 26 2015</a></time>
+        <time datetime="2015-04-26T02:50:00.000Z"><a href="/2015/04/26/face-recognizer/">2015-04-26</a></time>
       
       
   
@@ -98,7 +98,7 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-03-29T14:08:22.000Z"><a href="/2015/03/29/blog2markdown-csdn-windows/">3月 29 2015</a></time>
+        <time datetime="2015-03-29T14:08:22.000Z"><a href="/2015/03/29/blog2markdown-csdn-windows/">2015-03-29</a></time>
       
       
   
@@ -111,11 +111,10 @@
     <div class="entry">
       
         <blockquote>
-<p>项目地址<a href="https://github.com/Jackroyal/blog2markdown.git" target="_blank" rel="external">https://github.com/Jackroyal/blog2markdown.git</a></p>
+<p>项目地址<a href="https://github.com/Jackroyal/blog2markdown.git">https://github.com/Jackroyal/blog2markdown.git</a></p>
 </blockquote>
 <p>用来实现普通blog到markdown的搬家，自动将blog的html转换成HEXO可用的Markdown格式<br>暂时只做了CSDN</p>
-<h3 id="UPDATE:">UPDATE:</h3>
-<p>2015-03-29 添加了打包成exe的程序,修复cmd下乱码,win和ubuntu完美运行<br>2015-03-29 连夜修复了在win下乱码的问题,删除了冗余代码<br>2015-03-28 将某些参数改为从配置文件中读取,加入更多异常判断<br>2014-12-15 优化标签解析功能,添加了标题,tag和category<br>2014-12-13 实现解析功能,基本完成解析功能<br>2014-12-10 实现CSDN的抓取，正在实现parse解析过程<br>
+<h3 id="UPDATE:">UPDATE:</h3><p>2015-03-29 添加了打包成exe的程序,修复cmd下乱码,win和ubuntu完美运行<br>2015-03-29 连夜修复了在win下乱码的问题,删除了冗余代码<br>2015-03-28 将某些参数改为从配置文件中读取,加入更多异常判断<br>2014-12-15 优化标签解析功能,添加了标题,tag和category<br>2014-12-13 实现解析功能,基本完成解析功能<br>2014-12-10 实现CSDN的抓取，正在实现parse解析过程<br>
       
     </div>
     <footer>
@@ -148,7 +147,7 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-03-29T10:09:28.000Z"><a href="/2015/03/29/hexo-deploy-error/">3月 29 2015</a></time>
+        <time datetime="2015-03-29T10:09:28.000Z"><a href="/2015/03/29/hexo-deploy-error/">2015-03-29</a></time>
       
       
   
@@ -169,24 +168,16 @@
     <div class="entry">
       
         <p>可能受到上次ddos的问题,这两天国内访问github,总是感觉不顺畅.<br>今天下午写了一篇博客,可是却发布不成功,一直卡在这一步:<br><img src="http://ww3.sinaimg.cn/large/692869a3gw1eqmrrf20j1j20g006676y.jpg" alt="hexo发布的时候卡住"></p>
-<p>然后我继续等,得到如下错误:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo <span class="variable">Failed</span> to <span class="keyword">receive</span> <span class="variable">SOCKS4</span> connect request ack.</div></pre></td></tr></table></figure>
-
+<p>然后我继续等,得到如下错误:<br><figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="variable">Failed</span> to <span class="keyword">receive</span> <span class="variable">SOCKS4</span> connect request ack.</span><br></pre></td></tr></table></figure></p>
 <p>我执行了<code>hexo clean</code>命令,手动删掉了<code>.deploy</code>文件夹,可是还是不行<br>最后报错<br>无法连接<code>https://github.com/Jackroyal/Jackroyal.github.io.git</code></p>
 <p><em>(ps:此处已经无法重现了,抽风啊)</em></p>
-<p>最后我换了下这条链接<br>我修改了博客目录下的<code>_config.yml</code>,改了deploy参数<br>原参数设置</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  <span class="class"><span class="keyword">type</span>: <span class="title">github</span></span></div><div class="line">  repo: https:<span class="comment">//github.com/Jackroyal/Jackroyal.github.io.git</span></div><div class="line">  branch: master</div></pre></td></tr></table></figure>
-
-<p>修改以后:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  <span class="built_in">type</span>: github</div><div class="line">  repo: git@github.com:Jackroyal/Jackroyal.github.<span class="built_in">io</span>.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
-
+<p>最后我换了下这条链接<br>我修改了博客目录下的<code>_config.yml</code>,改了deploy参数<br>原参数设置<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line">  <span class="attribute">type</span>: github</span><br><span class="line">  <span class="attribute">repo</span>: <span class="attribute">https</span>:<span class="comment">//github.com/Jackroyal/Jackroyal.github.io.git</span></span><br><span class="line">  <span class="attribute">branch</span>: master</span><br></pre></td></tr></table></figure></p>
+<p>修改以后:<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line">  <span class="attribute">type</span>: github</span><br><span class="line">  <span class="attribute">repo</span>: git<span class="variable">@github</span>.<span class="attribute">com</span>:Jackroyal/Jackroyal.github.io.git</span><br><span class="line">  <span class="attribute">branch</span>: master</span><br></pre></td></tr></table></figure></p>
 <p>然后就deploy成功了.</p>
 <p><em>PPPS:千万注意,上面的参数设置repo:后面有一个空格,没有空格会报错</em></p>
-<h1 id="update:">update:</h1>
-<p>repo的两种方式分别为ssh和https<br>昨天没搞清楚,专门去查了一下,ssh和https两种提交的区别<br>官方推荐用https,因为这回要求你输入用户名和密码,这样更安全<br>用ssh的话,只要你的ssh-key(可以设置一道类似密码的东西,和你的key一起加密,这样使用的时候会要求输入这段密码)对,那么就都可以提交,没有了更多的验证过程(可以设置一个para加密,提交会要求输入这段para)</p>
+<h1 id="update:">update:</h1><p>repo的两种方式分别为ssh和https<br>昨天没搞清楚,专门去查了一下,ssh和https两种提交的区别<br>官方推荐用https,因为这回要求你输入用户名和密码,这样更安全<br>用ssh的话,只要你的ssh-key(可以设置一道类似密码的东西,和你的key一起加密,这样使用的时候会要求输入这段密码)对,那么就都可以提交,没有了更多的验证过程(可以设置一个para加密,提交会要求输入这段para)</p>
 <p>2015-05-06<br>最近又发现，使用ssh提交的话，github不会计算到你的conribute里面去，也就是你今天提交了，但是github的contribute不会变化，所以还是改成https吧，不然怎么装B呢？</p>
-<h3 id="友情链接">友情链接</h3>
-<p><a href="http://rolight.cn/blog/?p=34" target="_blank" rel="external">ubuntu  shadowsocks 全局 代理</a></p>
+<h3 id="友情链接">友情链接</h3><p><a href="http://rolight.cn/blog/?p=34" target="_blank" rel="external">ubuntu  shadowsocks 全局 代理</a></p>
 
              <div id="donate_board" class="donate_bar center">
         <a id="btn_donate" class="btn_donate" href="javascript:;" title="Donate 打赏"></a>
@@ -255,7 +246,7 @@ document.getElementById('btn_donate').onclick = function(){
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-03-29T06:43:45.000Z"><a href="/2015/03/29/python-blog-spider/">3月 29 2015</a></time>
+        <time datetime="2015-03-29T06:43:45.000Z"><a href="/2015/03/29/python-blog-spider/">2015-03-29</a></time>
       
       
   
@@ -269,9 +260,9 @@ document.getElementById('btn_donate').onclick = function(){
       
         <p>在刚开始使用github pages的时候,我用python写了一个爬虫,计划是从csdn和cnblogs等博客网站上,把自己之前写的博客爬取下来,然后再转换成hexo用的markdown格式,样就可以直接添加到我的github pages.</p>
 <blockquote>
-<p>项目主页: <a href="https://github.com/Jackroyal/blog2markdown" target="_blank" rel="external">https://github.com/Jackroyal/blog2markdown</a></p>
+<p>项目主页: <a href="https://github.com/Jackroyal/blog2markdown">https://github.com/Jackroyal/blog2markdown</a></p>
 </blockquote>
-<p>最近刚好在学习python,刚好就把它给优化了一下,顺便做了个跨平台(哈哈,win和ubuntu都可以跑哈),昨天遇到很蛋疼的问题,一它给了我很多思路帮助我定位问题,.直搞到凌晨两点才弄好.<br>非常非常感谢<a href="http://www.crifan.com/summary_python_2_x_common_string_encode_decode_error_reason_and_solution/" target="_blank" rel="external">【总结】Python 2.x中常见字符编码和解码方面的错误及其解决办法</a><br>作者做了一个很好的总结,帮助我们定位问题.<br>
+<p>最近刚好在学习python,刚好就把它给优化了一下,顺便做了个跨平台(哈哈,win和ubuntu都可以跑哈),昨天遇到很蛋疼的问题,一它给了我很多思路帮助我定位问题,.直搞到凌晨两点才弄好.<br>非常非常感谢<a href="http://www.crifan.com/summary_python_2_x_common_string_encode_decode_error_reason_and_solution/">【总结】Python 2.x中常见字符编码和解码方面的错误及其解决办法</a><br>作者做了一个很好的总结,帮助我们定位问题.<br>
       
     </div>
     <footer>
@@ -304,7 +295,7 @@ document.getElementById('btn_donate').onclick = function(){
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-03-26T13:33:35.000Z"><a href="/2015/03/26/python-im/">3月 26 2015</a></time>
+        <time datetime="2015-03-26T13:33:35.000Z"><a href="/2015/03/26/python-im/">2015-03-26</a></time>
       
       
   
@@ -349,7 +340,7 @@ document.getElementById('btn_donate').onclick = function(){
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-03-18T00:47:02.000Z"><a href="/2015/03/18/python-socket-port-reuse/">3月 18 2015</a></time>
+        <time datetime="2015-03-18T00:47:02.000Z"><a href="/2015/03/18/python-socket-port-reuse/">2015-03-18</a></time>
       
       
   
@@ -394,7 +385,7 @@ document.getElementById('btn_donate').onclick = function(){
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-03-09T14:26:21.000Z"><a href="/2015/03/09/use-ss/">3月 9 2015</a></time>
+        <time datetime="2015-03-09T14:26:21.000Z"><a href="/2015/03/09/use-ss/">2015-03-09</a></time>
       
       
   
@@ -439,7 +430,7 @@ document.getElementById('btn_donate').onclick = function(){
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-03-04T06:14:57.000Z"><a href="/2015/03/04/after-kali/">3月 4 2015</a></time>
+        <time datetime="2015-03-04T06:14:57.000Z"><a href="/2015/03/04/after-kali/">2015-03-04</a></time>
       
       
   
@@ -464,6 +455,151 @@ document.getElementById('btn_donate').onclick = function(){
         
         <div class="alignright">
           <a href="http://jackroyal.github.io/2015/03/04/after-kali/#duoshuo_thread" class="comment-link">Comments</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-03-03T13:17:41.000Z"><a href="/2015/03/03/kali-and-ubuntu/">2015-03-03</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/03/03/kali-and-ubuntu/">kali和ubuntu双系统安装</a></h1>
+  
+
+    
+    
+    </header>
+    <div class="entry">
+      
+        <p>时间忽快忽慢，一转眼，年过完了，又回来学校了，又一个多月没有push了，重新回到github。今天我们家笨笨给我找了点kali的资料，索性就把kali捡起来，第一步安装kali的系统。<br>此处背景不再介绍，直奔主题。kali的安装过程和ubuntu的安装过程类似，应该说原理上是一模一样的，只是界面有些不同。我的电脑当前已经安装了win8和ubuntu，现在需要再加一个kali的系统，三系统共存。<br>大体分为如下几个步骤：</p>
+<h3 id="1_下载kali镜像">1 下载kali镜像</h3><h3 id="2_刻录u盘">2 刻录u盘</h3><h3 id="3_安装kali">3 安装kali</h3><h2 id="<!-_more_->">
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2015/03/03/kali-and-ubuntu/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+        <div class="alignright">
+          <a href="http://jackroyal.github.io/2015/03/03/kali-and-ubuntu/#duoshuo_thread" class="comment-link">Comments</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-01-18T16:53:48.000Z"><a href="/2015/01/19/linux下使用github/">2015-01-19</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/01/19/linux下使用github/">Linux下使用github</a></h1>
+  
+
+    
+    <div class="busuanzi_container_page_pv">
+      <span class="head-plus">
+      <i class="fa fa-user"></i><span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>次访问
+      </span>
+      <span class="head-plus">
+      <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="undefined-undefined"><i class="fa fa-spinner fa-spin"></i></span>条评论
+      </span>
+    </div>
+    
+    </header>
+    <div class="entry">
+      
+        <blockquote>
+<p>我的惰性真是病入膏肓了，已经整整3周没有在github上提交东西了，今天看了《模拟游戏》，索性又捡起来了。下面来总结一下linux下github的使用，也算是给自己一个备份，因为我自己也是老忘记。</p>
+</blockquote>
+<p>使用环境：Ubuntu 14.04</p>
+<h2 id="1_安装git相关软件">1 安装git相关软件</h2><p>我的Ubuntu里面没有自带git相关软件，所以我们首先需要安装它，很简单。<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="keyword">get</span> install git</span><br></pre></td></tr></table></figure></p>
+<h2 id="2_初始化git的设置">2 初始化git的设置</h2><p>接下来，进行初始化设置，也就是设置你的github账号和密码<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git config --<span class="built_in">global</span> user.name <span class="string">"zhangsan"</span><span class="comment">#其中的“zhangsan”输入的就是你注册时候的用户名，这步是设置你提交时候默认的用户名</span></span><br><span class="line"><span class="comment">#之后设置提交时候默认的邮箱，在命令行输入：</span></span><br><span class="line">git config --<span class="built_in">global</span> user.email <span class="string">"haha@qq.com"</span></span><br><span class="line"><span class="comment">#其中的“haha@qq.com”就是你注册时候用的邮箱，当然也可以用别的邮箱，用别的邮箱的时候你必须在github的主页上设置里面把用的邮箱添加进去</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="3_开始使用github">3 开始使用github</h2><p>1 首先你的github上应该有一个库，如果没有的话，就去github网站上新建一个库，或者fork一个别人的项目，以下的操作都是建立在这个基础上，<code>假设存在一个库https://github.com/Jackroyal/test.git</code>.<br>如果你的github上已经有库了，可以忽略第1步直接进入第2步<br>2 我们在本地新建一个文件夹(命名随你便，我取名叫做test_git)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir <span class="built_in">test</span>_git</span><br></pre></td></tr></table></figure></p>
+<p>3 将远程的库复制下来，我们使用git clone命令来完成<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#如果你的环境不在test_git目录</span></span><br><span class="line"><span class="preprocessor">#cd test_git</span></span><br><span class="line"><span class="preprocessor">#如果在test_git中</span></span><br><span class="line">git clone https:<span class="comment">//github.com/Jackroyal/test.git#他会在你的本地新建一个test文件夹</span></span><br><span class="line">cd test</span><br><span class="line"><span class="preprocessor">#接下来新建一个测试文件</span></span><br><span class="line">touch test.md</span><br><span class="line"><span class="preprocessor">#修改测试文件的内容</span></span><br><span class="line">vi test.md</span><br><span class="line"><span class="preprocessor">#提交刚才所做的更改</span></span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"首次提交"</span></span><br></pre></td></tr></table></figure></p>
+<p>3 push提交到github<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote <span class="built_in">add</span> origin http<span class="variable">s:</span>//github.<span class="keyword">com</span>/Jackroyal/test.git</span><br><span class="line">git push</span><br></pre></td></tr></table></figure></p>
+<p>之后会提示你输入用户名密码，你输入你github账号和密码就行了<br>打完收工，睡觉<br>后面会陆续介绍hexo在Linux下的使用</p>
+<h1 id="参考文献">参考文献</h1><p>1 <a href="http://blog.chinaunix.net/uid-29040159-id-3799719.html" target="_blank" rel="external">ubuntu 下 github 简单的使用教程</a><br>2 <a href="http://blog.csdn.net/pony_maggie/article/details/23207847" target="_blank" rel="external">Github入门级使用攻略</a></p>
+
+             <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate" class="btn_donate" href="javascript:;" title="Donate 打赏"></a>
+        <span class="donate_txt">
+           &uarr;<br>
+           Enjoy it ? Donate me !  此文对你有帮助？求鼓励，求支持！
+        </span>
+        <br>
+      </div>
+
+      <div id="donate_guide" class="donate_bar center hidden">
+          <!-- 支付宝打赏图案 -->
+          <a href="http://ww4.sinaimg.cn/large/692869a3gw1esp065y3aaj207i07i74o.jpg" title="支付宝打赏" class="fancybox" rel="article0"       style="float:left;margin-left:20%;margin-right:2px;">
+          <span class="donate_txt title">
+          支付宝
+          </span>
+          <img src="http://ww4.sinaimg.cn/large/692869a3gw1esp065y3aaj207i07i74o.jpg" title="支付宝打赏" height="164px" width="164px">
+          </a>
+
+    <!-- 微信打赏图案 -->
+          <a href="http://ww2.sinaimg.cn/large/692869a3gw1esp02tdokcj20al0ahgmy.jpg" title="微信打赏" class="fancybox" rel="article0"  >
+          <span class="donate_txt title">
+          微  信
+          </a>
+          <img src="http://ww2.sinaimg.cn/large/692869a3gw1esp02tdokcj20al0ahgmy.jpg" title="微信打赏" height="164px" width="164px">
+          </span>
+        <span class="donate_txt center">
+           <br>
+           Thank You very much !  来来来,小手抖一抖！
+        </span>
+      </div>
+
+<script type="text/javascript">
+document.getElementById('btn_donate').onclick = function(){
+  $('#donate_board').addClass('hidden');
+  $('#donate_guide').removeClass('hidden');
+}
+</script>
+
+        转载请注明文章出处:<a href="undefined">undefined</a>
+      
+    </div>
+    <footer>
+      
+        
+        
+        <div class="alignright">
+          <a href="http://jackroyal.github.io/2015/01/19/linux下使用github/#duoshuo_thread" class="comment-link">Comments</a>
         </div>
         
       
@@ -620,6 +756,14 @@ document.getElementById('btn_donate').onclick = function(){
   <ul class="entry">
     
       <li>
+        <a href="/2015/06/16/digitalocean-support-google-scholar-by-ipv6/">digitalocean support google scholar by ipv6</a>
+      </li>
+    
+      <li>
+        <a href="/2015/06/16/hexo-3-0-update/">hexo 3.0 update</a>
+      </li>
+    
+      <li>
         <a href="/2015/05/30/hexo-setting-with-comments-and-visitors/">给hexo配置上评论和访问量</a>
       </li>
     
@@ -631,14 +775,6 @@ document.getElementById('btn_donate').onclick = function(){
         <a href="/2015/05/15/holes-in-ie6-about-html5/">html5在ie中遇到的那些坑</a>
       </li>
     
-      <li>
-        <a href="/2015/05/15/opencv-and-vs2010-in-win8/">win8中使用vs2010配置opencv</a>
-      </li>
-    
-      <li>
-        <a href="/2015/05/06/opencv-lbph-source-code-analysis/">opencv中LBPH的人脸识别代码分析</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -647,7 +783,7 @@ document.getElementById('btn_donate').onclick = function(){
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/Linux/" style="font-size: 18.00px;">Linux</a><a href="/tags/chrome/" style="font-size: 16.00px;">chrome</a><a href="/tags/cmcc-edu/" style="font-size: 16.00px;">cmcc-edu</a><a href="/tags/csdn/" style="font-size: 10.00px;">csdn</a><a href="/tags/css/" style="font-size: 10.00px;">css</a><a href="/tags/github/" style="font-size: 14.00px;">github</a><a href="/tags/hexo/" style="font-size: 18.00px;">hexo</a><a href="/tags/html5/" style="font-size: 10.00px;">html5</a><a href="/tags/ie/" style="font-size: 10.00px;">ie</a><a href="/tags/javascript/" style="font-size: 12.00px;">javascript</a><a href="/tags/js/" style="font-size: 10.00px;">js</a><a href="/tags/kali/" style="font-size: 12.00px;">kali</a><a href="/tags/lbph/" style="font-size: 10.00px;">lbph</a><a href="/tags/opencv/" style="font-size: 16.00px;">opencv</a><a href="/tags/python/" style="font-size: 20.00px;">python</a><a href="/tags/requests/" style="font-size: 10.00px;">requests</a><a href="/tags/scrapy/" style="font-size: 10.00px;">scrapy</a><a href="/tags/select/" style="font-size: 10.00px;">select</a><a href="/tags/shadowsocks/" style="font-size: 10.00px;">shadowsocks</a><a href="/tags/socket/" style="font-size: 12.00px;">socket</a><a href="/tags/sql/" style="font-size: 10.00px;">sql</a><a href="/tags/sql-server/" style="font-size: 10.00px;">sql server</a><a href="/tags/ubuntu/" style="font-size: 12.00px;">ubuntu</a><a href="/tags/vs2010/" style="font-size: 10.00px;">vs2010</a><a href="/tags/wamp/" style="font-size: 10.00px;">wamp</a><a href="/tags/win8/" style="font-size: 10.00px;">win8</a><a href="/tags/windows/" style="font-size: 10.00px;">windows</a><a href="/tags/中国移动/" style="font-size: 14.00px;">中国移动</a><a href="/tags/兼容性/" style="font-size: 10.00px;">兼容性</a><a href="/tags/前端/" style="font-size: 14.00px;">前端</a><a href="/tags/图像处理/" style="font-size: 14.00px;">图像处理</a><a href="/tags/扩展/" style="font-size: 12.00px;">扩展</a><a href="/tags/模拟登录/" style="font-size: 10.00px;">模拟登录</a><a href="/tags/正则/" style="font-size: 10.00px;">正则</a><a href="/tags/正则表达式/" style="font-size: 10.00px;">正则表达式</a><a href="/tags/爬虫/" style="font-size: 12.00px;">爬虫</a><a href="/tags/脚本/" style="font-size: 12.00px;">脚本</a><a href="/tags/表单/" style="font-size: 10.00px;">表单</a><a href="/tags/软件安装与技巧/" style="font-size: 10.00px;">软件安装与技巧</a>
+    <a href="/tags/Linux/" style="font-size: 18px;">Linux</a> <a href="/tags/chrome/" style="font-size: 16px;">chrome</a> <a href="/tags/cmcc-edu/" style="font-size: 16px;">cmcc-edu</a> <a href="/tags/csdn/" style="font-size: 10px;">csdn</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/github/" style="font-size: 14px;">github</a> <a href="/tags/hexo/" style="font-size: 18px;">hexo</a> <a href="/tags/html5/" style="font-size: 10px;">html5</a> <a href="/tags/ie/" style="font-size: 10px;">ie</a> <a href="/tags/javascript/" style="font-size: 12px;">javascript</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/kali/" style="font-size: 12px;">kali</a> <a href="/tags/lbph/" style="font-size: 10px;">lbph</a> <a href="/tags/opencv/" style="font-size: 16px;">opencv</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/requests/" style="font-size: 10px;">requests</a> <a href="/tags/scrapy/" style="font-size: 10px;">scrapy</a> <a href="/tags/select/" style="font-size: 10px;">select</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/socket/" style="font-size: 12px;">socket</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/sql-server/" style="font-size: 10px;">sql server</a> <a href="/tags/ubuntu/" style="font-size: 12px;">ubuntu</a> <a href="/tags/vs2010/" style="font-size: 10px;">vs2010</a> <a href="/tags/wamp/" style="font-size: 10px;">wamp</a> <a href="/tags/win8/" style="font-size: 10px;">win8</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/中国移动/" style="font-size: 14px;">中国移动</a> <a href="/tags/兼容性/" style="font-size: 10px;">兼容性</a> <a href="/tags/前端/" style="font-size: 14px;">前端</a> <a href="/tags/图像处理/" style="font-size: 14px;">图像处理</a> <a href="/tags/扩展/" style="font-size: 12px;">扩展</a> <a href="/tags/模拟登录/" style="font-size: 10px;">模拟登录</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/爬虫/" style="font-size: 12px;">爬虫</a> <a href="/tags/脚本/" style="font-size: 12px;">脚本</a> <a href="/tags/表单/" style="font-size: 10px;">表单</a> <a href="/tags/软件安装与技巧/" style="font-size: 10px;">软件安装与技巧</a>
   </div>
 </div>
 
@@ -667,7 +803,7 @@ document.getElementById('btn_donate').onclick = function(){
   </div>
   <footer id="footer" class="inner"><div class="alignleft">
   
-  &copy; 2015 搁浅St
+  &copy; 2015 John Doe
   
 <span id="busuanzi_container_site_pv">
      <i class="fa fa-flag"></i>    你是第<span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span>个到访的小伙伴

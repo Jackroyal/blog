@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   
   <title>[js]replace替换 | 搁浅St的blog</title>
-  <meta name="author" content="搁浅St">
+  <meta name="author" content="John Doe">
   
   <meta name="description" content="jackroyal 博客 搁浅St 笨笨">
   
@@ -52,7 +52,7 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2014-11-25T14:32:00.000Z"><a href="/2014/11/25/[js]replace替换/">11月 25 2014</a></time>
+        <time datetime="2014-11-25T14:32:00.000Z"><a href="/2014/11/25/[js]replace替换/">2014-11-25</a></time>
       
       
   
@@ -73,31 +73,20 @@
     <div class="entry">
       
         <p>今天做前端试题,用到了replace函数,来记录一下.<br>(以下部分知识点来自<a href="http://www.w3cschool.cn/jsref_replace.html" target="_blank" rel="external">http://www.w3cschool.cn/jsref_replace.html</a>)</p>
-<h2 id="定义和用法">定义和用法</h2>
-<p>replace() 方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。</p>
-<h3 id="语法">语法</h3>
-<table class="dataintable " style="margin-top:10px; border-collapse:collapse; border:1px solid rgb(136,136,136); width:606px; color:rgb(0,0,0); font-size:12px; background-color:rgb(249,249,249)"><br><tbody><br><tr><br><th style="vertical-align:baseline; padding:5px 15px 5px 5px; border:1px solid rgb(136,136,136); background-color:rgb(204,204,204)"><br>参数</th><br><th style="vertical-align:baseline; padding:5px 15px 5px 5px; border:1px solid rgb(136,136,136); background-color:rgb(204,204,204)"><br>描述</th><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>regexp/substr</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br><p style="margin-top:0px; margin-bottom:0px; line-height:18px">必需。规定子字符串或要替换的模式的 RegExp 对象。</p><br><p style="margin-top:0px; margin-bottom:2px; line-height:18px">请注意，如果该值是一个字符串，则将它作为要检索的直接量文本模式，而不是首先被转换为 RegExp 对象。</p><br></td><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>replacement</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>必需。一个字符串值。规定了替换文本或生成替换文本的函数。</td><br></tr><br></tbody><br></table>
+<h2 id="定义和用法">定义和用法</h2><p>replace() 方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。</p>
+<h3 id="语法">语法</h3><table class="dataintable " style="margin-top:10px; border-collapse:collapse; border:1px solid rgb(136,136,136); width:606px; color:rgb(0,0,0); font-size:12px; background-color:rgb(249,249,249)"><br><tbody><br><tr><br><th style="vertical-align:baseline; padding:5px 15px 5px 5px; border:1px solid rgb(136,136,136); background-color:rgb(204,204,204)"><br>参数</th><br><th style="vertical-align:baseline; padding:5px 15px 5px 5px; border:1px solid rgb(136,136,136); background-color:rgb(204,204,204)"><br>描述</th><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>regexp/substr</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br><p style="margin-top:0px; margin-bottom:0px; line-height:18px">必需。规定子字符串或要替换的模式的 RegExp 对象。</p><br><p style="margin-top:0px; margin-bottom:2px; line-height:18px">请注意，如果该值是一个字符串，则将它作为要检索的直接量文本模式，而不是首先被转换为 RegExp 对象。</p><br></td><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>replacement</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>必需。一个字符串值。规定了替换文本或生成替换文本的函数。</td><br></tr><br></tbody><br></table>
 
-<h3 id="返回值">返回值</h3>
-<p>一个新的字符串，是用 <em>replacement</em> 替换了 regexp 的第一次匹配或所有匹配之后得到的。</p>
-<h3 id="说明">说明</h3>
-<p>字符串 stringObject 的 replace() 方法执行的是查找并替换的操作。它将在 stringObject 中查找与 regexp 相匹配的子字符串，然后用 <em>replacement</em> 来替换这些子串。如果 regexp 具有全局标志 g，那么 replace() 方法将替换所有匹配的子串。否则，它只替换第一个匹配子串。</p>
+<h3 id="返回值">返回值</h3><p>一个新的字符串，是用 <em>replacement</em> 替换了 regexp 的第一次匹配或所有匹配之后得到的。</p>
+<h3 id="说明">说明</h3><p>字符串 stringObject 的 replace() 方法执行的是查找并替换的操作。它将在 stringObject 中查找与 regexp 相匹配的子字符串，然后用 <em>replacement</em> 来替换这些子串。如果 regexp 具有全局标志 g，那么 replace() 方法将替换所有匹配的子串。否则，它只替换第一个匹配子串。</p>
 <p><em>replacement</em> 可以是字符串，也可以是函数。如果它是字符串，那么每个匹配都将由字符串替换。但是 replacement 中的 $ 字符具有特定的含义。如下表所示，它说明从模式匹配得到的字符串将用于替换。</p>
 <table class="dataintable " style="margin-top:10px; border-collapse:collapse; border:1px solid rgb(136,136,136); width:606px; color:rgb(0,0,0); font-size:12px; background-color:rgb(249,249,249)"><br><tbody><br><tr><br><th style="vertical-align:baseline; padding:5px 15px 5px 5px; border:1px solid rgb(136,136,136); background-color:rgb(204,204,204)"><br>字符</th><br><th style="vertical-align:baseline; padding:5px 15px 5px 5px; border:1px solid rgb(136,136,136); background-color:rgb(204,204,204)"><br>替换文本</th><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>$1、$2、…、$99</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>与 regexp 中的第 1 到第 99 个子表达式相匹配的文本。</td><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>$&amp;</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>与 regexp 相匹配的子串。</td><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>$`</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>位于匹配子串左侧的文本。</td><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>$’</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>位于匹配子串右侧的文本。</td><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>$$</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>直接量符号。</td><br></tr><br></tbody><br></table>
 
 <p><strong>注意：</strong>ECMAScript v3 规定，replace() 方法的参数 replacement 可以是函数而不是字符串。在这种情况下，每个匹配都调用该函数，它返回的字符串将作为替换文本使用。该函数的第一个参数是匹配模式的字符串。接下来的参数是与模式中的子表达式匹配的字符串，可以有 0 个或多个这样的参数。接下来的参数是一个整数，声明了匹配在 stringObject 中出现的位置。最后一个参数是<br> stringObject 本身。</p>
 <p>下面给几个简单的例子来说明一下</p>
 <p>ps:介绍一下正则的小知识,\w表示匹配一个英文字符,+表示匹配数量必须大于一个,\b就是分节符,单词中间分隔用的,连在一起就是取出前面字符串中所有的单词</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">'my name is'</span>.replace(<span class="regexp">/(\w+)\b/g</span>,<span class="string">'haha  '</span>);<span class="comment">//输出结果为   "haha   haha   haha  "</span></div></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">'my name is'</span>.replace(<span class="regexp">/(\w+)\b/g</span>,<span class="string">'$1aa'</span>);<span class="comment">//输出结果为"myaa nameaa isaa"</span></div></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">'my name is'</span>.replace(<span class="regexp">/((\w)(\w+?))\b/g</span>,<span class="function"><span class="keyword">function</span><span class="params">(m,a,b,c,d,e)</span></span>{<span class="keyword">return</span> b.toUpperCase()+c;});<span class="comment">//输出结果为"My Name Is"</span></div></pre></td></tr></table></figure>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'my name is'</span>.replace(<span class="regexp">/(\w+)\b/g</span>,<span class="string">'haha  '</span>);<span class="comment">//输出结果为   "haha   haha   haha  "</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'my name is'</span>.replace(<span class="regexp">/(\w+)\b/g</span>,<span class="string">'$1aa'</span>);<span class="comment">//输出结果为"myaa nameaa isaa"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'my name is'</span>.replace(<span class="regexp">/((\w)(\w+?))\b/g</span>,<span class="function"><span class="keyword">function</span>(<span class="params">m,a,b,c,d,e</span>)</span>&#123;<span class="keyword">return</span> b.toUpperCase()+c;&#125;);<span class="comment">//输出结果为"My Name Is"</span></span><br></pre></td></tr></table></figure>
 <p>重点讲解一下第三个,replace返回值为函数的例子(function必须要return)</p>
 <p>当replace返回值为函数的时候</p>
 <p>如果只有一个分组的话,他的参数是funciton(match,pos,originalText),分别表示模式的匹配项,模式匹配项在字符串中的位置和原始字符串</p>
@@ -190,7 +179,7 @@ document.getElementById('btn_donate').onclick = function(){
         
   
   <div class="tags">
-    <a href="/tags/javascript/">javascript</a>, <a href="/tags/正则表达式/">正则表达式</a>, <a href="/tags/前端/">前端</a>, <a href="/tags/js/">js</a>
+    <a href="/tags/javascript/">javascript</a>, <a href="/tags/js/">js</a>, <a href="/tags/前端/">前端</a>, <a href="/tags/正则表达式/">正则表达式</a>
   </div>
 
         
@@ -366,6 +355,14 @@ document.getElementById('btn_donate').onclick = function(){
   <ul class="entry">
     
       <li>
+        <a href="/2015/06/16/digitalocean-support-google-scholar-by-ipv6/">digitalocean support google scholar by ipv6</a>
+      </li>
+    
+      <li>
+        <a href="/2015/06/16/hexo-3-0-update/">hexo 3.0 update</a>
+      </li>
+    
+      <li>
         <a href="/2015/05/30/hexo-setting-with-comments-and-visitors/">给hexo配置上评论和访问量</a>
       </li>
     
@@ -377,14 +374,6 @@ document.getElementById('btn_donate').onclick = function(){
         <a href="/2015/05/15/holes-in-ie6-about-html5/">html5在ie中遇到的那些坑</a>
       </li>
     
-      <li>
-        <a href="/2015/05/15/opencv-and-vs2010-in-win8/">win8中使用vs2010配置opencv</a>
-      </li>
-    
-      <li>
-        <a href="/2015/05/06/opencv-lbph-source-code-analysis/">opencv中LBPH的人脸识别代码分析</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -393,7 +382,7 @@ document.getElementById('btn_donate').onclick = function(){
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/Linux/" style="font-size: 18.00px;">Linux</a><a href="/tags/chrome/" style="font-size: 16.00px;">chrome</a><a href="/tags/cmcc-edu/" style="font-size: 16.00px;">cmcc-edu</a><a href="/tags/csdn/" style="font-size: 10.00px;">csdn</a><a href="/tags/css/" style="font-size: 10.00px;">css</a><a href="/tags/github/" style="font-size: 14.00px;">github</a><a href="/tags/hexo/" style="font-size: 18.00px;">hexo</a><a href="/tags/html5/" style="font-size: 10.00px;">html5</a><a href="/tags/ie/" style="font-size: 10.00px;">ie</a><a href="/tags/javascript/" style="font-size: 12.00px;">javascript</a><a href="/tags/js/" style="font-size: 10.00px;">js</a><a href="/tags/kali/" style="font-size: 12.00px;">kali</a><a href="/tags/lbph/" style="font-size: 10.00px;">lbph</a><a href="/tags/opencv/" style="font-size: 16.00px;">opencv</a><a href="/tags/python/" style="font-size: 20.00px;">python</a><a href="/tags/requests/" style="font-size: 10.00px;">requests</a><a href="/tags/scrapy/" style="font-size: 10.00px;">scrapy</a><a href="/tags/select/" style="font-size: 10.00px;">select</a><a href="/tags/shadowsocks/" style="font-size: 10.00px;">shadowsocks</a><a href="/tags/socket/" style="font-size: 12.00px;">socket</a><a href="/tags/sql/" style="font-size: 10.00px;">sql</a><a href="/tags/sql-server/" style="font-size: 10.00px;">sql server</a><a href="/tags/ubuntu/" style="font-size: 12.00px;">ubuntu</a><a href="/tags/vs2010/" style="font-size: 10.00px;">vs2010</a><a href="/tags/wamp/" style="font-size: 10.00px;">wamp</a><a href="/tags/win8/" style="font-size: 10.00px;">win8</a><a href="/tags/windows/" style="font-size: 10.00px;">windows</a><a href="/tags/中国移动/" style="font-size: 14.00px;">中国移动</a><a href="/tags/兼容性/" style="font-size: 10.00px;">兼容性</a><a href="/tags/前端/" style="font-size: 14.00px;">前端</a><a href="/tags/图像处理/" style="font-size: 14.00px;">图像处理</a><a href="/tags/扩展/" style="font-size: 12.00px;">扩展</a><a href="/tags/模拟登录/" style="font-size: 10.00px;">模拟登录</a><a href="/tags/正则/" style="font-size: 10.00px;">正则</a><a href="/tags/正则表达式/" style="font-size: 10.00px;">正则表达式</a><a href="/tags/爬虫/" style="font-size: 12.00px;">爬虫</a><a href="/tags/脚本/" style="font-size: 12.00px;">脚本</a><a href="/tags/表单/" style="font-size: 10.00px;">表单</a><a href="/tags/软件安装与技巧/" style="font-size: 10.00px;">软件安装与技巧</a>
+    <a href="/tags/Linux/" style="font-size: 18px;">Linux</a> <a href="/tags/chrome/" style="font-size: 16px;">chrome</a> <a href="/tags/cmcc-edu/" style="font-size: 16px;">cmcc-edu</a> <a href="/tags/csdn/" style="font-size: 10px;">csdn</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/github/" style="font-size: 14px;">github</a> <a href="/tags/hexo/" style="font-size: 18px;">hexo</a> <a href="/tags/html5/" style="font-size: 10px;">html5</a> <a href="/tags/ie/" style="font-size: 10px;">ie</a> <a href="/tags/javascript/" style="font-size: 12px;">javascript</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/kali/" style="font-size: 12px;">kali</a> <a href="/tags/lbph/" style="font-size: 10px;">lbph</a> <a href="/tags/opencv/" style="font-size: 16px;">opencv</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/requests/" style="font-size: 10px;">requests</a> <a href="/tags/scrapy/" style="font-size: 10px;">scrapy</a> <a href="/tags/select/" style="font-size: 10px;">select</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/socket/" style="font-size: 12px;">socket</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/sql-server/" style="font-size: 10px;">sql server</a> <a href="/tags/ubuntu/" style="font-size: 12px;">ubuntu</a> <a href="/tags/vs2010/" style="font-size: 10px;">vs2010</a> <a href="/tags/wamp/" style="font-size: 10px;">wamp</a> <a href="/tags/win8/" style="font-size: 10px;">win8</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/中国移动/" style="font-size: 14px;">中国移动</a> <a href="/tags/兼容性/" style="font-size: 10px;">兼容性</a> <a href="/tags/前端/" style="font-size: 14px;">前端</a> <a href="/tags/图像处理/" style="font-size: 14px;">图像处理</a> <a href="/tags/扩展/" style="font-size: 12px;">扩展</a> <a href="/tags/模拟登录/" style="font-size: 10px;">模拟登录</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/爬虫/" style="font-size: 12px;">爬虫</a> <a href="/tags/脚本/" style="font-size: 12px;">脚本</a> <a href="/tags/表单/" style="font-size: 10px;">表单</a> <a href="/tags/软件安装与技巧/" style="font-size: 10px;">软件安装与技巧</a>
   </div>
 </div>
 
@@ -413,7 +402,7 @@ document.getElementById('btn_donate').onclick = function(){
   </div>
   <footer id="footer" class="inner"><div class="alignleft">
   
-  &copy; 2015 搁浅St
+  &copy; 2015 John Doe
   
 <span id="busuanzi_container_site_pv">
      <i class="fa fa-flag"></i>    你是第<span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span>个到访的小伙伴

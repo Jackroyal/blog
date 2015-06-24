@@ -28,7 +28,7 @@ addthis:
 fancybox: true
 
 google_analytics:
-rss:
+rss: /atom.xml
 duoshuo_shortname: jackroyal
 
 comment_provider:

@@ -8,6 +8,7 @@ categories:
 - 图像处理
 ---
 我开始用opencv的时候，用的是opencv最新的3.0版本。不过我死活找不到LBPH的代码，网上的教程也都是opencv 2.4的，so  我也去下一份2.4的源码来读读。
+<!-- more -->
 opencv目前支持一下三种方法来实现人脸识别：
 + **Eigenfaces特征脸createEigenFaceRecognizer()**
 + **Fisherfaces createFisherFaceRecognizer()**

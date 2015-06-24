@@ -60,7 +60,7 @@ Ps:这里我们可能还需要配置下数据显示的格式,在你的多说后�
 #3  经过美化后最终的代码
 如果只用官方提供的代码,没有优化,很丑,我优化了下,分享一下.
 
-1. 修改`themes/light/layout/_partial/article.ejs`,在header标签的末尾添加以下代码
+1.修改`themes/light/layout/_partial/article.ejs`,在header标签的末尾添加以下代码
 ```html
     <% if (item.excerpt && index){ %>
      <% } else { %>
@@ -74,7 +74,7 @@ Ps:这里我们可能还需要配置下数据显示的格式,在你的多说后�
      </div>
      <% } %>
 ```
-![修改后的article.ejs](http://ww2.sinaimg.cn/large/692869a3gw1esmas5d58oj20x50jc46f.jpg)<br>2. 修改`themes/light/layout/_partial/footer.ejs`,下面是footer.ejs的**全部代码**:
+![修改后的article.ejs](http://ww2.sinaimg.cn/large/692869a3gw1esmas5d58oj20x50jc46f.jpg)<br>2.修改`themes/light/layout/_partial/footer.ejs`,下面是footer.ejs的**全部代码**:
 ```html
 <div class="alignleft">
   <% if (config.author){ %>
@@ -87,11 +87,15 @@ Ps:这里我们可能还需要配置下数据显示的格式,在你的多说后�
 </span>
 </div>
 <div class="clearfix"></div>
-```<br>3. 修改`themes/light/layout/_partial/after_footer.ejs`,我们在**最后**添加上下面的代码:
+```
+<br>3.修改`themes/light/layout/_partial/after_footer.ejs`,我们在**最后**添加上下面的代码:
+
 ```javascript
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
-```<br>4. 修改`themes\light\source\css\_partial\article.styl`,我们在第124行,在`.entry`之前添加上以下代码,尤其注意与左右的间距,因为它是一个树形结构,它与左侧的距离,影响着它的层级.我们这里应该和entry平级,下面代码应该与`.entry`对齐
+```
+
+4.修改`themes\light\source\css\_partial\article.styl`,我们在第124行,在`.entry`之前添加上以下代码,尤其注意与左右的间距,因为它是一个树形结构,它与左侧的距离,影响着它的层级.我们这里应该和entry平级,下面代码应该与`.entry`对齐
 ```
   .busuanzi_container_page_pv
       margin:20px 0
@@ -106,14 +110,15 @@ Ps:这里我们可能还需要配置下数据显示的格式,在你的多说后�
 
 ```
 最终效果如图:
-![添加css,注意左对齐](http://ww4.sinaimg.cn/large/692869a3gw1esmajbsx38j20k30gwadu.jpg)<br>5. 修改`themes\light\source\css\_partial\footer.styl`,在最后添加上以下代码
+![添加css,注意左对齐](http://ww4.sinaimg.cn/large/692869a3gw1esmajbsx38j20k30gwadu.jpg)<br>5.修改`themes\light\source\css\_partial\footer.styl`,在最后添加上以下代码
 ```
 #busuanzi_value_site_pv
   color:black
   padding:4px
 #busuanzi_container_site_pv
   padding-left:2em
-```<br>6. 修改`themes\light\source\css\_partial\variable.styl`,在最后添加以下代码
+```
+6.修改`themes\light\source\css\_partial\variable.styl`,在最后添加以下代码
 ```
 @import url("http://libs.useso.com/js/font-awesome/4.2.0/css/font-awesome.min.css")
 ```

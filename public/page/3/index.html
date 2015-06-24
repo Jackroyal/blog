@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   
   <title>第 3 页 | 搁浅St的blog</title>
-  <meta name="author" content="搁浅St">
+  <meta name="author" content="John Doe">
   
   <meta name="description" content="jackroyal 博客 搁浅St 笨笨">
   
@@ -53,169 +53,7 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-03-03T13:17:41.000Z"><a href="/2015/03/03/kali-and-ubuntu/">3月 3 2015</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2015/03/03/kali-and-ubuntu/">kali和ubuntu双系统安装</a></h1>
-  
-
-    
-    
-    </header>
-    <div class="entry">
-      
-        <p>时间忽快忽慢，一转眼，年过完了，又回来学校了，又一个多月没有push了，重新回到github。今天我们家笨笨给我找了点kali的资料，索性就把kali捡起来，第一步安装kali的系统。<br>此处背景不再介绍，直奔主题。kali的安装过程和ubuntu的安装过程类似，应该说原理上是一模一样的，只是界面有些不同。我的电脑当前已经安装了win8和ubuntu，现在需要再加一个kali的系统，三系统共存。<br>大体分为如下几个步骤：</p>
-<h3 id="1_下载kali镜像">1 下载kali镜像</h3>
-<h3 id="2_刻录u盘">2 刻录u盘</h3>
-<h3 id="3_安装kali">3 安装kali</h3>
-<h2>
-      
-    </div>
-    <footer>
-      
-        
-          <div class="alignleft">
-            <a href="/2015/03/03/kali-and-ubuntu/#more" class="more-link">Read More</a>
-          </div>
-        
-        
-        <div class="alignright">
-          <a href="http://jackroyal.github.io/2015/03/03/kali-and-ubuntu/#duoshuo_thread" class="comment-link">Comments</a>
-        </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2015-01-18T16:53:48.000Z"><a href="/2015/01/19/linux下使用github/">1月 19 2015</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2015/01/19/linux下使用github/">Linux下使用github</a></h1>
-  
-
-    
-    <div class="busuanzi_container_page_pv">
-      <span class="head-plus">
-      <i class="fa fa-user"></i><span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>次访问
-      </span>
-      <span class="head-plus">
-      <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="undefined-undefined"><i class="fa fa-spinner fa-spin"></i></span>条评论
-      </span>
-    </div>
-    
-    </header>
-    <div class="entry">
-      
-        <blockquote>
-<p>我的惰性真是病入膏肓了，已经整整3周没有在github上提交东西了，今天看了《模拟游戏》，索性又捡起来了。下面来总结一下linux下github的使用，也算是给自己一个备份，因为我自己也是老忘记。</p>
-</blockquote>
-<p>使用环境：Ubuntu 14.04</p>
-<h2 id="1_安装git相关软件">1 安装git相关软件</h2>
-<p>我的Ubuntu里面没有自带git相关软件，所以我们首先需要安装它，很简单。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">sudo</span> apt-get install git</div></pre></td></tr></table></figure>
-
-<h2 id="2_初始化git的设置">2 初始化git的设置</h2>
-<p>接下来，进行初始化设置，也就是设置你的github账号和密码</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git config --global <span class="literal">user</span>.name <span class="string">"zhangsan"</span><span class="comment">#其中的“zhangsan”输入的就是你注册时候的用户名，这步是设置你提交时候默认的用户名</span></div><div class="line"><span class="comment">#之后设置提交时候默认的邮箱，在命令行输入：</span></div><div class="line">git config --global <span class="literal">user</span>.email <span class="string">"haha@qq.com"</span></div><div class="line"><span class="comment">#其中的“haha@qq.com”就是你注册时候用的邮箱，当然也可以用别的邮箱，用别的邮箱的时候你必须在github的主页上设置里面把用的邮箱添加进去</span></div></pre></td></tr></table></figure>
-
-<h2 id="3_开始使用github">3 开始使用github</h2>
-<p>1 首先你的github上应该有一个库，如果没有的话，就去github网站上新建一个库，或者fork一个别人的项目，以下的操作都是建立在这个基础上，<code>假设存在一个库https://github.com/Jackroyal/test.git</code>.<br>如果你的github上已经有库了，可以忽略第1步直接进入第2步<br>2 我们在本地新建一个文件夹(命名随你便，我取名叫做test_git)</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">mkdir</span> test_git</div></pre></td></tr></table></figure>
-
-<p>3 将远程的库复制下来，我们使用git clone命令来完成</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="preprocessor">#如果你的环境不在test_git目录</span></div><div class="line"><span class="preprocessor">#cd test_git</span></div><div class="line"><span class="preprocessor">#如果在test_git中</span></div><div class="line">git clone https:<span class="comment">//github.com/Jackroyal/test.git#他会在你的本地新建一个test文件夹</span></div><div class="line">cd test</div><div class="line"><span class="preprocessor">#接下来新建一个测试文件</span></div><div class="line">touch test.md</div><div class="line"><span class="preprocessor">#修改测试文件的内容</span></div><div class="line">vi test.md</div><div class="line"><span class="preprocessor">#提交刚才所做的更改</span></div><div class="line">git add .</div><div class="line">git commit -m <span class="string">"首次提交"</span></div></pre></td></tr></table></figure>
-
-<p>3 push提交到github</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git remote <span class="built_in">add</span> origin http<span class="variable">s:</span>//github.<span class="keyword">com</span>/Jackroyal/test.git</div><div class="line">git push</div></pre></td></tr></table></figure>
-
-<p>之后会提示你输入用户名密码，你输入你github账号和密码就行了<br>打完收工，睡觉<br>后面会陆续介绍hexo在Linux下的使用</p>
-<h1 id="参考文献">参考文献</h1>
-<p>1 <a href="http://blog.chinaunix.net/uid-29040159-id-3799719.html" target="_blank" rel="external">ubuntu 下 github 简单的使用教程</a><br>2 <a href="http://blog.csdn.net/pony_maggie/article/details/23207847" target="_blank" rel="external">Github入门级使用攻略</a></p>
-
-             <div id="donate_board" class="donate_bar center">
-        <a id="btn_donate" class="btn_donate" href="javascript:;" title="Donate 打赏"></a>
-        <span class="donate_txt">
-           &uarr;<br>
-           Enjoy it ? Donate me !  此文对你有帮助？求鼓励，求支持！
-        </span>
-        <br>
-      </div>
-
-      <div id="donate_guide" class="donate_bar center hidden">
-          <!-- 支付宝打赏图案 -->
-          <a href="http://ww4.sinaimg.cn/large/692869a3gw1esp065y3aaj207i07i74o.jpg" title="支付宝打赏" class="fancybox" rel="article0"       style="float:left;margin-left:20%;margin-right:2px;">
-          <span class="donate_txt title">
-          支付宝
-          </span>
-          <img src="http://ww4.sinaimg.cn/large/692869a3gw1esp065y3aaj207i07i74o.jpg" title="支付宝打赏" height="164px" width="164px">
-          </a>
-
-    <!-- 微信打赏图案 -->
-          <a href="http://ww2.sinaimg.cn/large/692869a3gw1esp02tdokcj20al0ahgmy.jpg" title="微信打赏" class="fancybox" rel="article0"  >
-          <span class="donate_txt title">
-          微  信
-          </a>
-          <img src="http://ww2.sinaimg.cn/large/692869a3gw1esp02tdokcj20al0ahgmy.jpg" title="微信打赏" height="164px" width="164px">
-          </span>
-        <span class="donate_txt center">
-           <br>
-           Thank You very much !  来来来,小手抖一抖！
-        </span>
-      </div>
-
-<script type="text/javascript">
-document.getElementById('btn_donate').onclick = function(){
-  $('#donate_board').addClass('hidden');
-  $('#donate_guide').removeClass('hidden');
-}
-</script>
-
-        转载请注明文章出处:<a href="undefined">undefined</a>
-      
-    </div>
-    <footer>
-      
-        
-        
-        <div class="alignright">
-          <a href="http://jackroyal.github.io/2015/01/19/linux下使用github/#duoshuo_thread" class="comment-link">Comments</a>
-        </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-12-02T14:56:31.000Z"><a href="/2014/12/02/recent-task/">12月 2 2014</a></time>
+        <time datetime="2014-12-02T14:56:31.000Z"><a href="/2014/12/02/recent-task/">2014-12-02</a></time>
       
       
   
@@ -304,7 +142,7 @@ document.getElementById('btn_donate').onclick = function(){
     <header>
       
         <div class="icon"></div>
-        <time datetime="2014-11-28T13:07:27.000Z"><a href="/2014/11/28/custom-hexo/">11月 28 2014</a></time>
+        <time datetime="2014-11-28T13:07:27.000Z"><a href="/2014/11/28/custom-hexo/">2014-11-28</a></time>
       
       
   
@@ -349,7 +187,7 @@ document.getElementById('btn_donate').onclick = function(){
     <header>
       
         <div class="icon"></div>
-        <time datetime="2014-11-27T06:48:29.000Z"><a href="/2014/11/27/how-to-build-a-blog-with-hexo/">11月 27 2014</a></time>
+        <time datetime="2014-11-27T06:48:29.000Z"><a href="/2014/11/27/how-to-build-a-blog-with-hexo/">2014-11-27</a></time>
       
       
   
@@ -361,14 +199,12 @@ document.getElementById('btn_donate').onclick = function(){
     </header>
     <div class="entry">
       
-        <p>昨天经过一天的<a href="http://jackroyal.github.io/2014/11/26/new-start/" title="生命在于折腾" target="_blank" rel="external">折腾</a>,总算把博客搭建起来了,今天就来写个博客总结一下.<br>网上的资料很多,我主要参考的是这篇博客,一路很顺利.</p>
+        <p>昨天经过一天的<a href="http://jackroyal.github.io/2014/11/26/new-start/" title="生命在于折腾">折腾</a>,总算把博客搭建起来了,今天就来写个博客总结一下.<br>网上的资料很多,我主要参考的是这篇博客,一路很顺利.</p>
 <blockquote>
-<p><a href="http://zipperary.com/2013/05/28/hexo-guide-2/" target="_blank" rel="external">http://zipperary.com/2013/05/28/hexo-guide-2/</a></p>
+<p><a href="http://zipperary.com/2013/05/28/hexo-guide-2/">http://zipperary.com/2013/05/28/hexo-guide-2/</a></p>
 </blockquote>
 <p>一个很重要的原因就是他是针对windows的,刚好我也在用windows.</p>
-<h1 id="安装过程">安装过程</h1>
-<h2 id="1-_安装Github_for_windows">1. 安装Github for windows</h2>
-<p>因为我之前就在用Github,所以早就安装了这个.已经装过的同学请忽略这一段.<br>下载 <a href="https://windows.github.com/" title="Github for windows" target="_blank" rel="external">Github for windows</a> 并执行即可完成安装(<em>在线安装,会有点慢</em>)。这个软件的的好处是有一个带GUI的界面,还有一个终端界面.如图所示
+<h1 id="安装过程">安装过程</h1><h2 id="1-_安装Github_for_windows">1. 安装Github for windows</h2><p>因为我之前就在用Github,所以早就安装了这个.已经装过的同学请忽略这一段.<br>下载 <a href="https://windows.github.com/" title="Github for windows">Github for windows</a> 并执行即可完成安装(<em>在线安装,会有点慢</em>)。这个软件的的好处是有一个带GUI的界面,还有一个终端界面.如图所示
       
     </div>
     <footer>
@@ -401,7 +237,7 @@ document.getElementById('btn_donate').onclick = function(){
     <header>
       
         <div class="icon"></div>
-        <time datetime="2014-11-26T13:29:15.000Z"><a href="/2014/11/26/new-start/">11月 26 2014</a></time>
+        <time datetime="2014-11-26T13:29:15.000Z"><a href="/2014/11/26/new-start/">2014-11-26</a></time>
       
       
   
@@ -413,7 +249,7 @@ document.getElementById('btn_donate').onclick = function(){
     </header>
     <div class="entry">
       
-        <p>今天<strong>折腾</strong>了一天,终于弄好了,<a href="http://jackroyal.github.io" title="搁浅St的博客" target="_blank" rel="external">我的博客</a>,正式落户Github.
+        <p>今天<strong>折腾</strong>了一天,终于弄好了,<a href="http://jackroyal.github.io" title="搁浅St的博客">我的博客</a>,正式落户Github.
       
     </div>
     <footer>
@@ -446,7 +282,7 @@ document.getElementById('btn_donate').onclick = function(){
     <header>
       
         <div class="icon"></div>
-        <time datetime="2014-11-25T14:32:00.000Z"><a href="/2014/11/25/[js]replace替换/">11月 25 2014</a></time>
+        <time datetime="2014-11-25T14:32:00.000Z"><a href="/2014/11/25/[js]replace替换/">2014-11-25</a></time>
       
       
   
@@ -467,31 +303,20 @@ document.getElementById('btn_donate').onclick = function(){
     <div class="entry">
       
         <p>今天做前端试题,用到了replace函数,来记录一下.<br>(以下部分知识点来自<a href="http://www.w3cschool.cn/jsref_replace.html" target="_blank" rel="external">http://www.w3cschool.cn/jsref_replace.html</a>)</p>
-<h2 id="定义和用法">定义和用法</h2>
-<p>replace() 方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。</p>
-<h3 id="语法">语法</h3>
-<table class="dataintable " style="margin-top:10px; border-collapse:collapse; border:1px solid rgb(136,136,136); width:606px; color:rgb(0,0,0); font-size:12px; background-color:rgb(249,249,249)"><br><tbody><br><tr><br><th style="vertical-align:baseline; padding:5px 15px 5px 5px; border:1px solid rgb(136,136,136); background-color:rgb(204,204,204)"><br>参数</th><br><th style="vertical-align:baseline; padding:5px 15px 5px 5px; border:1px solid rgb(136,136,136); background-color:rgb(204,204,204)"><br>描述</th><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>regexp/substr</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br><p style="margin-top:0px; margin-bottom:0px; line-height:18px">必需。规定子字符串或要替换的模式的 RegExp 对象。</p><br><p style="margin-top:0px; margin-bottom:2px; line-height:18px">请注意，如果该值是一个字符串，则将它作为要检索的直接量文本模式，而不是首先被转换为 RegExp 对象。</p><br></td><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>replacement</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>必需。一个字符串值。规定了替换文本或生成替换文本的函数。</td><br></tr><br></tbody><br></table>
+<h2 id="定义和用法">定义和用法</h2><p>replace() 方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。</p>
+<h3 id="语法">语法</h3><table class="dataintable " style="margin-top:10px; border-collapse:collapse; border:1px solid rgb(136,136,136); width:606px; color:rgb(0,0,0); font-size:12px; background-color:rgb(249,249,249)"><br><tbody><br><tr><br><th style="vertical-align:baseline; padding:5px 15px 5px 5px; border:1px solid rgb(136,136,136); background-color:rgb(204,204,204)"><br>参数</th><br><th style="vertical-align:baseline; padding:5px 15px 5px 5px; border:1px solid rgb(136,136,136); background-color:rgb(204,204,204)"><br>描述</th><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>regexp/substr</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br><p style="margin-top:0px; margin-bottom:0px; line-height:18px">必需。规定子字符串或要替换的模式的 RegExp 对象。</p><br><p style="margin-top:0px; margin-bottom:2px; line-height:18px">请注意，如果该值是一个字符串，则将它作为要检索的直接量文本模式，而不是首先被转换为 RegExp 对象。</p><br></td><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>replacement</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>必需。一个字符串值。规定了替换文本或生成替换文本的函数。</td><br></tr><br></tbody><br></table>
 
-<h3 id="返回值">返回值</h3>
-<p>一个新的字符串，是用 <em>replacement</em> 替换了 regexp 的第一次匹配或所有匹配之后得到的。</p>
-<h3 id="说明">说明</h3>
-<p>字符串 stringObject 的 replace() 方法执行的是查找并替换的操作。它将在 stringObject 中查找与 regexp 相匹配的子字符串，然后用 <em>replacement</em> 来替换这些子串。如果 regexp 具有全局标志 g，那么 replace() 方法将替换所有匹配的子串。否则，它只替换第一个匹配子串。</p>
+<h3 id="返回值">返回值</h3><p>一个新的字符串，是用 <em>replacement</em> 替换了 regexp 的第一次匹配或所有匹配之后得到的。</p>
+<h3 id="说明">说明</h3><p>字符串 stringObject 的 replace() 方法执行的是查找并替换的操作。它将在 stringObject 中查找与 regexp 相匹配的子字符串，然后用 <em>replacement</em> 来替换这些子串。如果 regexp 具有全局标志 g，那么 replace() 方法将替换所有匹配的子串。否则，它只替换第一个匹配子串。</p>
 <p><em>replacement</em> 可以是字符串，也可以是函数。如果它是字符串，那么每个匹配都将由字符串替换。但是 replacement 中的 $ 字符具有特定的含义。如下表所示，它说明从模式匹配得到的字符串将用于替换。</p>
 <table class="dataintable " style="margin-top:10px; border-collapse:collapse; border:1px solid rgb(136,136,136); width:606px; color:rgb(0,0,0); font-size:12px; background-color:rgb(249,249,249)"><br><tbody><br><tr><br><th style="vertical-align:baseline; padding:5px 15px 5px 5px; border:1px solid rgb(136,136,136); background-color:rgb(204,204,204)"><br>字符</th><br><th style="vertical-align:baseline; padding:5px 15px 5px 5px; border:1px solid rgb(136,136,136); background-color:rgb(204,204,204)"><br>替换文本</th><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>$1、$2、…、$99</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>与 regexp 中的第 1 到第 99 个子表达式相匹配的文本。</td><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>$&amp;</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>与 regexp 相匹配的子串。</td><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>$`</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>位于匹配子串左侧的文本。</td><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>$’</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>位于匹配子串右侧的文本。</td><br></tr><br><tr><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>$$</td><br><td style="vertical-align:text-top; padding:5px 15px 5px 5px; border:1px solid rgb(170,170,170); background-color:rgb(239,239,239)"><br>直接量符号。</td><br></tr><br></tbody><br></table>
 
 <p><strong>注意：</strong>ECMAScript v3 规定，replace() 方法的参数 replacement 可以是函数而不是字符串。在这种情况下，每个匹配都调用该函数，它返回的字符串将作为替换文本使用。该函数的第一个参数是匹配模式的字符串。接下来的参数是与模式中的子表达式匹配的字符串，可以有 0 个或多个这样的参数。接下来的参数是一个整数，声明了匹配在 stringObject 中出现的位置。最后一个参数是<br> stringObject 本身。</p>
 <p>下面给几个简单的例子来说明一下</p>
 <p>ps:介绍一下正则的小知识,\w表示匹配一个英文字符,+表示匹配数量必须大于一个,\b就是分节符,单词中间分隔用的,连在一起就是取出前面字符串中所有的单词</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">'my name is'</span>.replace(<span class="regexp">/(\w+)\b/g</span>,<span class="string">'haha  '</span>);<span class="comment">//输出结果为   "haha   haha   haha  "</span></div></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">'my name is'</span>.replace(<span class="regexp">/(\w+)\b/g</span>,<span class="string">'$1aa'</span>);<span class="comment">//输出结果为"myaa nameaa isaa"</span></div></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">'my name is'</span>.replace(<span class="regexp">/((\w)(\w+?))\b/g</span>,<span class="function"><span class="keyword">function</span><span class="params">(m,a,b,c,d,e)</span></span>{<span class="keyword">return</span> b.toUpperCase()+c;});<span class="comment">//输出结果为"My Name Is"</span></div></pre></td></tr></table></figure>
-
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'my name is'</span>.replace(<span class="regexp">/(\w+)\b/g</span>,<span class="string">'haha  '</span>);<span class="comment">//输出结果为   "haha   haha   haha  "</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'my name is'</span>.replace(<span class="regexp">/(\w+)\b/g</span>,<span class="string">'$1aa'</span>);<span class="comment">//输出结果为"myaa nameaa isaa"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'my name is'</span>.replace(<span class="regexp">/((\w)(\w+?))\b/g</span>,<span class="function"><span class="keyword">function</span>(<span class="params">m,a,b,c,d,e</span>)</span>&#123;<span class="keyword">return</span> b.toUpperCase()+c;&#125;);<span class="comment">//输出结果为"My Name Is"</span></span><br></pre></td></tr></table></figure>
 <p>重点讲解一下第三个,replace返回值为函数的例子(function必须要return)</p>
 <p>当replace返回值为函数的时候</p>
 <p>如果只有一个分组的话,他的参数是funciton(match,pos,originalText),分别表示模式的匹配项,模式匹配项在字符串中的位置和原始字符串</p>
@@ -599,7 +424,7 @@ document.getElementById('btn_donate').onclick = function(){
     <header>
       
         <div class="icon"></div>
-        <time datetime="2014-11-25T14:26:00.000Z"><a href="/2014/11/25/[js]前端试题/">11月 25 2014</a></time>
+        <time datetime="2014-11-25T14:26:00.000Z"><a href="/2014/11/25/[js]前端试题/">2014-11-25</a></time>
       
       
   
@@ -619,8 +444,7 @@ document.getElementById('btn_donate').onclick = function(){
     </header>
     <div class="entry">
       
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 1、获取页面id为 hello 的节点</span></div><div class="line"><span class="keyword">var</span> he=<span class="built_in">document</span>.getElementById(<span class="string">'hello'</span>);</div><div class="line"><span class="comment">// 2、获取页面所有 div 标签</span></div><div class="line"><span class="keyword">var</span> di=<span class="built_in">document</span>.getElementsByTagName(<span class="string">'div'</span>);</div><div class="line"><span class="comment">// 3、给 id 为hello的节点绑定click 事件，点击的时候弹出 "hello"</span></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'hello'</span>).onclick=<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{alert(<span class="string">'helo'</span>)};</div><div class="line"><span class="comment">// 4、将页面上 id为hello的节点隐藏</span></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'hello'</span>).style.visibility=none;</div><div class="line"><span class="comment">// 5、将 "hello world" 用正则替换成 "hello javascript”</span></div><div class="line"><span class="keyword">var</span> str=<span class="string">'hello world'</span>;</div><div class="line">str.replace(<span class="regexp">/hello[\s]+world/g</span>,<span class="string">'hello javascript'</span>);</div><div class="line"><span class="comment">// 6、给节点（假设为element）绑定click事件，当被点击时候，alert 弹出事件的类型（通过jquery）</span></div><div class="line">$(element).click(<span class="function"><span class="keyword">function</span><span class="params">(event)</span> </span>{</div><div class="line">    alert(event.type);</div><div class="line">});</div><div class="line"><span class="comment">// 7、给一个节点添加一个类 "hello"</span></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'kw'</span>).className=<span class="built_in">document</span>.getElementById(<span class="string">'kw'</span>).className+<span class="string">" hello"</span>;</div><div class="line"><span class="comment">// 8、给节点（假设为element）绑定click事件，当被点击时候，alert 弹出事件的类型（要求兼容IE、标准浏览器）</span></div><div class="line">element.onclick=<span class="function"><span class="keyword">function</span><span class="params">(event)</span></span>{<span class="keyword">var</span> e=event||<span class="built_in">window</span>.event};</div><div class="line"><span class="comment">// 9、假设页面有这么两个节点将 id为world的节点的 内容设置成 跟 id 为 hello 的节点一样。</span></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'world'</span>).innerHTML=<span class="built_in">document</span>.getElementById(<span class="string">'hello'</span>).innerHTML;</div><div class="line"><span class="comment">// 10、通过 js 将element的margin-left 设置为 20px</span></div><div class="line">element.style.marginLeft=<span class="string">"20px"</span>;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 1.[{a:3},{a:4},{a:1},{a:2}] sort排序</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sortnum</span><span class="params">(a,b)</span></span>{</div><div class="line">    <span class="keyword">return</span> a.a-b.a;</div><div class="line">}</div><div class="line"><span class="comment">//   [{a:3,b:5},{a:4,b:6},{a:1},{a:2,b:8}]按a的正向排序</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sortab</span><span class="params">(a,b)</span></span>{</div><div class="line">    <span class="keyword">return</span> a.a-b.a!=<span class="number">0</span>?a.a-b.a:a.b-b.b;</div><div class="line">}</div><div class="line"><span class="comment">//   sort 排序原理  使用的算法</span></div><div class="line"><span class="comment">// 2.my name is imweba ... =&gt; my6 name7 is8 imweba9 ...</span></div><div class="line"><span class="comment">//   用正则实现</span></div><div class="line"><span class="string">'my name is imweba '</span>.replace(<span class="regexp">/([\w]+)\b/g</span>,<span class="string">'$1'</span>)</div><div class="line"><span class="keyword">var</span> attr=<span class="string">'my name is imweba '</span>.match(<span class="regexp">/([\w]+)\b/g</span>);</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>;i &lt; attr.length; i++) {</div><div class="line">    attr[i]=attr[i]+(<span class="number">6</span>+i);</div><div class="line">};</div><div class="line">attr.join(<span class="string">' '</span>);<span class="comment">//感觉不对,只能做到这个程度</span></div><div class="line"></div><div class="line"><span class="comment">// 3.实现function test(str)(){},将str的每个单词的首字母大写（str为英文字符串）</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">(str)</span></span>{</div><div class="line">    <span class="keyword">return</span> str.replace(<span class="regexp">/((\w)(\w+?))\b/g</span>,<span class="function"><span class="keyword">function</span><span class="params">(m,a,b,c,d,e)</span></span>{<span class="keyword">return</span> b.toUpperCase()+c;});</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">// 4.写一个二分查找的算法   （假设这个数组不是有序的呢）</span></div><div class="line">\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*</div><div class="line"><span class="comment">// 5.123+”+34  直接说结果   12334</span></div><div class="line"><span class="number">12334</span></div><div class="line"><span class="comment">// 加法会将数字转化为字符串，减法和乘法等会将字符串转化为数字</span></div><div class="line"><span class="comment">// "4"\*"5"=20</span></div><div class="line"><span class="comment">// 6.实现function find(attr,val){},找到当前页面里具备属性为attr且值为val的节点，输出其父元素名称</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">find</span><span class="params">(attr,val)</span></span>{</div><div class="line">    <span class="keyword">var</span> dom=<span class="built_in">document</span>.getElementsByTagName(<span class="string">'\*'</span>);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i&lt;dom.length; i++) {</div><div class="line">        <span class="keyword">if</span>(dom[i].getAttribute(attr)==val){</div><div class="line">            <span class="keyword">return</span> dom[i].parentNode.tagName;</div><div class="line">        }</div><div class="line">   }</div><div class="line">}</div></pre></td></tr></table></figure>
-
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1、获取页面id为 hello 的节点</span></span><br><span class="line"><span class="keyword">var</span> he=<span class="built_in">document</span>.getElementById(<span class="string">'hello'</span>);</span><br><span class="line"><span class="comment">// 2、获取页面所有 div 标签</span></span><br><span class="line"><span class="keyword">var</span> di=<span class="built_in">document</span>.getElementsByTagName(<span class="string">'div'</span>);</span><br><span class="line"><span class="comment">// 3、给 id 为hello的节点绑定click 事件，点击的时候弹出 "hello"</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'hello'</span>).onclick=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;alert(<span class="string">'helo'</span>)&#125;;</span><br><span class="line"><span class="comment">// 4、将页面上 id为hello的节点隐藏</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'hello'</span>).style.visibility=none;</span><br><span class="line"><span class="comment">// 5、将 "hello world" 用正则替换成 "hello javascript”</span></span><br><span class="line"><span class="keyword">var</span> str=<span class="string">'hello world'</span>;</span><br><span class="line">str.replace(<span class="regexp">/hello[\s]+world/g</span>,<span class="string">'hello javascript'</span>);</span><br><span class="line"><span class="comment">// 6、给节点（假设为element）绑定click事件，当被点击时候，alert 弹出事件的类型（通过jquery）</span></span><br><span class="line">$(element).click(<span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    alert(event.type);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 7、给一个节点添加一个类 "hello"</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'kw'</span>).className=<span class="built_in">document</span>.getElementById(<span class="string">'kw'</span>).className+<span class="string">" hello"</span>;</span><br><span class="line"><span class="comment">// 8、给节点（假设为element）绑定click事件，当被点击时候，alert 弹出事件的类型（要求兼容IE、标准浏览器）</span></span><br><span class="line">element.onclick=<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;<span class="keyword">var</span> e=event||<span class="built_in">window</span>.event&#125;;</span><br><span class="line"><span class="comment">// 9、假设页面有这么两个节点将 id为world的节点的 内容设置成 跟 id 为 hello 的节点一样。</span></span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">'world'</span>).innerHTML=<span class="built_in">document</span>.getElementById(<span class="string">'hello'</span>).innerHTML;</span><br><span class="line"><span class="comment">// 10、通过 js 将element的margin-left 设置为 20px</span></span><br><span class="line">element.style.marginLeft=<span class="string">"20px"</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1.[&#123;a:3&#125;,&#123;a:4&#125;,&#123;a:1&#125;,&#123;a:2&#125;] sort排序</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sortnum</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.a-b.a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//   [&#123;a:3,b:5&#125;,&#123;a:4,b:6&#125;,&#123;a:1&#125;,&#123;a:2,b:8&#125;]按a的正向排序</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sortab</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.a-b.a!=<span class="number">0</span>?a.a-b.a:a.b-b.b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//   sort 排序原理  使用的算法</span></span><br><span class="line"><span class="comment">// 2.my name is imweba ... =&gt; my6 name7 is8 imweba9 ...</span></span><br><span class="line"><span class="comment">//   用正则实现</span></span><br><span class="line"><span class="string">'my name is imweba '</span>.replace(<span class="regexp">/([\w]+)\b/g</span>,<span class="string">'$1'</span>)</span><br><span class="line"><span class="keyword">var</span> attr=<span class="string">'my name is imweba '</span>.match(<span class="regexp">/([\w]+)\b/g</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>;i &lt; attr.length; i++) &#123;</span><br><span class="line">    attr[i]=attr[i]+(<span class="number">6</span>+i);</span><br><span class="line">&#125;;</span><br><span class="line">attr.join(<span class="string">' '</span>);<span class="comment">//感觉不对,只能做到这个程度</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3.实现function test(str)()&#123;&#125;,将str的每个单词的首字母大写（str为英文字符串）</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> str.replace(<span class="regexp">/((\w)(\w+?))\b/g</span>,<span class="function"><span class="keyword">function</span>(<span class="params">m,a,b,c,d,e</span>)</span>&#123;<span class="keyword">return</span> b.toUpperCase()+c;&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4.写一个二分查找的算法   （假设这个数组不是有序的呢）</span></span><br><span class="line">\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*</span><br><span class="line"><span class="comment">// 5.123+”+34  直接说结果   12334</span></span><br><span class="line"><span class="number">12334</span></span><br><span class="line"><span class="comment">// 加法会将数字转化为字符串，减法和乘法等会将字符串转化为数字</span></span><br><span class="line"><span class="comment">// "4"\*"5"=20</span></span><br><span class="line"><span class="comment">// 6.实现function find(attr,val)&#123;&#125;,找到当前页面里具备属性为attr且值为val的节点，输出其父元素名称</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">find</span>(<span class="params">attr,val</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> dom=<span class="built_in">document</span>.getElementsByTagName(<span class="string">'\*'</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i&lt;dom.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(dom[i].getAttribute(attr)==val)&#123;</span><br><span class="line">            <span class="keyword">return</span> dom[i].parentNode.tagName;</span><br><span class="line">        &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
              <div id="donate_board" class="donate_bar center">
         <a id="btn_donate" class="btn_donate" href="javascript:;" title="Donate 打赏"></a>
@@ -669,6 +493,427 @@ document.getElementById('btn_donate').onclick = function(){
         
         <div class="alignright">
           <a href="http://jackroyal.github.io/2014/11/25/[js]前端试题/#duoshuo_thread" class="comment-link">Comments</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-24T13:56:00.000Z"><a href="/2014/11/24/cmcc520扩展使用说明/">2014-11-24</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/11/24/cmcc520扩展使用说明/">cmcc520扩展使用说明</a></h1>
+  
+
+    
+    <div class="busuanzi_container_page_pv">
+      <span class="head-plus">
+      <i class="fa fa-user"></i><span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>次访问
+      </span>
+      <span class="head-plus">
+      <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="undefined-undefined"><i class="fa fa-spinner fa-spin"></i></span>条评论
+      </span>
+    </div>
+    
+    </header>
+    <div class="entry">
+      
+        <p>我的cmcc520 2.0版本终于完成了,写个使用说明</p>
+<p>学校部分范围有CMCC-EDU可用,通过手动修改ssid,可以免费使用.</p>
+<p>写了个扩展来简化这个过程.</p>
+<p>1 安装扩展<br>将保存下来的 *.crx 文件或*.js 文件直接拖拽到浏览器的“扩展程序”（<a href="&quot;Chrome 扩展程序页面&quot;">chrome://chrome/extensions</a>/）页面。<br><img src="http://img.blog.csdn.net/20141124215558921?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>( 注：只有拖动到此页面才能安装，其它页面无效)</p>
+<p>　　2. 按照提示安装<br><img src="http://img.blog.csdn.net/20141124215611765?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>详细安装过程见<a href="http://www.williamlong.info/archives/3160.html" target="_blank" rel="external">http://www.williamlong.info/archives/3160.html</a></p>
+<p>3,配置软件功能</p>
+<p>左键点击图标,可以选择开关扩展功能(默认为开启)<br> <img src="http://img.blog.csdn.net/20141124215702865?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>4.使用软件</p>
+<p>如果软件的功能打开,那么如果当你使用cmcc-edu的时候会自动跳转完成登录,不再需要手动操作,登录成功页面如下,你可以关闭这个页面了<br><img src="http://img.blog.csdn.net/20141124215651437?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>5.下线</p>
+<p>在任何页面按ALT+X   可以下线</p>
+<p>Ps,如果按Alt+x无任何提示,可能是快捷键设置有问题<br> <img src="http://img.blog.csdn.net/20141124215717575?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p><img src="http://img.blog.csdn.net/20141124215740968?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>那就需要你按照上图手动设置快捷键</p>
+<p>6 反馈<br>如果发现任何bug,可以和我联系</p>
+<p>新浪微博<a href="http://weibo.com/517123263" target="_blank" rel="external">http://weibo.com/517123263</a><br>Github项目地址 <a href="https://github.com/Jackroyal/cmcc520" target="_blank" rel="external">https://github.com/Jackroyal/cmcc520</a><br>我的csdn博客<a href="file:///C:/Users/chenhao/Desktop/%20http:/blog.csdn.net/jackroyal" target="_blank" rel="external"> http://blog.csdn.net/jackroyal</a></p>
+<p>2014/11/24</p>
+
+             <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate" class="btn_donate" href="javascript:;" title="Donate 打赏"></a>
+        <span class="donate_txt">
+           &uarr;<br>
+           Enjoy it ? Donate me !  此文对你有帮助？求鼓励，求支持！
+        </span>
+        <br>
+      </div>
+
+      <div id="donate_guide" class="donate_bar center hidden">
+          <!-- 支付宝打赏图案 -->
+          <a href="http://ww4.sinaimg.cn/large/692869a3gw1esp065y3aaj207i07i74o.jpg" title="支付宝打赏" class="fancybox" rel="article0"       style="float:left;margin-left:20%;margin-right:2px;">
+          <span class="donate_txt title">
+          支付宝
+          </span>
+          <img src="http://ww4.sinaimg.cn/large/692869a3gw1esp065y3aaj207i07i74o.jpg" title="支付宝打赏" height="164px" width="164px">
+          </a>
+
+    <!-- 微信打赏图案 -->
+          <a href="http://ww2.sinaimg.cn/large/692869a3gw1esp02tdokcj20al0ahgmy.jpg" title="微信打赏" class="fancybox" rel="article0"  >
+          <span class="donate_txt title">
+          微  信
+          </a>
+          <img src="http://ww2.sinaimg.cn/large/692869a3gw1esp02tdokcj20al0ahgmy.jpg" title="微信打赏" height="164px" width="164px">
+          </span>
+        <span class="donate_txt center">
+           <br>
+           Thank You very much !  来来来,小手抖一抖！
+        </span>
+      </div>
+
+<script type="text/javascript">
+document.getElementById('btn_donate').onclick = function(){
+  $('#donate_board').addClass('hidden');
+  $('#donate_guide').removeClass('hidden');
+}
+</script>
+
+        转载请注明文章出处:<a href="undefined">undefined</a>
+      
+    </div>
+    <footer>
+      
+        
+        
+        <div class="alignright">
+          <a href="http://jackroyal.github.io/2014/11/24/cmcc520扩展使用说明/#duoshuo_thread" class="comment-link">Comments</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-24T07:16:00.000Z"><a href="/2014/11/24/chrome扩展开发手记-chrome扩展开始第一步manfest.json/">2014-11-24</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/11/24/chrome扩展开发手记-chrome扩展开始第一步manfest.json/">chrome扩展开发手记-chrome扩展开始第一步manfest.json</a></h1>
+  
+
+    
+    <div class="busuanzi_container_page_pv">
+      <span class="head-plus">
+      <i class="fa fa-user"></i><span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>次访问
+      </span>
+      <span class="head-plus">
+      <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="undefined-undefined"><i class="fa fa-spinner fa-spin"></i></span>条评论
+      </span>
+    </div>
+    
+    </header>
+    <div class="entry">
+      
+        <p>参考文档   <a href="https://lmk123.duapp.com/" target="_blank" rel="external">https://lmk123.duapp.com/</a></p>
+<p>下面开始写chrome扩展了,第一步就是看文档,官方文档有入门指导,先要过一遍</p>
+<p>我们首先来编写第一个文件manfest.json,这是一个清单文件,告诉系统,我有哪些文件,需要申请哪些权限都在里面,下卖弄给出我的manfest.json</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"name"</span>:<span class="string">"cmcc520"</span>,<span class="comment">//扩展的名称</span></span><br><span class="line">    <span class="string">"version"</span>:<span class="string">"2.0"</span>,<span class="comment">//扩展的版本号,随便写</span></span><br><span class="line">    <span class="string">"description"</span>:<span class="string">"powered by 搁浅St"</span>,<span class="comment">//扩展的描述,就是在chrome://extension页面中,扩展名称下面的几个字</span></span><br><span class="line">    <span class="string">"background"</span>: &#123;<span class="comment">//background.js,整个扩展的运行,有个页面在后台运行</span></span><br><span class="line">        <span class="string">"scripts"</span>: [<span class="string">"js/function.js"</span>,<span class="string">"bg.js"</span>],</span><br><span class="line">        <span class="string">"persistent"</span>: <span class="literal">false</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"page_action"</span>:&#123;<span class="comment">//比较常见有page_action和browser_action有,page会出现在地址栏末端,browser会在浏览器上显示一个图标</span></span><br><span class="line">        <span class="string">"default_icon"</span>:<span class="string">"icon-48.png"</span>,</span><br><span class="line">        <span class="string">"default_popup"</span>: <span class="string">"popup.html"</span>,<span class="comment">//popup.html点击弹出的页面</span></span><br><span class="line">        <span class="string">"default_title"</span>:<span class="string">"cmcc520"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"permissions"</span> : [<span class="comment">//申请内容脚本的权限,在插入内容到页面时,需要用哪些权限,此处必须声明</span></span><br><span class="line">        <span class="string">"tabs"</span>, <span class="string">"http://\*/\*"</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"icons"</span> : &#123;<span class="comment">//图标设置</span></span><br><span class="line">        <span class="string">"48"</span> : <span class="string">"icon-48.png"</span>,</span><br><span class="line">        <span class="string">"128"</span> : <span class="string">"icon-128.png"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"commands"</span>: &#123;<span class="comment">//快捷键设置</span></span><br><span class="line">        <span class="string">"logout_cmcc"</span>: &#123;</span><br><span class="line">            <span class="string">"description"</span>: <span class="string">"退出CMCC登录"</span>,</span><br><span class="line">            <span class="string">"suggested_key"</span>: &#123;</span><br><span class="line">                <span class="string">"default"</span>: <span class="string">"Alt+X"</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">"manifest_version"</span>:<span class="number">2</span><span class="comment">//manifest_version,现在版本1已经不支持,统一都写成2</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>简单的属性,这里不再赘述,我重点说一下background,page_action,permissions和commands.</p>
+<p>background  它是一个包含扩展程序主要逻辑的不可见页面。扩展程序也可以包含其他页面，展现扩展程序的用户界面。如果扩展程序需要与用户加载的网页交互（相对于包含在扩展程序中的页面），扩展程序必须使用内容脚本。后台网页分两种：持续运行的后台网页与事件页面(设置persistent属性)。正如它们的名称所述，持续运行的后台网页保持打开状态，事件页面根据需要打开与关闭。除非您绝对需要您的后台网页一直运行，请首选事件页面。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"background"</span>: &#123;<span class="comment">//background.js,整个扩展的运行,有个页面在后台运行</span></span><br><span class="line">    <span class="string">"scripts"</span>: [<span class="string">"js/function.js"</span>,<span class="string">"bg.js"</span>],</span><br><span class="line">    <span class="string">"persistent"</span>: <span class="literal">false</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>比如我的这个 后台执行就是这样的</p>
+<p><img src="http://img.blog.csdn.net/20141124194616706?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>采用pageaction还是browseraction取决于你是否想让图标一直可见.`<img src="http://img.blog.csdn.net/20141124193151343?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>如图,绿色的是广告终结者,他的图标是pageAction,后面的印象笔记还有switchproxy是browserAction.一般来说,适用于少数页面的扩展建议使用pageaction,适用于大多数页面的建议使用browseraction</p>
+<p>permissions属性,用来设置和conten_script相关的选项,举个例子,如果你想插入一段代码到页面中去执行,操作页面上的dom,那就写个content_script就行了,使用 content_scripts 字段，扩展程序可以向一个页面中插入多个内容脚本，每个内容脚本可以有多个<br> JavaScript 和 CSS 文件,详细情况请看这里<a href="https://lmk123.duapp.com/extensions/content_scripts" target="_blank" rel="external">https://lmk123.duapp.com/extensions/content_scripts</a></p>
+<p>我现在在做的一个扩展就是做这样的事,百度的搜索结果会先跳到一个百度的网址,然后才是目标网址,我可以使用cotent_scripts来插入脚本,修改百度搜索结果的链接,让他直接跳转到目标页面,而不是百度的搜索结果页面.</p>
+<p>commands选项是设置快捷键,然后给快捷键设置事件 监听,这样我们按快捷键就会执行相应操作.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"logout_cmcc"</span>: &#123;<span class="comment">//某个快捷操作的名称</span></span><br><span class="line">    <span class="string">"description"</span>: <span class="string">"退出CMCC登录"</span>,<span class="comment">//快捷操作的描述</span></span><br><span class="line">    <span class="string">"suggested_key"</span>: &#123;<span class="comment">//默认推荐的快捷键,不能与系统默认的快捷键冲突,否则就会失灵,需要用户手动去设置</span></span><br><span class="line">        <span class="string">"default"</span>: <span class="string">"Alt+X"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+             <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate" class="btn_donate" href="javascript:;" title="Donate 打赏"></a>
+        <span class="donate_txt">
+           &uarr;<br>
+           Enjoy it ? Donate me !  此文对你有帮助？求鼓励，求支持！
+        </span>
+        <br>
+      </div>
+
+      <div id="donate_guide" class="donate_bar center hidden">
+          <!-- 支付宝打赏图案 -->
+          <a href="http://ww4.sinaimg.cn/large/692869a3gw1esp065y3aaj207i07i74o.jpg" title="支付宝打赏" class="fancybox" rel="article0"       style="float:left;margin-left:20%;margin-right:2px;">
+          <span class="donate_txt title">
+          支付宝
+          </span>
+          <img src="http://ww4.sinaimg.cn/large/692869a3gw1esp065y3aaj207i07i74o.jpg" title="支付宝打赏" height="164px" width="164px">
+          </a>
+
+    <!-- 微信打赏图案 -->
+          <a href="http://ww2.sinaimg.cn/large/692869a3gw1esp02tdokcj20al0ahgmy.jpg" title="微信打赏" class="fancybox" rel="article0"  >
+          <span class="donate_txt title">
+          微  信
+          </a>
+          <img src="http://ww2.sinaimg.cn/large/692869a3gw1esp02tdokcj20al0ahgmy.jpg" title="微信打赏" height="164px" width="164px">
+          </span>
+        <span class="donate_txt center">
+           <br>
+           Thank You very much !  来来来,小手抖一抖！
+        </span>
+      </div>
+
+<script type="text/javascript">
+document.getElementById('btn_donate').onclick = function(){
+  $('#donate_board').addClass('hidden');
+  $('#donate_guide').removeClass('hidden');
+}
+</script>
+
+        转载请注明文章出处:<a href="undefined">undefined</a>
+      
+    </div>
+    <footer>
+      
+        
+        
+        <div class="alignright">
+          <a href="http://jackroyal.github.io/2014/11/24/chrome扩展开发手记-chrome扩展开始第一步manfest.json/#duoshuo_thread" class="comment-link">Comments</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-24T03:18:00.000Z"><a href="/2014/11/24/chrome扩展开发手记2-登录原理分析/">2014-11-24</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/11/24/chrome扩展开发手记2-登录原理分析/">chrome扩展开发手记&lt;2&gt;-登录原理分析</a></h1>
+  
+
+    
+    <div class="busuanzi_container_page_pv">
+      <span class="head-plus">
+      <i class="fa fa-user"></i><span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>次访问
+      </span>
+      <span class="head-plus">
+      <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="undefined-undefined"><i class="fa fa-spinner fa-spin"></i></span>条评论
+      </span>
+    </div>
+    
+    </header>
+    <div class="entry">
+      
+        <p>上一篇,我们 介绍了一下登录的流程,但是用程序进行登录的话,我们肯定不能那样一步一步,太过复杂,所以我们接下来分下一下登录的具体过程,看看能不能作一些简化</p>
+<p>我们接下来,给几个页面编个号,下面好分析一点<br>A   最原始的跳转 <a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external">http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU</a><br>B  第一次改ssid  <a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external">http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free</a></p>
+<p>C 第一次点击 请点击登录  以后的地址<br><a href="http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free" target="_blank" rel="external">http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free</a></p>
+<p>D 第二次改ssid<br><a href="http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free" target="_blank" rel="external">http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC520</a></p>
+<ol>
+<li>从www.baidu.com跳转到A地址,这个步骤没什么特别的,服务器那边做了一个302跳转,然后我们这边就自动跳转到A地址了</li>
+<li><p>第一次改ssid,也就是从A到B,这个过程也没什么,只是一个单纯的地址跳转,B地址中有一个表单<br><br><img src="http://img.blog.csdn.net/20141124134725891?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br><br>这个表单里面 主要包含四个字段,<br><br>wlanacname:1022.0027.270.00<br><br>wlanuserip:10.80.97.209<br>ssid:iWuhan-Free<br><br>userAgent_1:Mozilla/5.0 (Windows NT 6.2)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36</p>
+</li>
+<li><p>我们第一次点击 请提交登录,所做的操作就是把上面的表单提交到  <a href="http://120.202.164.10:8080/portal/servlets/SingleLoginServlet" target="_blank" rel="external">http://120.202.164.10:8080/portal/servlets/SingleLoginServlet</a><br><br>服务器返回的地址是C,这一步的表单提交主要是为了获取C的地址,就是因为多了的那个loginFree.jsp,这样下一步才能改ssid为CMCC520,否则,如果你越过这一步直接改ssid为CMCC520,就会跳转到其他的页面,比如下面这个<img src="http://img.blog.csdn.net/20141124133708801?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br><br>这个地址如果点击提交,是没有办法正常登陆的,我们必须要到武汉的那个页面才行.</p>
+</li>
+<li>在我们到达C那个页面以后,我们再次修改ssid,就到了D页面,然后在D页面点击  请点击登录,流程和上面的一样,页面效果也是一样,不过表单的值变了一个,具体表单post内容如下<br><br>wlanacname:1022.0027.270.00<br><br>wlanuserip:10.80.97.209<br>ssid:CMCC520<br>userAgent_1:Mozilla/5.0 (Windows NT 6.2)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36<br><br>提交以后,我们就可以登录成功了,成功以后服务器会做一个302跳转,页面跳转到一个登录计时的页面.</li>
+</ol>
+<p>************************************************************************************************************************************************************<br><em><br>
+</em><br>从整体来看,最核心的一个操作就是向<a href="http://120.202.164.10:8080/portal/servlets/SingleLoginServlet" target="_blank" rel="external">http://120.202.164.10:8080/portal/servlets/SingleLoginServlet</a>提交一个表单,表单内容是<br>wlanacname:1022.0027.270.00<br>wlanuserip:10.80.97.209<br>ssid:CMCC520<br>userAgent<em>1:Mozilla/5.0 (Windows NT 6.2)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36<br>然后,然后就没有然后了,那个最后计时页面的跳转没有多大的实际作用,我们只需要post这一个请求就好了<br>下一步我们开始制作chrome扩展,核心也是要实现这个post的请求
+</em>************************************************************************************************************************************************************<em>
+</em>退出登录也是如此,发一个get请求过去,然后从获得的内容中进行判断,判断成功与否<em><br>_</em></p>
+<p>下线请求<br><a href="http://120.202.164.10:8080/portal/servlets/LogoutServlet?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC520&amp;ATTRIBUTE_USERNAME=iWuhanFree4300&amp;ATTRIBUTE_UUID=26FBE9A694B6221958CF6DE2704F0ECA&amp;ATTRIBUTE_IPADDRESS=10.80.97.209&amp;cancelAutomatismLogin=false" target="_blank" rel="external">http://120.202.164.10:8080/portal/servlets/LogoutServlet?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC520&amp;ATTRIBUTE_USERNAME=iWuhanFree4300&amp;ATTRIBUTE_UUID=26FBE9A694B6221958CF6DE2704F0ECA&amp;ATTRIBUTE_IPADDRESS=10.80.97.209&amp;cancelAutomatismLogin=false</a></p>
+<p>表单实际内容</p>
+<p>wlanacname:1022.0027.270.00</p>
+<p>wlanuserip:10.80.97.209</p>
+<p>ssid:CMCC520</p>
+<p>ATTRIBUTE_USERNAME:iWuhanFree4300</p>
+<p>ATTRIBUTE_UUID:26FBE9A694B6221958CF6DE2704F0ECA</p>
+<p>ATTRIBUTE_IPADDRESS:10.80.97.209</p>
+<p>cancelAutomatismLogin:false</p>
+
+             <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate" class="btn_donate" href="javascript:;" title="Donate 打赏"></a>
+        <span class="donate_txt">
+           &uarr;<br>
+           Enjoy it ? Donate me !  此文对你有帮助？求鼓励，求支持！
+        </span>
+        <br>
+      </div>
+
+      <div id="donate_guide" class="donate_bar center hidden">
+          <!-- 支付宝打赏图案 -->
+          <a href="http://ww4.sinaimg.cn/large/692869a3gw1esp065y3aaj207i07i74o.jpg" title="支付宝打赏" class="fancybox" rel="article0"       style="float:left;margin-left:20%;margin-right:2px;">
+          <span class="donate_txt title">
+          支付宝
+          </span>
+          <img src="http://ww4.sinaimg.cn/large/692869a3gw1esp065y3aaj207i07i74o.jpg" title="支付宝打赏" height="164px" width="164px">
+          </a>
+
+    <!-- 微信打赏图案 -->
+          <a href="http://ww2.sinaimg.cn/large/692869a3gw1esp02tdokcj20al0ahgmy.jpg" title="微信打赏" class="fancybox" rel="article0"  >
+          <span class="donate_txt title">
+          微  信
+          </a>
+          <img src="http://ww2.sinaimg.cn/large/692869a3gw1esp02tdokcj20al0ahgmy.jpg" title="微信打赏" height="164px" width="164px">
+          </span>
+        <span class="donate_txt center">
+           <br>
+           Thank You very much !  来来来,小手抖一抖！
+        </span>
+      </div>
+
+<script type="text/javascript">
+document.getElementById('btn_donate').onclick = function(){
+  $('#donate_board').addClass('hidden');
+  $('#donate_guide').removeClass('hidden');
+}
+</script>
+
+        转载请注明文章出处:<a href="undefined">undefined</a>
+      
+    </div>
+    <footer>
+      
+        
+        
+        <div class="alignright">
+          <a href="http://jackroyal.github.io/2014/11/24/chrome扩展开发手记2-登录原理分析/#duoshuo_thread" class="comment-link">Comments</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-21T10:17:00.000Z"><a href="/2014/11/21/chrome扩展开发手记1-需求分析/">2014-11-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/11/21/chrome扩展开发手记1-需求分析/">chrome扩展开发手记&lt;1&gt;-需求分析</a></h1>
+  
+
+    
+    <div class="busuanzi_container_page_pv">
+      <span class="head-plus">
+      <i class="fa fa-user"></i><span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>次访问
+      </span>
+      <span class="head-plus">
+      <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="undefined-undefined"><i class="fa fa-spinner fa-spin"></i></span>条评论
+      </span>
+    </div>
+    
+    </header>
+    <div class="entry">
+      
+        <p>本人的学校在武汉,有CMCC-EDU的网络覆盖,中国移动和武汉市政府搞了一个活动,可以免费公益上网,说白了,就是可以免费使用EDU的网络,如图.<br><img src="http://img.blog.csdn.net/20141121181910580?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>以上是前提.</p>
+<p>这个网络的使用流程是这样子的.</p>
+<ol>
+<li>你打开任何一个网址,比如<a href="http://www.baidu.com" target="_blank" rel="external">http://www.baidu.com</a>  <br><br>都会跳转到 <a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external"></a><a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external">http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU</a>  界面如图所示<br><br><img src="http://img.blog.csdn.net/20141124103645611?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></li>
+<li>接下来我们手动更改最上面的网址栏,把ssid改为iWuhan-Free,(注意大小写)<br><br>修改后的网址如下<a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external">http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free</a>界面如下<br><br><img src="http://img.blog.csdn.net/20141124104120281?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></li>
+<li>接下来我们点击,请点击登录按钮,系统反馈如下<br><br><img src="http://img.blog.csdn.net/20141124104623968?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br><br>我们忽略这个警告,可以注意到,上面的地址栏已经变掉了,多了个loginFree.jsp完整的地址<a href="http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free" target="_blank" rel="external">http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free</a></li>
+<li>接下来,我们再改一次ssid,改为CMCC520,完整地址如下<a href="http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free" target="_blank" rel="external">http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC520</a> 界面还是和上图一样,就不贴图了,我们再点击一次,请点击登录,然后就会跳到一个计时页面,这样就表示你登录成功,可以上网了</li>
+</ol>
+<p>登录的流程走完了,下一篇,接下来我们分析一下登录的原理,简化一下登录的流程</p>
+
+             <div id="donate_board" class="donate_bar center">
+        <a id="btn_donate" class="btn_donate" href="javascript:;" title="Donate 打赏"></a>
+        <span class="donate_txt">
+           &uarr;<br>
+           Enjoy it ? Donate me !  此文对你有帮助？求鼓励，求支持！
+        </span>
+        <br>
+      </div>
+
+      <div id="donate_guide" class="donate_bar center hidden">
+          <!-- 支付宝打赏图案 -->
+          <a href="http://ww4.sinaimg.cn/large/692869a3gw1esp065y3aaj207i07i74o.jpg" title="支付宝打赏" class="fancybox" rel="article0"       style="float:left;margin-left:20%;margin-right:2px;">
+          <span class="donate_txt title">
+          支付宝
+          </span>
+          <img src="http://ww4.sinaimg.cn/large/692869a3gw1esp065y3aaj207i07i74o.jpg" title="支付宝打赏" height="164px" width="164px">
+          </a>
+
+    <!-- 微信打赏图案 -->
+          <a href="http://ww2.sinaimg.cn/large/692869a3gw1esp02tdokcj20al0ahgmy.jpg" title="微信打赏" class="fancybox" rel="article0"  >
+          <span class="donate_txt title">
+          微  信
+          </a>
+          <img src="http://ww2.sinaimg.cn/large/692869a3gw1esp02tdokcj20al0ahgmy.jpg" title="微信打赏" height="164px" width="164px">
+          </span>
+        <span class="donate_txt center">
+           <br>
+           Thank You very much !  来来来,小手抖一抖！
+        </span>
+      </div>
+
+<script type="text/javascript">
+document.getElementById('btn_donate').onclick = function(){
+  $('#donate_board').addClass('hidden');
+  $('#donate_guide').removeClass('hidden');
+}
+</script>
+
+        转载请注明文章出处:<a href="undefined">undefined</a>
+      
+    </div>
+    <footer>
+      
+        
+        
+        <div class="alignright">
+          <a href="http://jackroyal.github.io/2014/11/21/chrome扩展开发手记1-需求分析/#duoshuo_thread" class="comment-link">Comments</a>
         </div>
         
       
@@ -825,6 +1070,14 @@ document.getElementById('btn_donate').onclick = function(){
   <ul class="entry">
     
       <li>
+        <a href="/2015/06/16/digitalocean-support-google-scholar-by-ipv6/">digitalocean support google scholar by ipv6</a>
+      </li>
+    
+      <li>
+        <a href="/2015/06/16/hexo-3-0-update/">hexo 3.0 update</a>
+      </li>
+    
+      <li>
         <a href="/2015/05/30/hexo-setting-with-comments-and-visitors/">给hexo配置上评论和访问量</a>
       </li>
     
@@ -836,14 +1089,6 @@ document.getElementById('btn_donate').onclick = function(){
         <a href="/2015/05/15/holes-in-ie6-about-html5/">html5在ie中遇到的那些坑</a>
       </li>
     
-      <li>
-        <a href="/2015/05/15/opencv-and-vs2010-in-win8/">win8中使用vs2010配置opencv</a>
-      </li>
-    
-      <li>
-        <a href="/2015/05/06/opencv-lbph-source-code-analysis/">opencv中LBPH的人脸识别代码分析</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -852,7 +1097,7 @@ document.getElementById('btn_donate').onclick = function(){
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/Linux/" style="font-size: 18.00px;">Linux</a><a href="/tags/chrome/" style="font-size: 16.00px;">chrome</a><a href="/tags/cmcc-edu/" style="font-size: 16.00px;">cmcc-edu</a><a href="/tags/csdn/" style="font-size: 10.00px;">csdn</a><a href="/tags/css/" style="font-size: 10.00px;">css</a><a href="/tags/github/" style="font-size: 14.00px;">github</a><a href="/tags/hexo/" style="font-size: 18.00px;">hexo</a><a href="/tags/html5/" style="font-size: 10.00px;">html5</a><a href="/tags/ie/" style="font-size: 10.00px;">ie</a><a href="/tags/javascript/" style="font-size: 12.00px;">javascript</a><a href="/tags/js/" style="font-size: 10.00px;">js</a><a href="/tags/kali/" style="font-size: 12.00px;">kali</a><a href="/tags/lbph/" style="font-size: 10.00px;">lbph</a><a href="/tags/opencv/" style="font-size: 16.00px;">opencv</a><a href="/tags/python/" style="font-size: 20.00px;">python</a><a href="/tags/requests/" style="font-size: 10.00px;">requests</a><a href="/tags/scrapy/" style="font-size: 10.00px;">scrapy</a><a href="/tags/select/" style="font-size: 10.00px;">select</a><a href="/tags/shadowsocks/" style="font-size: 10.00px;">shadowsocks</a><a href="/tags/socket/" style="font-size: 12.00px;">socket</a><a href="/tags/sql/" style="font-size: 10.00px;">sql</a><a href="/tags/sql-server/" style="font-size: 10.00px;">sql server</a><a href="/tags/ubuntu/" style="font-size: 12.00px;">ubuntu</a><a href="/tags/vs2010/" style="font-size: 10.00px;">vs2010</a><a href="/tags/wamp/" style="font-size: 10.00px;">wamp</a><a href="/tags/win8/" style="font-size: 10.00px;">win8</a><a href="/tags/windows/" style="font-size: 10.00px;">windows</a><a href="/tags/中国移动/" style="font-size: 14.00px;">中国移动</a><a href="/tags/兼容性/" style="font-size: 10.00px;">兼容性</a><a href="/tags/前端/" style="font-size: 14.00px;">前端</a><a href="/tags/图像处理/" style="font-size: 14.00px;">图像处理</a><a href="/tags/扩展/" style="font-size: 12.00px;">扩展</a><a href="/tags/模拟登录/" style="font-size: 10.00px;">模拟登录</a><a href="/tags/正则/" style="font-size: 10.00px;">正则</a><a href="/tags/正则表达式/" style="font-size: 10.00px;">正则表达式</a><a href="/tags/爬虫/" style="font-size: 12.00px;">爬虫</a><a href="/tags/脚本/" style="font-size: 12.00px;">脚本</a><a href="/tags/表单/" style="font-size: 10.00px;">表单</a><a href="/tags/软件安装与技巧/" style="font-size: 10.00px;">软件安装与技巧</a>
+    <a href="/tags/Linux/" style="font-size: 18px;">Linux</a> <a href="/tags/chrome/" style="font-size: 16px;">chrome</a> <a href="/tags/cmcc-edu/" style="font-size: 16px;">cmcc-edu</a> <a href="/tags/csdn/" style="font-size: 10px;">csdn</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/github/" style="font-size: 14px;">github</a> <a href="/tags/hexo/" style="font-size: 18px;">hexo</a> <a href="/tags/html5/" style="font-size: 10px;">html5</a> <a href="/tags/ie/" style="font-size: 10px;">ie</a> <a href="/tags/javascript/" style="font-size: 12px;">javascript</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/kali/" style="font-size: 12px;">kali</a> <a href="/tags/lbph/" style="font-size: 10px;">lbph</a> <a href="/tags/opencv/" style="font-size: 16px;">opencv</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/requests/" style="font-size: 10px;">requests</a> <a href="/tags/scrapy/" style="font-size: 10px;">scrapy</a> <a href="/tags/select/" style="font-size: 10px;">select</a> <a href="/tags/shadowsocks/" style="font-size: 10px;">shadowsocks</a> <a href="/tags/socket/" style="font-size: 12px;">socket</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/sql-server/" style="font-size: 10px;">sql server</a> <a href="/tags/ubuntu/" style="font-size: 12px;">ubuntu</a> <a href="/tags/vs2010/" style="font-size: 10px;">vs2010</a> <a href="/tags/wamp/" style="font-size: 10px;">wamp</a> <a href="/tags/win8/" style="font-size: 10px;">win8</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/中国移动/" style="font-size: 14px;">中国移动</a> <a href="/tags/兼容性/" style="font-size: 10px;">兼容性</a> <a href="/tags/前端/" style="font-size: 14px;">前端</a> <a href="/tags/图像处理/" style="font-size: 14px;">图像处理</a> <a href="/tags/扩展/" style="font-size: 12px;">扩展</a> <a href="/tags/模拟登录/" style="font-size: 10px;">模拟登录</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/爬虫/" style="font-size: 12px;">爬虫</a> <a href="/tags/脚本/" style="font-size: 12px;">脚本</a> <a href="/tags/表单/" style="font-size: 10px;">表单</a> <a href="/tags/软件安装与技巧/" style="font-size: 10px;">软件安装与技巧</a>
   </div>
 </div>
 
@@ -872,7 +1117,7 @@ document.getElementById('btn_donate').onclick = function(){
   </div>
   <footer id="footer" class="inner"><div class="alignleft">
   
-  &copy; 2015 搁浅St
+  &copy; 2015 John Doe
   
 <span id="busuanzi_container_site_pv">
      <i class="fa fa-flag"></i>    你是第<span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span>个到访的小伙伴

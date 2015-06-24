@@ -6,6 +6,7 @@ categories:
 - hexo
 ---
 可能受到上次ddos的问题,这两天国内访问github,总是感觉不顺畅.
+<!-- more -->
 今天下午写了一篇博客,可是却发布不成功,一直卡在这一步:
 ![hexo发布的时候卡住](http://ww3.sinaimg.cn/large/692869a3gw1eqmrrf20j1j20g006676y.jpg)
 
