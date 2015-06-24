@@ -68,7 +68,7 @@ npm@1.4.28 D:\Program Files (x86)\nodejs\node_modules\npm
 接下来的操作我都是用**Github for windows**自带的Bash来完成的,因为后面会涉及到SSH,用**Github for windows**,就可以避免这个问题.
 - 在Bash中输入以下命令
 ```
-npm install -g hexo
+npm install hexo-cli -g
 ```
 - 创建hexo文件夹
 创建你hexo放置的文件夹,先用Bash进入到目标文件夹,比如我的是F:/blog/,接下来初始化hexo,自动生成相关的文件,在F:/blog/环境下,输入
@@ -98,7 +98,12 @@ hexo s
 > PS:有个大小写的问题其实我注册的是Jackroyal,大写的J,但是我访问的时候特别是带https的链接,他会自动转为小写访问.怎么说呢?简单点,你就按照你的用户名来,该大写大写,该小写小写
 
 #部署
-现在万事俱备,只差部署了,我们来配置下`_config.yml`.
+现在万事俱备,只差部署了.
+hexo3.0,跟2.0不同,deploy插件我们需要手动去安装,执行如下命令:
+```
+npm install hexo-deployer-git --save
+```
+接下来,我们来配置deploy的信息,修改`_config.yml`.
 这个文件在路径是F:/blog/_config.yml.
 用编辑器把它打开,修改最后一段
 ```
