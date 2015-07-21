@@ -53,6 +53,52 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2015-03-03T13:17:41.000Z"><a href="/2015/03/03/kali-and-ubuntu/">2015-03-03</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/03/03/kali-and-ubuntu/">kali和ubuntu双系统安装</a></h1>
+  
+
+    
+    
+    </header>
+    <div class="entry">
+      
+        <p>时间忽快忽慢，一转眼，年过完了，又回来学校了，又一个多月没有push了，重新回到github。今天我们家笨笨给我找了点kali的资料，索性就把kali捡起来，第一步安装kali的系统。<br>此处背景不再介绍，直奔主题。kali的安装过程和ubuntu的安装过程类似，应该说原理上是一模一样的，只是界面有些不同。我的电脑当前已经安装了win8和ubuntu，现在需要再加一个kali的系统，三系统共存。<br>大体分为如下几个步骤：</p>
+<h3 id="1_下载kali镜像">1 下载kali镜像</h3><h3 id="2_刻录u盘">2 刻录u盘</h3><h3 id="3_安装kali">3 安装kali</h3><h2 id="<!-_more_->">
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2015/03/03/kali-and-ubuntu/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+        <div class="alignright">
+          <a href="http://jackroyal.github.io/2015/03/03/kali-and-ubuntu/#duoshuo_thread" class="comment-link">Comments</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2015-01-18T16:53:48.000Z"><a href="/2015/01/19/linux下使用github/">2015-01-19</a></time>
       
       
@@ -763,119 +809,6 @@ document.getElementById('btn_donate').onclick = function(){
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2014-11-24T03:18:00.000Z"><a href="/2014/11/24/chrome扩展开发手记2-登录原理分析/">2014-11-24</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/11/24/chrome扩展开发手记2-登录原理分析/">chrome扩展开发手记&lt;2&gt;-登录原理分析</a></h1>
-  
-
-    
-    <div class="busuanzi_container_page_pv">
-      <span class="head-plus">
-      <i class="fa fa-user"></i><span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>次访问
-      </span>
-      <span class="head-plus">
-      <i class="fa fa-comments"></i><span class="ds-thread-count" data-thread-key="undefined-undefined"><i class="fa fa-spinner fa-spin"></i></span>条评论
-      </span>
-    </div>
-    
-    </header>
-    <div class="entry">
-      
-        <p>上一篇,我们 介绍了一下登录的流程,但是用程序进行登录的话,我们肯定不能那样一步一步,太过复杂,所以我们接下来分下一下登录的具体过程,看看能不能作一些简化</p>
-<p>我们接下来,给几个页面编个号,下面好分析一点<br>A   最原始的跳转 <a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external">http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU</a><br>B  第一次改ssid  <a href="http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC-EDU" target="_blank" rel="external">http://120.202.164.10:8080/portal/?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free</a></p>
-<p>C 第一次点击 请点击登录  以后的地址<br><a href="http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free" target="_blank" rel="external">http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free</a></p>
-<p>D 第二次改ssid<br><a href="http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=iWuhan-Free" target="_blank" rel="external">http://120.202.164.10:8080/portal/loginFree.jsp?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC520</a></p>
-<ol>
-<li>从www.baidu.com跳转到A地址,这个步骤没什么特别的,服务器那边做了一个302跳转,然后我们这边就自动跳转到A地址了</li>
-<li><p>第一次改ssid,也就是从A到B,这个过程也没什么,只是一个单纯的地址跳转,B地址中有一个表单<br><br><img src="http://img.blog.csdn.net/20141124134725891?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br><br>这个表单里面 主要包含四个字段,<br><br>wlanacname:1022.0027.270.00<br><br>wlanuserip:10.80.97.209<br>ssid:iWuhan-Free<br><br>userAgent_1:Mozilla/5.0 (Windows NT 6.2)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36</p>
-</li>
-<li><p>我们第一次点击 请提交登录,所做的操作就是把上面的表单提交到  <a href="http://120.202.164.10:8080/portal/servlets/SingleLoginServlet" target="_blank" rel="external">http://120.202.164.10:8080/portal/servlets/SingleLoginServlet</a><br><br>服务器返回的地址是C,这一步的表单提交主要是为了获取C的地址,就是因为多了的那个loginFree.jsp,这样下一步才能改ssid为CMCC520,否则,如果你越过这一步直接改ssid为CMCC520,就会跳转到其他的页面,比如下面这个<img src="http://img.blog.csdn.net/20141124133708801?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmFja3JveWFs/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""><br><br>这个地址如果点击提交,是没有办法正常登陆的,我们必须要到武汉的那个页面才行.</p>
-</li>
-<li>在我们到达C那个页面以后,我们再次修改ssid,就到了D页面,然后在D页面点击  请点击登录,流程和上面的一样,页面效果也是一样,不过表单的值变了一个,具体表单post内容如下<br><br>wlanacname:1022.0027.270.00<br><br>wlanuserip:10.80.97.209<br>ssid:CMCC520<br>userAgent_1:Mozilla/5.0 (Windows NT 6.2)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36<br><br>提交以后,我们就可以登录成功了,成功以后服务器会做一个302跳转,页面跳转到一个登录计时的页面.</li>
-</ol>
-<p>************************************************************************************************************************************************************<br><em><br>
-</em><br>从整体来看,最核心的一个操作就是向<a href="http://120.202.164.10:8080/portal/servlets/SingleLoginServlet" target="_blank" rel="external">http://120.202.164.10:8080/portal/servlets/SingleLoginServlet</a>提交一个表单,表单内容是<br>wlanacname:1022.0027.270.00<br>wlanuserip:10.80.97.209<br>ssid:CMCC520<br>userAgent<em>1:Mozilla/5.0 (Windows NT 6.2)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36<br>然后,然后就没有然后了,那个最后计时页面的跳转没有多大的实际作用,我们只需要post这一个请求就好了<br>下一步我们开始制作chrome扩展,核心也是要实现这个post的请求
-</em>************************************************************************************************************************************************************<em>
-</em>退出登录也是如此,发一个get请求过去,然后从获得的内容中进行判断,判断成功与否<em><br>_</em></p>
-<p>下线请求<br><a href="http://120.202.164.10:8080/portal/servlets/LogoutServlet?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC520&amp;ATTRIBUTE_USERNAME=iWuhanFree4300&amp;ATTRIBUTE_UUID=26FBE9A694B6221958CF6DE2704F0ECA&amp;ATTRIBUTE_IPADDRESS=10.80.97.209&amp;cancelAutomatismLogin=false" target="_blank" rel="external">http://120.202.164.10:8080/portal/servlets/LogoutServlet?wlanacname=1022.0027.270.00&amp;wlanuserip=10.80.97.209&amp;ssid=CMCC520&amp;ATTRIBUTE_USERNAME=iWuhanFree4300&amp;ATTRIBUTE_UUID=26FBE9A694B6221958CF6DE2704F0ECA&amp;ATTRIBUTE_IPADDRESS=10.80.97.209&amp;cancelAutomatismLogin=false</a></p>
-<p>表单实际内容</p>
-<p>wlanacname:1022.0027.270.00</p>
-<p>wlanuserip:10.80.97.209</p>
-<p>ssid:CMCC520</p>
-<p>ATTRIBUTE_USERNAME:iWuhanFree4300</p>
-<p>ATTRIBUTE_UUID:26FBE9A694B6221958CF6DE2704F0ECA</p>
-<p>ATTRIBUTE_IPADDRESS:10.80.97.209</p>
-<p>cancelAutomatismLogin:false</p>
-
-             <div id="donate_board" class="donate_bar center">
-        <a id="btn_donate" class="btn_donate" href="javascript:;" title="Donate 打赏"></a>
-        <span class="donate_txt">
-           &uarr;<br>
-           Enjoy it ? Donate me !  此文对你有帮助？求鼓励，求支持！
-        </span>
-        <br>
-      </div>
-
-      <div id="donate_guide" class="donate_bar center hidden">
-          <!-- 支付宝打赏图案 -->
-          <a href="http://ww4.sinaimg.cn/large/692869a3gw1esp065y3aaj207i07i74o.jpg" title="支付宝打赏" class="fancybox" rel="article0"       style="float:left;margin-left:20%;margin-right:2px;">
-          <span class="donate_txt title">
-          支付宝
-          </span>
-          <img src="http://ww4.sinaimg.cn/large/692869a3gw1esp065y3aaj207i07i74o.jpg" title="支付宝打赏" height="164px" width="164px">
-          </a>
-
-    <!-- 微信打赏图案 -->
-          <a href="http://ww2.sinaimg.cn/large/692869a3gw1esp02tdokcj20al0ahgmy.jpg" title="微信打赏" class="fancybox" rel="article0"  >
-          <span class="donate_txt title">
-          微  信
-          </a>
-          <img src="http://ww2.sinaimg.cn/large/692869a3gw1esp02tdokcj20al0ahgmy.jpg" title="微信打赏" height="164px" width="164px">
-          </span>
-        <span class="donate_txt center">
-           <br>
-           Thank You very much !  来来来,小手抖一抖！
-        </span>
-      </div>
-
-<script type="text/javascript">
-document.getElementById('btn_donate').onclick = function(){
-  $('#donate_board').addClass('hidden');
-  $('#donate_guide').removeClass('hidden');
-}
-</script>
-
-        转载请注明文章出处:<a href="undefined">undefined</a>
-      
-    </div>
-    <footer>
-      
-        
-        
-        <div class="alignright">
-          <a href="http://jackroyal.github.io/2014/11/24/chrome扩展开发手记2-登录原理分析/#duoshuo_thread" class="comment-link">Comments</a>
-        </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-
-
 
 <nav id="pagination">
   
@@ -907,6 +840,8 @@ document.getElementById('btn_donate').onclick = function(){
   
     <li><a href="/categories/javascript/">javascript</a><small>2</small></li>
   
+    <li><a href="/categories/php/">php</a><small>1</small></li>
+  
     <li><a href="/categories/python学习笔记/">python学习笔记</a><small>6</small></li>
   
     <li><a href="/categories/前端/">前端</a><small>1</small></li>
@@ -931,6 +866,8 @@ document.getElementById('btn_donate').onclick = function(){
   <ul class="entry">
   
     <li><a href="/tags/Linux/">Linux</a><small>6</small></li>
+  
+    <li><a href="/tags/bool/">bool</a><small>1</small></li>
   
     <li><a href="/tags/chrome/">chrome</a><small>4</small></li>
   
@@ -961,6 +898,8 @@ document.getElementById('btn_donate').onclick = function(){
     <li><a href="/tags/lbph/">lbph</a><small>1</small></li>
   
     <li><a href="/tags/opencv/">opencv</a><small>4</small></li>
+  
+    <li><a href="/tags/php/">php</a><small>1</small></li>
   
     <li><a href="/tags/python/">python</a><small>8</small></li>
   
@@ -1024,6 +963,10 @@ document.getElementById('btn_donate').onclick = function(){
   <ul class="entry">
     
       <li>
+        <a href="/2015/07/20/php-boolean-value/">php中的bool值和类型转换</a>
+      </li>
+    
+      <li>
         <a href="/2015/06/29/ubuntu-14-04-setting-about-thinkphp-url-rewrite/">ubuntu 14.04配置thinkphp路由,隐藏index.php</a>
       </li>
     
@@ -1039,10 +982,6 @@ document.getElementById('btn_donate').onclick = function(){
         <a href="/2015/05/30/hexo-setting-with-comments-and-visitors/">给hexo配置上评论和访问量</a>
       </li>
     
-      <li>
-        <a href="/2015/05/23/python-requests-login-csdn-blog/">基于python的requests库，模拟登录csdn博客</a>
-      </li>
-    
   </ul>
 </div>
 
@@ -1051,7 +990,7 @@ document.getElementById('btn_donate').onclick = function(){
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/Linux/" style="font-size: 16.67px;">Linux</a> <a href="/tags/chrome/" style="font-size: 15px;">chrome</a> <a href="/tags/cmcc-edu/" style="font-size: 15px;">cmcc-edu</a> <a href="/tags/csdn/" style="font-size: 10px;">csdn</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/digitalocean/" style="font-size: 10px;">digitalocean</a> <a href="/tags/github/" style="font-size: 13.33px;">github</a> <a href="/tags/hexo/" style="font-size: 18.33px;">hexo</a> <a href="/tags/html5/" style="font-size: 10px;">html5</a> <a href="/tags/ie/" style="font-size: 10px;">ie</a> <a href="/tags/ipv6/" style="font-size: 10px;">ipv6</a> <a href="/tags/javascript/" style="font-size: 11.67px;">javascript</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/kali/" style="font-size: 11.67px;">kali</a> <a href="/tags/lbph/" style="font-size: 10px;">lbph</a> <a href="/tags/opencv/" style="font-size: 15px;">opencv</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/requests/" style="font-size: 10px;">requests</a> <a href="/tags/scrapy/" style="font-size: 10px;">scrapy</a> <a href="/tags/select/" style="font-size: 10px;">select</a> <a href="/tags/shadowsocks/" style="font-size: 11.67px;">shadowsocks</a> <a href="/tags/socket/" style="font-size: 11.67px;">socket</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/sql-server/" style="font-size: 10px;">sql server</a> <a href="/tags/thinkphp/" style="font-size: 10px;">thinkphp</a> <a href="/tags/ubuntu/" style="font-size: 15px;">ubuntu</a> <a href="/tags/vs2010/" style="font-size: 10px;">vs2010</a> <a href="/tags/wamp/" style="font-size: 10px;">wamp</a> <a href="/tags/win8/" style="font-size: 10px;">win8</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/中国移动/" style="font-size: 13.33px;">中国移动</a> <a href="/tags/兼容性/" style="font-size: 10px;">兼容性</a> <a href="/tags/前端/" style="font-size: 13.33px;">前端</a> <a href="/tags/图像处理/" style="font-size: 13.33px;">图像处理</a> <a href="/tags/扩展/" style="font-size: 11.67px;">扩展</a> <a href="/tags/模拟登录/" style="font-size: 10px;">模拟登录</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/爬虫/" style="font-size: 11.67px;">爬虫</a> <a href="/tags/脚本/" style="font-size: 11.67px;">脚本</a> <a href="/tags/表单/" style="font-size: 10px;">表单</a> <a href="/tags/软件安装与技巧/" style="font-size: 10px;">软件安装与技巧</a>
+    <a href="/tags/Linux/" style="font-size: 16.67px;">Linux</a> <a href="/tags/bool/" style="font-size: 10px;">bool</a> <a href="/tags/chrome/" style="font-size: 15px;">chrome</a> <a href="/tags/cmcc-edu/" style="font-size: 15px;">cmcc-edu</a> <a href="/tags/csdn/" style="font-size: 10px;">csdn</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/digitalocean/" style="font-size: 10px;">digitalocean</a> <a href="/tags/github/" style="font-size: 13.33px;">github</a> <a href="/tags/hexo/" style="font-size: 18.33px;">hexo</a> <a href="/tags/html5/" style="font-size: 10px;">html5</a> <a href="/tags/ie/" style="font-size: 10px;">ie</a> <a href="/tags/ipv6/" style="font-size: 10px;">ipv6</a> <a href="/tags/javascript/" style="font-size: 11.67px;">javascript</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/kali/" style="font-size: 11.67px;">kali</a> <a href="/tags/lbph/" style="font-size: 10px;">lbph</a> <a href="/tags/opencv/" style="font-size: 15px;">opencv</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/requests/" style="font-size: 10px;">requests</a> <a href="/tags/scrapy/" style="font-size: 10px;">scrapy</a> <a href="/tags/select/" style="font-size: 10px;">select</a> <a href="/tags/shadowsocks/" style="font-size: 11.67px;">shadowsocks</a> <a href="/tags/socket/" style="font-size: 11.67px;">socket</a> <a href="/tags/sql/" style="font-size: 10px;">sql</a> <a href="/tags/sql-server/" style="font-size: 10px;">sql server</a> <a href="/tags/thinkphp/" style="font-size: 10px;">thinkphp</a> <a href="/tags/ubuntu/" style="font-size: 15px;">ubuntu</a> <a href="/tags/vs2010/" style="font-size: 10px;">vs2010</a> <a href="/tags/wamp/" style="font-size: 10px;">wamp</a> <a href="/tags/win8/" style="font-size: 10px;">win8</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/中国移动/" style="font-size: 13.33px;">中国移动</a> <a href="/tags/兼容性/" style="font-size: 10px;">兼容性</a> <a href="/tags/前端/" style="font-size: 13.33px;">前端</a> <a href="/tags/图像处理/" style="font-size: 13.33px;">图像处理</a> <a href="/tags/扩展/" style="font-size: 11.67px;">扩展</a> <a href="/tags/模拟登录/" style="font-size: 10px;">模拟登录</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/正则表达式/" style="font-size: 10px;">正则表达式</a> <a href="/tags/爬虫/" style="font-size: 11.67px;">爬虫</a> <a href="/tags/脚本/" style="font-size: 11.67px;">脚本</a> <a href="/tags/表单/" style="font-size: 10px;">表单</a> <a href="/tags/软件安装与技巧/" style="font-size: 10px;">软件安装与技巧</a>
   </div>
 </div>
 

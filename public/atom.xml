@@ -5,7 +5,7 @@
   <subtitle><![CDATA[我最喜欢笨笨]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://jackroyal.github.io//"/>
-  <updated>2015-06-29T13:18:58.127Z</updated>
+  <updated>2015-07-21T10:10:20.064Z</updated>
   <id>http://jackroyal.github.io//</id>
   
   <author>
@@ -14,6 +14,51 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[php中的bool值和类型转换]]></title>
+    <link href="http://jackroyal.github.io/2015/07/20/php-boolean-value/"/>
+    <id>http://jackroyal.github.io/2015/07/20/php-boolean-value/</id>
+    <published>2015-07-20T06:23:21.000Z</published>
+    <updated>2015-07-21T10:10:20.064Z</updated>
+    <content type="html"><![CDATA[<p>最近在写php,发现有个问题一直无法避免,那就是关于php的bool值和类型转换.<br>以前每次遇到要校验一个变量<code>$a</code>,是否为空,都是使用<code>$a==&#39;&#39;</code>去判断,感觉不是很懂,反正一直这样用,也没出太多纰漏,而没有理会什么NUll,’’,0之类的其他值.今天决定研究下,把它彻底搞清楚.<br><a id="more"></a></p>
+<h1 id="1_php的数据类型">1 php的数据类型</h1><p>php支持原始的8总数据类型.<br>4总标量类型:</p>
+<ul>
+<li>boolean</li>
+<li>integer</li>
+<li>float(也称作double类型)</li>
+<li>string<br>2种复合类型</li>
+<li>array(数组)</li>
+<li>object(对象)<br>2种特殊类型</li>
+<li>resource(资源)</li>
+<li>NULL(无类型)<br>实际上 double 和 float 是相同的，由于一些历史的原因，这两个名称同时存在。<br>变量的类型通常不是由程序员设定的，确切地说，是由PHP根据该变量使用的上下文在运行时决定的。<br>前面几种类型很好理解,现在重点看一下resource类型和NULL类型</li>
+</ul>
+<ol>
+<li><code>resource</code> 是一种特殊变量，保存了到外部资源的一个引用。资源是通过专门的函数来建立和使用的。由于资源类型变量保存有为打开文件、数据库连接、图形画布区域等的特殊句柄，因此将其它类型的值转换为资源没有意义。</li>
+<li><code>NULL</code>,特殊的NULL值表示一个变量没有值。NULL类型唯一可能的值就是 NULL。在下列情况下一个变量被认为是NULL：</li>
+</ol>
+<ul>
+<li>被赋值为 NULL。</li>
+<li>尚未被赋值。</li>
+<li>被 unset()。</li>
+</ul>
+<h1 id="2_常用的比较函数">2 常用的比较函数</h1><h3 id="empty()">empty()</h3><p>这个函数最近经常见到,它比较有特点.<br>如果 var 是非空或非零的值，则empty()返回<code>FALSE</code>。<br>换句话说，””、0、”0”、NULL、FALSE、array()、var $var以及没有任何属性的对象都将<br>被认为是空的，返回 TRUE。<br>如果变量没有赋值,empty()也不会报错.</p>
+<h3 id="is_set()">is_set()</h3><p>这个函数和is_null()刚好相反,如果一个函数的is_null()返回<code>true</code>,那么它的is_set()则必定返回相反值,<code>false</code>.</p>
+<h3 id="is_null()">is_null()</h3><p>所有的<code>is_</code>开头的函数,都不会进行类型转换,例如is_bool(‘0’),返回false,因为’0’不是一个布尔类型的值.<br>详细对比看下图<br><img src="http://ww4.sinaimg.cn/large/692869a3gw1euak04nwitj20nf0i2432.jpg" alt="使用 PHP 函数对变量 $x 进行比较"></p>
+<p>更多更详细的比较,大家看这里<a href="http://php.net/manual/zh/types.comparisons.php" target="_blank" rel="external">php类型比较表</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>最近在写php,发现有个问题一直无法避免,那就是关于php的bool值和类型转换.<br>以前每次遇到要校验一个变量<code>$a</code>,是否为空,都是使用<code>$a==&#39;&#39;</code>去判断,感觉不是很懂,反正一直这样用,也没出太多纰漏,而没有理会什么NUll,’’,0之类的其他值.今天决定研究下,把它彻底搞清楚.<br>]]>
+    
+    </summary>
+    
+      <category term="bool" scheme="http://jackroyal.github.io/tags/bool/"/>
+    
+      <category term="php" scheme="http://jackroyal.github.io/tags/php/"/>
+    
+      <category term="php" scheme="http://jackroyal.github.io/categories/php/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[ubuntu 14.04配置thinkphp路由,隐藏index.php]]></title>
@@ -754,44 +799,6 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<p>kali安装好了，还有几件事要做<br>我们用root的身份登进去系统<br>]]>
-    
-    </summary>
-    
-      <category term="Linux" scheme="http://jackroyal.github.io/tags/Linux/"/>
-    
-      <category term="kali" scheme="http://jackroyal.github.io/tags/kali/"/>
-    
-      <category term="Linux" scheme="http://jackroyal.github.io/categories/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[kali和ubuntu双系统安装]]></title>
-    <link href="http://jackroyal.github.io/2015/03/03/kali-and-ubuntu/"/>
-    <id>http://jackroyal.github.io/2015/03/03/kali-and-ubuntu/</id>
-    <published>2015-03-03T13:17:41.000Z</published>
-    <updated>2015-05-06T14:25:45.652Z</updated>
-    <content type="html"><![CDATA[<p>时间忽快忽慢，一转眼，年过完了，又回来学校了，又一个多月没有push了，重新回到github。今天我们家笨笨给我找了点kali的资料，索性就把kali捡起来，第一步安装kali的系统。<br>此处背景不再介绍，直奔主题。kali的安装过程和ubuntu的安装过程类似，应该说原理上是一模一样的，只是界面有些不同。我的电脑当前已经安装了win8和ubuntu，现在需要再加一个kali的系统，三系统共存。<br>大体分为如下几个步骤：</p>
-<h3 id="1_下载kali镜像">1 下载kali镜像</h3><h3 id="2_刻录u盘">2 刻录u盘</h3><h3 id="3_安装kali">3 安装kali</h3><h2 id="<!-_more_->"><a id="more"></a></h2><h1 id="1_下载kali镜像-1">1 下载kali镜像</h1><p>这步很简单，我们去kali的官网下载<a href="https://www.kali.org/downloads/" target="_blank" rel="external">https://www.kali.org/downloads/</a>,下载对应的版本。我这里下载的是第一个64位版本（<a href="http://cdimage.kali.org/kali-1.1.0/kali-linux-1.1.0-amd64.iso" target="_blank" rel="external">http://cdimage.kali.org/kali-1.1.0/kali-linux-1.1.0-amd64.iso</a>）,因为是在ubuntu下，我们可以顺手校验一下文件的hash值，防止文件损坏。<br>在终端中输入<code>sha1sum /home/chen/kali-linux-1.1.0-amd64.iso</code><br>查看输出是否是<code>40a1fd1d4864e7fac70438a1bf2095c8c1a4e764</code>，若正确，则第一步完成。</p>
-<h1 id="2_刻录u盘-1">2 刻录u盘</h1><p>如果采用硬盘安装的话，我们需要在win下面操作，使用easybcd来编辑grub引导，还需要解压文件，相对比较麻烦，我这里采用u盘安装，相对比较简单。<br>和安装ubuntu不同，我之前在win下用UltraISO来刻录,<br><img src="http://ww3.sinaimg.cn/large/692869a3gw1epsvwgs1rqj20fa0c676e.jpg" alt="刻录ubuntu">如图所示，便捷启动是可以不修改的，直接默认，点击写入就行。我今天在刻录kali的时候，发现这样写的u盘无法启动，开机的时候会提示<code>failed to boot from USB disk with error: gfxboot.c32: not a COM32R Image boot:</code>的错误。<br>解决方法有两个<br>1 linux的用mkusb，windows的用Win32DiskImager 来制作U盘启动<br>具体用法：<br><a href="https://wiki.ubuntu.com/Win32DiskImager/iso2usb" target="_blank" rel="external">https://wiki.ubuntu.com/Win32DiskImager/iso2usb</a><br><a href="https://help.ubuntu.com/community/mkusb" target="_blank" rel="external">https://help.ubuntu.com/community/mkusb</a><br>2 在win下用UltraISO来刻录，记得更改便捷启动的设置，如图所示<br><img src="http://ww4.sinaimg.cn/large/692869a3gw1epsw409qr3j20go09rjtp.jpg" alt="更改便捷启动">，点击便捷启动-&gt;选择写入新的启动器引导扇区——&gt;syslinus——&gt;写入</p>
-<p><em>我采用的是法一，我在ubuntu中用mkusb来刻录</em></p>
-<h1 id="3_安装kali-1">3 安装kali</h1><p>下面开始安装kali（以下图片是我用virtualbox虚拟机中安装拍摄的）</p>
-<h2 id="1_引导成功以后，开机画面如图所示">1 引导成功以后，开机画面如图所示</h2><p><img src="http://ww1.sinaimg.cn/large/692869a3gw1eptme5jxk5j20ne0hcjwf.jpg" alt="开机画面"><br>我们选择<code>Graphical install</code>,图形化安装，也可以选择<code>install</code>那是文字界面安装</p>
-<h2 id="2_选择语言，地区">2 选择语言，地区</h2><p>语言： 选择 <code>chinese（simplified）简体中文</code><br>地区： 选择 <code>中国</code></p>
-<h2 id="3_配置网络名称和domain">3 配置网络名称和domain</h2><p>这个代表你的电脑在网络上的名称，比如win默认的就是pc-2000123131，也就是别人在网上邻居中看到你的电脑的名称。我们就用默认的<code>localhost</code><br>domain我们留空不管他，下一步</p>
-<h2 id="4_设置root密码">4 设置root密码</h2><p>我们设置两次一样的密码就行，不要忘记了<br><img src="http://ww2.sinaimg.cn/large/692869a3gw1eptmmnvzlnj20ne0hcdih.jpg" alt="设置root密码"></p>
-<h2 id="5_磁盘分区">5 磁盘分区</h2><p>我们选择第三项<code>手动</code><br><img src="http://ww4.sinaimg.cn/large/692869a3gw1eptmp2uw4ij20ne0hc42t.jpg" alt="磁盘分区选项"><br><strong>分区</strong>，这里我们一共分<code>三个区</code>，一个300M的<code>/boot</code>分区，一个2048M的<code>swap</code>分区，其他的分为一个<code>/</code>（你也可以把/home单独分区出来），因为分区方法类似，所以我只讲一个<code>/boot</code>和<code>swap</code>分区的步骤<br><strong>boot分区</strong><br><strong>注意:</strong>选择<strong>可启动标志</strong>，我们只有/boot设置为<code>开</code>，其他分区的这个选项都是<code>关</code><br><img src="http://ww1.sinaimg.cn/large/692869a3gw1eptmu4nonsj20ne0hctbb.jpg" alt="boot分区设置"><br>设置完成后，选择<code>分区设定结束</code>，点击继续</p>
-<p><strong>交换空间</strong><br><strong>注意:</strong>交换空间是一种<strong>文件类型</strong>，其他的分区是<strong>属于载点</strong><br><img src="http://ww1.sinaimg.cn/large/692869a3gw1eptn2gehkdj20ne0hc77a.jpg" alt="交换空间swap分区设置"><br>设置完成后，选择<code>分区设定结束</code>，点击继续</p>
-<p>等分区完成，就选择<code>分区设定结束并将修改写入磁盘</code>，点击继续，就开始安装kali</p>
-<h2 id="6_启动引导">6 启动引导</h2><p>当系统快安装完成的时候，会出现grub安装的选择,如图所示<br><img src="http://ww3.sinaimg.cn/large/692869a3gw1eptnhakprmj20ns0j7dij.jpg" alt="交换空间swap分区设置"></p>
-<p>因为我的系统是<code>win8</code>和<code>ubuntu</code>和<code>kali</code>多系统共存，当前是由<code>win</code>来引导（当前系统由谁引导就看开机看到的第一个<code>系统选择</code>是谁的，如果是红色的ubuntu选项，那就说明由ubuntu引导）。<br>我这里选择否的话，那么我就需要去<code>win</code>里面手动添加<code>kali</code>的引导（使用easybcd来操作）。<br>如果你是<code>ubuntu</code>来引导系统的话，一样需要手动去添加<code>kali</code>的引导（这里我还不会）。<br>所以我选择<code>是</code>，这样装完三个系统都可以正常开机了。</p>
-<p>到此所有的安装结束。</p>
-<h1 id="参考文献">参考文献</h1><p>1 安装kali 系统 <a href="http://blog.sina.com.cn/s/blog_779dcd090102va9c.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_779dcd090102va9c.html</a><br>2 <a href="http://www.bkjia.com/Linuxjc/844530.html" target="_blank" rel="external">kali系统安装图文教程，kali系统安装图文</a></p>
-<h1 id="致谢">致谢</h1><p>这里，要感谢我最亲爱的笨笨<a href="http://huirong.github.io" target="_blank" rel="external">http://huirong.github.io</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>时间忽快忽慢，一转眼，年过完了，又回来学校了，又一个多月没有push了，重新回到github。今天我们家笨笨给我找了点kali的资料，索性就把kali捡起来，第一步安装kali的系统。<br>此处背景不再介绍，直奔主题。kali的安装过程和ubuntu的安装过程类似，应该说原理上是一模一样的，只是界面有些不同。我的电脑当前已经安装了win8和ubuntu，现在需要再加一个kali的系统，三系统共存。<br>大体分为如下几个步骤：</p>
-<h3 id="1_下载kali镜像">1 下载kali镜像</h3><h3 id="2_刻录u盘">2 刻录u盘</h3><h3 id="3_安装kali">3 安装kali</h3><h2 id="<!-_more_->">]]>
     
     </summary>
     
