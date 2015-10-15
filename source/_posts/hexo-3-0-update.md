@@ -88,6 +88,11 @@ hexo s
 以上两条命令的意思是:
 生成相关文件(就是生成目标html,静态博客嘛,就是很多html组成)
 打开本地服务器预览(node.js就是干这事的,点击访问<http://localhost:4000>,就可以看到了)
+**update-2015-09-29:**在3.0版本中将`hexo server`(简写命令就是`hexo s`),独立成模块,需要手动安装,不然你执行`hexo s`,就会出现无法识别这个命令
+安装方法和后面配置模块一样
+```bash
+npm install hexo-server --save
+```
 **ok**,到这里,博客搭建基本完成,现在要做的就是把它发布到你的Github上去
 ---
 接下来,教你怎么发布到Github上去
@@ -267,3 +272,6 @@ deploy:
 
 hexo 3.0有一些新的特性,插件的封装更好了,插件安装和管理很方便.
 hexo还支持多发布,可以同时发布到github和gitcafe.
+
+#参考文献
+1 [hexo 服务器](https://hexo.io/zh-cn/docs/server.html)
