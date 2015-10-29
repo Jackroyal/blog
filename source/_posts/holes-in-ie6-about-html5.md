@@ -13,11 +13,11 @@ categories:
 我第一个想到的是bootstrap,可惜这货太大了,我只是几个简单的页面,没必要用这么大体量的东西.
 搜索一番以后,我找到了我的解决方案,media query,支付宝也是这么解决的.
 <!-- more -->
-#前提条件
+# 前提条件
 以下所给出的例子,都是html5的页面,不合适html4.0的页面,也就是说你的头部必须是
 `<!DOCTYPE html>`才行,如果是`<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">`,是不行的,要仔细看清楚哈.
 下面就来罗列一下,这次经过的那些坑:
-#1  自动适配终端屏幕宽度
+# 1  自动适配终端屏幕宽度
 ```
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 ```
@@ -29,7 +29,7 @@ content属性值 :
               maximum-scale用户可将页面放大的程序，1.0将禁止用户放大到实际尺寸之上。
      user-scalable:是否可对页面进行缩放，no 禁止缩放
 
-#2  使ie6-8支持html5的元素
+# 2  使ie6-8支持html5的元素
 ```
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -38,7 +38,7 @@ content属性值 :
 ```
 以上代码,顾名思义,当ie的版本是9一下的时候,加载html5.js这个文件(建议最好下载下来在本地调用),他是用来帮助ie6-8支持html元素的.
 
-#3  ie10以下的版本不支持placeholder(不完美解决)
+# 3  ie10以下的版本不支持placeholder(不完美解决)
 placeholder是html5里面才有的东东,ie8不支持就算了,ie9都不支持,伤不起.这个没办法,只能用js去写,网上有很多类似的东西,不过不是很好用,我找到的都不完美.
 ```
 (function($) {
@@ -157,21 +157,21 @@ placeholder是html5里面才有的东东,ie8不支持就算了,ie9都不支持,�
 ```
 我最终选择这段代码,他能够在ie的各版本中正常运行,支持`text`和`password`标签.
 唯一的不足是,你直接点提交,你的text里面会有内容,内容就是placeholder中设置的提示内容.
-#4  background-size在ie9一下不支持
+# 4  background-size在ie9一下不支持
 background-size属性是用来让背景图片平铺的.不过ie9一下并不支持这个属性,我们使用滤镜来实现平铺的效果,示例代码如下.
 ```
 background-size: cover;
     filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./assets/images/01.png', sizingMethod='scale')\9;
 ```
 需要注意的是,这里的图片路径是相对于html文件的,不是css的路径,如果设置了没效果,先检查下你的路径.
-#5  input输入框 光标不居中
+# 5  input输入框 光标不居中
 这个问题来自于魅族手机,还有老大难的ie6-8的测试中.
 解决方法是设置`height`和`line-height`等高,没那么简单,这里有技巧的
 ```css
     line-height: normal;/*这行代码解决了魅族手机中的不居中问题*/
     line-height: 42px\9;/*这行css代码的含义是ie9以下设置line-height为42px*/
 ```
-#6  opacity的继承问题
+# 6  opacity的继承问题
 ```css
 <div id='a' style="">
     <div id='b'>
@@ -187,7 +187,7 @@ background-size: cover;
 我们可以清楚看到子div受到了影响.
 解决办法:解除父子关系,把子div从父div中挪出来
 
-#7  border-radius在ie9以下不支持
+# 7  border-radius在ie9以下不支持
 输入框等其他地方用到圆角的话,在老版本ie中果断是没有支持的.
 我们需要用hack的方式[pie](http://css3pie.com/),去实现border-radius和box-shadow等功能.加入pie以后的css代码如下:
 ```
@@ -198,7 +198,7 @@ background-size: cover;
 ```
 缺点:设置的border-radius四角的设置值都是相同的
 
-#8 css递进关系
+# 8 css递进关系
 挖坑,以后填
 
 
@@ -206,6 +206,6 @@ ps:晚安,亲爱的
 
 
 
-#参考文献
+# 参考文献
 1 [meta name="viewport" content="width=device-width,initial-scale=1.0" 解释](http://www.cnblogs.com/yuzhongwusan/p/4184923.html)
 2 [pie用hack方式在ie中实现border-radius](http://css3pie.com/)

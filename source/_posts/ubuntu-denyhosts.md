@@ -6,26 +6,26 @@ tags:
 categories:
 - Linux
 ---
-#起因
+# 起因
 因为之前服务器两次被黑，妈蛋。今天在上google+的时候，无意中看到一个维护vps的帖子，就顺手把我的服务器维护下。
 之前被黑经历也很简单，因为方便管理的缘故，我给root用户设置了密码，没错，是弱口令，一扫不要一分钟就可以出来的那种。
 我在那篇帖子中看到denyhosts这货。东西很简单，分析你的日志，如果有人连续登陆几次密码都错误，那么把他的ip添加到denyhost当中，禁止它继续扫描。这货还很多功能，可以设置禁止时间以后，自动解禁；可以配置自动解禁的次数;还可以配置用户密码尝试的次数，给管理员发邮件等。
 <!-- more -->
-#安装
-##1、下载源码包,解压源码包
+# 安装
+## 1、下载源码包,解压源码包
 ```python
 wget http://sourceforge.net/projects/denyhosts/files/denyhosts/2.6/DenyHosts-2.6.tar.gz
 tar zxvf DenyHosts-2.6.tar.gz
 cd DenyHosts-2.6
 ```
-##2、安装部署
+## 2、安装部署
 ```python
 python setup.py install
 cd /usr/share/denyhosts/
 cp denyhosts.cfg-dist denyhosts.cfg
 cp daemon-control-dist daemon-control
 ```
-##3、编辑配置文件denyhosts.cfg
+## 3、编辑配置文件denyhosts.cfg
 ```python
 sudo vi denyhosts.cfg
 ```
@@ -40,17 +40,17 @@ DENY_THRESHOLD_ROOT：root用户尝试登录多少次后被阻止；
 HOSTNAME_LOOKUP：是否尝试解析源IP的域名；```
 
 一般我们就用默认就好，我们只需要改两个地方：
-###第一个，我们注释掉第12行，启用第15行，修改以后结果如下(原因是ubuntu中的log不在/var/log/secure中，而是在/var/log/auth.log中)
+### 第一个，我们注释掉第12行，启用第15行，修改以后结果如下(原因是ubuntu中的log不在/var/log/secure中，而是在/var/log/auth.log中)
 ![修改后的denyhosts.cfg](http://ww3.sinaimg.cn/large/692869a3gw1erll3zp3xpj20id0b5q63.jpg)
-###第二个，我们启用第64行，也就是设置，ip被禁止后，禁止5天，这个时间你可以自行设置
-去掉前面的`#`,就行了，修改后结果如下
+### 第二个，我们启用第64行，也就是设置，ip被禁止后，禁止5天，这个时间你可以自行设置
+去掉前面的`# `,就行了，修改后结果如下
 ```bash
  63 # purge entries older than 5 days
  64 PURGE_DENY = 5d
- 65 #######################################################################
+ 65 ###################################################################### #
  66 
 ```
-##4、编辑配置文件daemon-control
+## 4、编辑配置文件daemon-control
 因为在ubuntu系统中，有些文件不在预设的位置，所以我们需要编辑这个文件
 我们只需要改第14行就好了，修改`/usr/bin/denyhosts.py`为`/usr/local/bin/denyhosts.py`，修改后结果如下
 ```bash
@@ -63,7 +63,7 @@ HOSTNAME_LOOKUP：是否尝试解析源IP的域名；```
  19 
 
 ```
-##5、运行
+## 5、运行
 运行，额，错误一堆啊，我们执行`sudo ./daemon-control start`,然后得到如下错误
 ```bash
 starting DenyHosts:    /usr/bin/env python /usr/local/bin/denyhosts.py --daemon --config=/usr/share/denyhosts/denyhosts.cfg
@@ -77,14 +77,14 @@ mkdir -p /var/lock/subsys
 ```
 继续执行`sudo ./daemon-control start`，应该就会成功
 ps：如果还不成功，他缺什么文件我们就用`touch`新建这个文件，如果说`file exists`,我们就删除那个文件
-##6、添加到开机启动
+## 6、添加到开机启动
 第一种是将DenyHosts作为类似apache、mysql一样的服务，这种方法可以通过 /etc/init.d/denyhosts 命令来控制其状态。方法如下：
 ```
 cd /etc/init.d
 ln -s /usr/share/denyhosts/daemon-control denyhosts
-#上面的操作就把他变成了一个服务 我们可以使用service denyhosts start来启动服务
-#下面把他添加到开机自启动，我们这里需要安装一个软件来实现
-#ubuntu中没有chkconfig命令，网上的教程是用的chkconfig，具体操作查看后面的参考文献1，ubuntu中对应的是update-rc.d，但是不好用，所以我用sysv-rc-conf 
+# 上面的操作就把他变成了一个服务 我们可以使用service denyhosts start来启动服务
+# 下面把他添加到开机自启动，我们这里需要安装一个软件来实现
+# ubuntu中没有chkconfig命令，网上的教程是用的chkconfig，具体操作查看后面的参考文献1，ubuntu中对应的是update-rc.d，但是不好用，所以我用sysv-rc-conf 
 sudo apt-get install sysv-rc-conf
 sudo sysv-rc-conf
 ```
@@ -97,7 +97,7 @@ sudo sysv-rc-conf
 echo '/usr/share/denyhosts/daemon-control start' >> /etc/rc.local
 ```
 
-#参考文献
+# 参考文献
 1 [通过DenyHosts阻止SSH暴力攻击教程](http://www.bootf.com/571.html)
 
 2 [/var/log/secure not present in 14.04 ,is there any alternative?](http://askubuntu.com/questions/534324/var-log-secure-not-present-in-14-04-is-there-any-alternative)

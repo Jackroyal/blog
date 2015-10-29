@@ -15,7 +15,7 @@ categories:
 修改后代码如下:
 ```
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    #下面这行是关健
+    # 下面这行是关健
     server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
     server_socket.bind(('', PORT))
@@ -24,9 +24,9 @@ categories:
 然后就搞定了.
 
 下面的代码是socket编程敲得两个小例子,基于socket的聊天小程序都是别人的东西,只是练习一下,源地址在本文最后.
-##多线程版本服务器端程序server2.py
+## 多线程版本服务器端程序server2.py
 ```
-#!/usr/bin/env python
+# !/usr/bin/env python
 # -*- coding:utf-8-*-
 __author__ = 'chen'
 
@@ -75,9 +75,9 @@ s.close()
 ```
 telnet localhost 8888
 ```
-##改良版,带广播的聊天室程序server3.py
+## 改良版,带广播的聊天室程序server3.py
 ```
-#!/usr/bin/env python
+# !/usr/bin/env python
 # -*- coding:utf-8-*-
 __author__ = 'chen'
 
@@ -130,9 +130,9 @@ if __name__ == "__main__":
                     continue
     server_socket.close()
 ```
-##客户端程序client3.py
+## 客户端程序client3.py
 ```
-#!/usr/bin/env python
+# !/usr/bin/env python
 # -*- coding:utf-8-*-
 __author__ = 'chen'
 
@@ -183,6 +183,6 @@ if __name__ == "__main__":
                 prompt()
 ```
 ---
-#参考文献
+# 参考文献
 1 [Python Socket 网络编程](http://www.cnblogs.com/hazir/p/python_socket_programming.html)
 2 [Python Socket 编程——聊天室示例程序](http://www.cnblogs.com/hazir/p/python_chat_room.html)

@@ -11,15 +11,15 @@ categories:
 最近我的vpn一直在抽风，几乎没法正常使用，而且我的chrome也是各种花屏，我快疯了，没办法，只能改用shadowsocks了。
 搭建过程分为两部分:服务端和客户端(这里是主要是ubuntu的客户端)。
 <!-- more -->
-#1 系统环境
+# 1 系统环境
 **服务器**:DigitalOcean上的Ubuntu 14.04 LTS
 **客户端**:Ubuntu 14.04 LTS
 
-#2 服务器端安装和配置
+# 2 服务器端安装和配置
 这里主要是参考github的[官方说明](https://github.com/shadowsocks/shadowsocks/wiki/Shadowsocks-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)
 通过ssh登陆的服务器上去,这里不在赘述如何登陆.
 以下主要针对linux服务器,windows服务器查看[这里](https://github.com/shadowsocks/shadowsocks/wiki/Install-Shadowsocks-Server-on-Windows)
-##安装
+## 安装
 Linux不同的发行版本执行的命令如下
 ```
 Debian / Ubuntu:
@@ -33,7 +33,7 @@ yum install python-setuptools && easy_install pip
 pip install shadowsocks
 ```
 
-##配置
+## 配置
 ```
 sudo vi /etc/shadowsocks.json
 ```
@@ -61,7 +61,7 @@ method         加密方法默认是: "aes-256-cfb"可以用其他加密方法
 fast_open      是否使用TCP_FASTOPEN,默认为不使用
 workers        number of workers, available on Unix/Linux
 
-##运行
+## 运行
 前台运行的命令
 `ssserver -c /etc/shadowsocks.json`
 后台运行
@@ -70,17 +70,17 @@ workers        number of workers, available on Unix/Linux
 ps:我上述两条命令都会出错,这两条命令来自官方的github,我用的是下面的
 `nohup ssserver -c /etc/shadowsocks.json > aa.log`
 
-##开机自启
+## 开机自启
 我们把它写入/etc/rc.local中就可以完成开机自启动了.
 ```
-sudo vi /etc/rc.local  #打开rc.local文件
-#然后在exit前面加入下面这一行
-#nohup /usr/local/bin/ssserver -c /etc/shadowsocks.json > aa.log
+sudo vi /etc/rc.local  # 打开rc.local文件
+# 然后在exit前面加入下面这一行
+# nohup /usr/local/bin/ssserver -c /etc/shadowsocks.json > aa.log
 ```
 ps:这里我之前犯了一个错误,没有写`ssserver`的绝对路径,导致开机无法自启动,但是手动执行的话,又是可以执行的
-#3 客户端的安装和配置
+# 3 客户端的安装和配置
 客户端按理说和服务器端类似,安装shadowsocks,但是我的就是这个出了问题.
-##1) 安装相关软件
+## 1) 安装相关软件
 shadowsocks有各种客户端版本,各个系统都有.在ubuntu下带图形化界面的有shadowsocks-qt5,还可以直接用命令行.
 
 **图形化:**
@@ -136,7 +136,7 @@ Storing debug log for failure in /root/.pip/pip.log
 网上搜索一番,在[这里](https://github.com/pypa/pip/issues/1742)找到答案.
 解决方法很简单,执行`easy_install pip`,就ok(貌似是把pip重新安装了一次).
 
-##2) 客户端运行
+## 2) 客户端运行
 shadowsocks图形化的比较简单,这里不表.
 命令行模式,启动如下:
 ```
@@ -148,23 +148,23 @@ sslocal -s 服务器ip -p 8388 -k 密码
 2015-03-10 11:12:59 INFO     starting local at 127.0.0.1:1080
 ```
 
-##3) 浏览器代理设置
+## 3) 浏览器代理设置
 一般来说我们不希望shadowsocks做全局的翻墙,那样,访问国内的速度也会变慢,我们在chome浏览器中安装switchysharp,来管理代理.具体设置如下所示:
 ![swichysharp设置](http://ww3.sinaimg.cn/large/692869a3gw1eq0k16t5ejj20ne0ihmzh.jpg)
 
 
 enjoy it!
 
-#后记
+# 后记
 
 安卓客户端安装,[点我点我](https://apps.evozi.com/apk-downloader/?id=com.github.shadowsocks)
 
-#参考文献
+# 参考文献
 1 这是一篇好博客 <http://mushapi.com/shadowsocks-install-config-using.html>
 2 [shadowsocks使用说明](https://github.com/shadowsocks/shadowsocks/wiki/Shadowsocks-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)
 3 [修复我pip问题的一个issue](https://github.com/pypa/pip/issues/1742)
 
-#致谢
+# 致谢
 这个网站可以下载google play的apk,对于我等天朝良民来说,可真是个好东西
 <https://apps.evozi.com/apk-downloader/?id=com.github.shadowsocks>
 

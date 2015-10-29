@@ -13,14 +13,14 @@ categories:
 (以下部分知识点来自[http://www.w3cschool.cn/jsref_replace.html](http://www.w3cschool.cn/jsref_replace.html))
 
 
-##定义和用法
+## 定义和用法
 
 
 
 
 replace() 方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。
 
-###语法
+### 语法
 
 
 
@@ -49,12 +49,12 @@ replacement</td>
 </tbody>
 </table>
 
-###返回值
+### 返回值
 
 
 一个新的字符串，是用 _replacement_ 替换了 regexp 的第一次匹配或所有匹配之后得到的。
 
-###说明
+### 说明
 
 
 字符串 stringObject 的 replace() 方法执行的是查找并替换的操作。它将在 stringObject 中查找与 regexp 相匹配的子字符串，然后用 _replacement_ 来替换这些子串。如果 regexp 具有全局标志 g，那么 replace() 方法将替换所有匹配的子串。否则，它只替换第一个匹配子串。

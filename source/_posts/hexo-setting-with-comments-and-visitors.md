@@ -9,15 +9,15 @@ categories:
 今天上午,我们家笨笨说没有评论和访问量不好,都不知道多少人看了.妹子都发话了,果断要搞定.
 <!-- more -->
 google一番找到解决方法:
-####1 关于评论数量的显示,我们可以直接使用多说官网提供的方法,很简单
-####2 关于访问量统计这事儿,不太好搞,我找到了这个[不蒜子](http://ibruce.info/2015/04/04/busuanzi/),这位非著名码农自己做的访问统计,哈哈,点个赞
-####3 今天还看到了font-awesome,可以显示一些小图标,为了显示效果更好,一并加上去
+#### 1 关于评论数量的显示,我们可以直接使用多说官网提供的方法,很简单
+#### 2 关于访问量统计这事儿,不太好搞,我找到了这个[不蒜子](http://ibruce.info/2015/04/04/busuanzi/),这位非著名码农自己做的访问统计,哈哈,点个赞
+#### 3 今天还看到了font-awesome,可以显示一些小图标,为了显示效果更好,一并加上去
 先展示一下最终的效果:<br>
 ![页底关于整站访问量的显示](http://ww1.sinaimg.cn/large/692869a3gw1esm9snxfcuj20su0ad74x.jpg)
 ![文章页面关于访问量和评论数量的显示](http://ww4.sinaimg.cn/large/692869a3gw1esm9tcczdij20r00doq4t.jpg)
 
 下面,开始动手
-#1 配置评论数量的显示
+# 1 配置评论数量的显示
 首先,确认你的评论系统用的是多说,如果不是,那就不用继续往下看了(参考[这里](http://localhost:4000/2014/11/28/custom-hexo/)配置多说).
 我使用的主题是`light`,其他主题原理类似.我们打开`themes/light/layout/_partial/article.ejs`,我们在`header`标签的尾部添加上下面的代码:
 ```html
@@ -45,7 +45,7 @@ Ps:这里我们可能还需要配置下数据显示的格式,在你的多说后�
 ![多说后台设置](http://ww3.sinaimg.cn/large/692869a3gw1esmayan2utj20w50mx0ya.jpg)
 我们找到`暂无评论`,`1条评论`,`{num}条评论`,这几个设置,修改成自己要的格式,也可以参照我的修改,`0`,`1`,`{num}`
 
-#2 配置文章访问量的显示
+# 2 配置文章访问量的显示
 这个更简单了,按照作者的说法,只需要引入一个js,再添加一个span就完成了.由于js一般放置在页面的最底部,所以我们找到`themes/light/layout/_partial/after_footer.ejs`,我们在最后添加上下面的代码:
 ```javascript
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
@@ -57,7 +57,7 @@ Ps:这里我们可能还需要配置下数据显示的格式,在你的多说后�
 本站访客数<span id="busuanzi_value_site_uv"></span>人次
 本文总阅读量<span id="busuanzi_value_page_pv"></span>次
 ```
-#3  经过美化后最终的代码
+# 3  经过美化后最终的代码
 如果只用官方提供的代码,没有优化,很丑,我优化了下,分享一下.
 
 1.修改`themes/light/layout/_partial/article.ejs`,在header标签的末尾添加以下代码
@@ -99,9 +99,9 @@ Ps:这里我们可能还需要配置下数据显示的格式,在你的多说后�
 ```
   .busuanzi_container_page_pv
       margin:20px 0
-      color: #817C7C
+      color: # 817C7C
       font-size: 12px
-  #busuanzi_value_page_pv
+  # busuanzi_value_page_pv
       padding-left:4px
   .head-plus
       padding-left:4px
@@ -112,10 +112,10 @@ Ps:这里我们可能还需要配置下数据显示的格式,在你的多说后�
 最终效果如图:
 ![添加css,注意左对齐](http://ww4.sinaimg.cn/large/692869a3gw1esmajbsx38j20k30gwadu.jpg)<br>5.修改`themes\light\source\css\_partial\footer.styl`,在最后添加上以下代码
 ```
-#busuanzi_value_site_pv
+# busuanzi_value_site_pv
   color:black
   padding:4px
-#busuanzi_container_site_pv
+# busuanzi_container_site_pv
   padding-left:2em
 ```
 6.修改`themes\light\source\css\_partial\variable.styl`,在最后添加以下代码
@@ -125,9 +125,9 @@ Ps:这里我们可能还需要配置下数据显示的格式,在你的多说后�
 
 ok  打完收工
 
-#参考文献
+# 参考文献
 1 博客访问技术工具--不蒜子 <http://ibruce.info/2015/04/04/busuanzi/>
 2 [多说-代码显示【文章评论数】方法](http://dev.duoshuo.com/docs/5016427f77cf5fa30500000e)
 
-#致谢
+# 致谢
 这里，要感谢我最亲爱的笨笨<http://huirong.github.io>

@@ -41,7 +41,7 @@ deploy:
 *PPPS:千万注意,上面的参数设置repo:后面有一个空格,没有空格会报错*
 
 
-#update:
+# update:
 repo的两种方式分别为ssh和https
 昨天没搞清楚,专门去查了一下,ssh和https两种提交的区别
 官方推荐用https,因为这回要求你输入用户名和密码,这样更安全
@@ -50,5 +50,5 @@ repo的两种方式分别为ssh和https
 2015-05-06
 最近又发现，使用ssh提交的话，github不会计算到你的conribute里面去，也就是你今天提交了，但是github的contribute不会变化，所以还是改成https吧，不然怎么装B呢？
 
-###友情链接
+### 友情链接
 [ubuntu  shadowsocks 全局 代理](http://rolight.cn/blog/?p=34)

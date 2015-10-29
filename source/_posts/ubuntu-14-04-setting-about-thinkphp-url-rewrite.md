@@ -8,18 +8,18 @@ categories:
 ---
 今天把代码发布到服务器上去,发现服务器的rewrite有问题,无法实现隐藏index.php的功能.
 <!-- more -->
-#环境
+# 环境
 服务器:ubuntu 14.04 lts
 apache:2.4.7
 php:5.5.9-
 mysql:5.5.43
 
-#开启rewrite模块
+# 开启rewrite模块
 在ubuntu中,开启很简单,执行以下bash命令即可
 ```bash
 sudo a2enmod rewrite
 ```
-#添加.htaccess支持
+# 添加.htaccess支持
 默认apache会忽视所有的规则重写,即使添加了`.htaccess`文件,他不认.
 在ubuntu 14.04中设置,跟其他版本的ubuntu有点不同
 核心操作还是修改 `AllowOverride None`为` AllowOverride All`.
@@ -34,7 +34,7 @@ sudo a2enmod rewrite
         Require all granted
 </Directory>
 ```
-#重启apache服务器
+# 重启apache服务器
 ok,都改完了,就剩一步,重启apache服务器.
 ```bash
 sudo service apache2 restart

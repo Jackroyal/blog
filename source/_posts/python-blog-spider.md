@@ -14,7 +14,7 @@ categories:
 作者做了一个很好的总结,帮助我们定位问题.
 <!-- more -->
 
-#1 编码类型
+# 1 编码类型
 首先确定好你的编码类型,比如一般推荐用utf-8.当确定编码类型后,就要保持统一,不要又弄些GBK的编码在里面.
 + 1.1  编辑器编码
     * 我们有时候会犯一个错误,我在py文件的头部声明当前文件是按照utf-8来编码.但是文件实际保存的编却不是utf-8,这样也会导致乱码.建议使用可以查看当前文件编码的编辑器,比如sublime text或者notepad++ 或者pycharm.<br>在sublime下如图所示<br>![sublime显示当前文件编码](http://ww2.sinaimg.cn/large/692869a3gw1eqmn535qb7j208u028t8k.jpg)
@@ -39,8 +39,8 @@ categories:
                         * 比如：decodedUnicode = someUtf8Str.decode("UTF-8")
                         * 而如果用这样的：decodedUnicode = someGbkStr.decode("UTF-8")，那就会出现错误
 
-#2 常用方法
-###2.1 encode和decode
+# 2 常用方法
+### 2.1 encode和decode
 encode()  unicode编码->其他编码
 
 decode()  其他编码->unicode编码
@@ -48,20 +48,20 @@ decode()  其他编码->unicode编码
 使用这两个方法的前提是,你要知道当前是什么编码.然后用对应的编码去进行解码
 比如对于s字符串可以用
 ```
-s.encode('utf-8') #将s由unicode转码成utf-8
-s.decode('GBK') #s是GBK编码,将s转换成unicode
+s.encode('utf-8') # 将s由unicode转码成utf-8
+s.decode('GBK') # s是GBK编码,将s转换成unicode
 ```
-###2.2 isinstance()
+### 2.2 isinstance()
 ```
-isinstance(s , unicode) #检测s是否是unicode编码
+isinstance(s , unicode) # 检测s是否是unicode编码
 
-isinstance(s , str) #检测s是否是str格式
+isinstance(s , str) # 检测s是否是str格式
 ```
 
 
-#3 beautifulsoup编码问题
+# 3 beautifulsoup编码问题
 
-###Beautiful Soup 会按顺序尝试不同的编码将你的文档转换为Unicode：
+### Beautiful Soup 会按顺序尝试不同的编码将你的文档转换为Unicode：
 +   可以通过from_encoding参数传递编码类型给soup的构造器
 +   通过文档本身找到编码类型：例如XML的声明或者HTML文档http-equiv的META标签。 
 +   如果Beautiful Soup在文档中发现编码类型，它试着使用找到的类型转换文档。 +
@@ -77,32 +77,32 @@ isinstance(s , str) #检测s是否是str格式
 我的网页上已经声明了是`utf-8`编码
 原来代码如下
 ```
-#这是原来的编码,在win下面乱码
+# 这是原来的编码,在win下面乱码
 self.soup = bs((response.read()))
-print self.soup.originalEncoding   #此处结果竟然返回Windows-1252
+print self.soup.originalEncoding   # 此处结果竟然返回Windows-1252
 ```
 修改后代码如下
 ```
-#win下乱码的关键在这里,beautifulsoup解析的编码不对,我们这里直接指定编码
+# win下乱码的关键在这里,beautifulsoup解析的编码不对,我们这里直接指定编码
 self.soup = bs((response.read()), from_encoding='utf-8')
-print self.soup.originalEncoding   #修正后代码正确返回'utf-8'
+print self.soup.originalEncoding   # 修正后代码正确返回'utf-8'
 ```
 
 看来beautifulsoup的自动识别编码不能全部依赖.
 好不容易才定位到这里的问题,折腾了一天啊
 这里用了一个方法来检测编码.就是soup.iriginalEncoding属性
 ```
-print self.soup.originalEncoding   #修正后代码正确返回'utf-8'
+print self.soup.originalEncoding   # 修正后代码正确返回'utf-8'
 ```
 
 这篇博客好水,毕竟不是很懂,所以说不出来
 
 update:2015-03-30
-#4 新技能get
+# 4 新技能get
 之前都没好好理解原作者的博客,觉得没办法一个程序在win和ubuntu中不更改正常运行,现在发现,如果把编码改为unicode格式输出,那么系统会自动转换,这样就不存在utf-8编码在windows下cmd乱码了.
 
 
-#参考文献
+# 参考文献
 1 [【总结】Python 2.x中常见字符编码和解码方面的错误及其解决办法](http://www.crifan.com/summary_python_2_x_common_string_encode_decode_error_reason_and_solution/)
 2 [【已解决】python中文字符乱码（GB2312，GBK，GB18030相关的问题）](http://www.crifan.com/resolved_python_garbled_chinese_characters_gb2312_gbk_gb18030-related_issues/)
 参考资料太多,贴不过来啊,主要都是cifan的博客,里面资料很多,一步一步都有过程,非常好用,谢谢cifan作者

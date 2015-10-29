@@ -9,25 +9,25 @@ categories:
 ---
 今天在伯乐在线上看到一篇翻译的博客，讲的是使用scrapy来抓取stackoverflow上的问题，刚好好久没用这个，于是一并捡起来玩一下。
 <!-- more -->
-#软件安装
+# 软件安装
 我的环境是：ubuntu 14.04 lts
 需要安装相关软件
-##scrapy
+## scrapy
 ```
 pip install Scrapy
 ```
-##PyMongo
+## PyMongo
 ```
 pip install pymongo
 
 ```
-##Mongodb
+## Mongodb
 上面安装的是python使用Mongodb的接口，很显然，我们要安装Mongodb才能使用
 ```
 sudo apt-get install mongodb-server
 ```
 至此，要使用的软件都已经安装完毕
-#使用scrapy新建工程
+# 使用scrapy新建工程
 使用scrapy新建工程很简单，如下所示，我们新建一个stack的项目，他会在你的当前目录新建一个stack文件夹
 ```
 scrapy startproject stack
@@ -52,32 +52,32 @@ from scrapy.item import Item,Field
 class StackItem(Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    title = Field()#我们添加两个字段，我们等会儿会抓取一个标题和url两个字段
+    title = Field()# 我们添加两个字段，我们等会儿会抓取一个标题和url两个字段
     url = Field()
 ```
 接着，还有一个很重要的东西，对，就是我们的蜘蛛，我们在spider目录下，新建一个stack_spider.py文件。顾名思义，这就是我们的蜘蛛。我们需要定义我们爬虫的起点，爬虫的规则等等
 ```python
 from scrapy import Spider
-from stack.items import StackItem  #导入我们上面定义的容器类
+from stack.items import StackItem  # 导入我们上面定义的容器类
 class StackSpider(Spider):
-    name = 'stack'   #定义我们爬虫的名字
-    allowed_domains = ["cnblogs.com"]   #规定爬虫爬取的域名
-    start_urls = ['http://www.cnblogs.com/geqianst/p/',]   #爬虫工作的起点
+    name = 'stack'   # 定义我们爬虫的名字
+    allowed_domains = ["cnblogs.com"]   # 规定爬虫爬取的域名
+    start_urls = ['http://www.cnblogs.com/geqianst/p/',]   # 爬虫工作的起点
 
-    def parse(self, response):#爬虫用来做数据解析的
+    def parse(self, response):# 爬虫用来做数据解析的
         questions = response.xpath('//div[@id="myposts"]//a[@id]')
-        #xpath选择器，这里的含义是取所有id为myposts的div，在它下面找所有带id的超链接a
-        #实际结果是这样的
-        #[<Selector xpath='//div[@id="myposts"]//a[@id]' data=u'<a id="PostsList1_rpPosts_TitleUrl_0" hr'>,
-        #<Selector xpath='//div[@id="myposts"]//a[@id]' data=u'<a id="PostsList1_rpPosts_TitleUrl_1" hr'>,
-        #<Selector xpath='//div[@id="myposts"]//a[@id]' data=u'<a id="PostsList1_rpPosts_TitleUrl_2" hr'>,
-        #<Selector xpath='//div[@id="myposts"]//a[@id]' data=u'<a id="PostsList1_rpPosts_TitleUrl_3" hr'>,
-        #<Selector xpath='//div[@id="myposts"]//a[@id]' data=u'<a id="PostsList1_rpPosts_TitleUrl_4" hr'>,
-        #<Selector xpath='//div[@id="myposts"]//a[@id]' data=u'<a id="PostsList1_rpPosts_TitleUrl_5" hr'>,
-        #<Selector xpath='//div[@id="myposts"]//a[@id]' data=u'<a id="PostsList1_rpPosts_TitleUrl_6" hr'>,
-        #<Selector xpath='//div[@id="myposts"]//a[@id]' data=u'<a id="PostsList1_rpPosts_TitleUrl_7" hr'>,
-        #<Selector xpath='//div[@id="myposts"]//a[@id]' data=u'<a id="PostsList1_rpPosts_TitleUrl_8" hr'>,
-        #<Selector xpath='//div[@id="myposts"]//a[@id]' data=u'<a id="PostsList1_rpPosts_TitleUrl_9" hr'>]
+        # xpath选择器，这里的含义是取所有id为myposts的div，在它下面找所有带id的超链接a
+        # 实际结果是这样的
+        # [<Selector xpath='//div[@id="myposts"]//a[@id]' data=u'<a id="PostsList1_rpPosts_TitleUrl_0" hr'>,
+        # <Selector xpath='//div[@id="myposts"]//a[@id]' data=u'<a id="PostsList1_rpPosts_TitleUrl_1" hr'>,
+        # <Selector xpath='//div[@id="myposts"]//a[@id]' data=u'<a id="PostsList1_rpPosts_TitleUrl_2" hr'>,
+        # <Selector xpath='//div[@id="myposts"]//a[@id]' data=u'<a id="PostsList1_rpPosts_TitleUrl_3" hr'>,
+        # <Selector xpath='//div[@id="myposts"]//a[@id]' data=u'<a id="PostsList1_rpPosts_TitleUrl_4" hr'>,
+        # <Selector xpath='//div[@id="myposts"]//a[@id]' data=u'<a id="PostsList1_rpPosts_TitleUrl_5" hr'>,
+        # <Selector xpath='//div[@id="myposts"]//a[@id]' data=u'<a id="PostsList1_rpPosts_TitleUrl_6" hr'>,
+        # <Selector xpath='//div[@id="myposts"]//a[@id]' data=u'<a id="PostsList1_rpPosts_TitleUrl_7" hr'>,
+        # <Selector xpath='//div[@id="myposts"]//a[@id]' data=u'<a id="PostsList1_rpPosts_TitleUrl_8" hr'>,
+        # <Selector xpath='//div[@id="myposts"]//a[@id]' data=u'<a id="PostsList1_rpPosts_TitleUrl_9" hr'>]
         #
 
         for question in questions:
@@ -89,7 +89,7 @@ class StackSpider(Spider):
             print item
             yield item
 ```
-#测试
+# 测试
 ok，上述工作基本完成，我们来测试一下
 ```bash
 scrapy crawl stack
@@ -241,20 +241,20 @@ ImportError: Error loading object 'scrapy.contrib.memusage.MemoryUsage': No modu
 ```
 sudo apt-get install python-twisted
 ```
-##输出到文件
+## 输出到文件
 为了更直观的看到结果，我们将结果输出到一个json文件
 ```
 scrapy crawl stack -o items.json -t json
 ```
 噢耶，第一个爬虫成功
-#存储到mongodb
+# 存储到mongodb
 接下来，我们做最后一件事，我们将结果存储到mongodb的数据库中
 在这里，我遇到一个大坑，无论是伯乐在线翻译的博客
 还是网上搜索到的一般教程，都是使用pymongo.Connection来连接数据库，可是妈蛋，你使用`pip install pymongo`安装的版本都是最新版本3.0.1，那个Connection的写法已经不支持，被丢弃了，擦。
 我们来看一下版本，我学到一个新命令`pip show pymongo`，用来查看某一个包的版本的。
 ![查看pymongo版本](http://ww4.sinaimg.cn/large/692869a3gw1erjct36jnrj20df038dgf.jpg)
 在pymongo 3.0的版本中，已经不再支持pymongo.Connection，而是使用pymongo.MongoClient来替代。
-##第一步
+## 第一步
 创建一个用来保存我们抓取数据的数据库。打开`settings.py`,指定管道，然后加入数据库的相关设置
 ```python
 
@@ -264,20 +264,20 @@ SPIDER_MODULES = ['stack.spiders']
 NEWSPIDER_MODULE = 'stack.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'stack (+http://www.yourdomain.com)'
+# USER_AGENT = 'stack (+http://www.yourdomain.com)'
 
 ITEM_PIPELINES = ['stack.pipelines.MongoDBPipeline', ]
-#关于mongodb的相关设置，包括服务器的ip，端口号，数据库名，表名，
-#我也是第一次使用mongodb竟然不需要用户验证信息，而且这表名确实奇怪，叫做MONGODB_COLLECTION
+# 关于mongodb的相关设置，包括服务器的ip，端口号，数据库名，表名，
+# 我也是第一次使用mongodb竟然不需要用户验证信息，而且这表名确实奇怪，叫做MONGODB_COLLECTION
 MONGODB_SERVER = "localhost"
 MONGODB_PORT = 27017
 MONGODB_DB = "stackoverflow"
 MONGODB_COLLECTION = "questions"
 
-DOWNLOAD_DELAY = 5  #抓取的延迟
+DOWNLOAD_DELAY = 5  # 抓取的延迟
 
 ```
-##第二步
+## 第二步
 我们已经能够爬取和解析html数据了，而且已经配置了数据库，接下来，我们通过`pipelines.py`中建立一个管道去连接这两个部分。
 我们首先来完成数据库的连接部分
 ```python
@@ -314,9 +314,9 @@ ok,搞定，我们再测试一把
 ```python
 scrapy crawl stack
 ```
-##执行效果如下
+## 执行效果如下
 ![mongodb数据库管理](http://ww1.sinaimg.cn/large/692869a3gw1erjv5to5w3j20w70g8wio.jpg)
-#参考文献
+# 参考文献
 1 [ImportError: Error loading object 'scrapy.contrib.memusage.MemoryUsage': No module named mail.smtp](https://github.com/scrapy/scrapy/issues/958)
 2 <http://stackoverflow.com/questions/8671071/error-to-execute-python-scrappy-module>
 3 [Python下用Scrapy和MongoDB构建爬虫系统（1）](http://python.jobbole.com/81320/)

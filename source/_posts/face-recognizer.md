@@ -10,15 +10,15 @@ categories:
 最近搞了两个星期的opencv，人脸识别方向，感觉没有什么前途，看不到论文在哪里啊。
 <!-- more -->
 ```python
-#!/usr/bin/env python
+# !/usr/bin/env python
 # -*- coding:utf-8-*-
 import os
 import sys
 import cv2
 import numpy as np
 
-z = {} #存储关于每张图片对应的lable
-for_pre = []  #存储用来进行测试的图片，规则是每个人10张图，5张用来训练，5张用来测试
+z = {} # 存储关于每张图片对应的lable
+for_pre = []  # 存储用来进行测试的图片，规则是每个人10张图，5张用来训练，5张用来测试
 def normalize(X, low, high, dtype=None):
     """对数据进行正常化处理，让其处于最高和最低值之间."""
     X = np.asarray(X)
@@ -81,7 +81,7 @@ def prediction(model):
 
     数据集中每个人存储了10张图片，我把其中的5张存储到for_pre，作为训练数据。用已知的lable和预测的lable作比较，得出图片识别正确的概率
     """
-    tn = 0 #识别正确的图片数
+    tn = 0 # 识别正确的图片数
     for item in for_pre:
         [p_label, p_confidence] = model.predict(cv2.resize(item['src'],(92,112)))
         if p_label == item['no']:
@@ -122,7 +122,7 @@ if __name__ == "__main__":
     # so we use np.asarray to turn them into NumPy lists to make
     # the OpenCV wrapper happy:
     model.train(np.asarray(X), np.asarray(y))
-    prediction(model) #图片预测
+    prediction(model) # 图片预测
     #
     #
     # You can see the available parameters with getParams():
@@ -163,6 +163,6 @@ if __name__ == "__main__":
 我在这里输出的是那些预测错误的。`总共有200次预测，其中正确次数为186。`这预测率有点低啊，我用的数据都是来自于[ AT&T Facedatabase](http://www.cl.cam.ac.uk/research/dtg/attarchive/facedatabase.html)。一共40个人，每个人10张图，图片宽高是92*112像素，全部是灰度图像。
 至于如何提高图片识别的效率，我也不知道。
 
-#参考文献
+# 参考文献
 1 <http://docs.opencv.org/modules/contrib/doc/facerec/facerec_tutorial.html>
 2 [python调用opencv实现人脸识别](https://code.google.com/p/pythonxy/source/browse/src/python/OpenCV/DOC/samples/python2/facerec_demo.py?repo=xy-27&r=a2e41c7a3cb6db536b948747872cab71c696b44e)
