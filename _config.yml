@@ -1,38 +1,25 @@
-# Hexo Configuration
-## Docs: http://hexo.io/docs/configuration.html
-## Source: https://github.com/hexojs/hexo/
-
-# Site
 title: 搁浅St的blog
 subtitle: 我最喜欢笨笨
 description: jackroyal 博客 搁浅St 笨笨
-author: 搁浅St
-author: John Doe
+author: jackroyal
 language: zh-CN
-timezone:
-
-# URL
-## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://jackroyal.github.io
+timezone: null
+url: 'http://bblove.me'
 root: /
-permalink: :year/:month/:day/:title/
-permalink_defaults:
-
-# Directory
+permalink: ':year/:month/:day/:title/'
+permalink_defaults: null
 source_dir: source
 public_dir: public
 tag_dir: tags
 archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
-i18n_dir: :lang
-skip_render:
-
-# Writing
-new_post_name: :title.md # File name of new posts
+i18n_dir: ':lang'
+skip_render: null
+new_post_name: ':title.md'
 default_layout: post
-titlecase: false # Transform title into titlecase
-external_link: true # Open external links in new tab
+titlecase: false
+external_link: true
 filename_case: 0
 render_drafts: false
 post_asset_folder: false
@@ -42,58 +29,37 @@ highlight:
   enable: true
   line_number: true
   auto_detect: true
-  tab_replace:
-
-# Category & Tag
+  tab_replace: null
 default_category: uncategorized
-category_map:
-tag_map:
-
-# Date / Time format
-## Hexo uses Moment.js to parse and display date
-## You can customize the date format as defined in
-## http://momentjs.com/docs/#/displaying/format/
+category_map: null
+tag_map: null
 date_format: YYYY-MM-DD
-time_format: HH:mm:ss
-
-# Pagination
-## Set per_page to 0 to disable pagination
+time_format: 'HH:mm:ss'
 per_page: 10
 pagination_dir: page
-
-
-# Extensions
-## Plugins: http://hexo.io/plugins/
-
 index_generator:
-  per_page: 10 ##首页默认10篇文章标题 如果值为0不分页
-
+  per_page: 10
 archive_generator:
-    per_page: 10 ##归档页面默认10篇文章标题
-    yearly: true  ##生成年视图
-    monthly: true ##生成月视图
-
+  per_page: 20
+  yearly: true
+  monthly: true
 tag_generator:
-    per_page: 10 ##标签分类页面默认10篇文章
-
+  per_page: 20
 category_generator:
-    per_page: 10 ###分类页面默认10篇文章
-
+  per_page: 20
 sitemap:
-    path: sitemap.xml
-
+  path: sitemap.xml
 feed:
   type: atom
   path: atom.xml
   limit: 20
-
 duoshuo_shortname: jackroyal
-## Themes: http://hexo.io/themes/
 theme: light
-
-# Deployment
-## Docs: http://hexo.io/docs/deployment.html
 deploy:
-  type: git
-  repo: https://github.com/Jackroyal/Jackroyal.github.io.git
+- type: git
+  repo: 'https://github.com/Jackroyal/Jackroyal.github.io.git'
   branch: master
+- type: git
+  repo: 'https://git.coding.net/Jackroyal/Jackroyal.git'
+  branch: coding-pages
+get: registry

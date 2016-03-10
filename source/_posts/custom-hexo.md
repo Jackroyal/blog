@@ -4,7 +4,7 @@ tags:
 - hexo
 categories: hexo
 ---
-经过[上篇博客](/how-to-build-a-blog-with-hexo.html),我们搭建起了自己的博客,接下来我们对它做些个性化的定制.
+经过[上篇博客](http://jackroyal.github.io/2014/11/27/how-to-build-a-blog-with-hexo/),我们搭建起了自己的博客,接下来我们对它做些个性化的定制.
 在hexo中,配置文件一共两个(我的hexo安装在F:/blog/),分别是`F:/blog/_config.yml`和`F:/blog/themes/light/_config.yml`.第一个是全局的配置文件,第二个是主题的配置文件,在继续说之前,我们先来说一下主题安装.<!-- more -->
 # 主题安装
 这个很简单,在hexo的Github的主页上有个主题栏目,<https://github.com/hexojs/hexo/wiki/Themes>,里面列出了很多主题.
