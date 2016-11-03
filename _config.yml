@@ -54,7 +54,7 @@ feed:
   path: atom.xml
   limit: 20
 duoshuo_shortname: jackroyal
-theme: light
+theme: fexo
 deploy:
 - type: git
   repo: 'https://github.com/Jackroyal/Jackroyal.github.io.git'
