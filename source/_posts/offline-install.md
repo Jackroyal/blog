@@ -12,17 +12,17 @@ categories:
 
 # 1 Adobe reader离线安装
 下载离线安装版adobe reader
-https://get.adobe.com/cn/reader/enterprise/
+<https://get.adobe.com/cn/reader/enterprise/>
 
 # 2 chrome离线安装
 Windows平台：
 
 Chrome 离线安装包（仅 Windows 可用）：
 最新稳定版（Stable Channel）：
-【http://www.google.com/chrome/eula.html?hl=zh-CN&standalone=1】
+<http://www.google.com/chrome/eula.html?hl=zh-CN&standalone=1>
 
 最新测试版（Beta Channel）：
-【http://www.google.com/chrome/eula.html?hl=zh-CN&standalone=1&extra=betachannel】
+<http://www.google.com/chrome/eula.html?hl=zh-CN&standalone=1&extra=betachannel>
 
 最新开发版（Dev Channel）：
-【http://www.google.com/chrome/eula.html?hl=zh-CN&standalone=1&extra=devchannel】
+<http://www.google.com/chrome/eula.html?hl=zh-CN&standalone=1&extra=devchannel>
