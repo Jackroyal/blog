@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<%- getHtmlTag(theme) %>
+
+<%
+  function getHtmlTag(theme) {
+    var html;
+    var scheme;
+    if (theme.home.background_image) {
+      scheme = {
+        light: '<html class="light bg" style="background-image: url(' + theme.home.background_image + ');">',
+        dark: '<html class="dark bg" style="background-image: url(' + theme.home.background_image + ');">',
+      }
+    } else {
+      scheme = {
+        light: '<html class="light">',
+        dark:  '<html class="dark">'
+      }
+    }
+
+    html = scheme[theme.home.background_scheme]
+    return html;
+  }
+%>
+
+<head>
+  <meta charset="utf-8">
+  <%
+  var title = page.title;
+
+  if (is_archive()){
+    title = 'Archives';
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = 'Category: ' + page.category;
+  } else if (is_tag()){
+    title = 'Tag: ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <% if (page.tags && page.tags.length) { %>
+    <meta name="keywords" content="<% page.tags.forEach(function(tag) { %><%= tag.name %>,<% }); %>" />
+  <% } else { %>
+    <meta name="keywords" content="<%= theme.keywords %>" />
+  <% } %>
+
+  <%- open_graph() %>
+
+  <% if (theme.rss){ %>
+    <link rel="alternate" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+  <% } %>
+
+  <% if (theme.personal_style){ %>
+    <%- css(theme.personal_style) %>
+  <% } %>
+
+  <%- partial('style') %>
+  <%- partial('google-analytics') %>
+  <%- partial('baidu-analytics') %>
+</head>
