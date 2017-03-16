@@ -41,7 +41,7 @@ HOSTNAME_LOOKUP：是否尝试解析源IP的域名；```
 
 一般我们就用默认就好，我们只需要改两个地方：
 ### 第一个，我们注释掉第12行，启用第15行，修改以后结果如下(原因是ubuntu中的log不在/var/log/secure中，而是在/var/log/auth.log中)
-![修改后的denyhosts.cfg](http://ww3.sinaimg.cn/large/692869a3gw1erll3zp3xpj20id0b5q63.jpg)
+![修改后的denyhosts.cfg](https://ww3.sinaimg.cn/large/692869a3gw1erll3zp3xpj20id0b5q63.jpg)
 ### 第二个，我们启用第64行，也就是设置，ip被禁止后，禁止5天，这个时间你可以自行设置
 去掉前面的`# `,就行了，修改后结果如下
 ```bash
@@ -89,7 +89,7 @@ sudo apt-get install sysv-rc-conf
 sudo sysv-rc-conf
 ```
 我们设置运行级别2345，编辑以后如下所示
-![设置denyhosts开机自启动](http://ww2.sinaimg.cn/large/692869a3gw1erlmrt5ht5j20j80m40zg.jpg)
+![设置denyhosts开机自启动](https://ww2.sinaimg.cn/large/692869a3gw1erlmrt5ht5j20j80m40zg.jpg)
 按`q`，退出并保存
 
 第二种是将Denyhosts直接加入rc.local中自动启动（类似于Windows中的“启动文件夹”）：

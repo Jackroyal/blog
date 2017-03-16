@@ -43,13 +43,13 @@ print r.text
 这个链接，前面部分是登录的网址，问号后面的参数，顾名思义，referer，就是你从哪里跳过来的，也许是一个页面跳转到登录的，toolbar就是我自己点击顶部导航栏，然后跳转到登录页面的。
 ## 2 清除相关的cookie
 为了排除不必要的干扰，我们先清除掉所有的相关的cookie，这样方便我们分析哪些参数是必须的。
-![firefox中，清除cookie](http://ww1.sinaimg.cn/large/692869a3gw1esegc1itw2j20qu075779.jpg)
+![firefox中，清除cookie](https://ww1.sinaimg.cn/large/692869a3gw1esegc1itw2j20qu075779.jpg)
 ## 3 登录过程分析
 清除了cookie后，我们刷新一下页面`https://passport.csdn.net/account/login?ref=toolbar`，重新获取对应的cookie。
 然后我们就开始用tamper data来拦截请求。
-![使用tamper data](http://ww2.sinaimg.cn/large/692869a3gw1esegfztiz7j20s40ftdjw.jpg)
+![使用tamper data](https://ww2.sinaimg.cn/large/692869a3gw1esegfztiz7j20s40ftdjw.jpg)
 我们点击`start tamper`，在网页中填写用户名和密码。点击`登录`，会发出一个请求，然后tamper data会拦截下这个请求，询问我们是否拦截，点击tamper，我们可以在这个请求提交之前，查看请求的内容，还可以做删改。
-![发出第一个登录请求前拦截下来，查看表单内容](http://ww1.sinaimg.cn/large/692869a3gw1esegkslypyj20y20gntdt.jpg)
+![发出第一个登录请求前拦截下来，查看表单内容](https://ww1.sinaimg.cn/large/692869a3gw1esegkslypyj20y20gntdt.jpg)
 csdn的登录过程比较简单，发送一个登录表单过去，就登录成功了，不过记得修改headers，这是后话。
 ## 4 开始模拟登录
 知道登录过程了，我们就开始写登录的代码。

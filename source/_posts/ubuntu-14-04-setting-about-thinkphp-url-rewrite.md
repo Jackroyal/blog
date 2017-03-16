@@ -40,7 +40,7 @@ ok,都改完了,就剩一步,重启apache服务器.
 sudo service apache2 restart
 ```
 搞定!
-![热疯了,空调房都热](http://ww3.sinaimg.cn/large/692869a3gw1etl9v3c6wzj20go09dmx6.jpg)
+![热疯了,空调房都热](https://ww3.sinaimg.cn/large/692869a3gw1etl9v3c6wzj20go09dmx6.jpg)
 
 
 

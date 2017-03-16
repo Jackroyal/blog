@@ -159,7 +159,7 @@ if __name__ == "__main__":
 ```
 
 代码执行效果如下
-![人脸识别执行效果](http://ww1.sinaimg.cn/large/692869a3gw1eriuc3wsckj20nr08qn2q.jpg)
+![人脸识别执行效果](https://ww1.sinaimg.cn/large/692869a3gw1eriuc3wsckj20nr08qn2q.jpg)
 我在这里输出的是那些预测错误的。`总共有200次预测，其中正确次数为186。`这预测率有点低啊，我用的数据都是来自于[ AT&T Facedatabase](http://www.cl.cam.ac.uk/research/dtg/attarchive/facedatabase.html)。一共40个人，每个人10张图，图片宽高是92*112像素，全部是灰度图像。
 至于如何提高图片识别的效率，我也不知道。
 

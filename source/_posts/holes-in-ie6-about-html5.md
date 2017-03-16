@@ -181,9 +181,9 @@ background-size: cover;
 ```
 
 如果我们给父div设置了一个`opacity`为0.1,即使我们给子div设置`opacity`为1,也是不管用的,如图
-![未设置父div的opacity之前](http://ww1.sinaimg.cn/large/692869a3gw1es5fm0jafhj20iv0ecq46.jpg)
+![未设置父div的opacity之前](https://ww1.sinaimg.cn/large/692869a3gw1es5fm0jafhj20iv0ecq46.jpg)
 设置父div的`opacity`之后
-![设置父div的opacity之后](http://ww4.sinaimg.cn/large/692869a3gw1es5fnsk3pvj20hy0fdwfm.jpg)
+![设置父div的opacity之后](https://ww4.sinaimg.cn/large/692869a3gw1es5fnsk3pvj20hy0fdwfm.jpg)
 我们可以清楚看到子div受到了影响.
 解决办法:解除父子关系,把子div从父div中挪出来
 

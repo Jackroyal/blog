@@ -14,8 +14,8 @@ categories: hexo
 # # 1. 安装Github for windows
 因为我之前就在用Github,所以早就安装了这个.已经装过的同学请忽略这一段.
 下载 [Github for windows](https://windows.github.com/ "Github for windows") 并执行即可完成安装(*在线安装,会有点慢*)。这个软件的的好处是有一个带GUI的界面,还有一个终端界面.如图所示<!-- more -->
-![Github for windows](http://ww2.sinaimg.cn/large/692869a3jw1emplp1lz31j204w033mx0.jpg)
-![GUI and Bash](http://ww2.sinaimg.cn/large/692869a3gw1empluh6hvej210b0j741r.jpg)
+![Github for windows](https://ww2.sinaimg.cn/large/692869a3jw1emplp1lz31j204w033mx0.jpg)
+![GUI and Bash](https://ww2.sinaimg.cn/large/692869a3gw1empluh6hvej210b0j741r.jpg)
 如果你不喜欢用这个,也可以用上面的博客推荐的[msysgit](http://code.google.com/p/msysgit/).
 
 # # 2. 安装Node.js

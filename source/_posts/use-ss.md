@@ -150,7 +150,7 @@ sslocal -s 服务器ip -p 8388 -k 密码
 
 ## 3) 浏览器代理设置
 一般来说我们不希望shadowsocks做全局的翻墙,那样,访问国内的速度也会变慢,我们在chome浏览器中安装switchysharp,来管理代理.具体设置如下所示:
-![swichysharp设置](http://ww3.sinaimg.cn/large/692869a3gw1eq0k16t5ejj20ne0ihmzh.jpg)
+![swichysharp设置](https://ww3.sinaimg.cn/large/692869a3gw1eq0k16t5ejj20ne0ihmzh.jpg)
 
 
 enjoy it!

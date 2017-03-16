@@ -22,8 +22,8 @@ update：2015-06-24 16:56
 # # 1. 安装Github for windows
 因为我之前就在用Github,所以早就安装了这个.已经装过的同学请忽略这一段.
 下载 [Github for windows](https://windows.github.com/ "Github for windows") 并执行即可完成安装(*在线安装,会有点慢*)。这个软件的的好处是有一个带GUI的界面,还有一个终端界面.如图所示
-![Github for windows](http://ww2.sinaimg.cn/large/692869a3jw1emplp1lz31j204w033mx0.jpg)
-![GUI and Bash](http://ww2.sinaimg.cn/large/692869a3gw1empluh6hvej210b0j741r.jpg)
+![Github for windows](https://ww2.sinaimg.cn/large/692869a3jw1emplp1lz31j204w033mx0.jpg)
+![GUI and Bash](https://ww2.sinaimg.cn/large/692869a3gw1empluh6hvej210b0j741r.jpg)
 
 # # 2. 安装Node.js
 在 Windows 环境下安装 [Node.js](http://nodejs.org/ "Node.js 官网") 非常简单，仅须下载安装文件并执行即可完成安装。（win下建议下载msi格式的，因为这样可以不用配置环境变量之类的）

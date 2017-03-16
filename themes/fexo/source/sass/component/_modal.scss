@@ -28,20 +28,19 @@ $blue-dark: $blue;
     right: 0;
     bottom: 0;
     left: 0;
-    display: none;
     background: rgba(0,0,0,.6);
   }
-
-  &:target {
-    // Active animate in modal
-    .cover {
-      display: block;
-    }
-    .modal-dialog {
-      transform: translate3d(0, 0, 0);
-    }
+  hr {
+    max-width: 320px;
+    height: 1px;
+    margin-top: -1px;
+    margin-bottom: 0;
+    border: none;
+    background-image: linear-gradient(0deg, transparent, #dcdcdc, transparent);
+    background-image: -webkit-linear-gradient(0deg, transparent, #dcdcdc, transparent);
   }
 }
+
 
 // Modal Dialog
 // ----------------------
@@ -53,12 +52,17 @@ $blue-dark: $blue;
   width: 100%;
   height: 160px;
   transition: .3s ease-out;
-  transform: translate3d(0, 100%, 0);
   background: #fefefe;
-}
+  &.show-dialog {
+    transform: translate3d(0, 0, 0);
+  }
 
+  &.hide-dialog {
+    transform: translate3d(0, 100%, 0);
+  }
+}
 .modal-body {
-  height: 100px;
+  height: 70px;
   display: table;
   text-align: center;
   width: 100%;
@@ -99,8 +103,7 @@ $blue-dark: $blue;
 .modal-header {
   font-size: 13px;
   text-align: center;
-  height: 60px;
-  border-bottom: 1px solid #ddd;
+  height: 75px;
   .btn-close {
   position: relative;
   top: 50%;
@@ -123,7 +126,9 @@ $blue-dark: $blue;
   }
 }
 
-/*ADDED TO STOP SCROLLING TO TOP*/
-#close {
-  display: none;
+.btn-close,
+.toolbox-mobile {
+  &:hover {
+    cursor: pointer;
+  }
 }

@@ -41,7 +41,7 @@ Scott
 我们在github和gitcafe上面把自己的博客搭建起来,首先要建仓库.
 **github**:
     首先登录你的github,然后新建一个公共仓库,仓库名是你的用户名加上`yourname.github.io`,如下图所示,我的用户名是`Jackroyal`
-    ![github新建仓库](http://ww1.sinaimg.cn/large/692869a3gw1eye6fpc3w8j20ue0idjv0.jpg)
+    ![github新建仓库](https://ww1.sinaimg.cn/large/692869a3gw1eye6fpc3w8j20ue0idjv0.jpg)
 
 
 **gitcafe**:
@@ -76,14 +76,14 @@ deploy:
 
 ### 3.2.1 查看本地公钥
 我们打开你使用的git终端,首先切回用户目录,然后进入`.ssh`目录,里面就有公钥和私钥,如下图所示
-![使用git客户端查看ssh公钥私钥](http://ww2.sinaimg.cn/large/692869a3gw1eye75djqo9j20gj09475k.jpg)
-![使用github for windows查看ssh公钥私钥](http://ww2.sinaimg.cn/large/692869a3gw1eye78gs0hvj20it0ca761.jpg)
+![使用git客户端查看ssh公钥私钥](https://ww2.sinaimg.cn/large/692869a3gw1eye75djqo9j20gj09475k.jpg)
+![使用github for windows查看ssh公钥私钥](https://ww2.sinaimg.cn/large/692869a3gw1eye78gs0hvj20it0ca761.jpg)
 我们就是要读取后缀是`.pub`的那个文件,比如我的读取命令就是`cat github_rsa.pub`,执行结果如下
-![查看公钥](http://ww3.sinaimg.cn/large/692869a3gw1eye7c2xpavj20if06dt9w.jpg)
+![查看公钥](https://ww3.sinaimg.cn/large/692869a3gw1eye7c2xpavj20if06dt9w.jpg)
 ### 3.2.2 添加公钥到gitcafe
 我们在[这里](https://gitcafe.com/account/public_keys)来设置gitcafe的公钥.
 *PS:需要注意的是,公钥后面的chen@chen-pc是不需要的,我的带上以后,gitcafe说是公钥非法,不过不怕,gitcafe会帮你正确格式化*
-![正确的ssh格式](http://ww1.sinaimg.cn/large/692869a3gw1eye7h4ha7dj20v105n0ve.jpg)
+![正确的ssh格式](https://ww1.sinaimg.cn/large/692869a3gw1eye7h4ha7dj20v105n0ve.jpg)
 反正就是把公钥加上去,就ok了
 ## 3.4 同步博客到gitcafe
 上面的配置好了以后,我们就可以把博客内容同步到gitcafe了,方法很简单,执行
@@ -95,7 +95,7 @@ hexo d -g
 首先你得有个域名,像我一样,哈哈.
 ## 4.1 修改域名注册的解析服务器
 我们在要把域名解析服务,设置到dnspod,因为他是国内的,而且服务很好.我们登录自己的域名管理后台,选择对应的域名进行管理,然后找到`nameservers`的设置,如图所示
-![修改nameservers的设置](http://ww3.sinaimg.cn/large/692869a3gw1eye7orkymjj210j0i7tde.jpg)
+![修改nameservers的设置](https://ww3.sinaimg.cn/large/692869a3gw1eye7orkymjj210j0i7tde.jpg)
 修改的值是
 ```
  f1g1ns1.dnspod.net
@@ -108,7 +108,7 @@ ok,改完以后,这边就完了,我们登录dnspod
 ## 4.2 修改dnspod解析记录
 我们登录dnspod,然后添加域名
 如果4.1中的设置生效了,你的域名就会添加成功了,我们直接进行下一步,修改解析记录,上图
-![dns解析记录](http://ww2.sinaimg.cn/large/692869a3gw1eye9mfkri4j20mt0efad6.jpg)
+![dns解析记录](https://ww2.sinaimg.cn/large/692869a3gw1eye9mfkri4j20mt0efad6.jpg)
 我们一共添加了5条记录,其中一条泛解析和www解析是针对国内的,所以执行gitcafe;2条泛解析和www解析是针对国外的,所以指向github.
 就是添加
 ```
@@ -126,17 +126,17 @@ www     CNAME  国内  gitcafe.io.
 bblove.me
 ```
 没有任何多余的信息,如下图
-![配置github的CNAME](http://ww1.sinaimg.cn/large/692869a3gw1eyea41g3amj20uz0a4jtg.jpg)
+![配置github的CNAME](https://ww1.sinaimg.cn/large/692869a3gw1eyea41g3amj20uz0a4jtg.jpg)
 上面的配置现在访问没问题,但是你一重新发布博客,就需要重新手动添加`CNAME`文件,太麻烦.
 一劳永逸的方法,在你的`hexo`目录下的`source`目录中,新建一个`CNAME`文件夹,然后他每次在你发布博客的时候,都会在你的网站根目录生成一个`CNAME`文件.
-![添加CNAME的目录结构](http://ww2.sinaimg.cn/large/692869a3gw1eyea9pgd8cj20ko06ct9v.jpg)
+![添加CNAME的目录结构](https://ww2.sinaimg.cn/large/692869a3gw1eyea9pgd8cj20ko06ct9v.jpg)
 现在github的配置彻底结束.
 
 接下来配置gitcafe:
 1 我们在gitcafe的项目主页,点击`项目设置`,如下图(之所以截图,是因为我找半天才看到...)
-![gitcafe点击'项目设置'](http://ww1.sinaimg.cn/large/692869a3gw1eyeadedmh1j20z508eadm.jpg)
+![gitcafe点击'项目设置'](https://ww1.sinaimg.cn/large/692869a3gw1eyeadedmh1j20z508eadm.jpg)
 2 然后我们点击`pages服务`标签,然后添加自己的域名,这些域名是我们之前在dnspod中设置了解析的
-![gitcafe配置自定义域名](http://ww3.sinaimg.cn/large/692869a3gw1eyeaftjlagj20sp0dvn1i.jpg)
+![gitcafe配置自定义域名](https://ww3.sinaimg.cn/large/692869a3gw1eyeaftjlagj20sp0dvn1i.jpg)
 
 彻底打完收工了
 

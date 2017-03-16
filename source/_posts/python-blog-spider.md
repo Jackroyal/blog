@@ -17,10 +17,10 @@ categories:
 # 1 编码类型
 首先确定好你的编码类型,比如一般推荐用utf-8.当确定编码类型后,就要保持统一,不要又弄些GBK的编码在里面.
 + 1.1  编辑器编码
-    * 我们有时候会犯一个错误,我在py文件的头部声明当前文件是按照utf-8来编码.但是文件实际保存的编却不是utf-8,这样也会导致乱码.建议使用可以查看当前文件编码的编辑器,比如sublime text或者notepad++ 或者pycharm.<br>在sublime下如图所示<br>![sublime显示当前文件编码](http://ww2.sinaimg.cn/large/692869a3gw1eqmn535qb7j208u028t8k.jpg)
+    * 我们有时候会犯一个错误,我在py文件的头部声明当前文件是按照utf-8来编码.但是文件实际保存的编却不是utf-8,这样也会导致乱码.建议使用可以查看当前文件编码的编辑器,比如sublime text或者notepad++ 或者pycharm.<br>在sublime下如图所示<br>![sublime显示当前文件编码](https://ww2.sinaimg.cn/large/692869a3gw1eqmn535qb7j208u028t8k.jpg)
     * 文件编码声明,我们要在py文件的头部添加一行`# -*- coding: utf-8 -*-`,表明我接下来要使用utf-8编码
 + 1.2  python解释器
-    * 如果是Python的IDLE，如果你没修改defaultencoding，那么就使用默认的字符编码可以通过sys.getdefaultencoding()而获得，比如此处获得是：ascii<br>![win中python解释器编码](http://ww4.sinaimg.cn/large/692869a3gw1eqmnd8fgrjj20b205kabi.jpg)<br>![ubuntu终端解释器的编码](http://ww3.sinaimg.cn/large/692869a3gw1eqmnfd29u7j20k5047wfv.jpg)
+    * 如果是Python的IDLE，如果你没修改defaultencoding，那么就使用默认的字符编码可以通过sys.getdefaultencoding()而获得，比如此处获得是：ascii<br>![win中python解释器编码](https://ww4.sinaimg.cn/large/692869a3gw1eqmnd8fgrjj20b205kabi.jpg)<br>![ubuntu终端解释器的编码](https://ww3.sinaimg.cn/large/692869a3gw1eqmnfd29u7j20k5047wfv.jpg)
 + 1.3  执行python代码
     * 其中，很常见的几种动作是：
         * 打印print对应的所获得的字符

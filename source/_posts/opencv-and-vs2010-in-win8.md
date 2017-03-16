@@ -29,8 +29,8 @@ opencv版本:opencv 2.4.10
 ## 复制include文件夹
 复制`D:\opencv\build\include`目录下的`opencv`和`opencv2`
 到`C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include`.
-![opencv解压后的include目录](http://ww3.sinaimg.cn/large/692869a3gw1es5atg7oimj20kw081ta4.jpg)
-![复制以后的效果截图](http://ww2.sinaimg.cn/large/692869a3gw1es5az6qsa7j20jc099jtf.jpg)
+![opencv解压后的include目录](https://ww3.sinaimg.cn/large/692869a3gw1es5atg7oimj20kw081ta4.jpg)
+![复制以后的效果截图](https://ww2.sinaimg.cn/large/692869a3gw1es5az6qsa7j20jc099jtf.jpg)
 ## 复制lib文件夹
 同理,复制lib文件夹
 从`D:\opencv\build\x86\vc10\lib`复制到`C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\lib`
@@ -39,7 +39,7 @@ opencv版本:opencv 2.4.10
 复制bin目录下的东西,我们只需要系统找得到就行,所以我们这里采用环境变量的搞法
 
 我们修改path变量,在后面添加`;d:\opencv\build\x86\vc10\bin`,效果如图所示<br>
-![修改path变量,添加opencv的bin目录路径](http://ww2.sinaimg.cn/large/692869a3gw1es5bew5vcjj20e10g4go8.jpg)
+![修改path变量,添加opencv的bin目录路径](https://ww2.sinaimg.cn/large/692869a3gw1es5bew5vcjj20e10g4go8.jpg)
 # 3 写代码调试
 代码如下:
 ```c#
@@ -111,7 +111,7 @@ ps:上述操作完,应该就好了.我还遇到一个奇葩问题
 编译和生成解决方案没有问题，但是开始执行就出现应用程序无法正常启动 0xc000007b错误窗口
 最后,原来是权限问题,使用管理员权限打开vs就解决了,win7下找兼容性设置,以管理员权限运行
 我的win8没有找到兼容性设置,如图所示操作,每次都能以管理员权限打开vs
-![win8使用管理员权限运行vs2010](http://ww4.sinaimg.cn/large/692869a3gw1es5bpz7mkqj20mm0giq7k.jpg)
+![win8使用管理员权限运行vs2010](https://ww4.sinaimg.cn/large/692869a3gw1es5bpz7mkqj20mm0giq7k.jpg)
 
 # 参考文献
 1 [VS2010+Opencv-2.4.0的配置攻略](http://www.cnblogs.com/freedomshe/archive/2012/04/25/2470540.html)

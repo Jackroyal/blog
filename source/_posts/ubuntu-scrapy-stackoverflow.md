@@ -95,7 +95,7 @@ ok，上述工作基本完成，我们来测试一下
 scrapy crawl stack
 ```
 还可以这样测试一下，使用shell命令
-![用shell测试xpath](http://ww4.sinaimg.cn/large/692869a3gw1erjvd7qeqdj213z0j9h2h.jpg)
+![用shell测试xpath](https://ww4.sinaimg.cn/large/692869a3gw1erjvd7qeqdj213z0j9h2h.jpg)
 妈蛋，我的竟然出错了，输出如下
 ```
 chen@chen-P31:~/stack$ scrapy crawl stack
@@ -252,7 +252,7 @@ scrapy crawl stack -o items.json -t json
 在这里，我遇到一个大坑，无论是伯乐在线翻译的博客
 还是网上搜索到的一般教程，都是使用pymongo.Connection来连接数据库，可是妈蛋，你使用`pip install pymongo`安装的版本都是最新版本3.0.1，那个Connection的写法已经不支持，被丢弃了，擦。
 我们来看一下版本，我学到一个新命令`pip show pymongo`，用来查看某一个包的版本的。
-![查看pymongo版本](http://ww4.sinaimg.cn/large/692869a3gw1erjct36jnrj20df038dgf.jpg)
+![查看pymongo版本](https://ww4.sinaimg.cn/large/692869a3gw1erjct36jnrj20df038dgf.jpg)
 在pymongo 3.0的版本中，已经不再支持pymongo.Connection，而是使用pymongo.MongoClient来替代。
 ## 第一步
 创建一个用来保存我们抓取数据的数据库。打开`settings.py`,指定管道，然后加入数据库的相关设置
@@ -315,7 +315,7 @@ ok,搞定，我们再测试一把
 scrapy crawl stack
 ```
 ## 执行效果如下
-![mongodb数据库管理](http://ww1.sinaimg.cn/large/692869a3gw1erjv5to5w3j20w70g8wio.jpg)
+![mongodb数据库管理](https://ww1.sinaimg.cn/large/692869a3gw1erjv5to5w3j20w70g8wio.jpg)
 # 参考文献
 1 [ImportError: Error loading object 'scrapy.contrib.memusage.MemoryUsage': No module named mail.smtp](https://github.com/scrapy/scrapy/issues/958)
 2 <http://stackoverflow.com/questions/8671071/error-to-execute-python-scrappy-module>

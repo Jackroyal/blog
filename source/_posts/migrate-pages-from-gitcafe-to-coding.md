@@ -11,7 +11,7 @@ categories:
 上一篇文章[解决 Github Pages 禁止百度爬虫的方法](http://jackroyal.github.io/2015/11/25/how-to-solve-the-problem-that-github-blocks-the-baidu-spider/),提到了解决百度爬虫被github禁用掉的方法.
 `把博客同时发布到github pages和gitcafe pages.然后使用dnspod设置域名解析,国内线路解析到gitcafe,国外线路解析到github.`
 然后今天去上gitcafe,偶然看到这个
-![GitCafe 项目迁移至 Coding.net 公告](http://ww4.sinaimg.cn/large/692869a3gw1f1n79skvt3j20zl0m7k07.jpg)
+![GitCafe 项目迁移至 Coding.net 公告](https://ww4.sinaimg.cn/large/692869a3gw1f1n79skvt3j20zl0m7k07.jpg)
 额(⊙o⊙)…,holly shit.不过没办法,人家都被收购了,我们只能改变策略了.
 话说,两家都是做代码托管的,这也是顺(bao)应(tuan)潮(qu)流(nuan)咩?
 <!-- more -->
@@ -28,13 +28,13 @@ categories:
 这个很简单不必说,注册需要填写用户名,邮箱和密码,比如我的用户名就是`Jackroyal`
 # 2 新建和用户名同名的项目
 在注册好账号以后,我们就去新建一个项目,方法和gitcafe不同和gihub类似,就是和用户名同名,一模一样的就行.我的项目名是`Jackroyal`,项目属性`公开`
-![新建同名项目](http://ww4.sinaimg.cn/large/692869a3gw1f1n8d42xljj20qb0hbmzc.jpg)
+![新建同名项目](https://ww4.sinaimg.cn/large/692869a3gw1f1n8d42xljj20qb0hbmzc.jpg)
 # 3 添加`ssh`公钥
 首先,我们提交代码库有两种方式,一种是https,一种是ssh,两种方式都可以,但是因为我们使用hexo来发布博客的时候是没有地方输入密码的,所以我们才考虑使用`ssh`方式,不过也不一定,我们还是可以使用https方式来提交hexo的.
 ## 3.1 使用ssh方式发布博客
 我们只需要找到本地的ssh公钥,然后上传到coding上去就行,点击[这里](https://coding.net/user/account/setting/keys)设置.查看本地ssh公钥的方法和上篇博客一样.
-![使用git客户端查看ssh公钥私钥](http://ww2.sinaimg.cn/large/692869a3gw1eye75djqo9j20gj09475k.jpg)
-![查看公钥](http://ww3.sinaimg.cn/large/692869a3gw1eye7c2xpavj20if06dt9w.jpg)
+![使用git客户端查看ssh公钥私钥](https://ww2.sinaimg.cn/large/692869a3gw1eye75djqo9j20gj09475k.jpg)
+![查看公钥](https://ww3.sinaimg.cn/large/692869a3gw1eye7c2xpavj20if06dt9w.jpg)
 复制那一段,然后在coding上添加上去就行
 ## 3.2 使用https方式发布
 如果非要使用https方式,也是可以的,核心思路就是在本地做一次`push`操作就行.
@@ -48,11 +48,11 @@ categories:
 ps:这种方式,可能过一段时间又不行了,报错`could not read Username for 'https://git.coding.net': Invalid argument`,你再做一次上面的操作就行
 # 4 新建coding-pages分支
 当我们可以提交代码的时候,我们先来新建分支,和gitcafe差不多,它需要一个特别的分支名字,而不是像github默认的master分支,名字是`coding-pages`,如下图所示
-![新建coding分支](http://ww4.sinaimg.cn/large/692869a3gw1f1n965hcj0j210r0g3jvk.jpg)
+![新建coding分支](https://ww4.sinaimg.cn/large/692869a3gw1f1n965hcj0j210r0g3jvk.jpg)
 我们把它设为默认分支
 # 5 开启pages服务
 接下来我们需要手动去开启pages服务.在项目主页的`pages`选项卡,点击开启服务,同时我们,添加域名绑定
-![开启pages服务](http://ww3.sinaimg.cn/large/692869a3gw1f1n98oezpej20sv0kxtdb.jpg)
+![开启pages服务](https://ww3.sinaimg.cn/large/692869a3gw1f1n98oezpej20sv0kxtdb.jpg)
 域名绑定我们还要去修改dns解析,我们先用它分配给我们的域名去访问[http://jackroyal.coding.me/](http://jackroyal.coding.me/),看看能不能正常访问
 # 5 修改hexo配置
 前面的准备工作做得差不多,我们修改博客的配置信息,打开博客根目录的`_config.yml`文件,格式和之前github的差不多:
@@ -70,11 +70,11 @@ deploy:
 **PS:如上面所说,我选择的是https方式发布,所以我的repo是https的,如果你选择ssh方式去认证,那么你的地址应该是类似这样的`git@git.coding.net:Jackroyal/Jackroyal.git`
 **
 
-![添加coding的repo信息](http://ww4.sinaimg.cn/large/692869a3gw1f1n9byao2wj20o00gqn0e.jpg)
+![添加coding的repo信息](https://ww4.sinaimg.cn/large/692869a3gw1f1n9byao2wj20o00gqn0e.jpg)
 # 7 修改dns设置
 就像第5步页面提示的,我们要绑定自己的域名,需要去修改dns解析记录,只需要添加一条CNAME指向你的`jackroyal.coding.me`即可.
 注意后面加个点,也就是正确的填法是`jackroyal.coding.me.`,如下图所示.修改完成后大概等几分钟才能生效
-![修改dns设置](http://ww4.sinaimg.cn/large/692869a3gw1f1n9m6me2ej20nv09c0us.jpg)
+![修改dns设置](https://ww4.sinaimg.cn/large/692869a3gw1f1n9m6me2ej20nv09c0us.jpg)
 
 # 8 从gitcafe迁移
 如果我们选择从gitcafe迁移的话,他会把我们原来的博客迁移过来.为了适应coding,你只需要从上面第二步开始就好,尤其注意的是,`新建coding-pages分支`,`新建coding-pages分支`,`新建coding-pages分支`,重要的事情说三遍,因为你迁移过来的分支名称是`gitcafe-pages`.

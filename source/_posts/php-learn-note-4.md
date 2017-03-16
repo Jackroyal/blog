@@ -34,4 +34,4 @@ PHP数据对象，是PHP应用中的一个数据库抽象层规范。PDO提供�
 
 
 
-![PHP中三种主要的MySQL连接方式的功能的比较](http://ww2.sinaimg.cn/large/692869a3gw1f1tvea7khyj20hm0dhac0.jpg)
+![PHP中三种主要的MySQL连接方式的功能的比较](https://ww2.sinaimg.cn/large/692869a3gw1f1tvea7khyj20hm0dhac0.jpg)

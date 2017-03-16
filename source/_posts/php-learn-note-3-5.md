@@ -24,7 +24,7 @@ struct _zval_struct {
 # 2 php环境的设置
 我们在实验过程中,需要去查看refcount和is_ref的变化,所以需要使用php的
 `xdebug_debug_zval`函数,你的环境可能默认没有开启这个配置,你需要修改`php.ini`文件开启这个配置.
-![修改php.ini文件](http://ww4.sinaimg.cn/large/692869a3gw1f1m1ximwj1j20wn098dj6.jpg)
+![修改php.ini文件](https://ww4.sinaimg.cn/large/692869a3gw1f1m1ximwj1j20wn098dj6.jpg)
 # 3 refcount和is_ref
 我们通常的赋值方式:一般赋值和引用赋值.
 # 3.1 一般赋值

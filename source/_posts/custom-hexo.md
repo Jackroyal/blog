@@ -158,9 +158,9 @@ facebook:
 # 创建多说
 首先我们去多说注册一个账号,[点击这里](http://duoshuo.com/ "多说官网")
 我们点击[我要安装](http://duoshuo.com/create-site/ "我要安装"),界面如下
-![duoshuo 创建界面](http://ww4.sinaimg.cn/large/692869a3gw1emtdlnpsqaj20wo0lp783.jpg "创建多说账号")
+![duoshuo 创建界面](https://ww4.sinaimg.cn/large/692869a3gw1emtdlnpsqaj20wo0lp783.jpg "创建多说账号")
 shortname就是jackroyal,创建完成后,跳转到如下界面
-![获取多说代码](http://ww1.sinaimg.cn/large/692869a3gw1emtdp96x54j20us0jxn18.jpg "获取多说代码")
+![获取多说代码](https://ww1.sinaimg.cn/large/692869a3gw1emtdp96x54j20us0jxn18.jpg "获取多说代码")
 我们选择`通用代码`,点击复制,就行了
 # 配置多说
 这里说一个前提,我使用的是light主题,如果你用的是其他主题,接下来的设置可能给我有点区别,但是原理差不多,参考看看
@@ -216,7 +216,7 @@ shortname就是jackroyal,创建完成后,跳转到如下界面
  <% if (item.comments && config.duoshuo_shortname){ %>
 ```
 
-产生的效果如图![开启和关闭comment的区别](http://ww3.sinaimg.cn/large/692869a3gw1emteitia5uj20tl0fn412.jpg "开启和关闭comment的区别").
+产生的效果如图![开启和关闭comment的区别](https://ww3.sinaimg.cn/large/692869a3gw1emteitia5uj20tl0fn412.jpg "开启和关闭comment的区别").
 至此,配置hexo,打完收工
 enjoy it
 

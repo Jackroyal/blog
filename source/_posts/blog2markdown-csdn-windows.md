@@ -54,8 +54,8 @@ PS:由于pyInstaller的问题,导致无法在中文路径下正常运行
 所以应该放在全英文的目录下
 C:/software/spider.exe
 运行结果如图
-![spider运行截图](http://ww2.sinaimg.cn/large/692869a3gw1eqmymt6bhrj20ip0cata6.jpg)
-![运行结果截图](http://ww1.sinaimg.cn/large/692869a3gw1eqmyur9uihj20mb0gqmzf.jpg)
+![spider运行截图](https://ww2.sinaimg.cn/large/692869a3gw1eqmymt6bhrj20ip0cata6.jpg)
+![运行结果截图](https://ww1.sinaimg.cn/large/692869a3gw1eqmyur9uihj20mb0gqmzf.jpg)
 
 # 源码执行
 如果你对我的exe不放心,可以自己执行python源码

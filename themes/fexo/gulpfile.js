@@ -12,7 +12,7 @@ var uglify = require('gulp-uglify');
 
 gulp.task('default', ['sass', 'scripts'], function() {
   gulp.watch('./source/sass/**/*.scss', ['sass']);
-  gulp.watch('./source/sass/**/*.js', ['scripts']);
+  gulp.watch('./source/js/**/*.js', ['scripts']);
 });
 
 gulp.task('sass', function() {
@@ -29,6 +29,7 @@ gulp.task('sass', function() {
 gulp.task('scripts', function() {
   var files = [
     './source/js/fastclick.js',
+    './source/js/scroll-spy.js',
     './source/js/zenscroll.js',
     './source/js/util.js',
     './source/js/app.js'

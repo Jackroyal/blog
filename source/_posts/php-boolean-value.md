@@ -45,7 +45,7 @@ php支持原始的8总数据类型.
 ### is_null()
 所有的`is_`开头的函数,都不会进行类型转换,例如is_bool('0'),返回false,因为'0'不是一个布尔类型的值.
 详细对比看下图
-![使用 PHP 函数对变量 $x 进行比较](http://ww4.sinaimg.cn/large/692869a3gw1euak04nwitj20nf0i2432.jpg)
+![使用 PHP 函数对变量 $x 进行比较](https://ww4.sinaimg.cn/large/692869a3gw1euak04nwitj20nf0i2432.jpg)
 
 
 更多更详细的比较,大家看这里[php类型比较表](http://php.net/manual/zh/types.comparisons.php)

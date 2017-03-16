@@ -13,8 +13,8 @@ google一番找到解决方法:
 #### 2 关于访问量统计这事儿,不太好搞,我找到了这个[不蒜子](http://ibruce.info/2015/04/04/busuanzi/),这位非著名码农自己做的访问统计,哈哈,点个赞
 #### 3 今天还看到了font-awesome,可以显示一些小图标,为了显示效果更好,一并加上去
 先展示一下最终的效果:<br>
-![页底关于整站访问量的显示](http://ww1.sinaimg.cn/large/692869a3gw1esm9snxfcuj20su0ad74x.jpg)
-![文章页面关于访问量和评论数量的显示](http://ww4.sinaimg.cn/large/692869a3gw1esm9tcczdij20r00doq4t.jpg)
+![页底关于整站访问量的显示](https://ww1.sinaimg.cn/large/692869a3gw1esm9snxfcuj20su0ad74x.jpg)
+![文章页面关于访问量和评论数量的显示](https://ww4.sinaimg.cn/large/692869a3gw1esm9tcczdij20r00doq4t.jpg)
 
 下面,开始动手
 # 1 配置评论数量的显示
@@ -34,7 +34,7 @@ google一番找到解决方法:
      <% } %>
 ```
 最终效果如图<br>
-![修改后的article.ejs](http://ww2.sinaimg.cn/large/692869a3gw1esmas5d58oj20x50jc46f.jpg)
+![修改后的article.ejs](https://ww2.sinaimg.cn/large/692869a3gw1esmas5d58oj20x50jc46f.jpg)
 以上代码,是最终成型的代码,我加入了一些美化的东西,最核心的就是
 ```html
 <span class="ds-thread-count" data-thread-key="<%= page.layout %>-<%= page.slug %>"></span>
@@ -42,7 +42,7 @@ google一番找到解决方法:
 尤其注意`data-thread-key`的设置,他和你之前配置多说的时候是一致的,每篇文章有一个独一无二的key,你可以去你的`themes/light/layout/_partial/comment.ejs`里找到关于data-thread-key的内容,直接复制过来即可.
 
 Ps:这里我们可能还需要配置下数据显示的格式,在你的多说后台管理里面,进入设置界面如图
-![多说后台设置](http://ww3.sinaimg.cn/large/692869a3gw1esmayan2utj20w50mx0ya.jpg)
+![多说后台设置](https://ww3.sinaimg.cn/large/692869a3gw1esmayan2utj20w50mx0ya.jpg)
 我们找到`暂无评论`,`1条评论`,`{num}条评论`,这几个设置,修改成自己要的格式,也可以参照我的修改,`0`,`1`,`{num}`
 
 # 2 配置文章访问量的显示
@@ -74,7 +74,7 @@ Ps:这里我们可能还需要配置下数据显示的格式,在你的多说后�
      </div>
      <% } %>
 ```
-![修改后的article.ejs](http://ww2.sinaimg.cn/large/692869a3gw1esmas5d58oj20x50jc46f.jpg)<br>2.修改`themes/light/layout/_partial/footer.ejs`,下面是footer.ejs的**全部代码**:
+![修改后的article.ejs](https://ww2.sinaimg.cn/large/692869a3gw1esmas5d58oj20x50jc46f.jpg)<br>2.修改`themes/light/layout/_partial/footer.ejs`,下面是footer.ejs的**全部代码**:
 ```html
 <div class="alignleft">
   <% if (config.author){ %>
@@ -110,7 +110,7 @@ Ps:这里我们可能还需要配置下数据显示的格式,在你的多说后�
 
 ```
 最终效果如图:
-![添加css,注意左对齐](http://ww4.sinaimg.cn/large/692869a3gw1esmajbsx38j20k30gwadu.jpg)<br>5.修改`themes\light\source\css\_partial\footer.styl`,在最后添加上以下代码
+![添加css,注意左对齐](https://ww4.sinaimg.cn/large/692869a3gw1esmajbsx38j20k30gwadu.jpg)<br>5.修改`themes\light\source\css\_partial\footer.styl`,在最后添加上以下代码
 ```
 # busuanzi_value_site_pv
   color:black

@@ -1,7 +1,7 @@
 <% if(theme.toolbox && theme.toolbox.isShow == true) { %>
   <div class="toolbox">
     <a class="toolbox-entry" href="/">
-      <span class="toolbox-entry-text">盒子</span>
+      <span class="toolbox-entry-text"><%= theme.toolbox.text || '' %></span>
       <i class="icon-angle-down"></i>
       <i class="icon-home"></i>
     </a>
@@ -11,6 +11,7 @@
           <a
             class="<%= theme.page_nav_style ? theme.page_nav_style : 'ROUND_RECT' %>"
             href="<%= item.url %>"
+            rel="noopener noreferrer"
             target="<%= item.target_blank ? '_blank' : '_self' %>"
             >
             <%= item.name %>

@@ -50,13 +50,13 @@ git clone https://github.com/Jackroyal/blog.git
 git status
 ```
 执行结果如下图:
-![执行git status查看工作区文件状态](http://ww1.sinaimg.cn/large/692869a3gw1exoxiu5jyij20it0933zl.jpg)
+![执行git status查看工作区文件状态](https://ww1.sinaimg.cn/large/692869a3gw1exoxiu5jyij20it0933zl.jpg)
 就像图片中提示的,我们新加的`a.txt`是未跟踪文件,我们执行
 ```bash
 git add a.txt
 ```
 我们把`a.txt`添加到暂存区,再次执行`git status`,查看状态,执行结果如图所示
-![添加到暂存区后再次执行git status](http://ww2.sinaimg.cn/large/692869a3gw1exoxp6duu1j20it07o0th.jpg)
+![添加到暂存区后再次执行git status](https://ww2.sinaimg.cn/large/692869a3gw1exoxp6duu1j20it07o0th.jpg)
 
 #### 3.2 将暂存区文件保存到本地仓库
 假如你要做的修改已经改完,已经保存到暂存区了,我们准备提交到本地仓库.执行
@@ -72,7 +72,7 @@ git commit -m "这是提交内容"
 ```
 然后就行了,一个基本的流程就是这样.
 推荐看看下面友情链接里面的那本书,pro git 
-![pro git封面](http://ww1.sinaimg.cn/large/692869a3gw1exp17u1ltjj208r0boq38.jpg)
+![pro git封面](https://ww1.sinaimg.cn/large/692869a3gw1exp17u1ltjj208r0boq38.jpg)
 
 # 友情链接
 1 [pro git中文书籍在线版](http://iissnan.com/progit/)
