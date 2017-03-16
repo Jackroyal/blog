@@ -4,7 +4,7 @@ description: jackroyal 博客 搁浅St 笨笨
 author: jackroyal
 language: zh-CN
 timezone: null
-url: 'http://bblove.me'
+url: 'https://bblove.me'
 root: /
 permalink: ':year/:month/:day/:title/'
 permalink_defaults: null
@@ -60,6 +60,6 @@ deploy:
   repo: 'https://github.com/Jackroyal/Jackroyal.github.io.git'
   branch: master
 - type: git
-  repo: 'https://git.coding.net/Jackroyal/Jackroyal.git'
-  branch: coding-pages
+  repo: git@bblove.me:/home/git/bblove/blog.git
+  branch: master
 get: registry
