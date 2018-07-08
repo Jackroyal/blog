@@ -10,3 +10,4 @@ themes/
 !thems/fexo/_config.yml
 scaffolds/
 package.json
+./*.json
