@@ -6,7 +6,7 @@ node_modules/
 public/
 .deploy*/
 .idea
-themes/
+themes/*
 !themes/fexo/
 themes/fexo/**
 !themes/fexo/_config.yml
