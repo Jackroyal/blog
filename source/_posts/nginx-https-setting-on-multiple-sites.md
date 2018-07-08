@@ -8,6 +8,10 @@ tags:
 categories:
 - Linux
 ---
+**更新**
++ 2017-06-13 修改证书生成目录,为方便后续的git push自动更新,将acme验证目录移出网站根目录
+
+
 此处接上篇[在ubuntu上安装和配置Nginx](https://bblove.me/2017/04/05/nginx-installation-and-setting-in-ubuntu-server),本文在之前的基础上配置https.
 
 # 1 环境和目标
@@ -54,10 +58,10 @@ acme脚本会生成一个验证文件,并放到网站根目录,然后Let's Encry
 由于我最后只使用`https://bblove.me`这个域名,验证方式选择的http方式,`bblove.me`和`huirongis.me`指向不同的根目录,为了方便后续管理和维护,所以我选择方案二,即`bblove.me`和`www.bblove.me`共用一个证书,`huirongis.me`同理.
 确定好方案后,下面开始生成证书,使用如下命令即可.
 ```bash
-acme.sh --issue -d bblove.me -d www.bblove.me -w /home/chen/www/bblove_me/ --force
+acme.sh --issue -d bblove.me -d www.bblove.me -w /home/chen/www/nginx_acme/bblove_me/ --force
 ```
 其中`-d`表示域名,可以添加多个;`-w`表示网站的根目录,一条命令执行完成,即可得到证书.
-顺利的话,执行结果如下:
+顺利的话,执行结果如下(此处配图输入命令未更新,输出结果是一致的):
 ![生成证书](https://ws1.sinaimg.cn/large/692869a3gy1fecw65xpvrj20lv0ll0vo.jpg)
 如果出错的话,在那条命令后面追加`--debug`,查看详细的信息,我有遇到过文件权限的错误,只要网站根目录权限和当前home目录对应的用户权限一样就可以了;我还遇到过验证不通过的问题,大家可以在浏览器中访问那个路径,看是否正常,类似`http://bblove.me/.well-known/acme-challenge/dfdfdfdafdfdfdfdfdfdfdfd`这样的格式
 ## 2.3 安装证书
@@ -70,7 +74,7 @@ acme.sh --installcert -d bblove.me --keypath /home/chen/www/nginx_ssl/bblove_me/
 至此,证书部分已经操作完成,第二个域名操作同理.
 ```bash
 #生成证书
-acme.sh --issue -d bblove.me -d www.bblove.me -w /home/chen/www/bblove_me/ --force
+acme.sh --issue -d bblove.me -d www.bblove.me -w /home/chen/www/nginx_acme/bblove_me/ --force
 #安装证书
 acme.sh --installcert -d bblove.me --keypath /home/chen/www/nginx_ssl/bblove_me/bblove_me.key --fullchainpath /home/chen/www/nginx_ssl/bblove_me/bblove_me.cer --reloadcmd "service nginx force-reload"
 
@@ -98,7 +102,7 @@ server {
     }
 
     location ^~ /.well-known/acme-challenge/ {
-        alias         /home/chen/www/bblove_me/.well-known/acme-challenge/;
+        alias         /home/chen/www/nginx_acme/bblove_me/.well-known/acme-challenge/;
         try_files     $uri =404;
     }
 
@@ -214,7 +218,7 @@ server {
     }
 
     location ^~ /.well-known/acme-challenge/ {
-        alias         /home/chen/www/huirongis_me/.well-known/acme-challenge/;
+        alias         /home/chen/www/nginx_acme/huirongis_me/.well-known/acme-challenge/;
         try_files     $uri =404;
     }
 
@@ -231,7 +235,7 @@ server {
 有些配置的含义和原理,屈大都给了详细的分析,想了解的可以去看看.
 
 再贴一下本站目录结构:
-![本站目录设置](https://ws1.sinaimg.cn/large/692869a3gy1fecyn6c5hyj20fg0hn0tc.jpg)
+![本站目录设置](https://ws1.sinaimg.cn/large/692869a3gy1fgivj9x7g0j20nj0ert9g.jpg)
 
 # 4 修改http资源为https
 ok,都这里基本都搞定了,应该可以看到小绿锁了.在chrome中按`F12`->`console`,查看原因.如果你的网站中包含其他第三方http资源,可能会没有看到小绿锁,只需要将http资源修改为https的就行,比如图片资源,本站使用新浪微博图床,只需要将原来的http格式的图片加个s,变成https就可以了.如果资源没有https的,那就需要将资源下载到服务器本地.
