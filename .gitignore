@@ -7,6 +7,8 @@ public/
 .deploy*/
 .idea
 themes/
+!themes/fexo/
+themes/fexo/**
 !themes/fexo/_config.yml
 scaffolds/
 package.json
