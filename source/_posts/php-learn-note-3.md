@@ -22,7 +22,7 @@ $instance = new $className(); // Foo()
 我们创建一个对象的实例后,后面进行赋值的时候有两种赋值.
 第一种是直接`$a=$b`,第二种是引用赋值`$a=&$b`.
 这两个有什么区别呢?问题可深了,所以我决定单独写一篇文章来说这个问题.
-[php学习笔记(3.5)--关于引用赋值和一般赋值](http://jackroyal.github.io/2015/12/10/php-learn-note-3-5/)
+[php学习笔记(3.5)--关于引用赋值和一般赋值](http://jackroyal.github.io/2016/03/05/php-learn-note-3-5/)
 
 
 ## 1.2 extends关键字
